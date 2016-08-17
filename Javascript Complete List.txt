@@ -1,0 +1,62 @@
+Introduction from Wikipedia: 
+"JavaScript is a high-level, dynamic, untyped, and interpreted programming language. It has been standardized in the ECMAScript language specification. Alongside HTML and CSS, it is one of the three core technologies of World Wide Web content production; the majority of websites employ it and it is supported by all modern Web browsers without plug-ins. JavaScript is prototype-based with first-class functions, making it a multi-paradigm language, supporting object-oriented, imperative, and functional programming styles. It has an API for working with text, arrays, dates and regular expressions, but does not include any I/O, such as networking, storage, or graphics facilities, relying for these upon the host environment in which it is embedded.
+
+[General Related Concepts]
+
+Although there are strong outward similarities between JavaScript and Java, including language name, syntax, and respective standard libraries, the two are distinct languages and differ greatly in their design. JavaScript was influenced by programming languages such as Self and Scheme."
+
+Prototype-based programming is a style of object-oriented programming in which behaviour reuse (known as inheritance) is performed via a process of reusing existing objects via delegation that serve as prototypes.[4]
+
+In computer science, a programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.[1]
+
+In computer science, a literal is a notation for representing a fixed value in source code. [9]
+
+[Patterns]
+https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html
+http://metaduck.com/08-module-pattern-inheritance.html
+
+[Classes]
+https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-object-in-javascript
+
+[Things to be Aware Of]
+- Unobtrusive_JavaScript
+
+[Functions]
+Function Literal = An expression that defines an unnamed function. Example: myFunction = function() {alert("hello");} [7]
+Function Expression: var abc = function() { ... }
+Function Declaration/Statement: function abc() { ... }
+Function Constructor: new Function ([arg1[, arg2[, ...argN]],] functionBody)
+Anonymous Function: function(a, b){return a+b;}
+Anonymous Function Assigned to Variable: var abc = function(a, b){return a+b;}
+
+	Native Function Properties:
+		- .arguments, .caller, .length, .name, .displayName
+	Native Function Methods:
+		- .apply, .bind, .call, .toSource, .toString, .isGenerator
+
+	Important:
+		- In JavaScript every function is actually a Function object. [5]
+		- Function Constructor is least efficient method of using/creating functions. [5]
+		- Functions created with the New keyword do not form a closure. [6]
+		- Function declarations are better because they're declared at compile time and can be used anytime in the scope due to hoisting. [8]
+
+
+[Gotchas]
+
+JavaScript only hoists declarations, not initializations or expressions.
+
+[Questions]
+"Invoking the Function constructor as a function (without using the new operator) has the same effect as invoking it as a constructor." [5]
+
+
+[References]
+1. https://en.wikipedia.org/wiki/First-class_function
+2. https://en.wikipedia.org/wiki/JavaScript
+3. https://en.wikipedia.org/wiki/Anonymous_function
+4. https://en.wikipedia.org/wiki/Prototype-based_programming
+5. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
+6. http://www.bennadel.com/blog/1909-javascript-function-constructor-does-not-create-a-closure.htm
+7. https://stackoverflow.com/questions/12314905/exact-meaning-of-function-literal-in-javascript
+8. https://stackoverflow.com/questions/336859/javascript-function-declaration-syntax-var-fn-function-vs-function-fn
+9. https://en.wikipedia.org/wiki/Literal_(computer_programming)
+10. https://en.wikipedia.org/wiki/Unobtrusive_JavaScript

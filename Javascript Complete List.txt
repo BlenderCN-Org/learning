@@ -29,7 +29,7 @@ Anonymous Function: function(a, b){return a+b;}
 Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
 Self Executing Anonymous Function: (function() { alert('Hello World'); })();
 
-	Get Syntax: Binds an object property to a function that will be called when that property is looked up. [13]
+	Get Syntax: Binds an object property to a function that will be called when that property is looked up. [13] [16]
 		- As property of object. [13]
 		- Using Object.defineProperty(), to append a getter to an existing object later at any time, . [13]
 		- __defineGetter__() - (DEPRECATED) [15]
@@ -37,17 +37,32 @@ Self Executing Anonymous Function: (function() { alert('Hello World'); })();
 	Set Syntax: binds an object property to a function to be called when there is an attempt to set that property. [14]	
 	
 	Native Function Properties:
-		- .arguments, .caller, .length, .name, .displayName, .prototype
+		- .arguments [19], .caller, .length, .name, .displayName, .prototype
 	Native Function Methods:
 		- .apply [12], .bind, .call [11], .toSource, .toString, .isGenerator
 
+	Arrow Functions [17]:
+		- Always anonymous.
+		- Best suited for non-method functions and they can not be used as constructors.
+		
 	Important:
 		- In JavaScript every function is actually a Function object. [5]
-		- Function Constructor is least efficient method of using/creating functions. [5]
+		- Function Constructor (new keyword) is least efficient method of using/creating functions. [5]
 		- Functions created with the New keyword do not form a closure. [6]
 		- Function declarations are better because they're declared at compile time and can be used anytime in the scope due to hoisting. [8]
+		- Global function methoods can be created/added using Function.Prototype. (Example: Function.prototype.construct = function(args){};) [12]
+		- Rest parameters allow indefinite number of arguments to a function. [18]
 
+Syntax [18]
+		- parameters of functions default to undefined. [20]
 
+[Global Functions]
+Infinity
+	- Infinity is a numeric value that represents positive infinity.
+	- -Infinity is a numeric value that represents negative infinity.
+	- Infinity is displayed when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
+	- -Infinity is displayed when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308
+		
 [Gotchas]
 JavaScript only hoists declarations, not initializations or expressions.
 
@@ -71,3 +86,8 @@ JavaScript only hoists declarations, not initializations or expressions.
 13. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
 14. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
 15. https://stackoverflow.com/questions/812961/javascript-getters-and-setters-for-dummies
+16. http://javascriptplayground.com/blog/2013/12/es5-getters-setters/
+17. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+18. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+19. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
+20. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters

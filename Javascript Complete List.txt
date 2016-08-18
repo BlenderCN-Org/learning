@@ -22,17 +22,24 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 - Unobtrusive_JavaScript
 
 [Functions]
-Function Literal = An expression that defines an unnamed function. Example: myFunction = function() {alert("hello");} [7]
 Function Expression: var abc = function() { ... }
 Function Declaration/Statement: function abc() { ... }
 Function Constructor: new Function ([arg1[, arg2[, ...argN]],] functionBody)
 Anonymous Function: function(a, b){return a+b;}
-Anonymous Function Assigned to Variable: var abc = function(a, b){return a+b;}
+Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
+Self Executing Anonymous Function: (function() { alert('Hello World'); })();
 
+	Get Syntax: Binds an object property to a function that will be called when that property is looked up. [13]
+		- As property of object. [13]
+		- Using Object.defineProperty(), to append a getter to an existing object later at any time, . [13]
+		- __defineGetter__() - (DEPRECATED) [15]
+
+	Set Syntax: binds an object property to a function to be called when there is an attempt to set that property. [14]	
+	
 	Native Function Properties:
-		- .arguments, .caller, .length, .name, .displayName
+		- .arguments, .caller, .length, .name, .displayName, .prototype
 	Native Function Methods:
-		- .apply, .bind, .call, .toSource, .toString, .isGenerator
+		- .apply [12], .bind, .call [11], .toSource, .toString, .isGenerator
 
 	Important:
 		- In JavaScript every function is actually a Function object. [5]
@@ -42,7 +49,6 @@ Anonymous Function Assigned to Variable: var abc = function(a, b){return a+b;}
 
 
 [Gotchas]
-
 JavaScript only hoists declarations, not initializations or expressions.
 
 [Questions]
@@ -60,3 +66,8 @@ JavaScript only hoists declarations, not initializations or expressions.
 8. https://stackoverflow.com/questions/336859/javascript-function-declaration-syntax-var-fn-function-vs-function-fn
 9. https://en.wikipedia.org/wiki/Literal_(computer_programming)
 10. https://en.wikipedia.org/wiki/Unobtrusive_JavaScript
+11. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+12. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+13. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+14. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
+15. https://stackoverflow.com/questions/812961/javascript-getters-and-setters-for-dummies

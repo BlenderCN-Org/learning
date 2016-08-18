@@ -41,20 +41,25 @@ Self Executing Anonymous Function: (function() { alert('Hello World'); })();
 	Native Function Methods:
 		- .apply [12], .bind, .call [11], .toSource, .toString, .isGenerator
 
-	Arrow Functions [17]:
-		- Always anonymous.
-		- Best suited for non-method functions and they can not be used as constructors.
+	Arrow Functions [17]: 
+		- Are shorter, and always anonymous.
+		- Best suited for non-method functions and they can not be used as constructors (new keyword).
+		- "this" is lexical (strict mode rules with regard to this are ignored).
+		- Two Types of Syntax:
+			- var func = x => x * x;                  // concise syntax, implied "return"
+			- var func = (x, y) => { return x + y; }; // with block body, explicit "return" needed
+	
+	Rest Parameters:
+		- Allow indefinite number of arguments to a function. [18]
+		-
 		
-	Important:
+	Function Notes:
 		- In JavaScript every function is actually a Function object. [5]
 		- Function Constructor (new keyword) is least efficient method of using/creating functions. [5]
 		- Functions created with the New keyword do not form a closure. [6]
-		- Function declarations are better because they're declared at compile time and can be used anytime in the scope due to hoisting. [8]
-		- Global function methoods can be created/added using Function.Prototype. (Example: Function.prototype.construct = function(args){};) [12]
-		- Rest parameters allow indefinite number of arguments to a function. [18]
-
-Syntax [18]
-		- parameters of functions default to undefined. [20]
+		- Function declarations are more desireable because they're declared at compile time and can be used anytime in the scope due to hoisting. [8]
+		- Global function methods can be created/added using Function.prototype. (Example: Function.prototype.construct = function(args){};) [12]
+		- Function parameters default to undefined. [20]
 
 [Global Functions]
 Infinity

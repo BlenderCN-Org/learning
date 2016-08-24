@@ -68,7 +68,21 @@ Function Constructor: new Function ([arg1[, arg2[, ...argN]],] functionBody)
 Anonymous Function: function(a, b){return a+b;}
 Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
 Self Invoking/Executing Anonymous Function Expression (Added parenthesis makes it an expression): (function() { alert('Hello World'); })();
-
+Named function expression [30]: var math = {
+  'factorial': function factorial(n) {
+  
+  }};
+  
+	Function Declarations:
+		- Require a name.
+		- Are hoisted.
+	
+	Function Expressions:
+		- Can be used as IIFE.
+		- Can be anonymous.
+		- Can be named, but optional.
+		- Are NOT hoisted.
+		
 	Get Syntax: Binds an object property to a function that will be called when that property is looked up. [13] [16]
 		- As property of object. [13]
 		- Using Object.defineProperty(), to append a getter to an existing object later at any time, . [13]
@@ -144,7 +158,7 @@ Infinity
 	- The semi-colon is part of the statement syntax. It belongs to the statement itself, and sequences of statements do not need any sort of separator. In order to "chain" statements, one simply writes them in sequence, with no seperator in between. [29]
 	- An initial parenthesis is one case where the automatic semicolon insertion (ASI) in JavaScript can cause problems; the expression is instead interpreted as a call to the last term on the preceding line. In some styles that omit optional semicolons, the semicolon is placed in front of the parenthesis, and is known as a defensive semicolon. [30]
 	- Parenthesis cannot contain statements, so anything between them is treated as an expression. [30]
-
+	- Self Executing and Immediately Invoked Functions are different: http://benalman.com/news/2010/11/immediately-invoked-function-expression/
 	
 [Things you May See, and What They Are]	
 	- define(['param1', 'param2'], function() {}); https://stackoverflow.com/questions/16950560/what-is-define-function-in-javascript
@@ -192,6 +206,6 @@ Why no return statement when using new keyword?  https://stackoverflow.com/quest
 28. http://www.w3schools.com/js/js_function_definition.asp
 29. http://www.2ality.com/2012/09/expressions-vs-statements.html
 30. https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
-
+31. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function
 </pre>
 </body></html>

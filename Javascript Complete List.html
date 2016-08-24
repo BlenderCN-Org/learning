@@ -31,9 +31,9 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 	- Consequently, you can access global variables declared in one window or frame from another window or frame by specifying the window or frame name. For example, if a variable called phoneNumber is declared in a document, you can refer to this variable from an iframe as parent.phoneNumber.	
 	
 	Three Ways of Declaring variables [25]:
-	- With the keyword var. For example, var x = 42. This syntax can be used to declare both local and global variables.
-	- By simply assigning it a value. For example, x = 42. This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this variant.
-	- With the keyword let. For example, let y = 13. This syntax can be used to declare a block scope local variable. See Variable scope below.
+	- With the keyword var. This syntax can be used to declare both local and global variables.
+	- Assigning Values. For example, x = 42. This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this variant.
+	- With the keyword let. This syntax can be used to declare a block scope local variable.
 	
 	var a = 0, b = 0;
 	var a = 0;
@@ -89,7 +89,7 @@ Self Invoking/Executing Anonymous Function Expression (Added parenthesis makes i
 			- var func = x => x * x;                  // concise syntax, implied "return"
 			- var func = (x, y) => { return x + y; }; // with block body, explicit "return" needed
 	
-	Handler Functions:
+	Handler Functions and Closures:
 		- https://www.sitepoint.com/function-expressions-vs-declarations/
 	
 	Generator Functions (Functions with an asterix *): [21]
@@ -142,7 +142,17 @@ Infinity
 	- http://www.w3schools.com/js/js_mistakes.asp
 	- https://stackoverflow.com/questions/7064673/is-return-from-constructor-necessary-when-creating-object-with-new
 	- The semi-colon is part of the statement syntax. It belongs to the statement itself, and sequences of statements do not need any sort of separator. In order to "chain" statements, one simply writes them in sequence, with no seperator in between. [29]
+	- An initial parenthesis is one case where the automatic semicolon insertion (ASI) in JavaScript can cause problems; the expression is instead interpreted as a call to the last term on the preceding line. In some styles that omit optional semicolons, the semicolon is placed in front of the parenthesis, and is known as a defensive semicolon. [30]
+	- Parenthesis cannot contain statements, so anything between them is treated as an expression. [30]
 
+	
+[Things you May See, and What They Are]	
+	- define(['param1', 'param2'], function() {}); https://stackoverflow.com/questions/16950560/what-is-define-function-in-javascript
+
+
+[JQuery Dissection]
+- https://stackoverflow.com/questions/4754560/help-understanding-jquerys-jquery-fn-init-why-is-init-in-fn
+	
 [Things to be Aware Of]
 - Unobtrusive_JavaScript
 
@@ -181,5 +191,7 @@ Why no return statement when using new keyword?  https://stackoverflow.com/quest
 27. http://www.w3schools.com/js/js_function_parameters.asp
 28. http://www.w3schools.com/js/js_function_definition.asp
 29. http://www.2ality.com/2012/09/expressions-vs-statements.html
+30. https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
+
 </pre>
 </body></html>

@@ -1,0 +1,105 @@
+<?php 
+header('Content-Type: text/html; charset=UTF-8');
+session_start();
+
+//$_SESSION['user_id'] = 1;
+$_SESSION['user_tz'] = 'America/New_York';
+
+require('mysqli_connect.php');
+
+if(isset($_GET['lid']) && filter_var($_GET['lid'], FILTER_VALIDATE_INT, array('min_range' => 1))) { // Check for language ID
+	$_SESSION['lid'] = $_GET['lid']; // Store language ID from GET in SESSION
+} elseif (!isset($_SESSION['lid'])) {
+	$_SESSION['lid'] = 1; // Default lang ID
+}
+
+$q = "SELECT * FROM words WHERE lang_id = {$_SESSION['lid']}"; // Get words based on language ID
+$r = mysqli_query($dbc, $q);
+
+if (mysqli_num_rows($r) == 0) { // If language ID invalid
+	//echo 'SESSION[lid]: ' . $_SESSION['lid']; 
+	$_SESSION['lid'] = 1;
+	$q = "SELECT * FROM words WHERE lang_id = {$_SESSION['lid']}";
+	$r = mysqli_query($dbc, $q);
+}
+
+$words = mysqli_fetch_array($r, MYSQLI_ASSOC);
+mysqli_free_result($r);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title><?php echo $words['title']; ?></title>
+<style type="text/css" media="screen">
+body { background-color: #ffffff; }
+.content {
+	background-color: #f5f5f5;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-top: 10px; 
+	margin-right: 10px; 
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+a.navlink:link { 
+	color: #003366;
+	text-decoration: none; 
+}
+a.navlink:visited { 
+	color: #003366; 
+	text-decoration: none; 
+}
+a.navlink:hover { 
+	color: #cccccc;
+	text-decoration: none; 
+}
+.title {
+	font-size: 24px; 
+	font-weight: normal; 
+	color: #ffffff;
+	margin-top: 5px; 
+	margin-bottom: 5px; 
+	margin-left: 20px;
+	padding-top: 5px; 
+	padding-bottom: 5px; 
+	padding-left: 20px;
+}
+</style></head>
+<body>
+<table width="90%" border="0" cellspacing="10" cellpadding="0" align="center">
+<tr><td colspan="2" bgcolor="#003366" align="center"><p class="title"><?php echo $words['title']; ?></p></td>
+</tr><tr><td valign="top" nowrap="nowrap" width="10%"><b>
+<?php
+echo '<a href="index.php" class="navlink">' . $words['home'] . '</a><br /><a href="forum.php" class="navlink">' . $words['forum_home'] . '</a><br />';
+//echo '<pre>';
+//print_r($_SESSION);
+//echo '</pre>';
+if(isset($_SESSION['user_id'])) { // If logged in
+	
+	if (basename($_SERVER['PHP_SELF']) == 'forum.php') { // If forum page, add link for posting new thread
+		echo '<a href="post.php" class="navlink">' . $words['new_thread'] . '</a><br />';	
+	}
+	
+	echo '<a href="logout.php" class="navlink">' . $words['logout'] . '</a><br />';
+	
+}else{ // If no user_id
+	echo '<a href="register.php" class="navlink">' . $words['register'] . '</a><br /><a href="login.php" class="navlink">' . $words['login'] . '</a><br />';
+}
+
+echo '</b><p><form action="forum.php" method="get"><select name="lid"><option value="0">' . $words['language'] . '</option>';
+
+$q = "SELECT lang_id, lang FROM languages ORDER BY lang_eng ASC"; // Query to get all languages
+$r = mysqli_query($dbc, $q);
+if (mysqli_num_rows($r) > 0) {
+	while ($menu_row = mysqli_fetch_array($r, MYSQLI_NUM)) {
+		echo "<option value=\"$menu_row[0]\">$menu_row[1]</option>";
+	}
+}
+
+mysqli_free_result($r);
+echo '</select><br /><input name="submit" type="submit" value="' . $words['submit'] . '" /></form></p></td><td valign="top" class="content">';
+?>

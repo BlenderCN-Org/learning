@@ -1,4 +1,4 @@
-Problem: Github Desktop (Windows) emits error saying sh.exe couldn't complete.
+Problem: Github Desktop (Windows) emits error saying sh.exe couldn't complete, when cloning repository.
 URL: https://github.com/desktop/desktop/issues/3096
 Solution: Enabling Address Space Resolution (ASLR) in "Windows Exploit Settings" will produce this error.  To fix this, make an exception in for sh.exe (located in C:\Users\XXXXXX\AppData\Local\GitHubDesktop\app-1.3.3\resources\app\git\usr\bin) by going to Windows > Security > App and Browser Control > Exploit Protection Settings > Program Settings.
 

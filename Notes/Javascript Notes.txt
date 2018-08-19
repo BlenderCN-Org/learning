@@ -67,14 +67,15 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 		- Function Constructor/new keyword is least efficient method of using/creating functions. [5]
 
 	Named Function Expression [30]: 
-		var math = {
-			'factorial': function factorial(n) {
+		Example: 
+		var math = { 'factorial': function factorial(n) {
 		}};
 		
 	Function Declaration:
 		- Example: function abc() { ... }
 		- Require a name.
 		- Are hoisted.
+		- More desireable because they're declared at compile time and can be used anytime in the scope due to hoisting (function expressions are not). [8]
 	
 	Function Expression:
 		- Example: var abc = function() { ... }
@@ -118,17 +119,15 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 		- JavaScript arguments are passed by value.  Changes to arguments are not visible (reflected) outside the function. [27]
 		- In JavaScript, object references are values. Because of this, objects will behave like they are passed by reference. If a function changes an object property, it changes the original value. [27]
 		
-	Rest Parameters:
+	Rest Parameters (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters):
+		- Are the three dots found before function parameters.
 		- Allow indefinite number of arguments to a function. [18]
 		
 	Function Notes:
 		- In JavaScript every function is actually a Function object. [5]
-		- Functions can be used as values.
 		- Functions have properties and methods, just like objects.
-
 		- .arguments is deprecated.  Use arguments object instead. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
 		- Functions created with the New keyword do not form a closure. [6]
-		- Function declarations are more desireable because they're declared at compile time and can be used anytime in the scope due to hoisting.  Function expressions are not. [8]
 		- Global function methods can be created/added using Function.prototype. (Example: Function.prototype.construct = function(args){};) [12]
 		- Functions are the only thing in JavaScript that create a new scope. [26]
 		- A function defined as the property of an object is called a method. [28]
@@ -159,8 +158,8 @@ Infinity
 	- Commas are NOT operators, but can be used as part of a declaration statement to declare multiple variables per line [32]:
 		Example: var a = 1, b = 2;
 		But NOT: var a = 1, var b = 2; 
-	- Semicolons are actually optional in javascript.  The only time you need to worry about including semicolors is if there is an *parenthesis before other characters, first on a line. [30] See also: https://mislav.net/2010/05/semicolons/
-	- Parenthesis cannot contain statements, so anything between them is treated as an expression.  This is what creates immediately-invoked-function-expressions [30]
+	- Semicolons ARE optional in javascript.  Only need to worry about including semicolors is if there is an *parenthesis before other characters, first on a line. [33]
+	- Parenthesis cannot contain statements, so anything between them is treated as an expression.  This is what creates immediately-invoked-function-expressions [30].
 	
 [Things you May See, and What They Are]	
 	- define(['param1', 'param2'], function() {}); https://stackoverflow.com/questions/16950560/what-is-define-function-in-javascript
@@ -210,3 +209,4 @@ Why no return statement when using new keyword?  https://stackoverflow.com/quest
 30. https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
 31. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function
 32.	https://stackoverflow.com/questions/15485735/use-of-commas-versus-semicolons-in-javascript
+33. https://mislav.net/2010/05/semicolons/

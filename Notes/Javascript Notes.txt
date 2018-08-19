@@ -24,7 +24,6 @@ http://metaduck.com/08-module-pattern-inheritance.html
 [Classes]
 https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-object-in-javascript
 
-
 [Declarations]
 	Global variables [25]:
 	- Global variables are in fact properties of the global object. In web pages the global object is window, so you can set and access global variables using the window.variable syntax.

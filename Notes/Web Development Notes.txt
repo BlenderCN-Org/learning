@@ -1,0 +1,32 @@
+https://aws.amazon.com/getting-started/
+https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
+
+-------------------------------------
+
+-------------------------------------
+Misc. Related Web Development Things
+
+Open Graph Protocol
+
+url: http://ogp.me/
+
+Example: 
+<html prefix="og: http://ogp.me/ns#">
+<head>
+<title>The Rock (1996)</title>
+<meta property="og:title" content="The Rock" />
+<meta property="og:type" content="video.movie" />
+<meta property="og:url" content="http://www.imdb.com/title/tt0117500/" />
+<meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
+...
+</head>
+...
+</html>
+
+Headless Chrome:
+
+https://developers.google.com/web/updates/2017/04/headless-chrome
+
+-------------------------------------
+Helpful Links:
+https://github.com/minimaxir/big-list-of-naughty-strings/blob/master/blns.txt - Bad Strings to Filter and look for.

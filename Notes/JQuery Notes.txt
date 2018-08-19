@@ -1,0 +1,13 @@
+JQuery
+
+focusout():
+https://www.w3schools.com/jquery/event_focusout.asp
+
+Syntax
+$(selector).focusout(function) - function parameter accepts function which fires after focusin() called.
+
+focusin():
+https://www.w3schools.com/jquery/event_focusin.asp
+
+Syntax
+$(selector).focusin(function) - function parameter accepts function which fires after focusin() called.

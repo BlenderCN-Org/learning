@@ -1,6 +1,15 @@
 https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
 
 -------------------------------------
+The likely future of web Development: WebAssembly
+
+https://en.wikipedia.org/wiki/WebAssembly
+https://en.wikipedia.org/wiki/Asm.js
+https://developer.mozilla.org/en-US/docs/WebAssembly
+
+- Precusor is asm.js and Google's Native Client (NaCl).
+- Designed to complement and work alongside javascript.
+- Allows programs to be written in languages like C, and be compiled into webpages (using Emscripten) where functions from the original C program can be called in javascript, via javascript's WebAssembly Object/API function called ccall().
 
 -------------------------------------
 Misc. Related Web Development Things

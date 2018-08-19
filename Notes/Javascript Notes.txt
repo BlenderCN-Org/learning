@@ -1,18 +1,9 @@
-[JS Related Concepts]
-Although there are strong outward similarities between JavaScript and Java, including language name, syntax, and respective standard libraries, the two are distinct languages and differ greatly in their design. JavaScript was influenced by programming languages such as Self and Scheme."
-
-Prototype-based programming is a style of object-oriented programming in which behaviour reuse (known as inheritance) is performed via a process of reusing existing objects via delegation that serve as prototypes.[4]
-
+[Related Concepts]
 In computer science, a programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.[1]
 
-In computer science, a literal is a notation for representing a fixed value in source code. [9]
-
-Constructors:
-https://stackoverflow.com/questions/5958417/javascript-function-and-object
-
 [Modules & Patterns]
-https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html
-http://metaduck.com/08-module-pattern-inheritance.html
+Folding Pattern: https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html
+Module Pattern: http://metaduck.com/08-module-pattern-inheritance.html
 
 "Though JavaScript provides no actual module construct yet, objects can be used to create publicly accessible subnamespaces, and functions can be used to create an isolated, private namespace inside of a module." [26]
 
@@ -21,61 +12,76 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 
 [Declarations]
 	Global variables [25]:
-	- Global variables are in fact properties of the global object. In web pages the global object is window, so you can set and access global variables using the window.variable syntax.
+	- Properties of the global object. In web pages, but not NodeJS, the global object is "window" (access global variables using the window.variable syntax).  In node, the global object is called "global".
 	- Consequently, you can access global variables declared in one window or frame from another window or frame by specifying the window or frame name. For example, if a variable called phoneNumber is declared in a document, you can refer to this variable from an iframe as parent.phoneNumber.	
 	
-	Three Ways of Declaring variables [25]:
+	Ways of Declaring variables [25]:
 	- With the keyword var. This syntax can be used to declare both local and global variables.
 	- Assigning Values. For example, x = 42. This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this variant.
 	- With the keyword let. This syntax can be used to declare a block scope local variable.
 	
-	var a = 0, b = 0;
-	var a = 0;
+		var a = 0, b = 0;
+		var a = 0;
 
-	const MY_FAV = 7;
-	const MY_OBJECT = {"key": "value"};
+		const MY_FAV = 7;
+		const MY_OBJECT = {"key": "value"};
 
-	Let Statement:
-	let x = 1;
+		Let Statement (basically, the opposite of the var statement):
+			let x = 1;
+			if (x === 1) {
+				let x = 2;
+				console.log(x); // expected output: 2
+			}
+			console.log(x); // expected output: 1
 	
-	Let Block: 
-	var x = 5;
-	var y = 0;
-	let (x = x+10, y = 12) {
-		console.log(x+y); // 27
-	}
-	console.log(x + y); // 5
+		Let Block: 
+			var x = 5;
+			var y = 0;
+			let (x = x+10, y = 12) {
+				console.log(x+y); // 27
+			}
+			console.log(x + y); // 5
 	
-	Let Expression:
-	var a = 5;
-	let(a = 6) console.log(a); // 6
-	console.log(a); // 5
+		Let Expression:
+			var a = 5;
+			let(a = 6) console.log(a); // 6
+			console.log(a); // 5
 	
 	Declaration Notes:
 	- Let expression lets you establish variables scoped only to a single expression.  When used inside a block (such as an if-statement), scope is limited to that block/statement. [22]
 	- May encounter errors in switch statements because there is only one underlying block.
 
 [Functions]
-Function Expression: var abc = function() { ... }
-Function Declaration/Statement: function abc() { ... }
-Function Constructor: new Function ([arg1[, arg2[, ...argN]],] functionBody)
-Anonymous Function: function(a, b){return a+b;}
-Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
-Self Invoking/Executing Anonymous Function Expression (Added parenthesis makes it an expression): (function() { alert('Hello World'); })();
-Named function expression [30]: var math = {
-  'factorial': function factorial(n) {
-  
-  }};
-  
-	Function Declarations:
+	Anonymous Function: function(a, b){return a+b;}
+
+	Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
+
+	Immediately Invoked Function Expressions (IIFE):
+		Example: (function() { alert('Hello World'); })();
+		- Function is wrapped in parenthesis (to make it an expression), so that it's executed without invoking/calling it.
+		- Purpose of IIFE is so variables cannot be accessed from outside of it (assigning the function to a variable will just display the functions result (not the function itself).
+		- Also called: Self/immediately Invoking/Executing (Anonymous) Function Expression.
+
+	Function Constructor: 
+		- Example: new Function ([arg1[, arg2[, ...argN]],] functionBody)
+		- Function Constructor/new keyword is least efficient method of using/creating functions. [5]
+
+	Named Function Expression [30]: 
+		var math = {
+			'factorial': function factorial(n) {
+		}};
+		
+	Function Declaration:
+		- Example: function abc() { ... }
 		- Require a name.
 		- Are hoisted.
 	
-	Function Expressions:
+	Function Expression:
+		- Example: var abc = function() { ... }
 		- Can be used as IIFE.
 		- Can be anonymous.
 		- Can be named, but optional.
-		- Are NOT hoisted.
+		- NOT hoisted.
 		
 	Get Syntax: Binds an object property to a function that will be called when that property is looked up. [13] [16]
 		- As property of object. [13]
@@ -119,7 +125,8 @@ Named function expression [30]: var math = {
 		- In JavaScript every function is actually a Function object. [5]
 		- Functions can be used as values.
 		- Functions have properties and methods, just like objects.
-		- Function Constructor (new keyword) is least efficient method of using/creating functions. [5]
+
+		- .arguments is deprecated.  Use arguments object instead. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
 		- Functions created with the New keyword do not form a closure. [6]
 		- Function declarations are more desireable because they're declared at compile time and can be used anytime in the scope due to hoisting.  Function expressions are not. [8]
 		- Global function methods can be created/added using Function.prototype. (Example: Function.prototype.construct = function(args){};) [12]
@@ -144,15 +151,16 @@ Infinity
 	- If the value cannot be converted to a legal number, NaN is returned.
 	- If the parameter is a Date object, the Number() function returns the number of milliseconds since midnight January 1, 1970 UTC.
 	
-[Gotchas]
+[Gotchas and Technicalities]
 	- JavaScript only hoists declarations, not initializations or expressions.
 	- https://stackoverflow.com/questions/17546953/cant-access-object-property-even-though-it-exists-returns-undefined
 	- http://www.w3schools.com/js/js_mistakes.asp
 	- https://stackoverflow.com/questions/7064673/is-return-from-constructor-necessary-when-creating-object-with-new
-	- The semi-colon is part of the statement syntax. It belongs to the statement itself, and sequences of statements do not need any sort of separator. In order to "chain" statements, one simply writes them in sequence, with no seperator in between. [29]
-	- An initial parenthesis is one case where the automatic semicolon insertion (ASI) in JavaScript can cause problems; the expression is instead interpreted as a call to the last term on the preceding line. In some styles that omit optional semicolons, the semicolon is placed in front of the parenthesis, and is known as a defensive semicolon. [30]
-	- Parenthesis cannot contain statements, so anything between them is treated as an expression. [30]
-	- Self Executing and Immediately Invoked Functions are different: http://benalman.com/news/2010/11/immediately-invoked-function-expression/
+	- Commas are NOT operators, but can be used as part of a declaration statement to declare multiple variables per line [32]:
+		Example: var a = 1, b = 2;
+		But NOT: var a = 1, var b = 2; 
+	- Semicolons are actually optional in javascript.  The only time you need to worry about including semicolors is if there is an *parenthesis before other characters, first on a line. [30] See also: https://mislav.net/2010/05/semicolons/
+	- Parenthesis cannot contain statements, so anything between them is treated as an expression.  This is what creates immediately-invoked-function-expressions [30]
 	
 [Things you May See, and What They Are]	
 	- define(['param1', 'param2'], function() {}); https://stackoverflow.com/questions/16950560/what-is-define-function-in-javascript
@@ -201,3 +209,4 @@ Why no return statement when using new keyword?  https://stackoverflow.com/quest
 29. http://www.2ality.com/2012/09/expressions-vs-statements.html
 30. https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
 31. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function
+32.	https://stackoverflow.com/questions/15485735/use-of-commas-versus-semicolons-in-javascript

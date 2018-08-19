@@ -11,14 +11,19 @@ Module Pattern: http://metaduck.com/08-module-pattern-inheritance.html
 https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-object-in-javascript
 
 [Declarations]
-	Global variables [25]:
-	- Properties of the global object. In web pages, but not NodeJS, the global object is "window" (access global variables using the window.variable syntax).  In node, the global object is called "global".
-	- Consequently, you can access global variables declared in one window or frame from another window or frame by specifying the window or frame name. For example, if a variable called phoneNumber is declared in a document, you can refer to this variable from an iframe as parent.phoneNumber.	
+	Function Scope - Variable defined within function is available to entire function [34].
+	Lexical Scope - Scope of an inner function contains the scope of a parent function [34].
+	Local varible - Variable declared within function, available only to function.
+	Global variable - Variable declared outside of function, available anywhere. Properties of the Global Object. 
+	
+	- Access global variables using the window.variable syntax).  
+	- In web pages, but not NodeJS, the global object is "window". In node, the global object's called "global".
 	
 	Ways of Declaring variables [25]:
-	- With the keyword var. This syntax can be used to declare both local and global variables.
-	- Assigning Values. For example, x = 42. This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this variant.
-	- With the keyword let. This syntax can be used to declare a block scope local variable.
+	- Keyword var. This syntax can be used to declare both local and global variables.
+	- Assigning Values. For example, x = 42. This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this.
+	- Keyword let. This can be used to declare a block scope local variable. When used inside a block, scope is limited to that block/statement [22].
+	- Constants - Cannot change or have the same name as varables of functions in the same scope.
 	
 		var a = 0, b = 0;
 		var a = 0;
@@ -26,7 +31,7 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 		const MY_FAV = 7;
 		const MY_OBJECT = {"key": "value"};
 
-		Let Statement (basically, the opposite of the var statement):
+		Let Statement (basically, the opposite of var):
 			let x = 1;
 			if (x === 1) {
 				let x = 2;
@@ -48,9 +53,13 @@ https://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-obje
 			console.log(a); // 5
 	
 	Declaration Notes:
-	- Let expression lets you establish variables scoped only to a single expression.  When used inside a block (such as an if-statement), scope is limited to that block/statement. [22]
 	- May encounter errors in switch statements because there is only one underlying block.
+	- JavaScript prior to ECMAScript2015 does not have block scope. Variables introduced within a block are scoped to the containing function or script, and the effects of setting them persist beyond the block itself [35].
 
+
+	
+	
+	
 [Functions]
 	Anonymous Function: function(a, b){return a+b;}
 
@@ -172,6 +181,9 @@ Infinity
 - Unobtrusive_JavaScript
 
 [Questions]
+"The scope rules for constants are the same as those for let block-scope variables. If the const keyword is omitted, the identifier is assumed to represent a variable."
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types (It should say "if the keyword is omitted").
+
 "Invoking the Function constructor as a function (without using the new operator) has the same effect as invoking it as a constructor." [5]
 
 Why no return statement when using new keyword?  https://stackoverflow.com/questions/5958417/javascript-function-and-object
@@ -210,3 +222,5 @@ Why no return statement when using new keyword?  https://stackoverflow.com/quest
 31. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function
 32.	https://stackoverflow.com/questions/15485735/use-of-commas-versus-semicolons-in-javascript
 33. https://mislav.net/2010/05/semicolons/
+34. https://pierrespring.com/2010/05/11/function-scope-and-lexical-scoping/
+35. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#Block_statement

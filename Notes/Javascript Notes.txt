@@ -166,8 +166,8 @@ By Reference - Original changed.
 	
 	Prototype:
 		- Allows you to add new properties and functions/methods to object constructors [https://www.w3schools.com/js/js_object_prototypes.asp].
-		- Example: Person.prototype.nationality = "English";
-		- Example: Person.prototype.name = function() { return this.firstName + " " + this.lastName; };
+		- Example (new property): Person.prototype.nationality = "English";
+		- Example (new function/method): Person.prototype.name = function() { return this.firstName + " " + this.lastName; };
 		
 		
 [Modules & Code Patterns]

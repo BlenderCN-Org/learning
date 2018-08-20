@@ -7,7 +7,7 @@ By Reference - Original changed.
 
 [Declarations]
 	Function Scope - Variable defined within function is available to entire function [34].
-	Lexical Scope - Scope of an inner function contains the scope of a parent function [34].
+	Lexical Scope - Scope of an inner function contains the scope of parent/outer function [34].
 	Local scope/varible - Variable declared within function, available only to that function.
 	Global scope/variable - Variable declared outside of function, available from all scripts and functions. Properties of the Global Object.
 	Block Scope - Variables in a block (anything within { } brackets) belong to the function the variable is in.  JavaScript prior to ECMAScript2015 DOES NOT HAVE block scope. Variables declared within a block can effect things outside of the block. This changed in 2015 when the Let Statement was introduced [See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Variable_scope#Variable_scope].

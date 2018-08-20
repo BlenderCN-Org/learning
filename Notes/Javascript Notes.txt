@@ -150,6 +150,23 @@ By Reference - Original changed.
 		- Functions are the only thing in JavaScript that create a new scope. [26]
 		- A function defined as the property of an object is called a method. [28]
 		- A function designed to create new objects is called a constructor. [28]
+
+[Objects]
+	Define/create objects with functions. Example:
+	function Car(make, model, year) {
+		this.make = make;
+		this.model = model;
+		this.year = year;
+	}
+	
+	Instantiate different ways:
+		New operator: 
+			- Example: var mycar = new Car('Eagle', 'Talon TSi', 1993);
+			- Without new operator, constructor function ( new Car() ) will be invoked as normal function.
+	
+	Prototype:
+		- Creates copy of an object.
+	
 		
 [Modules & Code Patterns]
 	Folding Pattern: https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html

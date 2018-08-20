@@ -16,14 +16,23 @@ By Reference - Original changed.
 	- var. This syntax can be used to declare both local and global variables.
 	- By assigning values. For example, x = 42. This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this.
 	- let. This can be used to declare a block scope local variable. When used inside a block, scope is limited to that block/statement [22].
-	- constants - cannot change them, or have the same name as varables of functions in the same scope.
+	- constants - cannot be overwritten ONCE THEY ARE CREATED, or have the same name as varables of functions in the same scope.  However, constants created as objects and arrays can have their properties modified.  They are block-scoped like the let statement.
 	
 		var a = 0, b = 0;
 		var a = 0;
 
 		const MY_FAV = 7;
 		const MY_OBJECT = {"key": "value"};
-
+		
+		const settings = {
+			baseUrl: "https://example.com"
+		};
+		settings.baseUrl = "https://evil.example.com"; // This is valid
+		
+		const numbers = [1, 2, 3];
+		numbers.push(4);  // This is also valid
+		numbers.shift();  // This is also valid
+		
 		Let Statement (kind of like var, but only locks scope to that function):
 			let x = 1;
 			if (x === 1) {
@@ -74,11 +83,14 @@ By Reference - Original changed.
 
 	Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
 
-	Function Constructor: 
-		- Example: new Function ([arg1[, arg2[, ...argN]],] functionBody)
-		- Function Constructor/new keyword is least efficient method of using/creating functions. [5]
+	Function Constructor (new keyword):
+		- Example: var sum = new Function('a', 'b', 'return a + b');
+		- Basically a function for creating functions, with the third parameter being the function body.
+		- Don't confused with new operator for instantiating objects.
+		- Suffers from security and performance issues, like eval does.
+		- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function.
 		
-	Function Declaration:
+	Function Declaration (aka. Function Statement):
 		- Example: function abc() { var x = 1 }
 		- Require a name.
 		- HOISTED.
@@ -160,10 +172,11 @@ By Reference - Original changed.
 		this.year = year;
 	}
 	
-	Instantiate different ways:
-		New operator: 
+	"new" operator:
+			- Don't confuse with new operator for functions.
 			- Example: var mycar = new Car('Eagle', 'Talon TSi', 1993);
-			- Without new operator, constructor function ( new Car() ) will be invoked as normal function.
+			- Without new operator, constructor function, new Car(), will be invoked as normal function.
+			- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new].
 	
 	Prototype:
 		- Allows you to add new properties and functions/methods to object constructors [https://www.w3schools.com/js/js_object_prototypes.asp].
@@ -212,6 +225,11 @@ Infinity
 [Things you May See, and What They Are]	
 	- define(['param1', 'param2'], function() {}); https://stackoverflow.com/questions/16950560/what-is-define-function-in-javascript
 
+	- const [add, sub, mul,div] = bulkMakeFunctions(
+    "function(a,b){return a+b}","function(a,b){return a-b}","function(a,b){return a*b}","function(a,b){return a/b}" ); https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function and https://www.w3schools.com/code/tryit.asp?filename=FUG5SIWK52GH
+
+	- const foo = something() || defaultValue
+	
 [JQuery Dissection]
 - https://stackoverflow.com/questions/4754560/help-understanding-jquerys-jquery-fn-init-why-is-init-in-fn
 	

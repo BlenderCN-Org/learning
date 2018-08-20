@@ -86,7 +86,7 @@ By Reference - Original changed.
 	Function Constructor (new keyword):
 		- Example: var sum = new Function('a', 'b', 'return a + b');
 		- Basically a function for creating functions, with the third parameter being the function body.
-		- Don't confused with new operator for instantiating objects.
+		- Don't confuse with new operator for instantiating objects.
 		- Suffers from security and performance issues, like eval does.
 		- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function.
 		

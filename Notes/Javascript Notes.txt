@@ -58,7 +58,7 @@ By Reference - Original changed.
 		In "var y = 7;", only the "var y" half is actually hoisted to the top.  The "= 7;" part actually remains (Only variable declarations are hoisted to the top).  Why care?  Because if you declare variables later (with the keyword var), part of them may actually be hoisted to the top and return undefined.  To avoid this, declare variables at the beginning of the script and at the beginning of functions.  See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Variable_scope#Variable_hoisting.
 	
 	Notes on Declarations:
-	- Access global variables using window.variable syntax).  
+	- Access global variables using window.variable syntax.  
 	- In web pages, but not NodeJS, the global object is "window". In node, the global object's called "global".
 	- ONLY function declarations are hoisted -- hence immediately invoked function expressions, which wouldn't work right if they were hoisted to the top [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function].
 	- Variables and constants declared with let or const are not hoisted! [https://www.w3schools.com/js/js_hoisting.asp].
@@ -68,32 +68,21 @@ By Reference - Original changed.
 	- Variables outside the scope of a top-level function are global [https://www.w3schools.com/js/js_scope.asp].
 	
 [Functions]
-	Three basic ways to define: expression, declaration, constructor.
+	Three basic ways to define: expression, declaration, and using constructor.
 
 	Anonymous Function: function(a, b){return a+b;}
 
 	Anonymous Function Assigned to Variable (Function Literal): var abc = function(a, b){return a+b;} [7]
 
-	Immediately Invoked Function Expressions (IIFE):
-		Example: (function() { alert('Hello World'); })();
-		- Function is wrapped in parenthesis (to make it an expression), so that it's executed without invoking/calling it.
-		- Purpose of IIFE is so variables cannot be accessed from outside of it (assigning the function to a variable will just display the functions result (not the function itself).
-		- Also called: Self/immediately Invoking/Executing (Anonymous) Function Expression.
-
 	Function Constructor: 
 		- Example: new Function ([arg1[, arg2[, ...argN]],] functionBody)
 		- Function Constructor/new keyword is least efficient method of using/creating functions. [5]
-
-	Named Function Expression [30]: 
-		Example: 
-		var math = { 'factorial': function factorial(n) {
-		}};
 		
 	Function Declaration:
 		- Example: function abc() { var x = 1 }
 		- Require a name.
-		- Are hoisted.
-		- More desireable because they're declared at compile time and can be used anytime in the scope due to hoisting (function expressions are not). [8]
+		- HOISTED.
+		- More desireable because they're hoisted (function expressions are not). [8]
 	
 	Function Expression:
 		- Example: var abc = function() { var x = 1 }
@@ -102,6 +91,17 @@ By Reference - Original changed.
 		- Can be named, but optional.
 		- NOT hoisted.
 		
+	Named Function Expression [30]: 
+		Example: 
+		var math = { 'factorial': function factorial(n) {
+		}};
+		
+	Immediately Invoked Function Expressions (IIFE):
+		Example: (function() { alert('Hello World'); })();
+		- Function is wrapped in parenthesis (to make it an expression), so that it's executed without invoking/calling it.
+		- Purpose of IIFE is so variables cannot be accessed from outside of it (assigning the function to a variable will just display the functions result (not the function itself).
+		- Also called: Self/immediately Invoking/Executing (Anonymous) Function Expression(s).
+		
 	Get Syntax: Binds an object property to a function that will be called when that property is looked up. [13] [16]
 		- As property of object. [13]
 		- Using Object.defineProperty(), to append a getter to an existing object later at any time, . [13]
@@ -109,8 +109,9 @@ By Reference - Original changed.
 
 	Set Syntax: binds an object property to a function to be called when there is an attempt to set that property. [14]	
 	
-		Native Function Properties:
+	Native Function Properties:
 		- .arguments [19], .caller, .length, .name, .displayName, .prototype
+	
 	Native Function Methods:
 		- .apply [12], .bind, .call [11], .toSource, .toString, .isGenerator
 
@@ -132,7 +133,7 @@ By Reference - Original changed.
 	
 	Function Arguments/Parameters:
 		- A JavaScript function does not perform any checking on parameter values (arguments), number of parameters, or type of parameters. [27]
-		- If a function is called with missing arguments (less than declared), the missing values are set to: undefined. [27]
+		- If a function is called with missing arguments (less than declared), the missing values are set to undefined. [27]
 		- If a function is provided arguments it doesn't need (those not declared), use the arguments object to access them.  Why would you want to?  No idea. See: https://www.w3schools.com/js/tryit.asp?filename=tryjs_function_arguments [27].
 		- JavaScript arguments are passed by value.  Changes to arguments are not visible (reflected) outside the function. [27]
 		- Objects will behave like they are passed *by reference* (since they are values, even though I don't understand this, then). If a function changes an object property, it changes the original value. Changes to object properties are visible/reflected outside the function. [27]

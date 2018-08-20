@@ -165,8 +165,10 @@ By Reference - Original changed.
 			- Without new operator, constructor function ( new Car() ) will be invoked as normal function.
 	
 	Prototype:
-		- Creates copy of an object.
-	
+		- Allows you to add new properties and functions/methods to object constructors [https://www.w3schools.com/js/js_object_prototypes.asp].
+		- Example: Person.prototype.nationality = "English";
+		- Example: Person.prototype.name = function() { return this.firstName + " " + this.lastName; };
+		
 		
 [Modules & Code Patterns]
 	Folding Pattern: https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html

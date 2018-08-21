@@ -2,12 +2,12 @@
 https://developer.mozilla.org/en-US/docs/
 https://www.w3schools.com/js/default.asp
 https://javascript.info
+https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
 
 [General Concepts]
 In computer science, a programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.[1]
 
 By Value - Original not changed.  Arguments/parameters only available to that function, etc.
-
 By Reference - Original changed.
 
 [Declarations]
@@ -21,7 +21,7 @@ By Reference - Original changed.
 	Ways of Declaring variables [25]:
 	- var. Scope of a variable defined with var is function scope or if declared outside of any function, global (scope is locked to wherever you include it) [37].
 	- By assigning values. For example, "x = 42;". This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this.
-	- let. This can be used to declare a block scope local variable. When used inside a block, scope is limited to that block/statement [22].  NOT HOISTED like var is.
+	- let. NOT HOISTED like var is. Used to declare a block scope local variable. When used inside a block, scope is limited to that block/statement [22].
 	- constants - cannot be overwritten ONCE THEY ARE CREATED, or have the same name as varables of functions in the same scope.  However, constants created as objects and arrays can have their properties modified.  They are block-scoped like the let statement.
 	
 		var a = 0, b = 0;

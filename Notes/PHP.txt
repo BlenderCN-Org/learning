@@ -1,0 +1,2 @@
+PHP 5.1 Introduced streams: https://www.sitepoint.com/%EF%BB%BFunderstanding-streams-in-php/
+

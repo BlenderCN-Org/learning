@@ -1,3 +1,6 @@
+[Links]
+https://javascript.info
+
 [Related Concepts]
 In computer science, a programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.[1]
 
@@ -9,7 +12,7 @@ By Reference - Original changed.
 	Function Scope - Variable defined within function is available to entire function [34].
 	Lexical Scope - Scope of an inner function contains the scope of parent/outer function [34].
 	Local scope/varible - Variable declared within function, available only to that function.
-	Global scope/variable - Variable declared outside of function, available from all scripts and functions. Properties of the Global Object.
+	Global scope/variable - Variable declared outside of function, available from all scripts and functions. Properties of the Global Object. See: https://stackoverflow.com/questions/3244361/can-i-access-variables-from-another-file
 	Block Scope - Variables in a block (anything within { } brackets) belong to the function the variable is in.  JavaScript prior to ECMAScript2015 DOES NOT HAVE block scope. Variables declared within a block can effect things outside of the block. This changed in 2015 when the Let Statement was introduced [See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Variable_scope#Variable_scope].
 	
 	Ways of Declaring variables [25]:
@@ -87,7 +90,7 @@ By Reference - Original changed.
 		- Example: var sum = new Function('a', 'b', 'return a + b');
 		- Basically a function for creating functions, with the third parameter being the function body.
 		- Don't confuse with new operator for instantiating objects.
-		- Suffers from security and performance issues, like eval does.
+		- Suffers from security and performance issues, like eval.
 		- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function.
 		
 	Function Declaration (aka. Function Statement):
@@ -182,7 +185,8 @@ By Reference - Original changed.
 		- Allows you to add new properties and functions/methods to object constructors [https://www.w3schools.com/js/js_object_prototypes.asp].
 		- Example (new property): Person.prototype.nationality = "English";
 		- Example (new function/method): Person.prototype.name = function() { return this.firstName + " " + this.lastName; };
-		
+	
+	
 		
 [Modules & Code Patterns]
 	Folding Pattern: https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html

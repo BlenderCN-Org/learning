@@ -11,11 +11,12 @@ By Value - Original not changed.  Arguments/parameters only available to that fu
 By Reference - Original changed.
 
 [Declarations]
+	Block Scope - Variables in a block (anything within { } brackets) belong to the function the variable is in.  JavaScript prior to ECMAScript2015 DOES NOT HAVE block scope. Variables declared within a block can effect things outside of the block. This changed in 2015 when the Let Statement was introduced [35].
 	Function Scope - Variable defined within function is available to entire function [34].
+	Global scope/variable - Variable available from all scripts and functions.  "Global variables are in fact properties of the global object. In web pages, the global object is window, so you can set and access global variables using the window.variable syntax" [40][41].
 	Lexical Scope - Scope of an inner function contains the scope of parent/outer function [34].
 	Local scope/varible - Variable declared within function, available only to that function.
-	Global scope/variable - Variable available from all scripts and functions.  "Global variables are in fact properties of the global object. In web pages, the global object is window, so you can set and access global variables using the window.variable syntax" [40][41].
-	Block Scope - Variables in a block (anything within { } brackets) belong to the function the variable is in.  JavaScript prior to ECMAScript2015 DOES NOT HAVE block scope. Variables declared within a block can effect things outside of the block. This changed in 2015 when the Let Statement was introduced [35].
+	Script scoped - Applies to entire script (you may hear/read this in some places).
 	
 	Ways of Declaring variables [25]:
 	- var. Scope of a variable defined with var is function scope or if declared outside of any function, global (scope is locked to wherever you include it) [37].
@@ -25,6 +26,22 @@ By Reference - Original changed.
 	
 		var a = 0, b = 0;
 		var a = 0;
+		
+		Variables declared outside function becomes global:
+		var carName = "Volvo";
+		// code here can use carName
+		function myFunction() {
+		// code here can also use carName 
+		}
+		
+		Assigning value to non-declared variable automatically makes it global [42].  Example: https://www.w3schools.com/code/tryit.asp?filename=FUH5XVYEIBN6
+		carName = "Volvo";
+		myFunction();
+		function myFunction() {
+		// code here can use carName as a global variable
+		console.log(carName);
+		document.getElementById("demo").innerHTML = "I can display " + carName;	
+		}
 		
 		Initialize several variables:
 		var x = 0;
@@ -69,6 +86,8 @@ By Reference - Original changed.
 			console.log(a); // 5
 	
 	Hoisting:
+		var declarations, wherever they occur, are processed before any code is executed. This is called hoisting [43].
+	
 		Variables and functions are hoisted to the top transparently, but ONLY a part of them are (see var and let, in "Declarations").  This is NOT an advantage, and is a hassle, since, as Mozilla writes, "However, variables that are hoisted return a value of undefined. So even if you declare and initialize after you use or refer to this variable, it still returns undefined" [39].  Also, let and const are NOT HOISTED [36].
 		
 		Declaration IS HOISTED (ex: "var x"), but not any expressions with it. Example: In "var x = 5", only the "var x" part is technically hoisted.  Also, when trying to access it, the variable will give an error of undefined since it's just empty (if you used the let statement you would get a reference error because it hasn't even been defined, since it wasn't hoisted like the var declaration was) [37].
@@ -83,14 +102,17 @@ By Reference - Original changed.
 		console.log(b); // ReferenceError: b is not defined
 		let c = 2;
 		
-	Notes on Declarations:
-	- Global variables are not created automatically in "Strict Mode" [].
-	- Declaring variables outside the scope of a top-level function are global [42].  Declaring variables without using var will also make them become global [42].
+	Important Notes on Declarations:
+	- Global variables are not created automatically in "Strict Mode" [42].
+	- Declaring variables outside the scope of a top-level function are global [42].  
+	- Some people will say declaring variables without using var will also make them become global, but this is just due to the effect in the previous line [https://stackoverflow.com/questions/6888570/declaring-variables-without-var-keyword].
+	- Assigning value to variable that hasn't been declared makes it automatically become a global variable, unless in Strict Mode (since variables are not automatically created in strict mode) [42].
+	- ONLY function declarations are hoisted -- hence immediately invoked function expressions, which wouldn't work right if they were hoisted to the top [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function].
+	- Let and Const are not hoisted! [https://www.w3schools.com/js/js_hoisting.asp].
+	
+	Tips:
 	- Use Let to avoid polluting the "global namespace", and avoid errors with included scripts, functions, modules, etc.
 	- Access global variables using window.variable syntax.
-	- ONLY function declarations are hoisted -- hence immediately invoked function expressions, which wouldn't work right if they were hoisted to the top [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function].
-	- Variables and constants declared with let or const are not hoisted! [https://www.w3schools.com/js/js_hoisting.asp].
-	- Assigning value to variable that hasn't been declared makes it automatically become a global variable, unless in Strict Mode (since variables are not automatically created) [https://www.w3schools.com/js/js_scope.asp].  Use var to lock undeclared variables to that function's scope.
 	- Do NOT create global variables unless you intend to. Your global variables (or functions) can overwrite window variables (or functions) [https://www.w3schools.com/js/js_scope.asp]. Any function, including the window object, can overwrite your global variables and functions.
 	- In web pages, but not NodeJS, the global object is "window". In node, the global object's called "global".
 	- May encounter errors in switch statements because there is only one underlying block (?).
@@ -216,11 +238,16 @@ By Reference - Original changed.
 	var points = new Array(40, 100, 1, 5, 25, 10); // Bad
 	
 [Modules & Code Patterns]
+	Links:
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+
 	Folding Pattern: https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html
 	Module Pattern (very common): http://metaduck.com/08-module-pattern-inheritance.html
 
 	Modules are just objects written and meant to be reusable [https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc].
 
+	Strict mode is turned on in modules by default: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+	
 	"Though JavaScript provides no actual module construct yet, objects can be used to create publicly accessible subnamespaces, and functions can be used to create an isolated, private namespace inside of a module." [26]
 
 [Classes]
@@ -324,3 +351,4 @@ https://www.contentful.com/blog/2017/01/17/the-global-object-in-javascript/
 40. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Global_variables
 41. https://stackoverflow.com/questions/3244361/can-i-access-variables-from-another-file
 42. https://www.w3schools.com/js/js_scope.asp
+43. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var

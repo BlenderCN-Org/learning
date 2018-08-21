@@ -14,17 +14,26 @@ By Reference - Original changed.
 	Function Scope - Variable defined within function is available to entire function [34].
 	Lexical Scope - Scope of an inner function contains the scope of parent/outer function [34].
 	Local scope/varible - Variable declared within function, available only to that function.
-	Global scope/variable - Variable declared outside of function, available from all scripts and functions.  "Global variables are in fact properties of the global object. In web pages, the global object is window, so you can set and access global variables using the window.variable syntax" [40][41]. 
+	Global scope/variable - Variable available from all scripts and functions.  "Global variables are in fact properties of the global object. In web pages, the global object is window, so you can set and access global variables using the window.variable syntax" [40][41].
 	Block Scope - Variables in a block (anything within { } brackets) belong to the function the variable is in.  JavaScript prior to ECMAScript2015 DOES NOT HAVE block scope. Variables declared within a block can effect things outside of the block. This changed in 2015 when the Let Statement was introduced [35].
 	
 	Ways of Declaring variables [25]:
-	- var. Scope of a variable defined with var is function scope or if declared outside of any function, global (scope is locked to wherever you include it) [37]. Declaration IS HOISTED (ex: "var x"), but not any expressions with it. Example: In "var x = 5", only the "var x" part is technically hoisted.  Also, when trying to access it, the variable will give an error of undefined since it's just empty (if you used the let statement you would get a reference error because it hasn't even been defined, since it wasn't hoisted like the var declaration was) [37].
+	- var. Scope of a variable defined with var is function scope or if declared outside of any function, global (scope is locked to wherever you include it) [37].
 	- By assigning values. For example, "x = 42;". This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this.
 	- let. This can be used to declare a block scope local variable. When used inside a block, scope is limited to that block/statement [22].  NOT HOISTED like var is.
 	- constants - cannot be overwritten ONCE THEY ARE CREATED, or have the same name as varables of functions in the same scope.  However, constants created as objects and arrays can have their properties modified.  They are block-scoped like the let statement.
 	
 		var a = 0, b = 0;
 		var a = 0;
+		
+		Initialize several variables:
+		var x = 0;
+		function f() {
+			var x = y = 1; // x is declared locally. y is not!
+		}
+		f();
+		console.log(x, y); // Throws a ReferenceError in strict mode (y is not defined). 0, 1 otherwise. 
+		// In non-strict mode: x is the global one as expected, y is leaked outside of the function, though!
 
 		const MY_FAV = 7;
 		const MY_OBJECT = {"key": "value"};
@@ -62,7 +71,9 @@ By Reference - Original changed.
 	Hoisting:
 		Variables and functions are hoisted to the top transparently, but ONLY a part of them are (see var and let, in "Declarations").  This is NOT an advantage, and is a hassle, since, as Mozilla writes, "However, variables that are hoisted return a value of undefined. So even if you declare and initialize after you use or refer to this variable, it still returns undefined" [39].  Also, let and const are NOT HOISTED [36].
 		
-		Why care worry about hoisting?  Because if you declare variables later (with the keyword var only, but not let and const), instead of at the top of your script of function, part of the variable expression ("var x = 5") may actually be hoisted to the top, and the variable will return undefined, since it's empty but declared.  To avoid this, declare variables at the beginning of the script and at the beginning of functions, or use let and const instead.
+		Declaration IS HOISTED (ex: "var x"), but not any expressions with it. Example: In "var x = 5", only the "var x" part is technically hoisted.  Also, when trying to access it, the variable will give an error of undefined since it's just empty (if you used the let statement you would get a reference error because it hasn't even been defined, since it wasn't hoisted like the var declaration was) [37].
+		
+		Why care worry about hoisting?  The previous paragraph is why.  Because if you declare variables later (with var, but not let and const), instead of at the top of your script of function, part of the variable expression ("var x = 5") may actually be hoisted to the top, and the variable will return undefined, since it's empty but declared.  To avoid this, declare variables at the beginning of the script and at the beginning of functions, or use let and const instead.
 		
 		Example 1:
 		console.log(c); // undefined, due to hoisting
@@ -73,15 +84,16 @@ By Reference - Original changed.
 		let c = 2;
 		
 	Notes on Declarations:
+	- Global variables are not created automatically in "Strict Mode" [].
+	- Declaring variables outside the scope of a top-level function are global [42].  Declaring variables without using var will also make them become global [42].
 	- Use Let to avoid polluting the "global namespace", and avoid errors with included scripts, functions, modules, etc.
-	- Access global variables using window.variable syntax.  
-	- In web pages, but not NodeJS, the global object is "window". In node, the global object's called "global".
+	- Access global variables using window.variable syntax.
 	- ONLY function declarations are hoisted -- hence immediately invoked function expressions, which wouldn't work right if they were hoisted to the top [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function].
 	- Variables and constants declared with let or const are not hoisted! [https://www.w3schools.com/js/js_hoisting.asp].
 	- Assigning value to variable that hasn't been declared makes it automatically become a global variable, unless in Strict Mode (since variables are not automatically created) [https://www.w3schools.com/js/js_scope.asp].  Use var to lock undeclared variables to that function's scope.
 	- Do NOT create global variables unless you intend to. Your global variables (or functions) can overwrite window variables (or functions) [https://www.w3schools.com/js/js_scope.asp]. Any function, including the window object, can overwrite your global variables and functions.
-	- May encounter errors in switch statements because there is only one underlying block.
-	- Variables outside the scope of a top-level function are global [https://www.w3schools.com/js/js_scope.asp].
+	- In web pages, but not NodeJS, the global object is "window". In node, the global object's called "global".
+	- May encounter errors in switch statements because there is only one underlying block (?).
 	
 [Functions]
 	Three basic ways to define: expression, declaration, and using constructor.
@@ -191,8 +203,18 @@ By Reference - Original changed.
 		- Example (new property): Person.prototype.nationality = "English";
 		- Example (new function/method): Person.prototype.name = function() { return this.firstName + " " + this.lastName; };
 	
-	
+	Object Notes:
+		- Arrays and functions are technically objects, not primatives.
+		- Javascript DOES NOT support associative arrays (this is what objects are meant for).
+		- Arrays use numbered indexes.  Objects use named indexes.
 		
+[Literals]
+
+[Arrays]
+	Example:
+	var points = [40, 100, 1, 5, 25, 10];          // Good
+	var points = new Array(40, 100, 1, 5, 25, 10); // Bad
+	
 [Modules & Code Patterns]
 	Folding Pattern: https://intrepidis.blogspot.co.uk/2013/04/javascript-folding-pattern.html
 	Module Pattern (very common): http://metaduck.com/08-module-pattern-inheritance.html
@@ -227,7 +249,7 @@ Infinity
 	- https://stackoverflow.com/questions/7064673/is-return-from-constructor-necessary-when-creating-object-with-new
 	- Commas are NOT operators, but can be used as part of a declaration statement to declare multiple variables per line [32]:
 		Example: var a = 1, b = 2;
-		But NOT: var a = 1, var b = 2; 
+		But NOT: var a = 1, var b = 2;
 	- Semicolons ARE optional.  Only need to worry about including semicolors is if there is an *parenthesis before other characters, first on a line. [33].  Semicolons "are not statement terminators but statement separators" [38].
 	- Parenthesis CANNOT contain statements, so anything between them is treated as an expression.  This is what creates immediately-invoked-function-expressions [30].
 	
@@ -301,3 +323,4 @@ https://www.contentful.com/blog/2017/01/17/the-global-object-in-javascript/
 39. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Variable_hoisting
 40. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Global_variables
 41. https://stackoverflow.com/questions/3244361/can-i-access-variables-from-another-file
+42. https://www.w3schools.com/js/js_scope.asp

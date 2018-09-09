@@ -1,18 +1,30 @@
 [Links]
-https://developer.mozilla.org/en-US/docs/
 https://www.w3schools.com/js/default.asp
 https://javascript.info
 https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
 https://scotch.io
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
 
 [Things To Look Into]
-https://jscrambler.com/ - Client-side protection (?).
+https://github.com/meteor/meteor
+https://github.com/jscrambler/jscrambler - Client-side protection (?).
 
 [General Concepts]
 In computer science, a programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.[1]
 
 By Value - Original not changed.  Arguments/parameters only available to that function, etc.
 By Reference - Original changed.
+
+[Tools]
+	GRUNT: Automates compiling multiple .js files into one big JS file, using a GRUNTFILE.
+
+	Browserify: Allows you to use the REQUIRE statement in browser files, so you can use the same .js files as in your node projects in the browser.
+
+	NPM: Installs dependencies for NodeJS projects.  Can also compile and minify files, like at: https://github.com/mrdoob/three.js/wiki/Build-instructions
+	
+	ROLLUP: Compiles multiple .js files into one. See: https://medium.com/@kelin2025/so-you-wanna-use-es6-modules-714f48b3a953
+	
+	BABEL: Like ROLLUP, but less complicated and more simple. See: https://medium.com/@kelin2025/so-you-wanna-use-es6-modules-714f48b3a953
 
 [Strict Mode]
 	- Add "use strict"; to the top of your javascript file, like at: https://www.w3schools.com/lib/w3.js
@@ -314,6 +326,10 @@ Jquery is a LIBRARY [45].
 - Unobtrusive_JavaScript
 
 [Questions/Misc.]
+Why would you use this guy's "alternative" build process at https://discourse.threejs.org/t/rollup-build-setup-to-import-glsl-files-and-three-js-examples/93/3 instead of the one at: https://github.com/mrdoob/three.js/wiki/Build-instructions ?
+
+Why is function a parameter in define function? https://github.com/jquery/jquery/blob/master/src/core.js
+
 "The scope rules for constants are the same as those for let block-scope variables. If the const keyword is omitted, the identifier is assumed to represent a variable."
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types (It should say "if the keyword is omitted").
 

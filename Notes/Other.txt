@@ -1,0 +1,2 @@
+[Powershell Commands]
+Get-SecureBootPolicy - See if secureboot is enabled.

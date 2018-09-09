@@ -3,6 +3,10 @@ https://developer.mozilla.org/en-US/docs/
 https://www.w3schools.com/js/default.asp
 https://javascript.info
 https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
+https://scotch.io
+
+[Things To Look Into]
+https://jscrambler.com/ - Client-side protection (?).
 
 [General Concepts]
 In computer science, a programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures.[1]
@@ -10,6 +14,8 @@ In computer science, a programming language is said to have first-class function
 By Value - Original not changed.  Arguments/parameters only available to that function, etc.
 By Reference - Original changed.
 
+[Strict Mode]
+	- Add "use strict"; to the top of your javascript file, like at: https://www.w3schools.com/lib/w3.js
 [Declarations]
 	Block Scope - Variables in a block (anything within { } brackets) belong to the function the variable is in.  JavaScript prior to ECMAScript2015 DOES NOT HAVE block scope. Variables declared within a block can effect things outside of the block. This changed in 2015 when the Let Statement was introduced [35].
 	Function Scope - Variable defined within function is available to entire function [34].
@@ -129,7 +135,7 @@ By Reference - Original changed.
 		- Basically a function for creating functions, with the third parameter being the function body.
 		- Don't confuse with new operator for instantiating objects.
 		- Suffers from security and performance issues, like eval.
-		- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function.
+		- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 		
 	Function Declaration (aka. Function Statement):
 		- Example: function abc() { var x = 1 }
@@ -214,11 +220,12 @@ By Reference - Original changed.
 		this.year = year;
 	}
 	
-	"new" operator:
-			- Don't confuse with new operator for functions.
+	"new" Operator:
+			- Is a function that instantiates new instance of object previously defined.
+			- Don't confuse with new operator for functions, etc.
 			- Example: var mycar = new Car('Eagle', 'Talon TSi', 1993);
 			- Without new operator, constructor function, new Car(), will be invoked as normal function.
-			- See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new].
+			- [See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new]
 	
 	Prototype:
 		- Allows you to add new properties and functions/methods to object constructors [https://www.w3schools.com/js/js_object_prototypes.asp].
@@ -226,6 +233,8 @@ By Reference - Original changed.
 		- Example (new function/method): Person.prototype.name = function() { return this.firstName + " " + this.lastName; };
 	
 	Object Notes:
+		- Object properties can also be other objects and functions [44]. See reference for example.
+		- Property of an object that is a function is called a method.
 		- Arrays and functions are technically objects, not primatives.
 		- Javascript DOES NOT support associative arrays (this is what objects are meant for).
 		- Arrays use numbered indexes.  Objects use named indexes.
@@ -280,6 +289,9 @@ Infinity
 	- Semicolons ARE optional.  Only need to worry about including semicolors is if there is an *parenthesis before other characters, first on a line. [33].  Semicolons "are not statement terminators but statement separators" [38].
 	- Parenthesis CANNOT contain statements, so anything between them is treated as an expression.  This is what creates immediately-invoked-function-expressions [30].
 	
+[Tips and Tricks / Other]
+	- console.table(animals); // Outputs table of key-value pairs.
+	- 
 [Things you May See, and What They Are]	
 	- define(['param1', 'param2'], function() {}); https://stackoverflow.com/questions/16950560/what-is-define-function-in-javascript
 
@@ -287,15 +299,19 @@ Infinity
     "function(a,b){return a+b}","function(a,b){return a-b}","function(a,b){return a*b}","function(a,b){return a/b}" ); https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function and https://www.w3schools.com/code/tryit.asp?filename=FUG5SIWK52GH
 
 	- const foo = something() || defaultValue
-	
+
+[Frameworks]	
+http://blazejs.org/
+
 [JQuery Dissection]
-- https://stackoverflow.com/questions/4754560/help-understanding-jquerys-jquery-fn-init-why-is-init-in-fn
+https://scotch.io/courses/jquery-for-total-noobs-volume-ii-jquery-is-so-easy-course/an-example-and-dissecting-its-parts-understand-what-it-is-doing
+https://stackoverflow.com/questions/4754560/help-understanding-jquerys-jquery-fn-init-why-is-init-in-fn
+https://elegantcode.com/2009/06/15/dissecting-jquery-text/
+
+Jquery is a LIBRARY [45].
 	
 [Things to be Aware Of]
 - Unobtrusive_JavaScript
-
-[Answers]
-Which version of Javascript does your browser use? https://en.wikipedia.org/wiki/JavaScript#Version_history
 
 [Questions/Misc.]
 "The scope rules for constants are the same as those for let block-scope variables. If the const keyword is omitted, the identifier is assumed to represent a variable."
@@ -307,6 +323,10 @@ Why no return statement when using new keyword?  https://stackoverflow.com/quest
 
 "So what does it take to make this code runnable in the browser context, too? Mocha uses Browserify to build an additional file that can run in the browser context. The build process wraps the code in an IIFE and provides an object named global."
 https://www.contentful.com/blog/2017/01/17/the-global-object-in-javascript/
+
+[Answers]
+Which version of Javascript does your browser use? https://en.wikipedia.org/wiki/JavaScript#Version_history
+
 
 [References]
 1. https://en.wikipedia.org/wiki/First-class_function
@@ -352,3 +372,5 @@ https://www.contentful.com/blog/2017/01/17/the-global-object-in-javascript/
 41. https://stackoverflow.com/questions/3244361/can-i-access-variables-from-another-file
 42. https://www.w3schools.com/js/js_scope.asp
 43. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
+44. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new#Object_property_that_is_itself_another_object
+45. https://stackoverflow.com/questions/7062775/is-jquery-a-javascript-library-or-framework

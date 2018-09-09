@@ -14,6 +14,17 @@ https://developer.mozilla.org/en-US/docs/WebAssembly
 -------------------------------------
 Misc. Related Web Development Things
 
+The different ways of refreshing a page, and how they differ:
+https://www.quora.com/How-does-hitting-enter-on-the-address-bar-versus-using-the-browser-refresh-button-versus-using-F5-differ-as-far-as-what-happens-to-reload-a-page
+
+How to log SSL/TLS master secrets to file:
+	- Create global variable in Windows PATH, and point it to the location of a text file on hard drive.
+	- The Client_Random entry is for Diffie-Hellman negotiated sessions and the RSA entry is for sessions using RSA or DSA key exchange.  If you have the captured TLS encrypted network traffic, these provide the missing pieces needed for decryption.
+	- Source: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Key_Log_Format
+	- See also: https://isc.sans.edu/forums/diary/Psst+Your+Browser+Knows+All+Your+Secrets/16415
+	- See also: https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
+	- SSL/TLS in depth: https://www.sans.org/reading-room/whitepapers/authentication/ssl-tls-whats-hood-34297
+
 Open Graph Protocol:
 URL: http://ogp.me/
 

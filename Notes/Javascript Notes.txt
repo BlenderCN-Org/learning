@@ -16,15 +16,18 @@ By Value - Original not changed.  Arguments/parameters only available to that fu
 By Reference - Original changed.
 
 [Tools]
-	GRUNT: Automates compiling multiple .js files into one big JS file, using a GRUNTFILE.
 
+	BABEL: Like ROLLUP, but less complicated and more simple. See: https://medium.com/@kelin2025/so-you-wanna-use-es6-modules-714f48b3a953
+	
 	Browserify: Allows you to use the REQUIRE statement in browser files, so you can use the same .js files as in your node projects in the browser.
+	
+	GRUNT: Automates compiling multiple .js files into one big JS file, using a GRUNTFILE.
 
 	NPM: Installs dependencies for NodeJS projects.  Can also compile and minify files, like at: https://github.com/mrdoob/three.js/wiki/Build-instructions
 	
 	ROLLUP: Compiles multiple .js files into one. See: https://medium.com/@kelin2025/so-you-wanna-use-es6-modules-714f48b3a953
 	
-	BABEL: Like ROLLUP, but less complicated and more simple. See: https://medium.com/@kelin2025/so-you-wanna-use-es6-modules-714f48b3a953
+	UNMINIFY: There are many like this, but a web-based one is located at: https://unminify.com/
 
 [Strict Mode]
 	- Add "use strict"; to the top of your javascript file, like at: https://www.w3schools.com/lib/w3.js

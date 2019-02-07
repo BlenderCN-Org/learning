@@ -1,4 +1,5 @@
 https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
+https://www.lynda.com/discovery/Developer/50?btn=lm_welcome
 
 -------------------------------------
 The likely future of web Development: WebAssembly

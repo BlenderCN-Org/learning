@@ -1,0 +1,1 @@
++ A null-terminated string is a character string stored as an array containing the characters and terminated with a null character ( '\0' , called NUL in ASCII).

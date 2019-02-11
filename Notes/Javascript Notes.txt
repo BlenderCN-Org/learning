@@ -2,7 +2,7 @@
 https://www.w3schools.com/js/default.asp
 https://javascript.info
 https://www.linkedin.com/learning/topics/web-development?sortBy=RECENCY
-https://scotch.io
+https://scotch.io/
 https://developer.mozilla.org/en-US/docs/Web/JavaScript
 
 [Things To Look Into]

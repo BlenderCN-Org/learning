@@ -1,0 +1,3 @@
+- Why doesn't Chrome automatically go to the HTTPS version of a site, even if the regular HTTP (port 80) site is configured to load first?  (Why doesn't it only use the HTTPS version if it has to?)
+
+- What is dalymail.co.uk built with, javascript-wise?

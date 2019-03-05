@@ -12,7 +12,7 @@ Also, you could make an ISO file of the instance from the instance itself and th
 
 Launch Templates (*NOT Launch Configurations*) may be a better solution to both, but they require an AMI to be made first (even if you select "Create Template From Instance" after right-clicking a specific instance). See: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
 
-I set up load balancer, and autoscaling, and instances launched (https://snag.gy/EcYkBK.jpg), but don't know how domain name is able to point to IP addresses it doesn't know yet.
+I set up load balancer, and autoscaling, and instances launched (https://snag.gy/YerOBG.jpg), but don't know how domain name is able to point to IP addresses it doesn't know yet.
 
 These guys have the same problem: 
 https://stackoverflow.com/questions/31785422/how-could-i-forward-my-domain-to-auto-scale-groups-instances
@@ -25,7 +25,7 @@ https://aws.amazon.com/blogs/aws/new-host-based-routing-support-for-aws-applicat
 Misc AWS/DNS Info:
 https://forums.aws.amazon.com/thread.jspa?threadID=259099
 
-Apparently I need to use the DNS name of the load balancer, but I used Target Groups, which don't seem to have one.  I think Route 53 will handle them all, but I'd like to not have to use them because there are additional charges then, and I already have nameservers.
+Apparently I need to use the DNS name of the load balancer (https://snag.gy/EcYkBK.jpg), but I used Target Groups, which don't seem to have one.  I think Route 53 will handle them all, but I'd like to not have to use them because there are additional charges then, and I already have nameservers.
 
 ------------------------------------------------------------------------
 

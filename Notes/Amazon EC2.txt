@@ -1,3 +1,10 @@
 https://aws.amazon.com/ec2/vm-import/
 
 https://www.tothenew.com/blog/using-vagrant-to-deploy-aws-ec2-instances/
+
+https://www.cloudberrylab.com/resources/blog/backup-aws-ec2-instance/
+
+Best option for me: Create an AMI, which contains all OS and software currently running on the instance. See: https://www.cloudberrylab.com/resources/blog/how-to-move-amazon-ec2-to-different-availability-zone-vpc-region/
+
+Also, you could make an ISO file of the instance from the instance itself and then download it.
+	- 

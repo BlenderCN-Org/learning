@@ -10,7 +10,7 @@ Best option for me: Create an AMI, which contains all OS and software currently 
 
 Also, you could make an ISO file of the instance from the instance itself and then download it.
 
-Lauch Templates (*NOT Launch Configurations*) may be a better solution to both, but they require an AMI to be made first (even if you select "Create Template From Instance" after right-clicking a specific instance). See: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
+Launch Templates (*NOT Launch Configurations*) may be a better solution to both, but they require an AMI to be made first (even if you select "Create Template From Instance" after right-clicking a specific instance). See: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
 
 I set up load balancer, and autoscaling, and instances launched (https://snag.gy/EcYkBK.jpg), but don't know how domain name is able to point to IP addresses it doesn't know yet.
 

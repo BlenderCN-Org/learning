@@ -4,7 +4,18 @@ https://www.tothenew.com/blog/using-vagrant-to-deploy-aws-ec2-instances/
 
 https://www.cloudberrylab.com/resources/blog/backup-aws-ec2-instance/
 
+------------------------------------------------------------------------
+
 Best option for me: Create an AMI, which contains all OS and software currently running on the instance. See: https://www.cloudberrylab.com/resources/blog/how-to-move-amazon-ec2-to-different-availability-zone-vpc-region/
 
 Also, you could make an ISO file of the instance from the instance itself and then download it.
+
+Lauch templates may be a better solution to both, but they require an AMI to be made first (even if you select "Create Template From Instance" after right-clicking a specific instance). See: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
+
+------------------------------------------------------------------------
+
+Quick Links
+EC2 Console: https://console.aws.amazon.com/ec2/
+Launch Configs: https://console.aws.amazon.com/ec2/autoscaling/home?region=us-east-1#LaunchConfigurations:
+AWS CLI Userguide: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
 	- 

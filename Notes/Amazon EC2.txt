@@ -14,6 +14,9 @@ Launch Templates (*NOT Launch Configurations*) may be a better solution to both,
 
 I set up load balancer, and autoscaling, and instances launched (https://snag.gy/YerOBG.jpg), but don't know how domain name is able to point to IP addresses it doesn't know yet.
 
+Notes:
+- One instance from the autoscaling group will always run, and instances will then launch when needed up until the maximum.
+
 These guys have the same problem: 
 https://stackoverflow.com/questions/31785422/how-could-i-forward-my-domain-to-auto-scale-groups-instances
 https://forums.aws.amazon.com/thread.jspa?threadID=155728
@@ -25,7 +28,7 @@ https://aws.amazon.com/blogs/aws/new-host-based-routing-support-for-aws-applicat
 Misc AWS/DNS Info:
 https://forums.aws.amazon.com/thread.jspa?threadID=259099
 
-Apparently I need to use the DNS name of the load balancer (https://snag.gy/EcYkBK.jpg), but I used Target Groups, which don't seem to have one.  I think Route 53 will handle them all, but I'd like to not have to use them because there are additional charges then, and I already have nameservers.
+Apparently I need to use the DNS name of the load balancer (https://snag.gy/EcYkBK.jpg), but I used Target Groups, which don't seem to have one.  I think Route 53 will handle all instances of the target group without associating an IP with host records in Route 53 (it seems like it automatically does it), but I'd like to not have to use them because there are additional charges then, and I already have nameservers.
 
 ------------------------------------------------------------------------
 

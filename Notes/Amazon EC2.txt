@@ -1,25 +1,36 @@
-https://aws.amazon.com/ec2/vm-import/
-
-https://www.tothenew.com/blog/using-vagrant-to-deploy-aws-ec2-instances/
-
-https://www.cloudberrylab.com/resources/blog/backup-aws-ec2-instance/
-
-------------------------------------------------------------------------
+AWS Notes by Russell R.
 
 Best option for me: Create an AMI, which contains all OS and software currently running on the instance. See: https://www.cloudberrylab.com/resources/blog/how-to-move-amazon-ec2-to-different-availability-zone-vpc-region/
 
 Also, you could make an ISO file of the instance from the instance itself and then download it.
 
-Launch Templates (*NOT Launch Configurations*) may be a better solution to both, but they require an AMI to be made first (even if you select "Create Template From Instance" after right-clicking a specific instance). See: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
+Launch Templates (*NOT Launch Configurations*) may be a better solution to both, but they require an AMI to be made first (even if you select "Create Template From Instance" from the menu). See: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
 
 I set up load balancer, and autoscaling, and instances launched (https://snag.gy/YerOBG.jpg), but don't know how domain name is able to point to IP addresses it doesn't know yet.
 
-Notes:
+Apparently I need to use the DNS name of the load balancer (https://snag.gy/EcYkBK.jpg), but I used Target Groups, which don't seem to have one.  I think Route 53 will handle all instances of the target group without associating an IP with host records in Route 53 (it seems like it automatically does it), but I'd like to not have to use them because there are additional charges then, and I already have nameservers.
+
+Components:
+- Load Balancer, Target Group.
+- Autoscaling Group.
+- AMI/Launch Template of original instance.
+
+Other Notes:
 - One instance from the autoscaling group will always run, and instances will then launch when needed up until the maximum.
 
 These guys have the same problem: 
 https://stackoverflow.com/questions/31785422/how-could-i-forward-my-domain-to-auto-scale-groups-instances
 https://forums.aws.amazon.com/thread.jspa?threadID=155728
+
+--------------------------------
+
+Links:
+
+https://aws.amazon.com/ec2/vm-import/
+
+https://www.tothenew.com/blog/using-vagrant-to-deploy-aws-ec2-instances/
+
+https://www.cloudberrylab.com/resources/blog/backup-aws-ec2-instance/
 
 Target Groups:
 https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html
@@ -27,10 +38,6 @@ https://aws.amazon.com/blogs/aws/new-host-based-routing-support-for-aws-applicat
 
 Misc AWS/DNS Info:
 https://forums.aws.amazon.com/thread.jspa?threadID=259099
-
-Apparently I need to use the DNS name of the load balancer (https://snag.gy/EcYkBK.jpg), but I used Target Groups, which don't seem to have one.  I think Route 53 will handle all instances of the target group without associating an IP with host records in Route 53 (it seems like it automatically does it), but I'd like to not have to use them because there are additional charges then, and I already have nameservers.
-
-------------------------------------------------------------------------
 
 Quick Links
 EC2 Console: https://console.aws.amazon.com/ec2/

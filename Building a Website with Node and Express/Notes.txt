@@ -1,0 +1,9 @@
+https://www.linkedin.com/learning/building-a-website-with-node-js-and-express-js-2/
+
+https://stackoverflow.com/questions/47067319/back-tick-vs-single-quote-in-js
+
+https://codeburst.io/javascript-understand-arrow-function-syntax-ab4081bba85b
+
+https://stackoverflow.com/questions/22726786/app-get-third-parameter-in-node-js-with-express
+
+https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express

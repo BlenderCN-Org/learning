@@ -4,8 +4,17 @@ https://www.istockphoto.com/gb/stock-photos
 Amazon Web Services:
 https://aws.amazon.com/getting-started/tutorials/
 
+Browser-Specific Development:
+https://www.caniuse.com/
+
 In Depth Tutorials/Guides:
 https://joel.franusic.com/krazy_kat/about/
+
+Personal Blogs:
+https://geekthis.net/categories/web-development/
+
+Online Utilities:
+https://developers.google.com/speed/pagespeed/insights/
 
 Other:
 https://www.lynda.com/discovery/Developer/50?btn=lm_welcome

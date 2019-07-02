@@ -2,22 +2,22 @@ Not meant for large complex web projects.
 
 Uses AWS, but instances not viewable from AWS console.  Can communicate with other AWS services if needed, internally.
 
-Metrics & Networking:
+(((Metrics & Networking)))
 Public IP changes (by default, but can be made static), but private IP is assigned for the life of the instance/VPS.
 
 If an instance is shut down that already has a static IP associated with it, you will incur a billing charge.  However, they are included in the monthly instance rate if the instance is running.
 
 Changes to firewall rules effect both the public and private IP address.
 
-VPC Peering:
+(((VPC Peering)))
 If you try to SSH into an AWS instance from a Lightsail instance, it will not work unless VPC peering is enabled.
 
 ONLY DEFAULT VPC CAN BE PEERED WITH Lightsail
 
-Snapshots:
+(((Snapshots)))
 New instances can be created from snapshots.  Snapshots billable depending on size (per GB).
 
-Key Pairs:  
+(((Key Pairs))) 
 Each VPS can only have one key pair associated with it.  You CANNOT change the key pair associated with it once the VPS is created, so if you lose the private key, you will lose access to it.  You could access the storage on the VPS by creating a snapshot of the instance and then creating a new instance from it, but you'll never regain full access to the original instance.
 
 CUSTOM KEYS CAN ONLY BE DOWNLOADED ONCE, BUT DEFAULT KEYS can be download unlimited times.

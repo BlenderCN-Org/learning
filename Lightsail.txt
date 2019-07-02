@@ -1,0 +1,17 @@
+Not meant for large complex web projects.
+
+Uses AWS, but instances not viewable from AWS console.  Can communicate with other AWS services if needed, internally.
+
+Metrics:
+
+
+Snapshots:
+New instances can be created from snapshots.  Snapshots billable depending on size (per GB).
+
+Key Pairs:  
+Each VPS can only have one key pair associated with it.  You CANNOT change the key pair associated with it once the VPS is created, so if you lose the private key, you will lose access to it.  You could access the storage on the VPS by creating a snapshot of the instance and then creating a new instance from it, but you'll never regain full access to the original instance.
+
+PRIVATE KEYS CAN ONLY BE DOWNLOADED ONCE
+
+Sources:
+https://www.linkedin.com/learning/learning-amazon-lightsail/key-pairs-in-lightsail

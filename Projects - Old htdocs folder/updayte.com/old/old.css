@@ -1,0 +1,82 @@
+/* 
+body{
+	background: -moz-linear-gradient(left, rgba(233,166,22,1) 0%, rgba(239,88,1,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(233,166,22,1)), color-stop(100%, rgba(239,88,1,1)));
+	background: -webkit-linear-gradient(left, rgba(233,166,22,1) 0%, rgba(239,88,1,1) 100%);
+	background: -o-linear-gradient(left, rgba(233,166,22,1) 0%, rgba(239,88,1,1) 100%);
+	background: -ms-linear-gradient(left, rgba(233,166,22,1) 0%, rgba(239,88,1,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9a616', endColorstr='#ef5801', GradientType=1 );
+}
+
+#navbar
+{
+	-moz-box-shadow: 7px 1px 7px #404040;
+	-webkit-box-shadow: 1px 7px 7px #404040;
+}
+#box-shadow
+{
+	-moz-box-shadow: 7px 7px 7px #404040;
+	-webkit-box-shadow: 7px 7px 7px #404040;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+}
+
+.lbox
+{
+	-moz-box-shadow: 3px 3px 3px #404040;
+	-webkit-box-shadow: 3px 3px 3px #404040;
+	box-shadow: rgba(0,0,0,1) 0 2px 0;
+	box-shadow: 3px 3px 3px #404040;
+	background-color:rgba(0,0,0,0.5);
+	padding: 10px;
+	width: 300px;
+}
+
+
+
+<style type="text/css">
+@media all and (max-width: 525px) 
+{
+    #fixedbar {
+        display:none;
+    }
+}
+</style> */
+/* // if (!file_exists($table[0] . '.php'.$filename)) // If Parent Doesn't Exist
+
+#socbutt
+{
+	position: absolute;
+	float: none;
+	right: 125px;
+}
+#fbbutton
+{
+	font-size: 12px;
+	text-decoration: none;
+	color: #FFF;
+	text-shadow: 0px 0px 2px #000;
+	text-shadow: 0px 0px 0px #B0B0B0;
+
+}
+#fbbutton a
+{
+	text-decoration: none;
+	font-size: 12px;
+	color: #FFF;
+	text-shadow: 
+}
+#gbutton
+{
+	font-size: 12px;
+	text-decoration: none;
+	color: #FFF;
+	text-shadow: 0px 0px 2px #000;
+	text-shadow: 0px 0px 0px #B0B0B0;
+}
+#gbutton a
+{
+	text-decoration: none;
+	font-size: 12px;
+	color: #FFF;
+	text-shadow: 
+}

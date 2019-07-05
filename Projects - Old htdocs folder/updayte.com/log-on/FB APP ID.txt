@@ -1,0 +1,6 @@
+updayte
+This app is in development mode
+App ID
+1422907944648225
+App Secret
+ba161929d3eef672cf7d6bd9dd753b61

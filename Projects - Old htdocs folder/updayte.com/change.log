@@ -1,0 +1,42 @@
+[Change Log]
+May-18-2014:	Added Randomized Favicon's.
+
+May-20-2014:	Added Random HR colors.  Added More-Dynamic Box.
+				Added Custom Values for the Dynamic Box for each of the categories/pages.
+				Added the current month as a string instead of a digit.
+				Checks to see if variable is empty, instead of file for column names.
+
+May-21-2014: 	Eliminated "LightOpenID" and Implemented "Hybridauth" for social login instead.
+				Google Proof-of-Concept login now Working.
+				Added New Table-header Every ~200 rows.
+
+May-22-2014:	Added Google Analytics for statistics/tracking.	
+
+May-25-2014:	Made Windows More Translucent.
+				Cleaned Up & Eliminated unneeded Code/Comments.
+				Programmed a script to automatically launch PHP if it has crashed (to increase uptime).
+				Added Pingdom Analytics for statistics/tracking.
+
+May-30-2014:	Added Google Login Successfully.  All Working except for minor details.
+
+May-31-2014: 	Added Google Login Successfully.  All Working except for minor details.
+
+May-31-2014: 	Added PHP Script to add logged in user information to "users" table in DB.
+
+July-11-2014: 	Finished Beta version of the Amazon Webcrawler Script.  Results are better than expected.  Script execution time (a native PHP problem) is still the main issue faced.
+
+				
+[Planned]
+- Add 2nd "platform" column, to eliminate double entries.
+- Divide Categories into Subcategories (Ex: Games into Xbox, PS3, etc)
+- Limit Posts to Certain Amount of Rows
+- Fix Sidebar alignment, that's hidden on mobile.
+- Put News/Changelog into Fixed Sidebar
+- Find better addition sign.
+- Email Confirmation/Submit Form
+- Advertise "Looking for Help"
+- Finish Adding Social Media Logins
+- Finish Adding User Information to DB.
+- Expand DB to include more (user) information.
+- Make Sure profile picture/login button work on homepage when signed in.
+- Make HTML code for "user-site-indexing" and submit form.

@@ -1,6 +1,6 @@
 Not meant for large complex web projects.
 
-Uses AWS, but instances not viewable from AWS console.  Can communicate with other AWS services if needed, internally.
+Uses AWS, but instances not viewable from AWS console.
 
 (((Metrics & Networking)))
 Public IP changes (by default, but can be made static), but private IP is assigned for the life of the instance/VPS.
@@ -12,7 +12,8 @@ Changes to firewall rules effect both the public and private IP address.
 (((VPC Peering)))
 If you try to SSH into an AWS instance from a Lightsail instance, it will not work unless VPC peering is enabled.
 
-ONLY DEFAULT VPC CAN BE PEERED WITH Lightsail
+Can communicate with other AWS services if needed, internally.
+ONLY DEFAULT VPC CAN BE PEERED WITH Lightsail.
 
 (((Snapshots)))
 New instances can be created from snapshots.  Snapshots billable depending on size (per GB).

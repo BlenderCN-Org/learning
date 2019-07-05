@@ -1,0 +1,1 @@
+$mysqli->query("CREATE TABLE TestTable ( `id_column` INT NOT NULL  AUTO_INCREMENT , `content` INT NOT NULL , PRIMARY KEY ( `id_column` )) ENGINE = InnoDB;");

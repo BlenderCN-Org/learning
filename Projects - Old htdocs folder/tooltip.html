@@ -1,0 +1,16 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>  
+  
+  <div class="text">
+    <label for="first">First Name:</label>
+      <input type="text"               
+          id="first"           
+          name="first"            
+          size="20"           
+          onfocus="tooltipShow(tooltip1);"          
+          onblur="tooltipHide(tooltip1);"
+          onmouseover="tooltipShow(tooltip1);"           
+          onmouseout="tooltipHide(tooltip1);"           
+          aria-describedby="tp1"
+      />
+  <div id="tp1" class="tooltip" role="tooltip">Your first name is optional</div>    
+  </div>

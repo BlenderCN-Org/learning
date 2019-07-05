@@ -1,0 +1,113 @@
+body{
+	font-family: "Lucida Grande", "Verdana", sans-serif;
+	font-size: 12px;
+}
+
+a{
+	color: #000;
+}
+
+a:hover{
+	color: #;
+}
+
+p{
+	margin: 30px 0 10px 0;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+h1{
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+}
+
+h2{
+	font-size: 20px;
+}
+
+#container{
+	width: 820px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 50px 0 0 0;
+}
+
+.bblock{
+	float: left;
+	margin: 20px 35px 20px 0;
+}
+
+.block{
+	float: left;
+	margin: 20px 35px 20px 0;
+	width: 375px;
+}
+
+.block p{
+	margin: 10px 0;
+}
+
+select {
+	width: 330px;
+}
+
+#ntoggle {
+	display: block;
+	margin: 0 0 26px 0;
+}
+
+#box, #nbox{
+	margin: 20px 0;
+	width: 330px;
+	height: 260px;
+	background: #DFDFDF;
+	border: solid 1px #999;
+}
+
+#wqbox, #wbox{
+	margin: 20px 0;
+	width: 330px;
+	height: 260px;
+	background: #DFDFDF;
+	border: solid 1px #999;
+}
+
+.item {
+	position: relative;
+	margin: 20px 60px 40px 0;
+	overflow: hidden;
+}
+
+.last {
+	margin: 20px 0 40px 0;
+}
+
+.item .title, .item .desc {
+	background: #000;
+	color: #fff;
+	position: absolute;
+	display: block;
+	width: 638px;
+	opacity: 0.4; 
+}
+
+.item .title {
+	top: 0;
+	font-size: 16px;
+	padding: 12px 10px 25px 0;
+	text-align: right;
+}
+
+.item .desc {
+	bottom: 0;
+	font-size: 12px;
+	padding: 5px 0 15px 10px;
+}
+
+.clear {
+	clear: both;
+}

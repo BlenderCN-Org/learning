@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Screen Orientation API Example 1</title>
+    <script>
+      function show() {
+        alert("Screen orientation state is now " + screen.orientation);
+      }
+
+      screen.addEventListener("orientationchange", show);
+      window.addEventListener("load", show);
+    </script>
+  </head>
+  <body>
+    <input type='button' value='Unlock'
+      onclick='screen.unlockOrientation();'>
+    <input type='button' value='Lock to portrait'
+      onclick="screen.lockOrientation('portrait');">
+    <input type='button' value='Lock to landscape'
+      onclick="screen.lockOrientation('landscape');">
+  </body>
+</html>

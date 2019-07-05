@@ -1,0 +1,1 @@
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\SampleGame.Windows.jsproj;neutral

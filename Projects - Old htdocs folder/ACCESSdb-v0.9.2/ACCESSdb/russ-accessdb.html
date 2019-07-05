@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xml:lang="en" lang="en">
+<head>
+	<title>title</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+	<script type="text/javascript" src="accessdb.js"></script>
+</head>
+
+<body>
+
+<script>
+
+function init(){
+var myDB = new ACCESSdb("C:\\xampp\\htdocs\\db.accdb", {showErrors:true});
+
+
+
+
+
+
+      
+         var SQL = "INSERT INTO myTable VALUES(123, 'abc 123', 'xyz')";
+         if(myDB.query(SQL)) {
+            alert("Inserted!");
+         }
+
+		 var SQL = "UPDATE myTable SET col1 = 456, col2 = 'def 456', col3 = 'zyx' WHERE col1 = 123";
+         if(!myDB.query(SQL)) {
+            alert("Oh no!");
+         }
+      
+var SQL = "SELECT * FROM myTable";
+         var resultSet = myDB.query(SQL);
+		 
+
+
+
+};
+
+init();
+</script>
+</body>
+</html>

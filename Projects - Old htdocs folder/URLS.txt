@@ -1,0 +1,21 @@
+http://technotip.com/2208/insert-data-into-mysql-jquery-ajax-php/ - How to store data in a database with PHP without refreshing
+
+http://www.pcworld.com/video/ - HowTo Videos
+
+http://codepen.io/shayhowe/pen/BGmdv
+
+http://snag.gy/naMK9.jpg
+http://snag.gy/WKnDp.jpg
+
+http://virusscan.jotti.org/en/scanresult/ec06c858aa86669f131e61b77cb9285c98f42336/1086cc5fbfc08a0569eae0a96d675e07f7f15efb
+
+
+http://news.softpedia.com/newsTag/NSA
+
+http://us2.php.net/manual/en/function.px-timestamp2string.php
+
+
+http://pastebin.com/tf25tFZG
+
+
+http://stackoverflow.com/questions/1535697/how-do-php-sessions-work-not-how-are-they-used

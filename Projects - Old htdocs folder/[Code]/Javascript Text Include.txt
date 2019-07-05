@@ -1,0 +1,29 @@
+Although a server scripting language will give you the most control over your presented code in the browser, sometimes I find it necessary to wirte javascript to maintain some unity in the existing code structure. The following javascript will give you what you require w/o having to program on the serverside.
+
+(Save this as a text file) : m_menu.txt
+---------------------------------------------------------------------
+// Script provided by esapplications.com
+var m_count = 0;
+m_items = new Array(
+"<a href=''><font color='#ffffff'><b>Menu Item 1</b></font></a>",
+"<a href=''><font color='#ffffff'><b>Menu Item 2</b></font></a>",
+"<a href=''><font color='#ffffff'><b>Menu Item 3</b></font></a>",
+"<a href=''><font color='#ffffff'><b>Menu Item 4</b></font></a>"
+)
+while (m_count < 4){ // equals the # of m_items
+document.write(m_items[m_count]+"<br>");
+m_count++;
+}
+
+---------------------------------------------------------------------
+insert this code in your html page:
+---------------------------------------------------------------------
+<script Language="Javascript" type="text/javascript" src="m_menu.txt"></script>
+
+
+
+
+Happy Coding,
+
+Craig S. Baucom
+esappications.com

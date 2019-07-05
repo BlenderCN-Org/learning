@@ -1,0 +1,15 @@
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bin\Debug\ReverseMap\resources.pri
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bin\Debug\AppxManifest.xml
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bin\Debug\SampleGame.Windows.build.appxrecipe
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\priconfig.xml
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\priconfig.xml.intermediate
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\layout.resfiles
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\layout.resfiles.intermediate
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\resources.resfiles
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\resources.resfiles.intermediate
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\pri.resfiles
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\pri.resfiles.intermediate
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\qualifiers.txt
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\qualifiers.txt.intermediate
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\ProjectArchitectures.txt

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>TREEHOUSE</Machine>
+    <WindowsUser>Russell</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>Microsoft.SDKSamples.SampleJavaScriptGame.JS</PackageIdentityName>
+    <IntermediateOutputPath>C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bld\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>E6D4DB2BB73023CADDDDC7F175365355CA42E50A3A5D6FD32506E3D1A4B76FBE</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>Microsoft.SDKSamples.SampleJavaScriptGame.JS_1.0.0.0_neutral__8wekyb3d8bbwe</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>Microsoft.SDKSamples.SampleJavaScriptGame.JS_8wekyb3d8bbwe!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>Microsoft.SDKSamples.SampleJavaScriptGame.JS</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-09-26T14:41:35.116</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\default.html">
+      <PackagePath>default.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\html\settingsFlyout.html">
+      <PackagePath>html\settingsFlyout.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\html\homePage.html">
+      <PackagePath>html\homePage.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\html\creditsPage.html">
+      <PackagePath>html\creditsPage.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\html\gamePage.html">
+      <PackagePath>html\gamePage.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\html\rulesPage.html">
+      <PackagePath>html\rulesPage.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\html\scoresPage.html">
+      <PackagePath>html\scoresPage.html</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\css\homePage.css">
+      <PackagePath>css\homePage.css</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\css\creditsPage.css">
+      <PackagePath>css\creditsPage.css</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\css\gamePage.css">
+      <PackagePath>css\gamePage.css</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\css\rulesPage.css">
+      <PackagePath>css\rulesPage.css</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\css\scoresPage.css">
+      <PackagePath>css\scoresPage.css</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\js\homePage.js">
+      <PackagePath>js\homePage.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\assetManager.js">
+      <PackagePath>js\assetManager.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\creditsPage.js">
+      <PackagePath>js\creditsPage.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\frameTimer.js">
+      <PackagePath>js\frameTimer.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\game.js">
+      <PackagePath>js\game.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\gamePage.js">
+      <PackagePath>js\gamePage.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\gameState.js">
+      <PackagePath>js\gameState.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\movingAverage.js">
+      <PackagePath>js\movingAverage.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\navigator.js">
+      <PackagePath>js\navigator.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\rulesPage.js">
+      <PackagePath>js\rulesPage.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\scores.js">
+      <PackagePath>js\scores.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\scoresPage.js">
+      <PackagePath>js\scoresPage.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\js\touchPanel.js">
+      <PackagePath>js\touchPanel.js</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\menuentry.png">
+      <PackagePath>images\menuentry.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\menulogo.png">
+      <PackagePath>images\menulogo.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\menulogo.contrast-white.png">
+      <PackagePath>images\menulogo.contrast-white.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\menulogo.contrast-black.png">
+      <PackagePath>images\menulogo.contrast-black.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\smallTile-sdk.png">
+      <PackagePath>images\smallTile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\splash-sdk.png">
+      <PackagePath>images\splash-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\squareTile-sdk.png">
+      <PackagePath>images\squareTile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\storeLogo-sdk.png">
+      <PackagePath>images\storeLogo-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\smalltile-Phone-sdk.png">
+      <PackagePath>images\smalltile-Phone-sdk.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\mediumtile-sdk.png">
+      <PackagePath>images\mediumtile-sdk.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\tile-sdk.png">
+      <PackagePath>images\tile-sdk.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\images\splash-Phone-sdk.png">
+      <PackagePath>images\splash-Phone-sdk.png</PackagePath>
+      <Modified>2014-06-05T23:49:42.085</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Shared\sounds\bounce.wav">
+      <PackagePath>sounds\bounce.wav</PackagePath>
+      <Modified>2014-06-05T23:49:42.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\xampp\htdocs\JavaScript and HTML5 touch game sample\JavaScript\Windows\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2014-09-26T14:41:35.006</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\">
+      <Name>Microsoft.WinJS.2.0</Name>
+      <Version>1.0.9600.17018</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.2.0, MinVersion=1.0.9600.17018</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\Microsoft.WinJS.2.0.appx</AppxLocation>
+      <MoreInfo>http://go.microsoft.com/fwlink/%3fLinkId=260891</MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

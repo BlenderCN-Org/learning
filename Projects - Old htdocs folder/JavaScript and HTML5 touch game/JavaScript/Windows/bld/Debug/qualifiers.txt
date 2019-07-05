@@ -1,0 +1,3 @@
+Contrast=BLACK
+Contrast=WHITE
+Contrast=STANDARD

@@ -1,0 +1,247 @@
+<rss version="0.91">
+   <channel>
+      <copyright>Copyright 2005, Network World, Inc.</copyright>
+      <webMaster>agaffin@nww.com</webMaster>
+      <title>Network World NetFlash</title>
+      <link>http://www.networkworld.com/news/netflash.html</link>
+      <description>Daily breaking news about networking products, technologies and services</description>
+      <language>en-us</language>
+      <image>
+         <title>Network World NetFlash</title>
+         <url>http://www.networkworld.com/redesign2/logorss.gif</url>
+         <link>http://www.networkworld.com/news/netflash.html</link>
+         <width>125</width>
+         <height>23</height>
+         <description>Daily breaking news about networking products, technologies and services.</description>
+      </image>
+      <item>
+   
+         <title>Reddit, Mozilla, EFF to hold day of protest, activism in memory of Aaron Swartz</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-reddit-mozilla-eff-to-hold-277616.html?fsrc=netflash-rss</link>
+   
+         <description>A broad coalition of well-known organizations announced today that it will stage an online protest against wide-ranging government surveillance of Internet users on Feb. 11, in memory of activist Aaron Swartz.</description>
+
+      </item>
+      <item>
+   
+         <title>iPhone 6 rumor rollup for the week ending Jan. 10</title>
+   
+         <link>http://www.networkworld.com/news/2014/011314-iphone6-277613.html?fsrc=netflash-rss</link>
+   
+         <description>The cold gripping much of the U.S. this week was absent from the iOSphere which steamed with speculation over a mysterious metal frame that revealed Important Details of the iPhone 6.</description>
+
+      </item>
+      <item>
+   
+         <title>Oracle set to issue 147 security patches, including 36 for Java</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-oracle-set-to-issue-147-277615.html?fsrc=netflash-rss</link>
+   
+         <description>Oracle is about to release one of its largest security patch batches in recent memory, with some 147 fixes coming Tuesday for vulnerabilities in Java SE, its flagship database, business applications and assorted other products.</description>
+
+      </item>
+      <item>
+   
+         <title>Hot IT job skills in 2014: Mobile, web development and big data</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-hot-it-job-skills-in-277604.html?fsrc=netflash-rss</link>
+   
+         <description>Expertise in Web development, mobile development and large-scale data analysis will be much sought-after by IT hiring managers this year.</description>
+
+      </item>
+      <item>
+   
+         <title>See-through, organic transistors are 'world's fastest'</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-organic-transistor-277614.html?fsrc=netflash-rss</link>
+   
+         <description>Researchers from Stanford University and the University of Nebraska-Lincoln claim they have created the world's fastest organic transistors, using an advanced new production process.</description>
+
+      </item>
+      <item>
+   
+         <title>IT job growth slows</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-job-growth-277610.html?fsrc=netflash-rss</link>
+   
+         <description>The tech industry is often touted as a bright spot on an otherwise lackluster hiring scene, but one firm's analysis of recent employment data finds it's not as vibrant as it has been.</description>
+
+      </item>
+      <item>
+   
+         <title>Dell says it is open to layoffs as rumors swirl</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-dell-says-it-is-open-277579.html?fsrc=netflash-rss</link>
+   
+         <description>Dell on Thursday declined to confirm a report of employee layoffs, but said it could make decisions related to the workforce if necessary in order to maintain company stability.</description>
+
+      </item>
+      <item>
+   
+         <title>Verizon signs-up Oracle to tackle Amazon in the cloud</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-verizon-oracle-277603.html?fsrc=netflash-rss</link>
+   
+         <description>Verizon is building up its cloud service to take on the heavyweight of the industry - Amazon Web Services - and says it took a big step toward that direction by partnering with Oracle this week.</description>
+
+      </item>
+      <item>
+   
+         <title>Microsoft CEO search twists and turns have cost Ballmer, Gates billions</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-microsoft-ceo-search-twists-and-277567.html?fsrc=netflash-rss</link>
+   
+         <description>Microsoft CEO Steve Ballmer has watched $1.1 billion evaporate from the value of his company stock as the selection process for a successor has dragged on.</description>
+
+      </item>
+      <item>
+   
+         <title>Juniper SDN engineer lands at Brocade</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-brocade-schliesser-277595.html?fsrc=netflash-rss</link>
+   
+         <description>Brocade has named former Cisco and Juniper engineer Benson Schliesser as distinguished engineer, responsible for helping shape the company's network virtualization strategy.</description>
+
+      </item>
+      <item>
+   
+         <title>Cloud's worst-case scenario: What to do if your provider goes belly up</title>
+   
+         <link>http://www.networkworld.com/news/2014/010814-cloud-provider-277521.html?fsrc=netflash-rss</link>
+   
+         <description>Last September customers of storage provider Nirvanix got what could be worst-case scenario news for a cloud user: The company was going out of business and they had to get data out, fast.</description>
+
+      </item>
+      <item>
+   
+         <title>The Internet of Things: Top five threats to IoT devices</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-the-internet-of-things-top-277553.html?fsrc=netflash-rss</link>
+   
+         <description>The Internet of Things (IoT) is a mass of billions of connected devices from cars to wireless wearable products. Cisco&amp;#39;s Internet Business Solutions Group estimated 12.5 billion connected devices in existence globally as of 2010 with that number doubling to 25 billion by 2015.</description>
+
+      </item>
+      <item>
+   
+         <title>Tablets get more sophisticated, with bigger screens, dual OSes and car access</title>
+   
+         <link>http://www.networkworld.com/news/2014/011014-tablets-get-more-sophisticated-with-277586.html?fsrc=netflash-rss</link>
+   
+         <description>Tablets are getting bigger screens, moving into cars, and dual-booting Windows and Android at this year&amp;#39;s International CES show as tech vendors give a glimpse into the gadget&amp;#39;s future.</description>
+
+      </item>
+      <item>
+   
+         <title>FCC chief Wheeler pushes open Internet in Silicon Valley speech</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-fcc-chief-wheeler-pushes-open-277584.html?fsrc=netflash-rss</link>
+   
+         <description>Keeping the Internet open is a high priority for the FCC -- so high that the agency will closely monitor the sponsored content program that AT&amp;amp;T announced this week for its mobile data network.</description>
+
+      </item>
+      <item>
+   
+         <title>Makers get tools to hack wearable tech for innovation</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-makers-get-tools-to-hack-277578.html?fsrc=netflash-rss</link>
+   
+         <description>Vendors showed many wearable devices at the International CES expo, but the next big thing may just come from an enthusiast&amp;#39;s garage.</description>
+
+      </item>
+      <item>
+   
+         <title>Can Microsoft Turn Around Its Fortunes With Windows 8 Tablets?</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-can-microsoft-turn-around-its-277565.html?fsrc=netflash-rss</link>
+   
+         <description>After trailing iPads and Android tablets for enterprise market share in 2013, analysts predict that Windows 8-based tablets will surge from a distant third place to lead the field.</description>
+
+      </item>
+      <item>
+   
+         <title>CES flops: A brief history of high hopes and bad guesses</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-ces-flops-277544.html?fsrc=netflash-rss</link>
+   
+         <description>With this year's Consumer Electronics Show winding down, and a deluge of recap articles and slideshows flooding the Internet, it’s always important to remember that what may be exciting at CES is not always an indication of what will transform the consumer technology market.</description>
+
+      </item>
+      <item>
+   
+         <title>CIOs and CMOs: Power couple or strange bedfellows?</title>
+   
+         <link>http://www.networkworld.com/news/2014/010614-cio-cmo-277271.html?fsrc=netflash-rss</link>
+   
+         <description>Marketing departments are shifting significant amounts of their own budgets toward IT-related products and services, independent of what the IT department spends, to the extent that Gartner predicts that by 2017 chief marketing officers (CMO) will spend more money on IT than chief information officers (CIO).</description>
+
+      </item>
+      <item>
+   
+         <title>MIT debuts online Big Data course for tech pros</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-mit-big-data-277564.html?fsrc=netflash-rss</link>
+   
+         <description>Want to learn more about Big Data? MIT is taking on the buzzy topic in an online course designed for tech pros. Tackling the Challenges of Big Data runs from March 4 to April 1 and costs $495.</description>
+
+      </item>
+      <item>
+   
+         <title/>
+   
+         <link>http://www.networkworld.com?fsrc=netflash-rss</link>
+   
+         <description/>
+
+      </item>
+      <item>
+   
+         <title/>
+   
+         <link>http://www.networkworld.com?fsrc=netflash-rss</link>
+   
+         <description/>
+
+      </item>
+      <item>
+   
+         <title>Time to examine rules on data collection and privacy, US commerce secretary says</title>
+   
+         <link>http://www.networkworld.com//2014/.html?fsrc=netflash-rss</link>
+   
+         <description>The International CES might never have seen so many connected devices in its history. Never mind phones and tablets, everything from cooking pots to cars and fitness bands now connect to the Internet and broadcast information.</description>
+
+      </item>
+      <item>
+   
+         <title>Everyday objects get connected in &amp;#39;Internet of things&amp;#39;</title>
+   
+         <link>http://www.networkworld.com//2014/.html?fsrc=netflash-rss</link>
+   
+         <description>If you aren&amp;#39;t already deluged with information from your email, social media, and websites, how would you feel if your appliances and gizmos start sending you messages?</description>
+
+      </item>
+      <item>
+   
+         <title>Hands-on (or eyes-on) with the new and improved Oculus Rift</title>
+   
+         <link>http://www.networkworld.com/news/2014/010914-ces-oculus-rift-277543.html?fsrc=netflash-rss</link>
+   
+         <description>After months and months of absorbing hype and quietly pining for its touch, I got to try the Oculus Rift Wednesday at CES 2014, as part of an Intel demo. It’s a vastly impressive piece of technology, but there are still rough edges to be ironed out.</description>
+
+      </item>
+      <item>
+   
+         <title>The 7 best habits of effective security pros</title>
+   
+         <link>http://www.networkworld.com/news/2014/010814-the-7-best-habits-of-277513.html?fsrc=netflash-rss</link>
+   
+         <description>Today&amp;#39;s information security professionals need to learn more swiftly, communicate more effectively, know more about the business, and match the capabilities of an ever-improving set of adversaries. But, it doesn&amp;#39;t seem too long ago that all it took to survive in the field was a dose of strong technical acumen and a shot of creativity to protect the network, solve most problems, and fend off attacks.</description>
+
+      </item>
+      <item>
+         <title>More networking news,features and forums</title>
+         <link>http://www.networkworld.com/index.html</link>
+      </item>
+   </channel>
+</rss>

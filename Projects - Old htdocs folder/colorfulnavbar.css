@@ -1,0 +1,33 @@
+#navbar ul li:nth-last-child(2) a:hover
+ { 
+	background: blue; /* #28597a */
+	color: #FFF;
+	border: 1pt inset #28597a;
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+}
+
+#navbar ul li:nth-last-child(3) a:hover
+ { 
+	background: green; /* #28597a */
+	color: #FFF;
+	border: 1pt inset #28597a;
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+}
+
+
+#navbar ul li:last-child a:hover
+ { 
+	background: #FFD600; /* #28597a */
+	color: #000;
+	border: 1pt inset #28597a;
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+}

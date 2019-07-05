@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<title>Beginning Animations with jQuery - by Siddharth for NetTuts</title>
+<link type="text/css" href="style.css" rel="stylesheet" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jqueryui.js"></script>
+<script type="text/javascript" src="mojo.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+<h1>Beginning Animations with jQuery</h1>
+<div>by Siddharth for the lovely folks at Net Tuts</div>
+<p>A simple real world usage of the animation effects followed by demos for the article's text demonstrating a fix for animation build up and the different easing methods available.</p> 
+
+<div class="bblock">
+<h2>A Simple Real World Effect</h2>
+<p>A simple example of jQuery's animation capabilities. Mouse over the image for the title and the description. Unhover and they'll go away. Hovering over the title or description morphs the background color.</p>
+
+<p>Animations use easing for a little additional oomph.</p>
+
+<div class="item">
+<div class="title">ThemeForest</div>
+<img src="tf.jpg" alt="Image" />
+<div class="desc">The only place you need for site templates and themes </div>
+</div>
+
+<div class="item last">
+<div class="title">CodeCanyon</div>
+<img src="cc.jpg" alt="Image" />
+<div class="desc">The premier destination for scripts and code snippets</div>
+</div>
+
+</div>
+
+<div class="block">
+<h2>Animations without easing</h2>
+<p>Click on the link to animate the box. The box contracts to zero height and then expands back to its original height. Uses the default swing easing method.</p>
+<a href="#" id="ntoggle">Animate the box</a>
+
+<div id="nbox"></div>
+</div>
+
+<div class="block">
+<h2>Animations with easing</h2>
+<p>When the method is changed, it goes to zero height using the standard jQuery easing and then expands using the specified easing method.</p>
+<select id="list">
+</select>
+
+<div id="box"></div>
+</div>
+
+<div class="clear"></div>
+
+<div class="block">
+<h2>Animations without the patch for queueing</h2>
+<p>Hover over the box and then before the animation completes, quickly hover out. Do this repeatedly and watch the animations queue up.</p>
+
+<div id="wqbox"></div>
+</div>
+
+<div class="block">
+<h2>Animations with the patch for queueing</h2>
+<p>Same as the previous one except that there is no queueing. </p>
+
+<div id="wbox"></div>
+</div>
+
+</div>
+</body>
+</html>

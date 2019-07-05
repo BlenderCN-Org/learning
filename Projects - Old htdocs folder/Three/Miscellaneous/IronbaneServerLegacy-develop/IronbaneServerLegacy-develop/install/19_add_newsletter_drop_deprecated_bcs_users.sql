@@ -1,0 +1,1 @@
+ALTER TABLE `bcs_users` ADD COLUMN newsletter TINYINT DEFAULT 1 not null;

@@ -1,0 +1,82 @@
+<div class="dialog editorDialog">
+    <header>
+        <button class="dialog-close" ng-click="closeDialog()">x</button>
+        <div class="inner">
+            <strong>Item Editor <span ng-if="item.id">[Editing: {{ item.id }}]</span></strong>
+        </div>
+    </header>
+    <form name="itemEditorForm" novalidate class="body">
+        <div class="pull-left">
+            <div class="control-group">
+                <label class="control-label" for="existingItem">Items:</label>
+                <div class="controls">
+                    <select id="existingItem" name="existingItem" ng-model="item" ng-options="t.name for t in templates | orderBy:'name'"></select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_name">Name:</label>
+                <div class="controls">
+                    <input id="item_name" type="text" ng-model="item.name" ng-required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_type">Type: <i tooltip="while this can be anything, know that custom programming may be needed for new types" class="fa fa-question-circle"></i></label>
+                <div class="controls">
+                    <input type="text" ng-model="item.type" typeahead="type for type in item_types | filter:$viewValue">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_subtype">Subtype: <i tooltip="same as with type, there are specific ones to use, you can use others, but at the risk of not working right. esp. with armors." class="fa fa-question-circle"></i></label>
+                <div class="controls">
+                    <input type="text" ng-model="item.subtype" typeahead="subtype for subtype in item_subtypes | filter:$viewValue">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_basevalue">BaseValue: <i tooltip="this is the value in gold used for pricing." class="fa fa-question-circle"></i></label>
+                <div class="controls">
+                    <input id="item_basevalue" type="text" ng-model="item.baseValue" ng-required />
+                </div>
+            </div>
+        </div>
+        <div class="pull-left">
+            <div class="control-group image-control">
+                <label class="control-label" for="item_image">Image: {{ item.image }}</label>
+                <div class="pull-right item-image">
+                    <img ng-show="item.image" id="item_image" ng-src="{{ imageUrl }}" />
+                </div>
+                <div class="pull-right item-image-options">
+                    <button ng-click="chooseImage()" ng-disabled="!item.type">Choose</button>
+                    <br>
+                    <button ng-disabled="true">Create</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_attr1">Attr1: <i tooltip="generally weapon damage or armor amount. negative for healing." class="fa fa-question-circle"></i></label>
+                <div class="controls">
+                    <input id="item_attr1" type="text" ng-model="item.attr1" ng-required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_delay">Delay: <i tooltip="only used for weapon speed." class="fa fa-question-circle"></i></label>
+                <div class="controls">
+                    <input id="item_delay" type="text" ng-model="item.delay" ng-required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="item_particle">Projectile: <i tooltip="each of these currently has to be manually programmed." class="fa fa-question-circle"></i></label>
+                <div class="controls">
+                    <select id="projectile" name="projectile" ng-model="item.particle" ng-options="projectile for projectile in projectile_types"></select>
+                </div>
+            </div>
+        </div>
+    </form>
+    <footer>
+        <button ng-click="doSave()" ng-disabled="itemEditorForm.$pristine || itemEditorForm.$invalid">Save</button>
+        <button ng-click="doNew()">New</button>
+        <button ng-click="doDuplicate()" ng-disabled="!item.id">Duplicate</button>
+        <button ng-click="doDelete()" ng-disabled="!item.id">Delete</button>
+        <button ng-click="giveItem()" ng-disabled="!item.id">Give Item</button>
+        <button ng-click="showScripts()" ng-disabled="true">Script</button>
+        <button ng-click="showAnalysis()" ng-disabled="!item.id">Analysis</button>
+    </footer>
+</div>

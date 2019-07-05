@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8" />
+	<title>3D Tree Designer</title>
+	<meta name="generator" content="BBEdit 10.1" />
+	
+	
+	<script src="Three2.js"></script>
+	<script src="drawBranch.js"></script>
+	<script src="Draw4.js"></script>
+	<script src="3dRotation2.js"></script>
+	<script src="readData.js"></script>	
+	<script src="oak2.js"></script>
+	<script src="pine4.js"></script>
+	<script src="gingko2.js"></script>
+	<script src="willow2.js"></script>
+	<script src="MapleTree2.js"></script>
+	<script src="acacia2.js"></script>
+	<script src="addGeometry.js"></script>
+	<script src="leavelist.js"></script>
+	<script src="declist.js"></script>
+
+  </head>
+
+  <body>
+  	<p style="text-align:right"><small>Copyright: 2012 by Qiao Shi</small></p>
+  	<form name="draw">
+  		
+  		<table style="height:100">
+  			<tr>
+  				<th>[ Branch Pattern ]</th><th>[ Level ]</th><th>[ Length ]</th><th>[ Growing Nodes ]</th><th>[ Start Position ]</th>
+  				<th>[ Rotation Angle ]</th><th>[ Random Angle ]</th><th>[ Material ]</th><th>[ Color ]</th>
+  				<th>[ Leave Style ]</th><th>[ Decoration ]</th>
+  			</tr>
+  		
+  			<tr>
+				<td>
+					<select id="bp" style="width:120px">
+					<option selected="selected">Null</option>
+					<option>Pine Tree</option>
+					<option>Willow Tree</option>
+					<option>Maple Tree</option>
+					<option>Oak Tree</option>
+					<option>Gingko Tree</option>
+					<option>Acacia Tree</option>
+				</td>
+				  	
+  				<td><input type="number" id="d" value = "5" maxlength="2" style="width:50px" /></td>
+  				
+  				<td><input type="number" id="len" value="50" maxlength="3" style="width:50px" /></td>
+
+				<td><!--<input type="number" id="n" value="2" maxlength="1" style="width:120px" /></td>-->
+					<select id="n" style="width:120px">
+					<option>1</option>
+					<option selected="selected">2</option>
+					<option>3</option>
+					<option>4</option>
+					<option value="mix1">mix1: 1+1+...+1+2+3+4</option>
+					<option value="mix2">mix2: 1+2+3+4+4+4+...</option>
+					<option value="mix3">mix3: 4+4+...+4+3+2+1</option>
+					<option value="mix4">mix4: 4+3+2+1+1+1+... </option>
+				</td>
+				
+				<td>X <input type="number" id="x" value="0" maxlength="3" style="width:80px" /><br />
+					Y <input type="number" id="y" value="-50" maxlength="3" style="width:80px" /><br />
+					Z <input type="number" id="z" value="0" maxlength="3" style="width:80px" /></td>
+	
+				<td>RV <input type="number" id="rv" value="20" maxlength="2" style="width:80px" /><br />
+					RH <input type="number" id="rh" value="20" maxlength="2" style="width:80px" /></td>
+		
+				<td><input type="number" id="random" value ="10" maxlength="3" style="width:120px" /></td>
+				<td>
+					<select id="m" sylte="width:80px">
+					<option >3D Tube</option>
+					<option selected="selected">2D Line</option>
+					</select>
+				</td>
+				<td><input type="text" id="color" value="0xDD6600" style="width:60px" /></td>
+
+				<td>
+					Shape <select id="leave" style="width:120px">
+					<option selected="selected">Null</option>
+					<option>Round</option><option>Pine</option><option>Willow</option>
+					<option>Maple</option><option>Oak</option><option>Gingko</option><option>Acacia</option>
+
+					</select><br />
+					Color <input type="text" id="lcolor" value="0xDDFF00" style="width:110px" />
+
+				</td>
+				<td>
+					<select id="dec" style="width:100px">
+					<option selected="selected">Null
+					<option>Colorful Diamond</option>
+					<option>Heart</option>
+					<option>Gold Ring</option>
+					<option>Sock</option>
+					<option>Christmas Balls</option>
+					<option>Fish</option><option>Amber Stone</option><option>Flower</option>
+					</select><br />
+					
+					Color <input type="text" id="dcolor" value="0xFF3300" style="width:60px" />
+					
+				<td>
+	
+			</tr>
+ 		
+		</table>
+		
+		<!-- <p><input type="number" id="level" value ="5" /></p> -->
+		<!--<button type="button" onclick="drawBranch(getd(),getlen(),getn(),getx(),gety(),getz(),getang(),getangy(),getrang(),getrangy(),getrandom());">submit</button><br />
+		-->
+		<!--<button type="button" onclick="drawBranch(getd(),getlen(),getn(),getxx(),-50,0,90,0,20,20,getrandom());">submit</button><br/>
+		-->
+		<button type="button" onclick="readData();">submit</button>
+		<input type="button" value="reload" onClick="history.go(0)">
+		
+	</form> 
+	
+    <script>
+    	/*var container = document.createElement('div');
+      	document.body.appendChild(container);
+
+      	var info = document.createElement('div');
+      	info.style.position = 'absolute';
+     	info.style.top = '110px';
+     	info.style.width = '100%';
+        info.style.textAlign = 'right';
+     	info.innerHTML = '<p><font size="2">Copyright: 2012 by Qiao Shi</font></p>';
+     	info.innerHTML.fontSize
+     	container.appendChild(info);
+     	*/
+    	
+    	// Renderer
+    	var renderer = new THREE.WebGLRenderer( { antialias: true } );
+      	renderer.setSize( window.innerWidth, 600 ); //window.innerWidth / 2, window.innerHeight / 2 );
+      	document.body.appendChild( renderer.domElement );
+      	renderer.setClearColorHex( 0xDDEEEE, 1.0 );
+      	renderer.clear();
+      	
+      	renderer.shadowCameraFov = 50;
+      	renderer.shadowMapWidth = window.innerWidth;;
+      	renderer.shadowMapHeight = window.innerHeight;
+		
+		// Scene
+		var scene = new THREE.Scene();
+		  	
+
+		// Camera
+		// THREE.PerspectiveCamera( fov, aspect, near, far );
+		// fov: field of view
+		// aspect: view aspect ratio
+		// near : near clip plane
+		// far: far clip plane
+		var width = renderer.domElement.width;
+      	var height = renderer.domElement.height;
+		var camera = new THREE.PerspectiveCamera( 45, width / height, 1, 2000 );
+      	camera.position.set( -200, 100, 500 ); //#######
+      	scene.add( camera );
+     
+      	
+      	// Light
+      	var pointLight = new THREE.PointLight();
+      	pointLight.position.set( 0, 800, 500 ); //#######
+      	scene.add( pointLight );
+
+      	/*var light = new THREE.SpotLight();
+      	light.castShadow = true;
+      	light.position.set( 0, 800, 600 ); //#######
+      	scene.add( light );
+      	*/
+      	var light2 = new THREE.DirectionalLight();
+      	light2.castShadow = true;
+      	light2.position.set( 0, 500, 300 ); //#######
+      	scene.add( light2 );
+      	
+      	
+      	// Plane
+      	var pg = new THREE.PlaneGeometry( 5000, 5000 );
+      	var pm = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
+      	
+      	var plane = new THREE.Mesh( pg, pm );
+      	plane.position.set( 0, -50, 0 );
+      	plane.receiveShadow = true;
+     	scene.add( plane );
+     	
+     	// Branches
+		//drawBranch( d, len, n, x, y, z, ang, angy, color, rang, rangy, random )
+		//drawBranch( d, len, n, startx, starty, startz, ang, angy, rang, rangy, random );
+		//drawBranch( 6, 60, 2, 0, -30, 0, 90, 0, 20, 20, 20 );
+		
+		// Shadow
+      	renderer.shadowMapEnabled = true;
+		renderer.render( scene, camera );
+      	var paused = false;
+      	var last = new Date().getTime();
+      	var down = false;
+      	var sx = 0, sy = 0;
+      	window.onmousedown = function (ev){
+        	down = true; sx = ev.clientX; sy = ev.clientY;
+      	};
+      	window.onmouseup = function(){ down = false; };
+      	window.onmousemove = function(ev) {
+        	if (down) {
+          		var dx = ev.clientX - sx;
+          		var dy = ev.clientY - sy;
+          		camera.position.x += dx;
+          		camera.position.y += dy;
+          		sx += dx;
+          		sy += dy;
+        	}
+      }
+      
+      function animate(t) {
+        if (!paused) {
+          last = t;
+          
+          renderer.clear();
+          camera.lookAt(scene.position);
+          renderer.render(scene, camera);
+        }
+        window.requestAnimationFrame(animate, renderer.domElement);
+      };
+      animate(new Date().getTime());
+      onmessage = function(ev) {
+        paused = (ev.data == 'pause');
+      }; 
+      
+    </script>
+   
+  </body>
+
+</html>

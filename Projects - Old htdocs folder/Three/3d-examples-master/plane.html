@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<script src="lib/three.min.js"></script>
+		<script src="lib/controls.js"></script>
+		<script src="lib/physi.js"></script>
+		<script src="lib/physijs_worker.js"></script>
+<!--
+        <script src="scene.js"></script>
+-->
+        <script src="tanks.js"></script>
+        <script src="geometries.js"></script>
+		<script>
+		    var camera, scene, renderer, controls, clock, keyboard;
+            var rotationsPerSecond = Math.PI / 2.0; // * (Math.PI / 180);
+            var world = {};
+
+		   	function setup() {
+			    init();
+			    animate();
+		   	}
+
+		    function init() {
+                world.objects = [];
+                clock = new THREE.Clock();
+		    	Physijs.scripts.worker = 'lib/physijs_worker.js';
+				Physijs.scripts.ammo = 'ammo.js';
+
+		        camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 500 );
+		        camera.position.set(10, 2, 30);
+    			camera.lookAt(new THREE.Vector3(0, 4, 0));
+
+    			controls = new FirstPersonControls(camera);
+    			controls.target = new THREE.Vector3(0, 0, 0);
+    			controls.movementSpeed = 2;
+    			controls.noFly = false;
+    			controls.lookVertical = true;
+
+                scene = initScene(camera);
+
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setClearColor(0xDEDEDE);
+                document.body.appendChild(renderer.domElement);
+                keyboard = new KeyboardState(document);
+            }
+
+            function animate() {
+                var delta = clock.getDelta();
+                controls.update(0.2);
+                scene.simulate();
+                world.objects.forEach(function (obj) {
+                    obj.update(delta);
+                });
+                renderer.render( scene, camera );
+		        requestAnimationFrame( animate );
+		    }
+
+/*
+            function rotatingAroundAxis(gun) {
+                var vectorToTarget = new THREE.Vector3().subVectors(camera.position,
+                        gun.parent.position).normalize();
+                var angle = Math.acos(vectorToTarget.dot(new THREE.Vector3(0,0,1).normalize()));
+                var translate = new THREE.Matrix4().makeTranslation(0, 1, 0);
+                var axis = new THREE.Vector3().crossVectors(vectorToTarget,
+                        new THREE.Vector3(0, 0, 1)).normalize().negate();
+                var rotate = new THREE.Matrix4().makeRotationAxis(axis, angle);
+                var matrix = new THREE.Matrix4().multiplyMatrices(translate, rotate);
+                gun.matrix = matrix;
+                gun.updateMatrixWorld(true);
+            }
+*/
+
+            function yRotationOnly() {
+                var vectorToTarget = new THREE.Vector3().subVectors(camera.position,
+                        ball.parent.position).normalize();
+                var angle = Math.acos(vectorToTarget.dot(new THREE.Vector3(0,0,1).normalize()));
+                ball.rotation.y = vectorToTarget.x < 0 ? -angle : angle;
+            }
+		</script>
+	</head>
+	<body onload="setup()">
+	</body>		
+</html>

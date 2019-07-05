@@ -1,0 +1,784 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Cheap Cloud Gaming for THREE.js</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  background-color: #f7f7f7;
+  font-size: 100%;
+}
+
+#wrapper {
+  width: 850px;
+  height: 600px;
+  overflow: hidden;
+  margin: 80px auto 0 auto;
+}
+
+.slide {
+  width: auto;
+  height: 540px;
+  padding: 30px;
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.controls .arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.controls .prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.controls .next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.controls .prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.controls .next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+.slide h1 {
+  font-size: 300%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 170px 0 0;
+}
+
+.slide h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+.slide h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.slide ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.slide .author h1.name {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.slide .author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.1s ease-out;
+  -moz-transition: width 0.1s ease-out;
+  -o-transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out;
+}
+
+@media (max-width: 850px) {
+  #wrapper {
+    width: auto;
+  }
+
+  body {
+    font-size: 70%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .slide h1 {
+    margin-top: 120px;
+  }
+
+  .controls .prev, .controls .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .controls .next, .controls .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  #wrapper {
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  .slide {
+    padding: 10px;
+    height: 340px;
+  }
+
+  .slide h1 {
+    margin-top: 50px;
+  }
+
+  .slide ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  #wrapper {
+    overflow: visible;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .slide {
+    border: 1px solid #222;
+    margin-bottom: 40px;
+    height: 3.5in;
+  }
+
+  .slide:nth-child(odd) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+code, pre {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: auto;
+  padding: 6px 10px;
+}
+
+code {
+  padding: 0 5px;
+}
+
+pre>code {
+  margin: 0; padding: 0;
+  border: none;
+  background: transparent;
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div id="wrapper">
+    <section class="slide"><p><base target='_blank'/></p>
+<style>pre { background: lightgrey; font-size: 100%;}</style>
+
+<h1 id="cloud-gaming-for-three-js">Cloud Gaming for THREE.js</h1>
+<h2 id="-jerome-etienne-http-twitter-com-jerome_etienne-"><a href="http://twitter.com/jerome_etienne">Jerome Etienne</a></h2>
+</section>
+    <section class="slide"><h3 id="what-are-we-gonna-talk-about-">What are we gonna talk about ?</h3>
+<ul>
+<li>Possible solution for cloud gaming</li>
+<li>apply to any webgl games<ul>
+<li>not only three.js ones</li>
+</ul>
+</li>
+<li>cheap idea for cloud gaming for webgl</li>
+</ul>
+<p><strong>status</strong> : experimental, naive but working surprisingly well!</p>
+</section>
+    <section class="slide"><h3 id="demo-time">Demo Time</h3>
+<p>Youtube video <a href="http://www.youtube.com/watch?v=yTSXLyg1uu8">here</a></p>
+<iframe width="560" height="315" src="//www.youtube.com/embed/fHVfy7WrPH0" frameborder="0" allowfullscreen></iframe></section>
+    <section class="slide"><h3 id="what-is-cloud-gaming-">What is Cloud Gaming ?</h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cloud_gaming">wikipedia</a> definition</li>
+<li>It is new. no widely accepted definition</li>
+<li>usually implies <strong>render on server</strong> feature</li>
+</ul>
+<p>Rougly…</p>
+<pre><code>Trying to run a game written for device A
+on a device B, typically dumber than A.</code></pre>
+</section>
+    <section class="slide"><h2 id="what-it-is-for-us-">What it is for us ?</h2>
+</section>
+    <section class="slide"><h3 id="what-is-our-use-case">What is Our Use Case</h3>
+<p>Let&#39;s clear the dust a bit...</p>
+<ul>
+<li>we run a webgl game in browser</li>
+<li>player device is a non-webgl mobile phone</li>
+</ul>
+<p><strong>Goal</strong> : to make that game playable on your player device</p>
+</section>
+    <section class="slide"><h3 id="our-goal">Our Goal</h3>
+<ul>
+<li>To display a webgl game </li>
+<li>on a non-webgl player device</li>
+</ul>
+<p><strong>Simple Enough...</strong></p>
+</section>
+    <section class="slide"><h2 id="ok-we-know-the-target-what-s-next-">Ok We Know the Target, What&#39;s Next ?</h2>
+</section>
+    <section class="slide"><h1 id="early-study">Early Study</h1>
+<h2 id="for-early-prototype">For Early Prototype</h2>
+</section>
+    <section class="slide"><h3 id="early-study-rendering">Early Study - Rendering</h3>
+<ul>
+<li>So we got to render our game in server</li>
+<li>it will be <strong>rendered via a web browser</strong></li>
+<li>seems natural choise to render webgl</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="early-study-architechture">Early Study - Architechture</h3>
+<p>3 parts </p>
+<ul>
+<li><strong>a renderer :</strong> the brower running our game</li>
+<li><strong>a controller :</strong> used by players to access our game</li>
+<li><strong>a server :</strong> ensures the communication between both</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="early-study-networking">Early Study - Networking</h3>
+<ul>
+<li>networking done thru websocket</li>
+<li>no webrtc at the moment</li>
+<li>websocket is available a lot more than webrtc</li>
+<li>especially on mobile phone, our usecase.</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="early-study-software">Early Study - Software</h3>
+<ul>
+<li>server in node.js</li>
+<li>websocket are trivial with socket.io</li>
+<li>little js library in renderer, and another in controller</li>
+<li>only common technology here</li>
+</ul>
+<p><strong>implementation is easy</strong></p>
+</section>
+    <section class="slide"><h2 id="looks-good-">Looks Good…</h2>
+<h2 id="what-would-it-be-in-action-">What Would it be in Action ?</h2>
+</section>
+    <section class="slide"><h1 id="theory-of-operations">Theory Of Operations</h1>
+</section>
+    <section class="slide"><h3 id="theory-of-operations-server">Theory Of Operations - Server</h3>
+<ul>
+<li>a renderer browser web running the game</li>
+<li>take regular screenshots with <a href="https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement#Methods">.toDataUrl()</a></li>
+<li>Send them to the player device via echo server <ul>
+<li>mobile phone, tablette whatever.</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="theory-of-operations-player">Theory Of Operations - Player</h3>
+<ul>
+<li>player can see webgl rendering on any device</li>
+<li>player uses touch screen as inputs</li>
+<li>inputs are then sent to the server </li>
+<li>server send them back to the renderer.</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="theory-of-operations-output">Theory Of Operations - Output</h3>
+<ul>
+<li>browser receives inputs from the player.</li>
+<li>player sees what is displayed in the browser.</li>
+</ul>
+<p><strong>we got the whole loop</strong></p>
+</section>
+    <section class="slide"><h3 id="theory-of-operations-results">Theory Of Operations - Results</h3>
+<ul>
+<li>This is actual cloud gaming! </li>
+<li>Simple implementation</li>
+<li>Less than 24h to write!</li>
+<li>Performances? left as an exercice to the reader :)</li>
+</ul>
+</section>
+    <section class="slide"><h2 id="nice-concepts-what-about-the-code-">Nice Concepts! What About the Code ?</h2>
+</section>
+    <section class="slide"><h1 id="implementation">Implementation</h1>
+</section>
+    <section class="slide"><h3 id="status">Status</h3>
+<p>Working and Available</p>
+<ul>
+<li>published on <a href="https://github.com/jeromeetienne/threex.cloudgaming">github</a> </li>
+<li>as a <a href="http://jeromeetienne.github.io/threex/">threex</a> extension for <a href="http://threejs.org">three.js</a></li>
+<li>under <a href="http://jetienne.mit-license.org/">MIT</a></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="what-">What ?</h3>
+<ul>
+<li>a <strong>minigame</strong> using three.js which run <strong>on renderer</strong></li>
+<li>a <strong>controller</strong> for this game to run <strong>on player device</strong></li>
+<li>a <strong>server</strong> to communicate <strong>between both</strong></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="definitly-simple">Definitly Simple</h3>
+<p>for <a href="http://jeromeetienne.github.io/threex/#threex.cloudgaming">threex.cloudgaming</a></p>
+<pre><code>$ wc -l *.js
+311</code></pre>
+<p>Full implementation 311 lines</p>
+</section>
+    <section class="slide"><h3 id="renderer-minigame">Renderer - Minigame</h3>
+<ul>
+<li>all from <a href="http://jeromeetienne.github.io/threex/">threex</a> extension for <a href="http://threejs.org">three.js</a></li>
+<li><a href="https://github.com/jeromeetienne/threex.minecraft">threex.minecraft</a> for the minecraft character</li>
+<li><a href="https://github.com/jeromeetienne/threex.montainarena">threex.montainarena</a> for montains</li>
+<li><a href="https://github.com/jeromeetienne/threex.grassground">threex.grassground</a> for the ground</li>
+<li><a href="https://github.com/jeromeetienne/threex.skymap">threex.skymap</a> for the sky</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="controller-virtualjoystick">Controller - VirtualJoystick</h3>
+<ul>
+<li>use <a href="http://github.com/jeromeetienne/virtualjoystick.js">virtualjoystick.js</a> to have joystick on touch screen</li>
+<li>more info in <a href="http://learningthreejs.com/blog/2011/12/26/let-s-make-a-3d-game-virtual-joystick/">this post</a> froms <a href="http://learningthreejs.com">learning three.js blog</a>.</li>
+<li>Provide right/up/left/down</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="core-threex-cloudgaming">Core - threex.cloudgaming</h3>
+<ul>
+<li>connect to server</li>
+<li>provide echo service thru server</li>
+</ul>
+<h4 id="code">Code</h4>
+<ul>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.cloudrenderer.js">threex.cloudrenderer.js</a> - 63 lines</li>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.cloudcontroller.js">threex.cloudcontroller.js</a> - 67 lines</li>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.server.js">server.js</a> - 14 lines</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="helpers-screen-updater">Helpers - Screen Updater</h3>
+<ul>
+<li>handle window resize in controller<ul>
+<li>notify the renderer when it happens</li>
+</ul>
+</li>
+<li>handle screen update from server to controller</li>
+</ul>
+<h4 id="code">Code</h4>
+<ul>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.cloudrendererscreenupdater.js">threex.cloudrendererscreenupdater.js</a> - 53 lines</li>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.cloudcontrollerscreenupdater.js">threex.cloudcontrollerscreenupdater.js</a> - 42 lines</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="helpers-virtual-joystick">Helpers - Virtual Joystick</h3>
+<ul>
+<li>read <code>virtualjoystick.js</code> inputs on player device</li>
+<li>send them to renderer via server</li>
+<li>renderer to pass that to the minigame</li>
+</ul>
+<h4 id="code">Code</h4>
+<ul>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.cloudrenderervirutaljoystick.js">threex.cloudrenderervirtualjoystick.js</a> - 46 lines</li>
+<li><a href="https://github.com/jeromeetienne/threex.cloudgaming/blob/master/threex.cloudcontrollervirtualjoystick.js">threex.cloudcontrollervirtualjoystick.js</a> - 19 lines</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="questions-">Questions ?</h1>
+<h2 id="-jerome-etienne-http-twitter-com-jerome_etienne-"><a href="http://twitter.com/jerome_etienne">Jerome Etienne</a></h2>
+</section>
+    <section class="slide"><div class="author">
+  <h1 class="name">Jerome Etienne</h1>
+    <h3 class="twitter">
+      <a href="http://twitter.com/@jerome_etienne">@jerome_etienne</a>
+    </h3>
+    <h3 class="url">
+      <a href="http://jetienne.com">http://jetienne.com</a>
+    </h3>
+</div>
+</section>
+</div>
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Takes the last slide and places it at the front.
+ */
+function goBack() {
+  var wrapper = document.querySelector('#wrapper');
+  var lastSlide = wrapper.lastChild;
+  while (lastSlide !== null && lastSlide.nodeType !== 1) {
+    lastSlide = lastSlide.previousSibling;
+  }
+
+  wrapper.removeChild(lastSlide);
+  wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Takes the first slide and places it at the end.
+ */
+function goForward() {
+  var wrapper = document.querySelector('#wrapper');
+  var firstSlide = wrapper.firstChild;
+  while (firstSlide !== null && firstSlide.nodeType !== 1) {
+    firstSlide = firstSlide.nextSibling;
+  }
+
+  wrapper.removeChild(firstSlide);
+  wrapper.appendChild(firstSlide);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  window.history.replaceState({} , null, '#' + currentPage());
+}
+
+/**
+ * Returns the current page number of the presentation.
+ */
+function currentPage() {
+  return document.querySelector('#wrapper .slide').dataset.page;
+}
+
+/**
+ * Returns a NodeList of each .slide element.
+ */
+function allSlides() {
+  return document.querySelectorAll('#wrapper .slide');
+}
+
+/**
+ * Give each slide a "page" data attribute.
+ */
+function setPageNumbers() {
+  var wrapper = document.querySelector('#wrapper');
+  var pages   = wrapper.querySelectorAll('section');
+  var page;
+
+  for (var i = 0; i < pages.length; ++i) {
+    page = pages[i];
+    page.dataset.page = i;
+  }
+}
+
+/**
+ * Set the current progress indicator.
+ */
+function setCurrentProgress() {
+  var wrapper = document.querySelector('#wrapper');
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var pagesNumber    = wrapper.querySelectorAll('section').length;
+    var currentNumber  = parseInt(currentPage(), 10);
+    var currentPercent = pagesNumber === 1 ? 100 : 100 * currentNumber / (pagesNumber - 1);
+    progressBar.style.width = currentPercent.toString() + '%';
+  }
+}
+
+/**
+ * Go to the specified page of content.
+ */
+function goToPage(page) {
+  // Try to find the target slide.
+  var targetSlide = document.querySelector('#wrapper .slide[data-page="' + page + '"]');
+
+  // If it actually exists, go forward until we find it.
+  if (targetSlide) {
+    var numSlides = allSlides().length;
+
+    for (var i = 0; currentPage() !== page && i < numSlides; i++) {
+      goForward();
+    }
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var currentPageLinks = document.querySelector('.slide').querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    allLinks[i].removeAttribute('tabindex');
+  }
+}
+
+window.onload = function () {
+
+  // Give each slide a "page" data attribute.
+  setPageNumbers();
+
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    goToPage(page);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, enter, PgDn - FORWARD
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      goBack();
+    } else if (kc === 38 || kc === 39 || kc === 13 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      goForward();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      goForward();
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      goBack();
+    };
+  }
+
+};
+
+
+  </script>
+</body>
+</html>

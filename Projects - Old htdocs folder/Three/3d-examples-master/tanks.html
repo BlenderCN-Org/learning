@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<script src="lib/three.min.js"></script>
+		<script src="lib/controls.js"></script>
+        <script src="lib/physi.js"></script>
+        <script src="lib/physijs_worker.js"></script>
+        <script src="tanks.js"></script>
+        <script src="tankgeometries.js"></script>
+		<script>
+		    var camera, scene, renderer, clock, keyboard;
+            var rotationsPerSecond = Math.PI / 2.0; // * (Math.PI / 180);
+            var world = {
+                objects: [],
+                bullets: []
+            };
+
+		   	function setup() {
+			    init();
+			    animate();
+		   	}
+
+		    function init() {
+                Physijs.scripts.worker = 'lib/physijs_worker.js';
+                Physijs.scripts.ammo = 'ammo.js';
+                clock = new THREE.Clock();
+		        camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 500 );
+
+                scene = initScene(camera);
+
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setClearColor(0xDEDEDE);
+                document.body.appendChild(renderer.domElement);
+                keyboard = new KeyboardState(document);
+            }
+
+            function update() {
+                var delta = clock.getDelta();
+                scene.simulate();
+                world.bullets.forEach(function(bullet) {
+                    bullet.update(delta);
+                });
+                world.objects.forEach(function (obj) {
+                    obj.update(delta);
+                });
+            }
+
+            function render() {
+                renderer.render(scene, camera);
+                requestAnimationFrame(animate);
+            }
+
+            function animate() {
+                update();
+                render();
+            }
+		</script>
+	</head>
+	<body onload="setup()">
+	</body>		
+</html>

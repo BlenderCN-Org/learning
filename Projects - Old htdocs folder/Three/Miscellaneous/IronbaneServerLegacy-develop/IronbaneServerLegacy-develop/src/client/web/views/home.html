@@ -1,0 +1,23 @@
+<div class="big-logo-wrapper">
+
+    <div class="jumbotron">
+      <h2>Ironbane is a 3D action MMO!</h2>
+      <p><a class="btn btn-primary btn-lg" role="button" href="/game" target="_self">Play it now!</a></p>
+    <p>Ironbane runs straight from any modern browser!</p>
+    </div>
+</div>
+<section id="news">
+<div class="row" ng-repeat="post in posts">
+  <div class="col-md-12 box">
+    <div class="row">
+        <div class="col-md-10">
+            <h2><a ng-href="/forum/7/topics/{{ post.id }}">{{post.title}}</a></h2>
+        </div>
+        <div class="col-md-2 text-right">
+            <b>by <userlink name="{{ post.username }}"></userlink></b>
+        </div>
+    </div>
+    <article ng-bind-html="post.content | unsafe"></article>
+  </div>
+</div>
+</section>

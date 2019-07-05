@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<title></title>
+<meta charset='utf-8'>
+<meta http-equiv="refresh" content="3">
+<script src='../../list.js'></script>
+<script src='../../page.js'></script>
+<link type='text/css' rel='stylesheet' href='../../page.css' />
+</head>
+<body>
+	<h2>Case Study: Near Realtime JSON</h2>
+	
+	<h1>FlightGear: FOSS flight simulation application with very strong following.<br>FG users share their flying status online.</h1>
+	
+	<h3>FGx, hosted in Switerland, produces add-ons for FlightGear. 
+	One of these is a service that provides near reealtime status updates in JSON format.</h3>
+	
+	<h3>Reports are updated every three seconds and (purposely annoyingly ;-) look like this:</h3>
+	
+<script>
+	var ifr = document.body.appendChild( document.createElement( 'iframe' ) );
+	ifr.style.cssText = 'font: bold 13pt monospace; height: 300px; width: 80%; ';
+	ifr.src = 'http://crossfeed.fgx.ch/data';
+	
+	var info2 = document.body.appendChild( document.createElement( 'div' ) );
+	info2.innerHTML = 
+		'<h3>Here\'s one way <s>old school</s> FlightGear pilots see this data: <a href="http://mpserver15.flightgear.org/modules/fgtracker/" target="_blank">FG Tracker & Planner</a></h3>' +
+		'<button><h1>Click <a href="http://fgx.github.com/fgx-globe/fgx-globe-r2-dev/" target="_blank">FGx</a> ' +
+		'for a slightly different perspective on the identical data.</h2></button>' +
+	'';
+
+</script>	
+
+
+</body>
+</html>

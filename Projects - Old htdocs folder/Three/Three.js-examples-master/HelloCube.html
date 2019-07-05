@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>three.js tutorial - HelloCube</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		body 
+		{
+			font-family: Monospace;
+			font-weight: bold;
+			background-color: #ccccff;
+			margin: 5px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+
+<div id="message"></div>
+
+<script src="js/Three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/Stats.js"></script>
+<script src="js/THREEx.KeyboardState.js"></script>
+<script src="js/THREEx.FullScreen.js"></script>
+<script src="js/THREEx.WindowResize.js"></script>
+
+<script>
+/*
+	A three.js "tutorial by example"
+	introducing some basic features
+	to create a simple 3D scene.
+	Author: Lee Stemkoski
+	Date: June 2012 (three.js v49)
+ */
+	
+//////////	
+// MAIN //
+//////////
+
+if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+// standard global variables
+var container, stats, camera, controls, scene, renderer;
+var clock = new THREE.Clock();
+var keyboard = new THREEx.KeyboardState();
+
+
+// custom global variables
+var cube;
+
+// initialization
+init();
+
+// animation loop / game loop
+animate();
+
+///////////////
+// FUNCTIONS //
+///////////////
+			
+function init() 
+{
+    ///////////
+	// SCENE //
+	///////////
+	scene = new THREE.Scene();
+
+	////////////
+	// CAMERA //
+	////////////
+	
+	// set the view size in pixels or according to window size
+	// var WIDTH = 400, HEIGHT = 300;
+	var WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+	// camera attributes
+	var VIEW_ANGLE = 45, ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 20000;
+	
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	
+	// add the camera to the scene
+	scene.add(camera);
+	// the camera defaults to position (0,0,0)
+	// 	so pull it back and up and set the angle towards the scene origin
+	camera.position.z = 400;
+	camera.position.y = 150;	
+	camera.lookAt(scene.position);	
+
+	//////////////
+	// CONTROLS //
+	//////////////
+
+	// mouse buttons: left to rotate, middle to zoom, right to pan
+	controls = new THREE.TrackballControls( camera );
+	
+	//////////////
+	// RENDERER //
+	//////////////
+	
+	// create and start the renderer
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize(WIDTH, HEIGHT);
+
+	// create a div element to contain the renderer
+	container = document.createElement( 'div' );
+	document.body.appendChild( container );
+	// alternatively: if you insert the div via HTML, access it using
+	//   container = document.getElementById( 'container' );
+
+	// attach renderer to the container div
+	container.appendChild( renderer.domElement );
+	
+	////////////
+	// EVENTS //
+	////////////
+
+	// automatically resize renderer
+	THREEx.WindowResize(renderer, camera);
+	// toggle full-screen on given key press
+	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+	
+	///////////
+	// STATS //
+	///////////
+	
+	stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.bottom = '0px';
+	stats.domElement.style.zIndex = 100;
+	container.appendChild( stats.domElement );
+	
+	///////////
+	// LIGHT //
+	///////////
+	
+	// create a light
+	var light = new THREE.PointLight(0xffffff);
+	light.position.set(0,250,0);
+	scene.add(light);
+	
+	//////////////
+	// GEOMETRY //
+	//////////////
+		
+	// most objects displayed are a "mesh":
+	//  a collection of points ("geometry") and
+	//  a set of surface parameters ("material")	
+		
+	var planeGeometry = new THREE.PlaneGeometry(600, 600, 10, 10);
+	var planeMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+	var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+	plane.position.y = -100;
+	plane.doubleSided = true;
+	scene.add(plane);
+	
+	var axes = new THREE.AxisHelper();
+	axes.position.set( 0, 0, 0 );
+	axes.scale.set(1, 1, 1);
+	scene.add( axes );
+	
+	var cubeyGeometry = new THREE.CubeGeometry( 10, 10, 10, 1, 1, 1 )
+	var cubeyMaterial = new THREE.MeshLambertMaterial( {color: 0x8888ff} );
+	var cubey = new THREE.Mesh(cubeyGeometry, cubeyMaterial);
+	cubey.position.set(100, 100, -100);
+	scene.add(cubey);
+	
+	// to use multiple materials, cube constructor is slightly different
+	var cubeMaterialArray = [];
+	// order of materials: x+,x-,y+,y-,z+,z-
+	cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xff3333 } ) );
+	cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xff8800 } ) );
+	cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xffff33 } ) );
+	cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x33ff33 } ) );
+	cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x3333ff } ) );
+	cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x8833ff } ) );
+	cube = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100, 1, 1, 1, cubeMaterialArray ), new THREE.MeshFaceMaterial() );
+	scene.add( cube );		
+	
+	// without skybox, background color is determined by webpage background
+	var skyBox = new THREE.Mesh( new THREE.CubeGeometry( 10000, 10000, 10000, 1, 1, 1, cubeMaterialArray), new THREE.MeshFaceMaterial() );
+    // skyBox.flipSided = true;
+	skyBox.doubleSided = true;
+	scene.add(skyBox);
+
+}
+
+function animate() 
+{
+    requestAnimationFrame( animate );
+	render();		
+	update();
+}
+
+function update()
+{
+	// delta = change in time since last call
+	var delta = clock.getDelta(); 
+	var totalRunTime = clock.getElapsedTime();
+	
+	// functionality provided by THREEx.KeyboardState.js
+	if ( keyboard.pressed("A") )
+		cube.rotation.y -= delta;
+	if ( keyboard.pressed("D") )
+		cube.rotation.y += delta;
+	if ( keyboard.pressed("W") )
+		cube.rotation.x -= delta;
+	if ( keyboard.pressed("S") )
+		cube.rotation.x += delta;
+		
+	if ( keyboard.pressed("1") )
+		document.getElementById('message').innerHTML = ' Have a nice day! - 1';	
+	if ( keyboard.pressed("2") )
+		document.getElementById('message').innerHTML = ' Have a nice day! - 2 ';	
+		
+	controls.update();
+	stats.update();
+}
+
+function render() 
+{	
+	renderer.render( scene, camera );
+}
+
+</script>
+
+</body>
+</html>

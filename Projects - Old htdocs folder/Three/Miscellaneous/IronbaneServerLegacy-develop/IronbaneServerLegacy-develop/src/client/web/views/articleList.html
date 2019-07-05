@@ -1,0 +1,8 @@
+<div class="col-md-12 box">
+    <a ng-href="/editor"><h2>Back to Admin Menu</h2></a>
+    <ul>
+        <li ng-click="loadArticle(article)" ng-repeat="article in articles | filter:search">
+            {{ article.articleId }} - {{ article.title }}
+        </li>
+    </ul>
+</div>

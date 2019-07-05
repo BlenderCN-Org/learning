@@ -1,0 +1,943 @@
+@import "../../common/css/import.less";
+
+@textColor: #6DF2C0;
+@borderColor: #06452d;
+
+// replace similarly named image (todo: better name)
+@bgc1: #103C32;
+@bgc1_75: fade(@bgc1, 75);
+
+
+
+@inputDisabledFontColor:        #ececec;
+@errorTextColor:                #FF0000;
+
+
+// BUTTONS
+@buttonAttentionTextColor:      #A9F8FC;
+@buttonDisabledTextColor:       #06452d;
+
+// WEAPON STR COLORS
+//Weak Weapon = 0-1p  key grey is 636363
+//Normal Weapon = 1-2p black 000000
+//Strong Weapon = 2-3p dark red 591818
+//Epic Weapon = 3-5p light blue 67AEBC
+//Legendary Weapon = 5p> Ib color 0CAC53
+@rarity_weak: #b8b8b8;
+@rarity_normal: #f7f5fa;
+@rarity_strong: #faa54e;
+@rarity_epic: #d422e4;
+@rarity_legendary: #135432;
+
+@rarity_outline_weak: #000000;
+@rarity_outline_normal: #000000;
+@rarity_outline_strong: #000000;
+@rarity_outline_epic: #000000;
+@rarity_outline_legendary: #3dff99;
+
+.OffScreen {
+    position: absolute; overflow: hidden; top: -9999px; width: 1px; height: 1px;
+}
+
+body {
+    margin:0px;
+    overflow:hidden;
+    font-family: "Verdana",Verdana, Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:20px;
+    color: @textColor;
+    /*     text-shadow:2px 2px 1px #06452d; */
+    background-color: #051d1c;
+    background-image : url(../media/images/hud/bg.png);
+}
+
+a {
+    text-decoration: none;
+    color: #66ff66;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// ITEM HOVER TOOLTIP
+.item-info-box {
+    min-height: 20px;
+    .item-image-container {
+        margin-top: -3px;
+        width: 33px;
+        height: 30px;
+        float: left;
+    }
+    .gold-value {
+        color: gold;
+        padding-left: 16px;
+        background-image: url(/game/images/misc/coin_full.png);
+        background-repeat: no-repeat;
+    }
+    .item-name {
+        &.weak {
+            color: @rarity_weak;
+            text-shadow: 1px 1px 0px @rarity_outline_weak,
+                -1px 1px 0px @rarity_outline_weak,
+                1px -1px 0px @rarity_outline_weak,
+                -1px -1px 0px @rarity_outline_weak;
+        }
+        &.normal {
+            color: @rarity_normal;
+            text-shadow: 1px 1px 0px @rarity_outline_normal,
+                -1px 1px 0px @rarity_outline_normal,
+                1px -1px 0px @rarity_outline_normal,
+                -1px -1px 0px @rarity_outline_normal;
+        }
+        &.strong {
+            color: @rarity_strong;
+            text-shadow: 1px 1px 0px @rarity_outline_strong,
+                -1px 1px 0px @rarity_outline_strong,
+                1px -1px 0px @rarity_outline_strong,
+                -1px -1px 0px @rarity_outline_strong;
+        }
+        &.epic {
+            color: @rarity_epic;
+            text-shadow: 1px 1px 0px @rarity_outline_epic,
+                -1px 1px 0px @rarity_outline_epic,
+                1px -1px 0px @rarity_outline_epic,
+                -1px -1px 0px @rarity_outline_epic;
+        }
+        &.legendary {
+            color: @rarity_legendary;
+            text-shadow: 1px 1px 0px @rarity_outline_legendary,
+                -1px 1px 0px @rarity_outline_legendary,
+                1px -1px 0px @rarity_outline_legendary,
+                -1px -1px 0px @rarity_outline_legendary;
+        }
+    }
+    // table of info
+    .metadata {
+        width: 100%;
+        .info-row {
+            .label { text-align: right; }
+            .value { padding-left: 10px; }
+        }
+    }
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    border: 1px solid;
+    .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+    .transition(~"border linear .2s, box-shadow linear .2s");
+    .placeholder(darken(@textColor, 10%));
+    color: @textColor;
+    border-color: @primary4;
+    background-color: @primary3;
+    padding: 2px;
+    text-indent: 2px;
+
+    // Focus state
+    &:focus {
+        border-color: rgba(113, 236, 82, .8);
+        outline: 0;
+        outline: thin dotted \9; /* IE6-9 */
+        .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(113, 236, 82, .6)");
+    }
+}
+
+// common class for transparent window dialogs
+.dialog {
+    outline: 3px solid #06452d;
+    background-color: @bgc1_75;
+    //padding: 10px;
+    position: relative;
+    header .inner,
+    >.body {padding: 10px}
+    >header {border-bottom: 1px solid;}
+    >footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    // in the future, hopefully wont need to nest it this way
+    &.editorDialog {width: 500px; position: absolute; top: 15%; left: 35%; height: 420px;font-size: 12px;
+        label {
+            position: inherit;
+            margin-right: 4px;
+        }
+
+        // SLIDERS
+        input[type=range] {
+            -webkit-appearance: none;
+            background-color: silver;
+            width: 200px;
+            height: 20px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+             -webkit-appearance: none;
+            background-color: #666;
+            opacity: 0.5;
+            width: 10px;
+            height: 26px;
+        }
+
+        input[type=number] {
+            width: 80px;
+        }
+
+        button {
+            background-color: #357768;
+            border: 3px solid #1f453c;
+            display: inline-block;
+            color: #37ffac;
+            text-decoration: none;
+            text-shadow: 2px 1px 0px #06452d;
+            margin: 3px;
+            &:hover {
+                background-color: #5ba997;
+                border-color: rgba(113, 236, 82, .8);
+                outline: 0;
+                outline: thin dotted \9; /* IE6-9 */
+                .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(113, 236, 82, .6)");
+            }
+            &:active {
+                position: relative;
+                top: 1px;
+            }
+            &:disabled,
+            &:disabled:hover,
+            &:disabled:focus,
+            &:disabled:active {
+                background-color: #677874;
+                border: 3px solid #33423e;
+                color: @buttonDisabledTextColor;
+                text-shadow: 2px 1px 0px #abe0cc;
+                font-weight: normal;
+            }
+            &.attention {
+                color: @buttonAttentionTextColor;
+            }
+            &.dialog-close {float: right; width: 32px; min-width: 0; padding: 2px;}
+        }
+
+        .help-contents {
+            max-height: 315px;
+            overflow-y: auto;
+            margin: 4px;
+        }
+    }
+}
+
+#gameFrame {
+    margin: 0px;
+    width: 800px;
+    height: 600px;
+}
+
+#ItemEditor {
+    .control-group {
+        margin-bottom: 0px;
+    }
+    .image-control {
+        text-align: right;
+        .item-image-options {
+            text-align: left;
+        }
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border: 3px inset #6df2c0;
+            padding: 8px;
+        }
+        .clearfix();
+        div.ib-upload {
+            width: 61px;
+            height: 21px;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+            background-color: #357768;
+            border: 3px solid #1f453c;
+            color: #37ffac;
+            text-decoration: none;
+            text-shadow: 2px 1px 0px #06452d;
+            margin: 3px;
+            &:hover {
+                background-color: #5ba997;
+                border-color: rgba(113, 236, 82, .8);
+                outline: 0;
+                outline: thin dotted \9; /* IE6-9 */
+                .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(113, 236, 82, .6)");
+            }
+            .label {
+                position: absolute;
+                margin-left: -24px;
+            }
+            input {
+                width: 61px !important;
+                height: 21px !important;
+                display: block !important;
+                opacity: 0 !important;
+                overflow: hidden !important;
+            }
+        }
+    }
+}
+
+.item-image-selector {
+    .body {
+        height: 350px;
+        overflow-y: scroll;
+        margin: 1px;
+        .thumbnail {
+            background-color: #232323;
+        }
+        ul.thumbnails {
+            margin-left: -35px;
+        }
+    }
+}
+
+.insideInfo {
+    border: 5px solid black;
+    text-align: left;
+    margin: 0 auto 0 auto;
+    background-color: #083420;
+    padding: 5px;
+}
+
+#logo {
+      margin: 0 auto 0 auto;
+      background-image: url(../media/images/hud/logo_isolated.png);
+      width: 600px;
+      height: 186px;
+}
+
+.spacer {
+    height: 50px;
+}
+
+.spacersmall {
+    height: 10px;
+}
+
+#bigMessagesBox  {
+    pointer-events: none;
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    line-height: 45px;
+    text-shadow: 2px 2px 1px @borderColor;
+}
+
+#versionNumber {
+    margin-top: -18px;
+    text-align: right;
+    width: 500px;
+    font-size: 20px;
+}
+
+#loginContent {
+    display: none;
+    padding: 10px;
+}
+
+#loginContainer  {
+    margin-top: -7px;
+    z-index: 10;
+    min-height: 200px;
+}
+
+#formBox {
+    width:300px;
+    margin: 0 auto 0 auto;
+    input {
+        font-size: 40px;
+        width: 300px;
+    }
+}
+
+#serverDownMessage {
+    display: none;
+    text-align: center;
+}
+
+#noWebGL {
+    display: none;
+    top: 6px;
+    position: relative;
+    margin: 0 auto 0 auto;
+    width: 314px;
+    height: 322px;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+#serverDownDisconnect {
+    display: none;
+    text-align: center;
+}
+
+#loginBox {
+    position: absolute;
+    /*    background-color: orange;*/
+    width: 600px;
+    height: 600px;
+}
+
+#charSelect {
+    position: relative;
+    margin: 0 auto 0 auto;
+    width: 314px;
+}
+
+#charPreview {
+  /*     outline: 1px solid red;  */
+  /*    background-color: orange;*/
+  text-align: center;
+  width: 100%;
+  height: 160px;
+}
+
+#charCustomizationContainer {
+/*  margin: 0 auto 0 auto;*/
+    width: 100%;
+    height: 180px;
+}
+
+#charCustomizationButtonsLeft {
+    width: 100px;
+    height: 180px;
+    float: left;
+}
+
+#charCustomizationButtonsRight {
+    width: 100px;
+    height: 180px;
+    float: right;
+    text-align: right;
+}
+
+#charCustomizationPreview {
+    position: absolute;
+    left: 103px;
+    height: 180px;
+}
+
+#charSkinLayer, #charEyesLayer, #charHairLayer {
+    position: absolute;
+    width: 128px;
+    height: 144px;
+}
+
+#tileSelectBox {
+    position: absolute;
+    background-color: @bgc1_75;
+    display: none;
+    width: 400px;
+    height: 200px;
+    overflow: auto;
+    font-size: 12px;
+    z-index: 10;
+}
+
+#statBar {
+    pointer-events: none;
+    position: absolute;
+}
+
+#coinBar {
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+    width: 480px;
+    height: 32px;
+}
+
+#soundToggleBox {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    /*background-color: red;*/
+}
+
+#soundToggleBox button {
+    font-size: 1.52em;
+    font-weight: normal;
+    padding: 6px 10px 6px 10px;
+}
+
+#loadingBar {
+    pointer-events: none;
+    display: none;
+    position: absolute;
+    text-align: center;
+    padding-top: 20px;
+    width: 400px;
+    height: 120px;
+    font-size: 12px;
+    text-shadow: 2px 2px 1px #06452d;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -100px;
+}
+
+#chatContent {
+    position: absolute;
+    .content {
+        pointer-events: none;
+        width: 95%;
+        height: 160px;
+        color: white;
+        text-shadow: 1px 1px black;
+        font-size: 15px;
+        text-align: right;
+        float: right;
+        overflow: auto;
+        margin-right: 8px;
+        word-wrap: break-word;
+        min-width: 400px;
+    }
+    .tabs {
+        padding: 2px;
+        text-align: right;
+        visibility: hidden;
+        button {
+            background-color: #245448;
+            border: 1px solid #1f453c;
+            display: inline-block;
+            color: #37ffac;
+            font-family: Verdana;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 2px 2px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0px #06452d;
+            margin: 0px -2px;
+            min-width: 90px;
+            pointer-events: auto;
+            position: relative;
+            z-index: 90;
+            &.active {
+                z-index: 100;
+                background-color: #5ba997;
+            }
+        }
+    }
+   .jspVerticalBar {
+        pointer-events: auto;
+    }
+    .messages {
+        list-style-type: none;
+        padding: 0;
+        .name {
+            color: #fff; // should never happen...(no rank)
+            &.gm {
+                color: #e21bee;
+            }
+            &.user {
+                color: #1beee7;
+            }
+            &.guest {
+                color: orange;
+            }
+        }
+        .delim {
+            margin-right: 4px;
+            &:after {content: ',';}
+        }
+    }
+    #chatInput {
+        width: 95%;
+        float: right;
+        visibility: hidden;
+        &.focused {
+            visibility: visible;
+        }
+    }
+    &:hover {
+        border: 1px solid gold;
+        background-color: rgba(4, 4, 4, 0.5);
+        .tabs {
+            visibility: visible;
+            transition: visibility 0s .2s ease;
+        }
+        #chatInput {
+            visibility: visible;
+            transition: visibility 0s .2s ease;
+        }
+        transition: background-color .25s, border .25s ease;
+    }
+}
+
+#debugBox {
+    pointer-events: none;
+    /*display: none;*/
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    font-size: 12px;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.iinput {
+  background-color:#357768;
+  border:3px solid #1f453c;
+  display:inline-block;
+  color:#37ffac;
+  font-family:Verdana;
+  font-size:19px;
+  font-weight:bold;
+  padding:5px 0px;
+  text-decoration:none;
+  text-shadow:2px 1px 0px #06452d;
+  margin:3px;
+}.iinput:hover {
+  background-color:#5ba997;
+}
+
+
+.ibutton {
+    background-color: #357768;
+    border: 3px solid #1f453c;
+    display: inline-block;
+    color: #37ffac;
+    font-family: Verdana;
+    font-size: 19px;
+    font-weight: bold;
+    padding:5px 0px;
+    text-decoration: none;
+    text-shadow: 2px 1px 0px #06452d;
+    margin: 3px;
+    &:hover {
+        background-color:#5ba997;
+    }
+    &:active {
+        position:relative;
+        top:1px;
+    }
+}
+
+.ibutton_book {
+  background-color:#cc9999;
+  border:3px solid #333300;
+  display:inline-block;
+  color:#333300;
+  font-family:Verdana;
+  font-size:13px;
+  font-weight:bold;
+  padding:5px 0px;
+  text-decoration:none;
+
+  margin:3px;
+}.ibutton_book:hover {
+  background-color:#ffcc99;
+}.ibutton_book:active {
+  position:relative;
+  top:1px;
+}
+
+.ibutton_attention {
+  background-color:#356F77;
+  border:3px solid #1F4145;
+  display:inline-block;
+  color:#A9F8FC;
+  font-family:Verdana;
+  font-size:19px;
+  font-weight:bold;
+  padding:5px 0px;
+  text-decoration:none;
+  text-shadow:2px 1px 0px #063F45;
+  margin:3px;
+}.ibutton_attention:hover {
+  background-color:#5BA1A9;
+}.ibutton_attention:active {
+  position:relative;
+  top:1px;
+}
+
+.ibutton_disabled {
+  margin:3px;
+  background-color:#677874;
+  border:3px solid #33423e;
+  display:inline-block;
+  color:#06452d;
+  font-family:Verdana;
+  font-size:19px;
+  font-weight:normal;
+
+  padding:5px 0px;
+  text-decoration:none;
+  text-shadow:2px 1px 0px #abe0cc;
+}.ibutton_disabled:hover {
+  background-color:#677874;
+}
+
+
+label {
+  position:relative;
+  left:3px;
+  top:10px;
+}
+
+.bigoutline {
+    font-weight: bold;
+    font-size: 20px;
+    color: #39bd8b;
+    text-shadow: 2px 2px 1px #06452d;
+}
+
+#alertBox {
+    position: absolute;
+    z-index: 1000;
+}
+
+#alertImage {
+  width:100px;
+
+  background-image:url(../media/images/hud/attention.png);
+  background-position:center;
+  background-repeat: no-repeat;
+  float:left;
+}
+
+#alertMessage {
+  padding-top:10px;
+  padding-bottom:10px;
+  width:400px;float:left;
+
+}
+
+#alertOK {
+  width:400px;
+  text-align:center;
+
+}
+
+#devNews {
+    position: absolute;
+    width: 250px;
+    height: 341px;
+    font-size: 10px;
+    font-weight: normal;
+    .news-content {
+        height: 280px;
+        .news-post-title, .news-post-time {margin: 0;}
+        ul, ol {padding-left: 30px;}
+        hr {
+            height: 2px;
+            border-style: dashed none none none;
+            border-width: 2px;
+            border-color: @textColor;
+        }
+    }
+}
+
+#bogusButton {
+    display:none;
+}
+
+// DRAGON BARS - inv, loot, bank, etc.
+// dragon because you drag on stuff :P
+.dragon-bar {
+    z-index: 100;
+    display: none; // start hidden
+    position: absolute;
+    //background-color: black;
+    .dragon-slot {
+        z-index: 105;
+        width: 48px;
+        height: 48px;
+        float: left;
+        img {
+            position: relative;
+            top: 8px;
+            left: 8px;
+        }
+        &.bankBarSlot {
+            background-image: url(/game/images/misc/bar_9.png);
+        }
+        &.lootBarSlot {
+            background-image: url(/game/images/misc/bar_5.png);
+        }
+        &.vendorBarSlot {
+            background-image:url(/game/images/misc/bar_8.png);
+        }
+        &.dragon-hover {
+            background-color: rgba(242, 211, 0, 0.5);
+            cursor: pointer;
+        }
+    }
+}
+.dragon-item {
+    z-index: 1100;
+}
+#bankBar {
+    background-color: transparent;
+}
+#itemBar {
+    background-color: @black;
+}
+@iterations: 11;
+.itemBarSlotLoop (@index) when (@index > 1) {
+    .itemBarSlot {
+        @i: @index - 1;
+        @t: ~":nth-child(@{i})";
+        &@{t} {
+            background: url(~"/game/images/misc/key_@{i}.png"), url(/game/images/misc/bar_3.png);
+            &.occupied {
+                background: url(~"/game/images/misc/key_@{i}.png"), url(/game/images/misc/bar_7.png);
+            }
+            &.equipped {
+                background: url(~"/game/images/misc/key_@{i}.png"), url(/game/images/misc/bar_equip.png);
+            }
+            &.used {
+                background: url(/game/images/misc/bar_used.png);
+            }
+        }
+    }
+    .itemBarSlotLoop(@index - 1);
+}
+.itemBarSlotLoop (1) {}
+.itemBarSlotLoop (@iterations);
+// DRAGON BARS
+
+#dropItemsBox {
+    position: absolute;
+}
+
+#tooltip {
+    z-index: 2000;
+    position: absolute;
+    display: none;
+    width: 200px;
+    font-size: 16px;
+    text-shadow: 2px 2px 1px #06452d;
+    td {
+        font-size: 12px;
+        text-shadow: 1px 1px 1px #06452d;
+    }
+}
+
+#editorControls {
+    position: absolute;
+    z-index: 1;
+    padding: 0px;
+    margin: 0px 0 0;
+    width: 350px;
+    display: block;
+}
+
+.hudIconWrapper {
+  width:26px;
+  height:26px;
+}
+
+#book {
+  display:none;
+  position:absolute;
+  width:460px;
+  height:420px;
+  background-image:url(../media/images/misc/book.png);
+}
+
+.bookPage {
+  width:230px;
+  height:320px;
+  float:left;
+
+
+  font-family: "Verdana",Verdana, Arial, Helvetica, sans-serif;
+
+  font-weight:normal;
+  font-size:10px;
+  color:#000000;
+}
+
+.bookFooter {
+  width:230px;
+  height:70px;
+  float:left;
+  padding-top:10px;
+}
+
+#bookPageLeft {
+  padding-left:40px;
+  padding-right:30px;
+  padding-top:30px;
+}
+
+#bookPageRight {
+  padding-left:30px;
+  padding-right:40px;
+  padding-top:30px;
+}
+
+#bookFooterLeft {
+  padding-left:40px;
+  padding-right:30px;
+}
+
+#bookFooterRight {
+  padding-left:30px;
+  padding-right:40px;
+}
+
+
+
+#map {
+  pointer-events:none;
+  display:none;
+  position:absolute;
+  width:500px;
+  height:500px;
+  /*background-image:url(images/misc/book.png);*/
+  //background-color: #051d1c;
+}
+
+#black-bar-top {
+  width:100%;
+  height: 0px;
+  position: absolute;
+  top:0;
+  left:0;
+  background:black;
+}
+#black-bar-bottom {
+  width:100%;
+  height: 0px;
+  position: absolute;
+  bottom:0;
+  left:0;
+  background:black;
+}
+
+.ib-tutorial {
+  position:absolute;
+}
+
+.tut1 {
+  background-image: url(/game/images/hud/tut1.png);
+  width: 700px;
+  height: 200px;
+  left: 50%;
+  margin-left: -361px;
+  bottom: 0px;
+}

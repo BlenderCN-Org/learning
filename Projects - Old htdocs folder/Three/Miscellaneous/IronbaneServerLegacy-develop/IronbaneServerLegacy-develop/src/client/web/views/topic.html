@@ -1,0 +1,36 @@
+<div class="content-body">
+    <div class="row">
+        <div class="col-md-12 box">
+            <ib-forum-topic-breadcrumbs>
+        </div>
+    </div>
+    <div class="alert alert-info" ng-if="topic.sticky">This thread is sticky!</div>
+    <div class="alert alert-danger" ng-if="topic.locked">This thread is locked. Replies can no longer be made.</div>
+    <div class="row" ng-repeat="post in posts">
+        <div class="col-md-12 box">
+            <div class="col-md-2">
+                <forumuserprofile user="post.user"></forumuserprofile>
+            </div>
+            <div class="col-md-10">
+                posted on: {{post.time * 1000| date:'medium'}}
+                <hr/>
+                <article class="postcontent">
+                    <p ng-bind-html="post.mContent | unsafe"></p>
+                    <div ng-show="post.user.sig" class="signature">
+                        {{post.user.sig}}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 box">
+            <ib-forum-topic-breadcrumbs>
+        </div>
+    </div>
+    <div class="row" ng-show="isShowingReplyForm">
+        <div class="col-md-12 box">
+            <post-editor board="board.id" topic="topic.id"></post-editor>
+        </div>
+    </div>
+</div>

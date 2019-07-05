@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <title>Appendix C - KeyFrame</title>
+  <!-- tweening functions: http://sole.github.io/tween.js/examples/03_graphs.html -->
+  <style>
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #stats {  /* Align stats top-left */
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+  </style> 
+  </head>
+  <body> 
+  <!-- JavaScript libraries -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r67/three.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/stats.js/r11/Stats.min.js"></script>
+  <script src="../examples/assets/libs/TrackballControls.js"></script>
+  <script src="../examples/assets/libs/tween.min.js"></script>
+  <script src="../examples/assets/libs/keyframe.js"></script>
+  <!-- Javascript code that runs our Three.js examples --> 
+  <script>
+    // once everything is loaded, we run our Three.js stuff.
+    $(function () {
+
+      var stats = initStats();
+
+      // create a scene, that will hold all our elements such as objects, cameras and lights.
+      var scene = new THREE.Scene();
+
+      // create a camera, which defines where we're looking at.
+      var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+      // create a render and set the size
+      var renderer = new THREE.WebGLRenderer({antialias: true});
+
+      // create trackball controls
+      var trackballControls = new THREE.TrackballControls(camera);
+
+      renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      // create the ground plane
+      var planeGeometry = new THREE.PlaneGeometry(60,20);
+      var planeMaterial =  new THREE.MeshLambertMaterial({color: 0xffffff});
+      plane = new THREE.Mesh(planeGeometry,planeMaterial);
+
+      // rotate and position the plane
+      plane.rotation.x=-0.5*Math.PI;
+      plane.position.set(15,0,0);
+
+      // add the plane to the scene
+      scene.add(plane);
+
+      // create a cube
+      var cubeGeometry = new THREE.BoxGeometry(4,4,4);
+      var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xff0000});
+      var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+      // position the cube
+      cube.position.set(-4,3,0);
+
+      // add the cube to the scene
+      scene.add(cube);
+
+      var sphereGeometry = new THREE.SphereGeometry(4,20,20);
+      var sphereMaterial = new THREE.MeshLambertMaterial({color: 0x7777ff});
+      var sphere = new THREE.Mesh(sphereGeometry,sphereMaterial);
+
+      // position the sphere
+      sphere.position.set(20,4,2);
+
+      // add the sphere to the scene
+      scene.add(sphere);
+
+      // position and point the camera to the center of the scene
+      camera.position.set(-30,40,30);
+      camera.up = new THREE.Vector3(0,1,0);
+      camera.lookAt(scene.position);
+
+      // add subtle ambient lighting
+      var ambientLight = new THREE.AmbientLight(0x0c0c0c);
+      scene.add(ambientLight);
+
+      // add spotlight for the shadows
+      var spotLight = new THREE.SpotLight( 0xffffff );
+      spotLight.position.set(-40,60,-10);
+      scene.add(spotLight);
+
+      // add axis helper
+      var axisHelper = new THREE.AxisHelper(3);
+      scene.add(axisHelper);
+
+      // add the output of the renderer to the html element
+      $('body').append(renderer.domElement);
+
+      //define animations
+      var animator = null;
+      var duration = 4; // sec
+      var loopAnimation = true;
+
+      function initAnimator() {
+        animator = new KF.KeyFrameAnimator();
+        animator.init({ 
+          interps:
+            [
+              { 
+                keys:[0, .2, .8, 1], 
+                values:[
+                  { z : 0, x: 0},
+                  { z : Math.PI, x: 0  },
+                  { z : 5*Math.PI / 4, x : 0  },
+                  { z : Math.PI * 2, x: Math.PI * 2 },
+                ],
+                target: cube.rotation
+              },
+              { 
+                keys:[0, .3, .8, 1], 
+                values:[
+                  { z : 0 },
+                  { z : -3 },
+                  { z : 5 },
+                  { z : 6 },
+                ],
+                target: cube.position
+              },
+            ],
+          loop: loopAnimation,
+          duration: duration * 1000,
+          easing: TWEEN.Easing.Bounce.Out
+        });
+      }
+
+      initAnimator();
+
+      // call the render function
+      render();
+      animator.start();
+
+      function render() {
+        stats.update();
+        trackballControls.update();
+        KF.update();
+
+        // render using requestAnimationFrame
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+      }
+
+      function initStats() {
+        var stats = new Stats();
+        stats.setMode(0); // 0: fps, 1: ms
+        $('body').append(stats.domElement);
+        return stats;
+      }
+    });
+  </script>  
+ </body>
+</html>

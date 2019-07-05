@@ -1,0 +1,190 @@
+// ironbane.less
+
+// load all the base styles (shared between web and game)
+@import "../../common/css/import.less";
+
+body {
+    padding-top: 80px;
+
+    /*background-color: #22162c;*/
+    background-image: url('../images/portal_bg.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    background-size: 1280px;
+    background-attachment: fixed;
+}
+
+.header {
+
+}
+
+.navbar-inverse {
+    background-color: rgba(6, 83, 102, 0.6);
+}
+
+.navbar {
+    .small-logo-wrapper {
+        position: absolute;
+        overflow: visible;
+        .small-logo {
+            left:-45px;
+            top: -12px;
+            position: relative;
+        }
+    }
+}
+
+.social {
+    a {
+        background-size: 32px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 19px;
+        background-clip: padding-box;
+        background-color: rgba(4, 48, 59, 1);
+        box-shadow: inset 0 0 2px #1b1c1e;
+        display: block;
+        width: 39px;
+        height: 39px;
+        -webkit-transition: all .4s;
+        -moz-transition: all .4s;
+        -o-transition: all .4s;
+        transition: all .4s;
+        float: left;
+        margin: 4px;
+        &:hover {
+            background-color: #000;
+        }
+        &.twitter {
+            background-image: url('../images/twitter.png');
+        }
+        &.github {
+            background-image: url('../images/github.png');
+        }
+        &.admin_menu {
+            background-image: url('../images/icons/topics/hotthread.png');
+        }
+    }
+}
+
+.big-logo-wrapper {
+
+    background-image: url('../images/logo_isolated.png');
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    height: 586px;
+    background-size: 100%;
+    position: relative;
+    top: 0px;
+    margin: auto;
+    max-width: 600px;
+    /*outline: 1px solid red;*/
+    padding-top:250px;
+    text-align: center;
+
+    .jumbotron {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 2;
+        }
+    }
+
+}
+
+.box {
+    margin-bottom: 15px;
+    border-radius: 16px;
+    padding: 15px 30px 15px 30px;
+    background-color: fade(@gray-darker, 95%);
+    color: @gray-lighter;
+    h2 {
+        margin-top: 0px;
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 50px 0px;
+    font-size: 50px;
+    background-color: fade(@gray-darker, 55%);
+    .minitext {
+        font-size: 6px;
+    }
+}
+
+.forum-listing {
+    .icon {
+        background-size: 64px 64px;
+        width: 64px;
+        height: 64px;
+    }
+    h3 {
+        margin-top: 0px;
+    }
+    .board {
+        margin-top: 30px;
+        .thread-block {
+            padding-left: 0px;
+        }
+    }
+}
+
+.thread-listing {
+    .icon {
+        background-size: 32px 32px;
+        width: 32px;
+        height: 32px;
+        margin-left: 16px;
+    }
+    h1 {
+        margin-bottom: 0px;
+        margin-top: 2px;
+    }
+    h4 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .thread {
+        margin-top: 10px;
+    }
+}
+
+.profile {
+    max-width: 600px;
+}
+
+// TODO: use variables
+.admin-user-list {
+    .well {
+        background-color: #264b71;
+        border-color: #70e4de;
+    }
+    .user-infos {
+        .panel-heading, .panel-footer {
+            background-color: #033F4E;
+        }
+        .panel-body {
+            background-color: #000;
+        }
+    }
+}
+
+.forum-user-profile {
+    min-width: 160px;
+    max-width: 320px;
+    .user-link {
+        margin-bottom: 8px;
+    }
+    .media-heading {
+        margin:0 0 10px;
+    }
+}
+
+// should help with long data things
+.postcontent > p {
+    word-wrap: break-word;
+}

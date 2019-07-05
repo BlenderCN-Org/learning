@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Ironbane">
+<head>
+    <meta charset="utf-8">
+    <title>Ironbane MMO</title>
+
+    <base href="@@root/" />
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/game/css/@@appName.css">
+    <link rel="stylesheet" type="text/css" href="/game/lib/jquery/plugins/jquery.jscrollpane.css">
+
+    <!-- todo: automate libs? -->
+    <script src="/game/lib/game_shim/game-shim.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery@@minified.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui@@minified.js"></script>
+    <script src="/game/lib/jquery/plugins/jquery.mousewheel.js"></script>
+    <script src="/game/lib/jquery/plugins/jquery.jscrollpane@@minified.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular@@minified.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-sanitize@@minified.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route@@minified.js"></script>
+    <script src="/game/lib/angular_file_upload/angular-file-upload@@minified.js"></script>
+    <script type="text/javascript" src="/game/lib/angular-ui/ui-bootstrap-tpls-0.7.0@@minified.js"></script>
+    <script src="/game/lib/ui-router/angular-ui-router@@minified.js"></script>
+    <script src="/game/lib/three/three.js"></script>
+    <script src="/game/lib/three/threeoctree.js"></script>
+
+    <script src="/game/lib/three/controls/EditorControls.js"></script>
+    <script src="/game/lib/three/controls/TransformControls.js"></script>
+
+    <script src="/game/lib/sound_manager_2/soundmanager2-nodebug-jsmin.js"></script>
+    <script src="/game/lib/dat_gui/dat.gui.js"></script>
+    <script src="/game/lib/three/Detector.js"></script>
+    <script src="/game/lib/underscore/underscore-min.js"></script>
+    <script src="/game/lib/tween/tween.min.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <ui-view id="hudHandler"></ui-view>
+    <!-- contents of frame.html from old client -->
+    <div id="loadingBar" style="display:none">
+        <img src="media/images/misc/loading.gif"><div class="spacersmall"></div>
+        <div id="loadingBarMessage"></div>
+    </div>
+    <div id="gameFrame" style="opacity:0">
+        <div id="dropItemsBox"></div>
+        <div id="bigMessagesBox"></div>
+        <div id="loginBox">
+            <div id="logo" style="display:none"></div>
+            <div id="versionNumber" style="display:none">
+                <div class="bigoutline">@@gameVersion</div>
+            </div>
+            <div class="spacer"></div>
+            <div id="loginContainer">
+                <div id="loginContent"></div>
+                <div id="noWebGL" class="dialog">
+                    <div id="hquote"></div>
+                    <div class="spacersmall"></div>
+                    <div class="gen">It appears your browser does not support WebGL, or it is not enabled.<div class="spacersmall"></div><div id="webglsolution"></div></div>
+                    <div class="spacer"></div>
+                </div>
+                <div id="serverDownDisconnect">
+                    <div class="spacer"></div>
+                    <h2>The server disconnected!<br></h2>
+                </div>
+            </div>
+            <div class="spacer"></div>
+        </div>
+
+        <div id="alertBox" class="dialog" style="display:none">
+            <div id="alertImage"></div>
+            <div id="alertMessage">Sample alert message</div>
+            <div id="alertOK">
+                <button id="btnOK" class="ibutton" style="width:100px;">Okay</button>
+                <button id="btnNo" class="ibutton" style="width:100px;">No way</button>
+            </div>
+        </div>
+
+        <news-pane id="devNews" class="dialog" style="display:none;"></news-pane>
+        <chat-window id="chatContent" ng-show="showChatWindow"></chat-window>
+
+        <div id="statBar">
+            <div id="healthBar"></div>
+            <div id="armorBar"></div>
+        </div>
+        <div id="coinBar"></div>
+
+        <!-- all the dragons -->
+        <div id="itemBar" class="dragon-bar"></div>
+        <div id="vendorBar" class="dragon-bar"></div>
+        <div id="bankBar" class="dragon-bar"></div>
+        <div id="lootBar" class="dragon-bar"></div>
+
+        <div id="debugBox"></div>
+        <div id="soundToggleBox">
+            <button id="btnToggleSound" class="ibutton" style="width:40px"></button>
+        </div>
+        <div id="book">
+            <div id="bookPageLeft" class="bookPage"></div>
+            <div id="bookPageRight" class="bookPage"></div>
+            <div id="bookFooterLeft" class="bookFooter"></div>
+            <div id="bookFooterRight" class="bookFooter"></div>
+        </div>
+        <div id="tileSelectBox">
+            <div id="selectRange" class="gensmall"></div>
+            <div id="editormessage" style="font-size:10px;width:100%;height:30px"></div>
+            <div id="tileList" style="background-color:gray"></div>
+        </div>
+        <button id="bogusButton">Bogus</button>
+        <div id="tooltip" class="dialog"></div>
+        <div id="black-bar-top"></div>
+        <div id="black-bar-bottom"></div>
+        <div id="editorControls"></div>
+        <div class="ib-tutorial"></div>
+
+        <npc-editor id="NPCEditor" ng-show="showNpcEditor"></npc-editor>
+        <item-editor id="ItemEditor" ng-show="showItemEditor"></item-editor>
+        <help-dialog id="helpDialog" ng-show="showHelpDialog"></help-dialog>
+    </div>
+
+    <script>
+        var startdata = {
+            user: <% userId %>,
+            name: "<% username %>",
+            loggedIn: <% loggedIn %>,
+            using_ie: false,
+            using_safari: false
+        };
+
+        var ironbane_hostname = "@@host";
+        var ironbane_port = "@@port";
+        var ironbane_root_directory = "/game/";
+
+        var hquote = "Sweet llamas of the Bahamas!";
+
+        var isProduction = <%& isProduction %>;
+        var isEditor =  !isProduction;
+        var debugging = !isProduction;
+
+        var items = <%& items %>;
+        var units = <%& units %>;
+        var unitTemplates = <%& unitTemplates %>;
+        var ModelEnum = <%& modelEnum %>;
+        var preMeshes = <%& preMeshes %>;
+        var zones = <%& zones %>;
+        var zoneSelection = <%& zoneSelection %>;
+
+        var newsPosts = '';
+        var charCount = 0;
+        var chars = [];
+    </script>
+    <%& shaders %>
+    <script src="/game/js/@@appName-@@appVersion.js"></script>
+</body>
+</html>

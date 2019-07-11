@@ -1,20 +1,17 @@
 <html>
 <?php
+
 function ELO($A, $B){ // From http://en.wikipedia.org/wiki/Elo_rating_system
         return (1/(1+pow(10,(($B-$A)/400))));
 };
 
-
 //All code below this written by Russell Rounds
-echo '<strong>Russells <a href="http://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating Algorithm</a> Learning Experiment</strong><br/><br/>';
+echo '<h3><strong>Russells <a href="http://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating Algorithm</a> Learning Experiment</strong><br/></h3>';
 
 echo 'The algorithm:';
 echo '<font color=green><pre><strong>function ELO($A, $B){
         return (1/(1+pow(10,(($B-$A)/400))));
 };</pre></font><br/></strong>';
-
-echo 'Now, lets run some numbers through it:<br/>';
-echo 'These are all for Player A (algorithm will be different for Player B)<br/><br/>';
 
 echo 'Same numbers:<br/>';
 echo '• ELO(1,1) = ' . '<font color=red>' . ELO(1,1) . '</font><br/>';
@@ -61,8 +58,12 @@ echo '• ELO(99,100) = ' . '<font color=red>' . ELO(99,100) . '</font><br/>';
 
 echo '<br/>';
 
-?>
-See also:<br/>
+echo 'From these inputs and outputs, you should be able to see how it is predicting the score for Player A based on the rankings for both players.';
 
-<a href="https://en.wikipedia.org/wiki/Elo_hell">https://en.wikipedia.org/wiki/Elo_hell</a>
+?>
+<br/><br/>
+See also:<br/>
+<a href="https://stackoverflow.com/questions/3848004/facemash-algorithm">https://stackoverflow.com/questions/3848004/facemash-algorithm</a><br/>
+<a href="http://en.wikipedia.org/wiki/Elo_rating_system">http://en.wikipedia.org/wiki/Elo_rating_system</a><br/>
+<a href="https://en.wikipedia.org/wiki/Elo_hell">https://en.wikipedia.org/wiki/Elo_hell</a><br/>
 </html>

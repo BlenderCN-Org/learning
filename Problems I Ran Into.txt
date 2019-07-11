@@ -1,0 +1,8 @@
+Problems Encountered
+
+PHP:
+• Don't change the HTTP headers (via the header() function, or otherwise), or .php files may download instead of load/parse properly. https://stackoverflow.com/questions/14917228/chrome-downloads-my-php-files
+
+
+
+

@@ -65,7 +65,7 @@ From these inputs and outputs, you should be able to see how it is predicting th
 Player 1 has won 10 games.  Player 2 has won 100 games.  Based on this information alone, and using the ELO algorithm, we'll compute the percentage chance Player 1 has of winning against Player 2.<br/><br/>
 
 The forumula for calculating Player 1's chance of winning against Player 2 is: <strong><font color="green">1/(1+pow(10,(($B-$A)/400))).</strong></font><br/>
-<strong><?php echo 'Chance Player 1 has of beating Player 2: ' . ELO(100,10) . ' (' . 100*ELO(10,100) . '%)'; ?></strong><br/><br/>
+<strong><?php echo 'Chance Player 1 has of beating Player 2: ' . ELO(10,100) . ' (' . 100*ELO(10,100) . '%)'; ?></strong><br/><br/>
 
 The forumula for calculating Player 2's chance of winning against Player 1 is: <strong><font color="green">1/(1+pow(10,(($A-$B)/400))).</font></strong><br/>
 <strong><?php echo 'Chance Player 2 has of beating Player 1: ' . ELO(100,10) . ' (' . 100*ELO(100,10) . '%)'; ?></strong><br/><br/>

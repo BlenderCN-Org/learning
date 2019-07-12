@@ -1,4 +1,4 @@
-<html>
+<html><head><body>
 <?php
 
 function ELO($A, $B){ // From http://en.wikipedia.org/wiki/Elo_rating_system
@@ -78,4 +78,5 @@ See also:<br/>
 <a href="https://stackoverflow.com/questions/3848004/facemash-algorithm">https://stackoverflow.com/questions/3848004/facemash-algorithm</a><br/>
 <a href="http://en.wikipedia.org/wiki/Elo_rating_system">http://en.wikipedia.org/wiki/Elo_rating_system</a><br/>
 <a href="https://en.wikipedia.org/wiki/Elo_hell">https://en.wikipedia.org/wiki/Elo_hell</a><br/>
-</html>
+<br/>
+</body></head></html>

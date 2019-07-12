@@ -62,7 +62,7 @@ echo '</strong>';
 From these inputs and outputs, you should be able to see how it is predicting the score for one player (or both if part of the algorithm is reversed) based on the current ranking (how many games each player has previously won) for both players.  Each decimal number is actually a percentage which just hasn't been converted (.4985XXXX is just 49%, etc.).  From the raw data, it's hard to see that, but if you clean it up and break down the numbers being inputted and outputted for each player, it would be easy to see.<br/><br/>
 
 <strong>For example:</strong><br/>
-Player 1 has won 10 games.  Player 2 has won 100 games.  Based on this information alone, and using the ELO algorithm, we'll compute the percentage chance Player 1 has of winning against Player 2.<br/><br/>
+Player 1 has won 10 games.  Player 2 has won 100 games.  Based on this information alone, and using the ELO algorithm, we'll compute the percentage chance Player 1 has of winning against Player 2, and vice versa.<br/><br/>
 
 The formula for calculating Player 1's chance of winning against Player 2 is: <strong><font color="green">1/(1+pow(10,(($B-$A)/400))).</strong></font><br/>
 <strong><?php echo 'Chance Player 1 has of beating Player 2: ' . ELO(10,100) . ' (' . 100*ELO(10,100) . '%)'; ?></strong><br/><br/>

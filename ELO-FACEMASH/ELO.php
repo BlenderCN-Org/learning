@@ -8,7 +8,7 @@ function ELO($A, $B){ // From http://en.wikipedia.org/wiki/Elo_rating_system
 //Code below this written by Russell Rounds
 echo '<h3><strong>Russells <a href="http://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating Algorithm</a> Learning Experiment</strong><br/></h3>';
 
-echo '<strong>The algorithm:</strong>';
+echo '<strong>The algorithm (as found in Wikipedia, etc.):</strong>';
 echo '<font color=green><pre><strong>function ELO($A, $B){
         return <strong>(1/(1+pow(10,(($B-$A)/400))));</strong>
 };</pre></font><br/></strong>';
@@ -59,7 +59,7 @@ echo '• ELO(99,100) = ' . '<font color=red>' . ELO(99,100) . '</font><br/>';
 echo '</strong>';
 ?>
 <br/><br/>
-From these inputs and outputs, you should be able to see how it is predicting the score for one player (or both if part of the algorithm is reversed) based on the current ranking (how many games each player has previously won) for both players.  Each decimal number is actually a percentage which just hasn't been converted (.4985XXXX is just 49%, etc.).  From the raw data, it's hard to see that, but if you clean it up and break down the numbers being inputted and outputted for each player, it would be easy to see.<br/><br/>
+From these inputs and outputs, you should be able to see how it is predicting the score for one player (or both if part of the algorithm is reversed) based on the current ranking (how many games each player has previously won) for both players.  Each decimal number is actually a percentage which just hasn't been converted (.4985XXXX is just 49%, etc.).  From the raw data, it's hard to see that, but if you clean it up and break down the numbers being inputted and outputted for each player, it is easier to see.<br/><br/>
 
 <strong>For example:</strong><br/>
 Player 1 has won 10 games.  Player 2 has won 100 games.  Based on this information alone, and using the ELO algorithm, we'll compute the percentage chance Player 1 has of winning against Player 2, and vice versa.<br/><br/>
@@ -72,9 +72,9 @@ The formula for calculating Player 2's chance of winning against Player 1 is: <s
 
 Why is this important?  For the average web developer, it's not, but it is good to be able to implement a simple algorithm such as this into a program, and that's the only reason for this experiment (which I still haven't really done, so I guess I'll do that next).<br/><br/>
 
+Now that I think I've got the algorithm figured out, I think I can actually do that now.<br/><br/>
 
-<br/><br/>
-See also:<br/>
+<strong>References/See also:</strong><br/>
 <a href="https://stackoverflow.com/questions/3848004/facemash-algorithm">https://stackoverflow.com/questions/3848004/facemash-algorithm</a><br/>
 <a href="http://en.wikipedia.org/wiki/Elo_rating_system">http://en.wikipedia.org/wiki/Elo_rating_system</a><br/>
 <a href="https://en.wikipedia.org/wiki/Elo_hell">https://en.wikipedia.org/wiki/Elo_hell</a><br/>

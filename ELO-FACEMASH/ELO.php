@@ -70,7 +70,9 @@ The formula for calculating Player 1's chance of winning against Player 2 is: <s
 The formula for calculating Player 2's chance of winning against Player 1 is: <strong><font color="green">1/(1+pow(10,(($A-$B)/400))).</font></strong><br/>
 <strong><?php echo 'Chance Player 2 has of beating Player 1: ' . ELO(100,10) . ' (' . 100*ELO(100,10) . '%)'; ?></strong><br/><br/>
 
-Why is this important?  For the average web developer, it's not, but it is good to be able to implement a simple algorithm such as this into a program, and that's the only reason for this experiment (which I still haven't really done, so I guess I'll do that next).<br/><br/>
+So, now that we know how to calculate the <i>expected chance</i> of each player, what about the score adjustment?  Well, according to Wikipedia, if a player wins against the other, the winner takes points from the losing player, in amount of the difference "of the ratings of the players". Seems easy, but I guess I haven't done it yet.
+
+Why is this important?  For the average web developer, it's not, but it is good to be able to implement a simple algorithm such as this into a program, and that's the only reason for this experiment.<br/><br/>
 
 Now that I think I've got the algorithm figured out, I think I can actually do that now.<br/><br/>
 

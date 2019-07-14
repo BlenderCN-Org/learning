@@ -1,0 +1,6 @@
+Functions Native/Built-in to PHP
+
+fopen()
+fread()
+fwrite()
+fclose()

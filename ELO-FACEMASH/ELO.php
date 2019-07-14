@@ -1,4 +1,4 @@
-<html><head><body>
+<html><head><title>Russell's ELO Rating Algorithm Learning Experiment</title></head><body>
 <?php
 
 function ELO($A, $B){ // From http://en.wikipedia.org/wiki/Elo_rating_system
@@ -74,13 +74,13 @@ So, now that we know how to calculate the <i>expected chance</i> of each player 
 
 Now that I think I've got the algorithm figured out, I think I can actually do that now.<br/><br/>
 
-// Taking a nap.  Too noisy to focus.
+Why is this important?  For the average web developer, it's not, but it is good to be able to implement a simple algorithm such as this into a program if he need ever arises, and that's the only reason for this experiment.<br/><br/>
 
-Why is this important?  For the average web developer, it's not, but it is good to be able to implement a simple algorithm such as this into a program, and that's the only reason for this experiment.<br/><br/>
+I guess I'll need to make the example application a separate page from this one.  I'll provide the link right here once I have created it.
 
 <strong>References/See also:</strong><br/>
 <a href="https://stackoverflow.com/questions/3848004/facemash-algorithm">https://stackoverflow.com/questions/3848004/facemash-algorithm</a><br/>
 <a href="http://en.wikipedia.org/wiki/Elo_rating_system">http://en.wikipedia.org/wiki/Elo_rating_system</a><br/>
 <a href="https://en.wikipedia.org/wiki/Elo_hell">https://en.wikipedia.org/wiki/Elo_hell</a><br/>
 <br/>
-</body></head></html>
+</body></html>

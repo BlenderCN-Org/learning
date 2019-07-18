@@ -7,7 +7,7 @@ Obvious Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am ju
 <hr>
 
 Description of Files:<br/>
-ELO.php is a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.
+•ELO.php is a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.
 
 ----------
 

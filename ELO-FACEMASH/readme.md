@@ -12,5 +12,5 @@ ELO.php is a standalone, browser-based, file which shows and explains the algori
 ----------
 
 What I've learned about the ELO formula:<br/>
-• It is used on a game-per-game basis (the algorithm/formula must be ran after each game). This means it isn't meant to be used retroactively (at least in its native form).  It needs to be ran after each win/loss, or future scores may not be accurate (right?). 
+• It is used on a game-per-game basis (the algorithm/formula must be ran after each game). This means it isn't meant to be used retroactively (at least in its native form).  It needs to be ran after each win/loss, or future scores may not be accurate (right?).<br/> 
 • Because of the first point, it provides a running, cumulative, prediction of who is the stronger player based on previous wins against opponents.

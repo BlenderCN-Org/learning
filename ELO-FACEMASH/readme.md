@@ -2,10 +2,15 @@ While watching the movie The Social Network (https://www.imdb.com/title/tt128501
 
 Here is a still image from the movie of the algorithm on the blackboard: https://i.pinimg.com/originals/fc/ff/a0/fcffa093c3ba1dd02ebda0e5a83388c1.png
 
-----------
-
-ELO.php is a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.
-
 Obvious Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.  I'm sure I don't really need to say this, however.  Also, don't criticize my use of antiquated HTML techniques such as <font color="">.  I am merely using it out of ease.
 
+<hr>
+
 Description of Files:
+ELO.php is a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.
+
+----------
+
+What I've learned about the ELO formula:
+• It is used on a game-per-game basis (the algorithm/formula must be ran after each game). This means it isn't meant to be used retroactively (at least in its native form).  It needs to be ran after each win/loss, or future scores may not be accurate (right?). 
+• Because of the first point, it provides a running, cumulative, prediction of who is the stronger player based on previous wins against opponents, with scores being adjusted each game depending on the strength (difference of scores) of the two players.

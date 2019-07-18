@@ -1,0 +1,8 @@
+Scan data to display
+Read Info
+Display Info
+Give user input
+Accept user input
+Calculate results via ELO
+Display Results
+Rinse/Repeat/Randomize

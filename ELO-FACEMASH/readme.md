@@ -2,7 +2,7 @@ While watching the movie The Social Network (https://www.imdb.com/title/tt128501
 
 Here is a still image from the movie of the algorithm on the blackboard: https://i.pinimg.com/originals/fc/ff/a0/fcffa093c3ba1dd02ebda0e5a83388c1.png
 
-Obvious Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.  I'm sure I don't really need to say this, however.  Also, don't criticize my use of antiquated HTML techniques such as <font color="">.  I am merely using it out of ease.
+Obvious Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.  I'm sure I don't really need to say this, however.  Also, don't criticize my use of antiquated HTML techniques such as font color -- I am merely using it out of ease.
 
 <hr>
 

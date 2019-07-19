@@ -13,5 +13,6 @@ Description of Files:<br/>
 <hr>
 
 What I've learned about the ELO formula:<br/>
+• Quite literally (as Wikipedia suggests), the ONLY information you need to predict future winnings is their current score.
 • It is used on a game-per-game basis (the algorithm/formula must be ran after each game). This means it isn't meant to be used retroactively (at least in its native form).  It needs to be ran after each win/loss, or future scores may not be accurate (right?).<br/> 
-• Because of the first point, it provides a running, cumulative, prediction of who is the stronger player based on previous wins against opponents.
+• Because of the first point, it provides a running, cumulative, prediction of who is the stronger player based on previous wins against opponents.<br/> 

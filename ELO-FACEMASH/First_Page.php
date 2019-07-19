@@ -9,16 +9,19 @@
 <br/><h2>ELO Matching Example/Experiment</h2><br/>
 
 <?php
-require_once(functions.php);
+include('functions.php');
 
 $DIR = 'SampleData';
 $NUM_Files_in_DIR = count_files_in_DIR($DIR);
 
 $Player1 = '1';
-$Player1_filename = '/' . $DIR '/' . $Player1 . '.txt';
+$Player1_filename = $DIR . '/' . $Player1 . '.txt';
 echo $Player1_filename;
 
-//$Player1_currentScore = read($one);
+echo '<br/>';
+
+echo $Player1_currentScore = read($Player1_filename);
+
 
 //Other Functions
 function ELO($A, $B){

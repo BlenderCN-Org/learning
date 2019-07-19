@@ -16,55 +16,63 @@ error_reporting(E_ALL);
 require_once('functions.php');
 
 //Configurable Variables
-$Score_DIR = 'Actress_Scores';
-$Root_DIR = 'Actress_Info';
-$TextName_DIR = $Root_DIR . '/Actress_Name/';
+$Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
+$Score_DIR = $Root_DIR . '/Actress_Scores/'; // Subdirectories of above $Root_DIR
+$TextName_DIR = $Root_DIR . '/Actress_Name/'; // Subdirectories of above $Root_DIR
+$Picture_DIR = $Root_DIR . '/Pictures/'; // Subdirectories of above $Root_DIR
 
 //Choose Players
-$NUM_Files_in_DIR = count_files_in_DIR($Root_DIR . '/' . $Score_DIR);
+$NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);
 $Player1 = RAND(1,$NUM_Files_in_DIR);
 $Player2 = RAND(1,$NUM_Files_in_DIR);
 while ($Player1 === $Player2){ // To avoid players being the same
 	$Player2 = RAND(1,$NUM_Files_in_DIR);
 };
 
-$Player1_filename = $Root_DIR . '/' . $Score_DIR . '/' . $Player1 . '.txt';
-$Player2_filename = $Root_DIR . '/' . $Score_DIR . '/' . $Player2 . '.txt';
-$Player1_picture_filename = $Root_DIR . '/' . 'Pictures/' . $Player1 . '.jpg';
-$Player2_picture_filename = $Root_DIR . '/' . 'Pictures/' . $Player2 . '.jpg';
+$Player1_filename = $Score_DIR . $Player1 . '.txt';
+$Player2_filename = $Score_DIR . $Player2 . '.txt';
+
+$Player1_picture_filename = $Picture_DIR . $Player1 . '.jpg';
+$Player2_picture_filename = $Picture_DIR . $Player2 . '.jpg';
+
 $Player1_text_filename = $TextName_DIR . $Player1 . '.txt';
 $Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 
-//Print Initial Output (before ELO applied)
-echo 'Data DIR Name = ' . $Score_DIR;
+//Print Initial Output (before ELO applied), for debugging or experimentation
+echo 'Main DIR = ' . $Root_DIR;
 echo '<br/>';
-echo 'Max Files in Data Directory: ' . $NUM_Files_in_DIR;
+echo 'Picture DIR (Subdirectory in Main DIR) = ' . $Picture_DIR;
 echo '<br/>';
-echo 'Player 1 Name = ' . $Player1;
+echo 'Score DIR (Subdirectory in Main DIR) = ' . $Score_DIR . ' (Files in Dir: ' . $NUM_Files_in_DIR . ')';
 echo '<br/>';
-echo 'Player 2 Name = ' . $Player2;
+echo 'Text/Name DIR (Subdirectory in Main DIR) = ' . $TextName_DIR;
+//echo '<br/>';echo 'Player 1 Random Number = ' . $Player1;
+//echo '<br/>';echo 'Player 2 Random Number = ' . $Player2;
 echo '<br/>';
-echo 'Player 1 File: ' . $Player1_filename;
+echo 'Player 1 Score File: ' . $Player1_filename;
 echo '<br/>';
-echo 'Player 2 File: ' . $Player2_filename;
-echo '<br/>';
+echo 'Player 2 Score File: ' . $Player2_filename;
 echo '<br/>';
 echo 'Player 1 Picure Path: ' . $Player1_picture_filename;
 echo '<br/>';
 echo 'Player 2 Picure Path: ' . $Player2_picture_filename;
+echo '<br/>';
+echo 'Player 1 Text/Name Path: ' . $Player1_text_filename;
+echo '<br/>';
+echo 'Player 2 Text/Name Path: ' . $Player2_text_filename;
 echo '<br/>';
 
 //Read Scores from Files
 $Player1_currentScore = read($Player1_filename);
 $Player2_currentScore = read($Player2_filename);
 
-//Display Pictures
+//Display Pictures and scores
 echo '<strong>Player 1 Score: ' . $Player1_currentScore . '</strong>';
 echo '<br/>';
 echo '<strong>Player 2 Score: ' . $Player2_currentScore . '</strong>';
-echo '<br/>';
-echo '<img src="' . $Player1_picture_filename . '" width="25%" height="25%">';
-echo '<img src="' . $Player2_picture_filename . '" width="25%" height="25%">';
+echo '<br/><br/>';
+echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%">';
+echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%">';
 
 //Other Functions
 function ELO($A, $B){

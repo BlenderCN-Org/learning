@@ -6,17 +6,21 @@
 	<!-- link rel="stylesheet" type="text/css" href="styles.css" -->
 </head>
 <body>
-<br/><h2>ELO Matching Example/Experiment</h2><br/>
+<h2>ELO Matching Example/Experiment</h2><br/>
 
 <?php
 include('functions.php');
 
 $DIR = 'SampleData';
-$NUM_Files_in_DIR = count_files_in_DIR($DIR);
+echo $MAXNUM_Files_in_DIR = count_files_in_DIR($DIR);
+echo '<br/>';
+$Player1 = RAND(1,$MAXNUM_Files_in_DIR);
+echo 'Player 1 Name = ' . $Player1;
 
-$Player1 = '1';
+
+echo '<br/>';
 $Player1_filename = $DIR . '/' . $Player1 . '.txt';
-echo $Player1_filename;
+echo 'Player 1 File: ' . $Player1_filename;
 
 echo '<br/>';
 

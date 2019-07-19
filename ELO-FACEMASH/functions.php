@@ -21,8 +21,13 @@
 		fclose($f);
 		return $contents;
 	};
-	function count_files_in_DIR(){
+	function count_files_in_current_DIR(){
 		$fi = new FilesystemIterator(__DIR__, FilesystemIterator::SKIP_DOTS);
 		return iterator_count($fi);
 	};
+	function count_files_in_DIR($DIR){
+		$fi = new FilesystemIterator($DIR, FilesystemIterator::SKIP_DOTS);
+		return iterator_count($fi);
+	};
+
 ?>

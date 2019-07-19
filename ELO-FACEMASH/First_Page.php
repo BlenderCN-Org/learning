@@ -17,20 +17,23 @@ require_once('functions.php');
 
 //Configurable Variables
 $Score_DIR = 'Actress_Scores';
-$Info_DIR = 'Actress_Info';
+$Root_DIR = 'Actress_Info';
+$TextName_DIR = $Root_DIR . '/Actress_Name/';
 
 //Choose Players
-$NUM_Files_in_DIR = count_files_in_DIR($Info_DIR . '/' . $Score_DIR);
+$NUM_Files_in_DIR = count_files_in_DIR($Root_DIR . '/' . $Score_DIR);
 $Player1 = RAND(1,$NUM_Files_in_DIR);
 $Player2 = RAND(1,$NUM_Files_in_DIR);
 while ($Player1 === $Player2){ // To avoid players being the same
 	$Player2 = RAND(1,$NUM_Files_in_DIR);
 };
 
-$Player1_filename = $Info_DIR . '/' . $Score_DIR . '/' . $Player1 . '.txt';
-$Player2_filename = $Info_DIR . '/' . $Score_DIR . '/' . $Player2 . '.txt';
-$Player1_picture_filename = $Info_DIR . '/' . 'Pictures/' . $Player1 . '.jpg';
-$Player2_picture_filename = $Info_DIR . '/' . 'Pictures/' . $Player2 . '.jpg';
+$Player1_filename = $Root_DIR . '/' . $Score_DIR . '/' . $Player1 . '.txt';
+$Player2_filename = $Root_DIR . '/' . $Score_DIR . '/' . $Player2 . '.txt';
+$Player1_picture_filename = $Root_DIR . '/' . 'Pictures/' . $Player1 . '.jpg';
+$Player2_picture_filename = $Root_DIR . '/' . 'Pictures/' . $Player2 . '.jpg';
+$Player1_text_filename = $TextName_DIR . $Player1 . '.txt';
+$Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 
 //Print Initial Output (before ELO applied)
 echo 'Data DIR Name = ' . $Score_DIR;

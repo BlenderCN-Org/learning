@@ -96,7 +96,10 @@ echo '<strong><br/><br/>';
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
 echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" />';
 echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-echo 'Who wins? <button name="Player1_Winner" type="submit" value="' . $Player1_filename . '">' . $Player1_text . '</button> ';
+echo 'Who wins? <button name="Player1_Winner" type="submit" value="' . $array = [
+    "foo" => "bar",
+    "bar" => "foo",
+]; . '">' . $Player1_text . '</button> ';
 echo '<button name="Player2_Winner" type="submit" value="' . $Player2_filename . '">' . $Player2_text . '</button>';
 echo '</form>';
 

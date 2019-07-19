@@ -9,10 +9,6 @@
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once('functions.php');
 
 //Configurable Variables
@@ -81,9 +77,9 @@ echo 'Player 1 Name: ' . $Player1_text . ' (Score: ' . $Player1_currentScore . '
 echo '<br/>';
 echo 'Player 2 Name: ' . $Player2_text . ' (Score: ' . $Player2_currentScore . ')';
 echo '<br/>';
-echo 'Player 1 ELO = ' . $Player1_ELO;
+echo 'Player 1 ELO (before your vote right now) = ' . $Player1_ELO;
 echo '<br/>';
-echo 'Player 2 ELO = ' . $Player2_ELO;
+echo 'Player 2 ELO (before your vote right now) = ' . $Player2_ELO;
 echo '<strong><br/><br/>';
 
 //Display Players

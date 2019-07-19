@@ -9,18 +9,21 @@
 <h2>ELO Matching Example/Experiment</h2><br/>
 
 <?php
-include('functions.php');
+require_once('functions.php');
 $DIR = 'SampleData';
 $MAXNUM_Files_in_DIR = count_files_in_DIR($DIR);
-echo 'Max Files in Data Directory: ' . $MAXNUM_Files_in_DIR . '<br/>';
 
 //Choose Player Files
 $Player1 = RAND(1,$MAXNUM_Files_in_DIR);
 $Player2 = RAND(1,$MAXNUM_Files_in_DIR);
-while ($Player1 === $Player2){
+while ($Player1 === $Player2){ // To avoid players being the same
 	$Player2 = RAND(1,$MAXNUM_Files_in_DIR);
 };
 
+echo 'Data DIR Name = ' . $DIR;
+echo '<br/>';
+echo 'Max Files in Data Directory: ' . $MAXNUM_Files_in_DIR;
+echo '<br/>';
 echo 'Player 1 Name = ' . $Player1;
 echo '<br/>';
 echo 'Player 2 Name = ' . $Player2;
@@ -32,7 +35,6 @@ $Player2_filename = $DIR . '/' . $Player2 . '.txt';
 echo 'Player 1 File: ' . $Player1_filename;
 echo '<br/>';
 echo 'Player 2 File: ' . $Player2_filename;
-
 echo '<br/>';echo '<br/>';
 
 

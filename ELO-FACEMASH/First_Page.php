@@ -10,14 +10,20 @@
 
 <?php
 include('functions.php');
-
 $DIR = 'SampleData';
 echo $MAXNUM_Files_in_DIR = count_files_in_DIR($DIR);
 echo '<br/>';
+
+//Choose Player Files
 $Player1 = RAND(1,$MAXNUM_Files_in_DIR);
+$Player2 = RAND(1,$MAXNUM_Files_in_DIR);
+while ($Player1 === $Player2){
+	$Player2 = RAND(1,$MAXNUM_Files_in_DIR);
+};
+
 echo 'Player 1 Name = ' . $Player1;
-
-
+echo '<br/>';
+echo 'Player 2 Name = ' . $Player2;
 echo '<br/>';
 $Player1_filename = $DIR . '/' . $Player1 . '.txt';
 echo 'Player 1 File: ' . $Player1_filename;

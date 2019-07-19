@@ -7,8 +7,18 @@
 </head>
 <body>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
-
 <?php
+if(isset($_POST['Player1_Winner']) and $_SERVER['REQUEST_METHOD'] == "POST"){
+    print_r($_POST);
+	unset($_POST);
+	echo '<br/>';
+};
+if(isset($_POST['Player2_Winner']) and $_SERVER['REQUEST_METHOD'] == "POST"){
+    print_r($_POST);
+	unset($_POST);
+	echo '<br/>';
+};
+
 require_once('functions.php');
 
 //Configurable Variables
@@ -86,7 +96,7 @@ echo '<strong><br/><br/>';
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
 echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" />';
 echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-echo '<button name="Player1_Winner" type="submit" value="' . $Player1_filename . '">' . $Player1_text . '</button>';
+echo 'Who wins? <button name="Player1_Winner" type="submit" value="' . $Player1_filename . '">' . $Player1_text . '</button> ';
 echo '<button name="Player2_Winner" type="submit" value="' . $Player2_filename . '">' . $Player2_text . '</button>';
 echo '</form>';
 

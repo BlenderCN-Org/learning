@@ -77,14 +77,18 @@ echo 'Player 1 Name: ' . $Player1_text . ' (Score: ' . $Player1_currentScore . '
 echo '<br/>';
 echo 'Player 2 Name: ' . $Player2_text . ' (Score: ' . $Player2_currentScore . ')';
 echo '<br/>';
-echo 'Player 1 ELO (before your vote right now) = ' . $Player1_ELO;
+echo 'Player 1 ELO rating = ' . $Player1_ELO;
 echo '<br/>';
-echo 'Player 2 ELO (before your vote right now) = ' . $Player2_ELO;
+echo 'Player 2 ELO rating = ' . $Player2_ELO;
 echo '<strong><br/><br/>';
 
 //Display Players
-echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%">';
-echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%">';
+echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
+echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" />';
+echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
+echo '<button name="Player1_Winner" type="submit" value="' . $Player1_filename . '">' . $Player1_text . '</button>';
+echo '<button name="Player2_Winner" type="submit" value="' . $Player2_filename . '">' . $Player2_text . '</button>';
+echo '</form>';
 
 //Other Functions
 function ELO($A, $B){

@@ -17,9 +17,9 @@ require_once('functions.php');
 
 //Configurable Variables
 $Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
-$Score_DIR = $Root_DIR . '/Actress_Scores/'; // Subdirectories of above $Root_DIR
+$Score_DIR = $Root_DIR . '/Actress_Score/'; // Subdirectories of above $Root_DIR
 $TextName_DIR = $Root_DIR . '/Actress_Name/'; // Subdirectories of above $Root_DIR
-$Picture_DIR = $Root_DIR . '/Pictures/'; // Subdirectories of above $Root_DIR
+$Picture_DIR = $Root_DIR . '/Actress_Picture/'; // Subdirectories of above $Root_DIR
 
 //Choose Players
 $NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);
@@ -66,11 +66,13 @@ echo '<br/>';
 $Player1_currentScore = read($Player1_filename);
 $Player2_currentScore = read($Player2_filename);
 
-//Display Pictures and scores
+//Display Scores
 echo '<strong>Player 1 Score: ' . $Player1_currentScore . '</strong>';
 echo '<br/>';
 echo '<strong>Player 2 Score: ' . $Player2_currentScore . '</strong>';
 echo '<br/><br/>';
+
+//Display Players
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%">';
 echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%">';
 

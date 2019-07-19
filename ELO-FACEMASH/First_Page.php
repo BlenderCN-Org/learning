@@ -10,7 +10,7 @@
 
 <?php
 require_once('functions.php');
-$DIR = 'SampleData';
+$DIR = 'Actress_Scores';
 $MAXNUM_Files_in_DIR = count_files_in_DIR($DIR);
 
 //Choose Player Files

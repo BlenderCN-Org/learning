@@ -20,15 +20,15 @@ $Score_DIR = 'Actress_Scores';
 $Info_DIR = 'Actress_Info';
 
 //Choose Players
-$NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);
+$NUM_Files_in_DIR = count_files_in_DIR($Info_DIR . '/' . $Score_DIR);
 $Player1 = RAND(1,$NUM_Files_in_DIR);
 $Player2 = RAND(1,$NUM_Files_in_DIR);
 while ($Player1 === $Player2){ // To avoid players being the same
 	$Player2 = RAND(1,$NUM_Files_in_DIR);
 };
 
-$Player1_filename = $Score_DIR . '/' . $Player1 . '.txt';
-$Player2_filename = $Score_DIR . '/' . $Player2 . '.txt';
+$Player1_filename = $Info_DIR . '/' . $Score_DIR . '/' . $Player1 . '.txt';
+$Player2_filename = $Info_DIR . '/' . $Score_DIR . '/' . $Player2 . '.txt';
 $Player1_picture_filename = $Info_DIR . '/' . 'Pictures/' . $Player1 . '.jpg';
 $Player2_picture_filename = $Info_DIR . '/' . 'Pictures/' . $Player2 . '.jpg';
 

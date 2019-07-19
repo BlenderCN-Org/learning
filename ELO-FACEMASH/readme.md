@@ -7,9 +7,10 @@ Obvious Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am ju
 <hr>
 
 Description of Files:<br/>
-• ELO.php is a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.
+• ELO.php - a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.<br/>
+• First_Page.php - The first page of my ELO example.
 
-----------
+<hr>
 
 What I've learned about the ELO formula:<br/>
 • It is used on a game-per-game basis (the algorithm/formula must be ran after each game). This means it isn't meant to be used retroactively (at least in its native form).  It needs to be ran after each win/loss, or future scores may not be accurate (right?).<br/> 

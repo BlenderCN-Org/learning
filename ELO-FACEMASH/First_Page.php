@@ -6,7 +6,7 @@
 	<!-- link rel="stylesheet" type="text/css" href="styles.css" -->
 </head>
 <body>
-<h2>ELO Matching Example/Experiment</h2><br/>
+<h2>Russell's ELO Matching Example/Experiment</h2><br/>
 
 <?php
 ini_set('display_errors', 1);
@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 require_once('functions.php');
 
 //Configurable Variables
-$DEBUG = 1;
+$DEBUG = 0;
 $Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
 $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -40,7 +40,7 @@ $Player1_text_filename = $TextName_DIR . $Player1 . '.txt';
 $Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 
 //For debugging, or experimentation
-if ($DEBUG){
+if ($DEBUG === 1){
 echo 'Main DIR = ' . $Root_DIR;
 echo '<br/>';
 echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;

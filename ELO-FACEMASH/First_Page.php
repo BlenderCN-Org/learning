@@ -41,11 +41,11 @@ $Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 //Print Initial Output (before ELO applied), for debugging or experimentation
 echo 'Main DIR = ' . $Root_DIR;
 echo '<br/>';
-echo 'Picture DIR (Subdirectory in Main DIR) = ' . $Picture_DIR;
+echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
 echo '<br/>';
-echo 'Score DIR (Subdirectory in Main DIR) = ' . $Score_DIR . ' (Files in Dir: ' . $NUM_Files_in_DIR . ')';
+echo 'Score DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . $NUM_Files_in_DIR . ')';
 echo '<br/>';
-echo 'Text/Name DIR (Subdirectory in Main DIR) = ' . $TextName_DIR;
+echo 'Text/Name DIR (Subdirectory) = ' . $TextName_DIR;
 //echo '<br/>';echo 'Player 1 Random Number = ' . $Player1;
 //echo '<br/>';echo 'Player 2 Random Number = ' . $Player2;
 echo '<br/>';

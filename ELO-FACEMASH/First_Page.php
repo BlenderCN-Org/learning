@@ -16,16 +16,17 @@ error_reporting(E_ALL);
 require_once('functions.php');
 
 //Configurable Variables
+$DEBUG = 1;
 $Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
-$Score_DIR = $Root_DIR . '/Actress_Score/'; // Subdirectories of above $Root_DIR
-$TextName_DIR = $Root_DIR . '/Actress_Name/'; // Subdirectories of above $Root_DIR
-$Picture_DIR = $Root_DIR . '/Actress_Picture/'; // Subdirectories of above $Root_DIR
+$Score_DIR = $Root_DIR . '/Actress_Score/';
+$TextName_DIR = $Root_DIR . '/Actress_Name/';
+$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
 //Choose Players
 $NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);
 $Player1 = RAND(1,$NUM_Files_in_DIR);
 $Player2 = RAND(1,$NUM_Files_in_DIR);
-while ($Player1 === $Player2){ // To avoid players being the same
+while ($Player1 === $Player2){
 	$Player2 = RAND(1,$NUM_Files_in_DIR);
 };
 
@@ -38,7 +39,8 @@ $Player2_picture_filename = $Picture_DIR . $Player2 . '.jpg';
 $Player1_text_filename = $TextName_DIR . $Player1 . '.txt';
 $Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 
-//Print Initial Output (before ELO applied), for debugging or experimentation
+//For debugging, or experimentation
+if ($DEBUG){
 echo 'Main DIR = ' . $Root_DIR;
 echo '<br/>';
 echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
@@ -61,16 +63,28 @@ echo 'Player 1 Text/Name Path: ' . $Player1_text_filename;
 echo '<br/>';
 echo 'Player 2 Text/Name Path: ' . $Player2_text_filename;
 echo '<br/>';
+};
 
 //Read Scores from Files
 $Player1_currentScore = read($Player1_filename);
+$Player1_text = read($Player1_text_filename);
+
 $Player2_currentScore = read($Player2_filename);
+$Player2_text = read($Player2_text_filename);
+
+$Player1_ELO = ELO($Player1_currentScore, $Player2_currentScore);
+$Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
 
 //Display Scores
-echo '<strong>Player 1 Score: ' . $Player1_currentScore . '</strong>';
+echo '<strong>';
+echo 'Player 1 Name: ' . $Player1_text . ' (Score: ' . $Player1_currentScore . ')';
 echo '<br/>';
-echo '<strong>Player 2 Score: ' . $Player2_currentScore . '</strong>';
-echo '<br/><br/>';
+echo 'Player 2 Name: ' . $Player2_text . ' (Score: ' . $Player2_currentScore . ')';
+echo '<br/>';
+echo 'Player 1 ELO = ' . $Player1_ELO;
+echo '<br/>';
+echo 'Player 2 ELO = ' . $Player2_ELO;
+echo '<strong><br/><br/>';
 
 //Display Players
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%">';

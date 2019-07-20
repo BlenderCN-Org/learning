@@ -8,10 +8,19 @@
 <body>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
+require_once('functions.php');
+
+//Configurable Variables
 $DEBUG = 1;
+$Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
+$Score_DIR = $Root_DIR . '/Actress_Score/';
+$TextName_DIR = $Root_DIR . '/Actress_Name/';
+$Picture_DIR = $Root_DIR . '/Actress_Picture/';
+
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
+	$Previous_Winner_Score = 
 	echo '<br/>';
 	echo 'Winner: ' . $Previous_Winner;
 	echo '<br/>';
@@ -19,15 +28,6 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	echo '<br/>-------';
 	echo '<br/>';
 };
-
-require_once('functions.php');
-
-//Configurable Variables
-
-$Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
-$Score_DIR = $Root_DIR . '/Actress_Score/';
-$TextName_DIR = $Root_DIR . '/Actress_Name/';
-$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
 //Choose Players
 $NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);

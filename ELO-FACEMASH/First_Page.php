@@ -32,14 +32,14 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$points_lost_by_loser = $Winner_Old_Score - 400; // Is this right?
 	
 	//Update scores for both players
-	if(write($WinnerScoreFilename, $points_won_by_winner) = true){
-		echo '<font color="green"><strong>Winner score updated!</font></strong>';
-		echo '<br/>';
-	};
-	if(write($LoserScoreFilename, $points_lost_by_loser) = true){
-		echo '<font color="green"><strong>Loser score updated!</font></strong>';
-		echo '<br/>';
-	};
+	write($WinnerScoreFilename, $points_won_by_winner);
+	echo '<font color="green"><strong>Winner score updated!</font></strong>';
+	echo '<br/>';
+	
+	write($LoserScoreFilename, $points_lost_by_loser);
+	echo '<font color="green"><strong>Loser score updated!</font></strong>';
+	echo '<br/>';
+
 	
 	//Debugging Info
 	if($DEBUG == 1){

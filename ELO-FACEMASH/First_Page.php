@@ -5,9 +5,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
+<center>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
-include_once("functions.php");
+require_once("functions.php");
 ob_implicit_flush(true);
 
 //Configurable Variables
@@ -17,6 +18,10 @@ $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
 $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
+if(isset($_POST['Reset']) and $_POST['Reset'] = 1){
+	echo 'Reset Pressed!<br/>';
+};
+
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
@@ -24,8 +29,8 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Winner_Old_Score = read($WinnerScoreFilename);
 	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 	$Loser_Old_Score = read($LoserScoreFilename);
-	$points_won_by_winner = ($Loser_Old_Score / 4) + 2; // My own creation
-	$points_lost_by_loser = ($Winner_Old_Score / 4) - 2;
+	$points_won_by_winner = ($Loser_Old_Score / 3) + 1; // My own creation (was / 4) + 2)
+	$points_lost_by_loser = ($Winner_Old_Score / 3) - 1;
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
@@ -44,8 +49,10 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 };
 
-	echo '<br/><strong>Last Game:</strong><br/>';
-	echo 'Points: ' . $points_won_by_winner;
+	echo '<br/><strong>Last Round:</strong><br/>';
+	echo 'Points won by winner: ' . $points_won_by_winner;
+	echo '<br/>';
+	echo 'Points lost by loser: ' . $points_lost_by_loser;
 	echo '<br/>';
 	echo 'Winner: ' . $Previous_Winner . ' (' . read($TextName_DIR . $Previous_Winner . '.txt') . ')';
 	echo '<br/>';
@@ -54,7 +61,7 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo 'Winner Score: ' . read($Score_DIR . $Previous_Winner . '.txt');
 	echo '<br/>';
 	echo 'Loser Score: ' . read($Score_DIR . $Previous_Loser . '.txt');
-	echo '<br/>-----------<br/>';
+	echo '<br/>-----------------------------------------<br/>';
 };
 
 //New Game - Choose Players
@@ -111,29 +118,33 @@ $Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
 //Display Scores
 $ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
 if($Player1_ELO === $Player2_ELO){
-	$Prediction = '<font color="red"><strong>Both players have an equal chance to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . '</strong></font>, and <strong><font color="red">' . $Player2_ELO . '</font></strong>';
+	$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO) . ')' . '</strong></font>';
 };
 if($Player1_ELO > $Player2_ELO){
-		$Prediction = '<font color="red"><strong>Player 1 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . '</font></strong>';
+		$Prediction = '<font color="red"><strong>Player 1 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';
 };
 if($Player1_ELO < $Player2_ELO){
-		$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . $Player2_ELO . '</strong></font>';
+		$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
 };
 
-echo 'Player 1 (Left): ' . $Player1_text . ' (Score: ' . $Player1_currentScore . ') ' . '(ELO: ' . $Player1_ELO . ' -<strong><font color="red"> ' . (100 * $Player1_ELO) . '% </font></strong>)';
+echo 'Player 1 (Left): ' . $Player1_text . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' </strong>-<font color="red"> ' . (100 * $Player1_ELO) . '%</font>)';
 echo '<br/>';
-echo 'Player 2 (Right): ' . $Player2_text . ' (Score: ' . $Player2_currentScore . ') ' . '(ELO: ' . $Player2_ELO . ' -<strong><font color="red"> ' . (100 * $Player2_ELO) . '% </font></strong>)';
+echo 'Player 2 (Right): ' . $Player2_text . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' </strong>-<font color="red"> ' . (100 * $Player2_ELO) . '%</font>)';
 echo '<br/><br/>';
 echo $Prediction;
 echo '<br/><br/>';
 
 //Display Players
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
-echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" />';
+echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" /><br/>';
+echo 'Choose below:';
 echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-echo 'Who wins? <button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_text . '</button> ';
+echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_text . '</button> ';
 echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">' . $Player2_text . '</button>';
+echo '<br/>';echo '<br/>';
+echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
 echo '</form>';
 ?>
+</center>
 <br/>
 </body></html>

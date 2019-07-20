@@ -10,16 +10,12 @@
 <?php
 $DEBUG = 1;
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
-	echo '<pre>';
-	print_r($_POST['Winners']);
+	$Previous_Winner = $_POST['Winners'][6];
+	$Previous_Loser = $_POST['Winners'][8];
 	echo '<br/>';
-	echo 'Regular POST: ';
-	print_r($_POST);
-	echo '<pre>';
-	echo 'FUCK-----------<br/>';
-
-	echo $_POST['Winners'][6];
-	echo substr('abcde', 1, 1);
+	echo 'Winner: ' . $Previous_Winner;
+	echo '<br/>';
+	echo 'Loser: ' . $Previous_Loser;
 	echo '<br/>-------';
 	echo '<br/>';
 };

@@ -38,8 +38,18 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Winner_Old_Score = read($WinnerScoreFilename);
 	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 	$Loser_Old_Score = read($LoserScoreFilename);
-	$points_won_by_winner = ($Loser_Old_Score / 3) + 1; // My own creation (was / 4) + 2)
-	$points_lost_by_loser = ($Winner_Old_Score / 3) - 1;
+	
+	$Score_Difference = 0;
+	if($Loser_Old_Score > $Winner_Old_Score){
+		$Score_Difference = $Loser_Old_Score - $Winner_Old_Score;
+	};
+	
+	if($Winner_Old_Score > $Loser_Old_Score){
+		$Score_Difference = $Winner_Old_Score - $Loser_Old_Score;
+	};
+	
+	$points_won_by_winner = ($Score_Difference / 2) + 5; 
+	$points_lost_by_loser = ($Score_Difference / 2) - 5;
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;

@@ -17,4 +17,6 @@ What I've learned about the ELO formula:<br/>
 • It is used on a game-per-game basis (the algorithm/formula must be ran after each game), but could be ran retroactively mathematically.<br/> 
 • Because of the first point, it provides a running, cumulative, prediction of who is the stronger player based on previous wins against opponents.<br/>
 • ELO doesn't determine the number of points lost (as far as I can tell), and only serves as a predictor of who will win depending on score.<br/>
-• ELO seems to serve as a pretty good predictor of who will win, if the only criteria being measured is score.
+• ELO seems to serve as a pretty good predictor of who will win, IF the only criteria being measured is score.
+• There are many implementations of the "ELO formula" (such as FIDE).
+• This partciular ELO formula doesn't seem to play nicely with negative numbers, but maybe that's just the one I'm using.

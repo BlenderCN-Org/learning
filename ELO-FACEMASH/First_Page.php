@@ -9,10 +9,6 @@
 <?php
 include_once("functions.php");
 ob_implicit_flush(true);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 
 //Configurable Variables
 $DEBUG = 0;
@@ -33,7 +29,7 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
-	write($WinnerScoreFilename, $WinnerTotalPoints);
+	if(write($WinnerScoreFilename, $WinnerTotalPoints)){
 	echo '<font color="green"><strong>Winner score updated!</font></strong>';
 	echo '<br/>';
 	
@@ -44,12 +40,11 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo '<br/>';
 	}else{
 		echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong>';
+		echo '<br/>';
 	};
-	
-	//Debugging Info
-	if($DEBUG == 1){
-	echo '<strong>Last Game:</strong><br/>';
-	echo '<br/>';
+};
+
+	echo '<br/><strong>Last Game:</strong><br/>';
 	echo 'Points: ' . $points_won_by_winner;
 	echo '<br/>';
 	echo 'Winner: ' . $Previous_Winner . ' (' . read($TextName_DIR . $Previous_Winner . '.txt') . ')';
@@ -60,7 +55,6 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<br/>';
 	echo 'Loser Score: ' . read($Score_DIR . $Previous_Loser . '.txt');
 	echo '<br/>-----------<br/>';
-	};
 };
 
 //New Game - Choose Players
@@ -82,31 +76,29 @@ $Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 
 //For debugging, or experimentation
 if ($DEBUG === 1){
-echo 'Main DIR = /' . $Root_DIR;
-echo '<br/>';
-echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
-echo '<br/>';
-echo 'Score DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . $NUM_Files_in_DIR . ')';
-echo '<br/>';
-echo 'Text/Name DIR (Subdirectory) = ' . $TextName_DIR;
-//echo '<br/>';echo 'Player 1 Random Number = ' . $Player1;
-//echo '<br/>';echo 'Player 2 Random Number = ' . $Player2;
-echo '<br/>';
-echo 'Player 1 Score File: ' . $Player1_filename;
-echo '<br/>';
-echo 'Player 2 Score File: ' . $Player2_filename;
-echo '<br/>';
-echo 'Player 1 Picure Path: ' . $Player1_picture_filename;
-echo '<br/>';
-echo 'Player 2 Picure Path: ' . $Player2_picture_filename;
-echo '<br/>';
-echo 'Player 1 Text/Name Path: ' . $Player1_text_filename;
-echo '<br/>';
-echo 'Player 2 Text/Name Path: ' . $Player2_text_filename;
-echo '<br/>';
+	echo 'Main DIR = /' . $Root_DIR;
+	echo '<br/>';
+	echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
+	echo '<br/>';
+	echo 'Score DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . $NUM_Files_in_DIR . ')';
+	echo '<br/>';
+	echo 'Text/Name DIR (Subdirectory) = ' . $TextName_DIR;
+	echo '<br/>';
+	echo 'Player 1 Score File: ' . $Player1_filename;
+	echo '<br/>';
+	echo 'Player 2 Score File: ' . $Player2_filename;
+	echo '<br/>';
+	echo 'Player 1 Picure Path: ' . $Player1_picture_filename;
+	echo '<br/>';
+	echo 'Player 2 Picure Path: ' . $Player2_picture_filename;
+	echo '<br/>';
+	echo 'Player 1 Text/Name Path: ' . $Player1_text_filename;
+	echo '<br/>';
+	echo 'Player 2 Text/Name Path: ' . $Player2_text_filename;
+	echo '<br/>';
 };
 
-//Read current scores, and calculate odds
+//Read current scores, and calculate ELO
 $Player1_currentScore = read($Player1_filename);
 $Player1_text = read($Player1_text_filename);
 
@@ -116,6 +108,7 @@ $Player2_text = read($Player2_text_filename);
 $Player1_ELO = ELO($Player1_currentScore, $Player2_currentScore);
 $Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
 
+//Display Scores
 $ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
 if($Player1_ELO === $Player2_ELO){
 	$Prediction = '<font color="red"><strong>Both players have an equal chance to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . '</strong></font>, and <strong><font color="red">' . $Player2_ELO . '</font></strong>';
@@ -127,16 +120,10 @@ if($Player1_ELO < $Player2_ELO){
 		$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . $Player2_ELO . '</strong></font>';
 };
 
-
-//Display Scores
-echo 'Player 1 (Left): ' . $Player1_text . ' (Score: ' . $Player1_currentScore . ')';
+echo 'Player 1 (Left): ' . $Player1_text . ' (Score: ' . $Player1_currentScore . ') ' . '(ELO: ' . $Player1_ELO . ' -<strong><font color="red"> ' . (100 * $Player1_ELO) . '% </font></strong>)';
 echo '<br/>';
-echo 'Player 2 (Right): ' . $Player2_text . ' (Score: ' . $Player2_currentScore . ')';
-echo '<br/>';
-echo 'Player 1 ELO rating = ' . $Player1_ELO;
-echo '<br/>';
-echo 'Player 2 ELO rating = ' . $Player2_ELO;
-echo '<br/>';
+echo 'Player 2 (Right): ' . $Player2_text . ' (Score: ' . $Player2_currentScore . ') ' . '(ELO: ' . $Player2_ELO . ' -<strong><font color="red"> ' . (100 * $Player2_ELO) . '% </font></strong>)';
+echo '<br/><br/>';
 echo $Prediction;
 echo '<br/><br/>';
 

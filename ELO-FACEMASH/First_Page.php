@@ -23,15 +23,17 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$Previous_Winner_Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
 	$Previous_Loser_Old_Score = read($Score_DIR . $Previous_Loser . '.txt');
 	if($Previous_Winner_Old_Score == $Previous_Loser_Old_Score){
-		$points = .5;
+		$points_won = 100;
+	}else{
+		$points_won = $Previous_Loser_Old_Score + 400; // Since technically only one game
 	}
 	
 	echo '<strong>Last Game:</strong><br/>';
-	echo 'Points: ' . $points;
+	echo 'Points: ' . $points_won;
 	echo '<br/>';
-	echo 'Winner: ' . $Previous_Winner;
+	echo 'Winner: ' . $Previous_Winner . ' (' . read($TextName_DIR . $Previous_Winner . '.txt') . ')';
 	echo '<br/>';
-	echo 'Loser: ' . $Previous_Loser;
+	echo 'Loser: ' . $Previous_Loser . ' (' . read($TextName_DIR . $Previous_Loser . '.txt') . ')';
 	echo '<br/>';
 	echo 'Winner Score: ' . $Previous_Winner_Old_Score;
 	echo '<br/>';

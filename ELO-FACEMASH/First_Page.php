@@ -3,13 +3,15 @@
 <head>
 	<title>Russell's ELO Experiment</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<!-- link rel="stylesheet" type="text/css" href="styles.css" -->
 </head>
 <body>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
 ob_implicit_flush(true);
-require('functions.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+include_once("functions.php");
 
 //Configurable Variables
 $DEBUG = 1;
@@ -26,18 +28,16 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 	$Loser_Old_Score = read($LoserScoreFilename);
 	$points_won_by_winner = $Loser_Old_Score + 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
-	$points_lost_by_loser = $Winner_Old_Score - 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
+	$points_lost_by_loser = $Winner_Old_Score - 400; // Is this right?
 	
 	//Update scores for both players
-	if(write($Score_DIR . $Previous_Winner . '.txt', $points_won_by_winner)){
-		echo '<font color="red"><strong>Winner score updated! ';
-		echo '</font></strong>';
-	};
 	
-	if(write($Score_DIR . $Previous_Loser . '.txt', $points_lost_by_loser)){
-			echo ' <font color="red"><strong>Loser score updated!';
-			echo '</font></strong><br/>';
-	};
+	if (write($WinnerScoreFilename, $points_won_by_winner) != FALSE){
+	echo '<font color="green"><strong>Winner score updated! ';
+	write($LoserScoreFilename, $points_lost_by_loser);
+	echo ' <font color="red"><strong>Loser score updated!';
+	echo '</font></strong><br/>';
+	}
 	
 	//Debugging Info
 	if($DEBUG == 1){

@@ -10,14 +10,18 @@
 <?php
 $DEBUG = 1;
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
-	foreach ($_POST as $key => $value){
-		echo '<pre>';
-		echo '-------';
-		var_dump($key);
-		echo '<br/>';
-		var_dump($value);
-		echo '</pre>';
-	}
+	echo '<pre>';
+	print_r($_POST['Winners']);
+	echo '<br/>';
+	echo 'Regular POST: ';
+	print_r($_POST);
+	echo '<pre>';
+	echo 'FUCK-----------<br/>';
+
+	echo $_POST['Winners'][6];
+	echo substr('abcde', 1, 1);
+	echo '<br/>-------';
+	echo '<br/>';
 };
 
 require_once('functions.php');
@@ -97,8 +101,8 @@ echo '<strong><br/><br/>';
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
 echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" />';
 echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-echo 'Who wins? <button name="Winners" type="submit" value="' . 'array(' . $Player1 . ', ' . $Player2 . ')' . '">' . $Player1_text . '</button> ';
-echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ', ' . $Player1 . ')' . '">' . $Player2_text . '</button>';
+echo 'Who wins? <button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_text . '</button> ';
+echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">' . $Player2_text . '</button>';
 echo '</form>';
 
 //Other Functions

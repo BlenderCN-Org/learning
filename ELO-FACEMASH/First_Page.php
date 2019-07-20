@@ -25,10 +25,10 @@ if(isset($_POST['Reset']) and $_POST['Reset'] = 1){
 		if($x > 0){
 			$current_filename = $Score_DIR . $x . '.txt';
 			echo 'Overwriting ' . $current_filename . '...<br/>';
-			//write($current_filename, 0);
+			write($current_filename, 0);
 		};
 	};
-	echo 'Done.<br/>';
+	echo 'Done.<br/><br/>';
 };
 
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){

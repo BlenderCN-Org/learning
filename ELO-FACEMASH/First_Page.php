@@ -29,7 +29,7 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 	$Loser_Old_Score = read($LoserScoreFilename);
 	$points_won_by_winner = $Loser_Old_Score + 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
-	$points_lost_by_loser = $Winner_Old_Score - 400; // Is this right?
+	$points_lost_by_loser = $Winner_Old_Score - 400; // Is this right?  How can it be?
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;

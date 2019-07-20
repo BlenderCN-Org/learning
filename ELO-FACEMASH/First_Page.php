@@ -28,8 +28,8 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Winner_Old_Score = read($WinnerScoreFilename);
 	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 	$Loser_Old_Score = read($LoserScoreFilename);
-	$points_won_by_winner = $Loser_Old_Score + 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
-	//$points_lost_by_loser = $Winner_Old_Score - 400; // Is this right?  How can it be?
+	$points_won_by_winner = ($Loser_Old_Score / 3) + 5; // My own creation
+	$points_lost_by_loser = ($Winner_Old_Score / 3) - 5;
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
@@ -37,11 +37,12 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<font color="green"><strong>Winner score updated!</font></strong>';
 	echo '<br/>';
 	
-	/* $LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
-	write($LoserScoreFilename, $LoserTotalPoints);
-	echo '<font color="green"><strong>Loser score updated!</font></strong>';
-	echo '<br/>'; */
-
+	if($Loser_Old_Score > $points_lost_by_loser){
+		$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
+		write($LoserScoreFilename, $LoserTotalPoints);
+		echo '<font color="green"><strong>Loser score updated!</font></strong>';
+		echo '<br/>';
+	};
 	
 	//Debugging Info
 	if($DEBUG == 1){
@@ -56,8 +57,7 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo 'Winner Score: ' . read($Score_DIR . $Previous_Winner . '.txt');
 	echo '<br/>';
 	echo 'Loser Score: ' . read($Score_DIR . $Previous_Loser . '.txt');
-	echo '<br/>-----------';
-	echo '<br/>';
+	echo '<br/>-----------<br/>';
 	};
 };
 

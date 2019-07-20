@@ -7,11 +7,12 @@
 <body>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
+include_once("functions.php");
 ob_implicit_flush(true);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include_once("functions.php");
+
 
 //Configurable Variables
 $DEBUG = 1;
@@ -20,7 +21,7 @@ $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
 $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
-if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
+if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
 	$WinnerScoreFilename = $Score_DIR . $Previous_Winner . '.txt';
@@ -31,13 +32,14 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$points_lost_by_loser = $Winner_Old_Score - 400; // Is this right?
 	
 	//Update scores for both players
-	
-	if (write($WinnerScoreFilename, $points_won_by_winner) != FALSE){
-	echo '<font color="green"><strong>Winner score updated! ';
-	write($LoserScoreFilename, $points_lost_by_loser);
-	echo ' <font color="red"><strong>Loser score updated!';
-	echo '</font></strong><br/>';
-	}
+	if(write($WinnerScoreFilename, $points_won_by_winner) = true){
+		echo '<font color="green"><strong>Winner score updated!</font></strong>';
+		echo '<br/>';
+	};
+	if(write($LoserScoreFilename, $points_lost_by_loser) = true){
+		echo '<font color="green"><strong>Loser score updated!</font></strong>';
+		echo '<br/>';
+	};
 	
 	//Debugging Info
 	if($DEBUG == 1){

@@ -20,16 +20,21 @@ $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
-	$Previous_Winner_Score = read($Score_DIR . $Previous_Winner . '.txt');
-	$Previous_Loser_Score = read($Score_DIR . $Previous_Loser . '.txt');
+	$Previous_Winner__Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
+	$Previous_Loser_Old_Score = read($Score_DIR . $Previous_Loser . '.txt');
+	if ($Previous_Winner_Old_Score === $Previous_Loser_Old_Score){
+		
+	};
+	
+	echo '<strong>Last Game:</strong>';
 	echo '<br/>';
 	echo 'Winner: ' . $Previous_Winner;
 	echo '<br/>';
 	echo 'Loser: ' . $Previous_Loser;
 	echo '<br/>';
-	echo 'Winner Score: ' . $Previous_Winner_Score;
+	echo 'Winner Score: ' . $Previous_Winner_Old_Score;
 	echo '<br/>';
-	echo 'Loser Score: ' . $Previous_Loser_Score;
+	echo 'Loser Score: ' . $Previous_Loser_Old_Score;
 	echo '<br/>-------';
 	echo '<br/>';
 };
@@ -53,7 +58,7 @@ $Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
 
 //For debugging, or experimentation
 if ($DEBUG === 1){
-echo 'Main DIR = ' . $Root_DIR;
+echo 'Main DIR = /' . $Root_DIR;
 echo '<br/>';
 echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
 echo '<br/>';

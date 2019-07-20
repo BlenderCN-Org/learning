@@ -28,8 +28,8 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Winner_Old_Score = read($WinnerScoreFilename);
 	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 	$Loser_Old_Score = read($LoserScoreFilename);
-	$points_won_by_winner = ($Loser_Old_Score / 4) + 4; // My own creation
-	$points_lost_by_loser = ($Winner_Old_Score / 4) - 4;
+	$points_won_by_winner = ($Loser_Old_Score / 4) + 2; // My own creation
+	$points_lost_by_loser = ($Winner_Old_Score / 4) - 2;
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
@@ -37,11 +37,13 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<font color="green"><strong>Winner score updated!</font></strong>';
 	echo '<br/>';
 	
+	$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
 	if($Loser_Old_Score > $points_lost_by_loser){
-		$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
 		write($LoserScoreFilename, $LoserTotalPoints);
 		echo '<font color="green"><strong>Loser score updated!</font></strong>';
 		echo '<br/>';
+	}else{
+		echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong>';
 	};
 	
 	//Debugging Info

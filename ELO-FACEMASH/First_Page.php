@@ -20,13 +20,16 @@ $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
-	$Previous_Winner__Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
+	$Previous_Winner_Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
 	$Previous_Loser_Old_Score = read($Score_DIR . $Previous_Loser . '.txt');
-	if ($Previous_Winner_Old_Score === $Previous_Loser_Old_Score){
-		
-	};
+	if($Previous_Winner_Old_Score == $Previous_Loser_Old_Score){
+		$points = .5;
+	}else{
+		$points = 1;
+	}
 	
-	echo '<strong>Last Game:</strong>';
+	echo '<strong>Last Game:</strong><br/>';
+	echo 'Points: ' . $points;
 	echo '<br/>';
 	echo 'Winner: ' . $Previous_Winner;
 	echo '<br/>';

@@ -20,22 +20,35 @@ $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
-	$Previous_Winner_Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
-	$Previous_Loser_Old_Score = read($Score_DIR . $Previous_Loser . '.txt');
-	$points_won = $Previous_Loser_Old_Score + 400; // FIDE - https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
+	$Winner_Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
+	$Loser_Old_Score = read($Score_DIR . $Previous_Loser . '.txt');
+	$points_won_by_winner = $Loser_Old_Score + 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
+	$points_lost_by_loser = $Winner_Old_Score - 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
+/* 	
+	//Update scores for both players
+	if(write($Score_DIR . $Previous_Winner . '.txt', $points_won_by_winner)){
+		echo '<font color="red"><strong>Winner score updated! ';
+		if(write($Score_DIR . $Previous_Loser . '.txt', $points_lost_by_loser)){
+			echo 'Loser score updated!';
+		}
+		echo '</font color="red"></strong>';
+	}; */
 	
+	//Debugging Info
 	if($DEBUG == 1){
 	echo '<strong>Last Game:</strong><br/>';
-	echo 'Points: ' . $points_won;
+	//echo 'isset SUbmit: ' . isset($_POST['Submit']);
+	echo '<br/>';
+	echo 'Points: ' . $points_won_by_winner;
 	echo '<br/>';
 	echo 'Winner: ' . $Previous_Winner . ' (' . read($TextName_DIR . $Previous_Winner . '.txt') . ')';
 	echo '<br/>';
 	echo 'Loser: ' . $Previous_Loser . ' (' . read($TextName_DIR . $Previous_Loser . '.txt') . ')';
 	echo '<br/>';
-	echo 'Winner Score: ' . $Previous_Winner_Old_Score;
+	echo 'Winner Score: ' . $Winner_Old_Score;
 	echo '<br/>';
-	echo 'Loser Score: ' . $Previous_Loser_Old_Score;
-	echo '<br/>-------';
+	echo 'Loser Score: ' . $Loser_Old_Score;
+	echo '<br/>-----------';
 	echo '<br/>';
 	};
 };

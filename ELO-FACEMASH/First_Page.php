@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 
 
 //Configurable Variables
-$DEBUG = 1;
+$DEBUG = 0;
 $Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
 $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';

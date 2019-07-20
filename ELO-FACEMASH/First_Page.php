@@ -8,7 +8,8 @@
 <body>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
-require_once('functions.php');
+ob_implicit_flush(true);
+require('functions.php');
 
 //Configurable Variables
 $DEBUG = 1;
@@ -20,24 +21,27 @@ $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	$Previous_Winner = $_POST['Winners'][6];
 	$Previous_Loser = $_POST['Winners'][8];
-	$Winner_Old_Score = read($Score_DIR . $Previous_Winner . '.txt');
-	$Loser_Old_Score = read($Score_DIR . $Previous_Loser . '.txt');
+	$WinnerScoreFilename = $Score_DIR . $Previous_Winner . '.txt';
+	$Winner_Old_Score = read($WinnerScoreFilename);
+	$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
+	$Loser_Old_Score = read($LoserScoreFilename);
 	$points_won_by_winner = $Loser_Old_Score + 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
 	$points_lost_by_loser = $Winner_Old_Score - 400; // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
-/* 	
+	
 	//Update scores for both players
 	if(write($Score_DIR . $Previous_Winner . '.txt', $points_won_by_winner)){
 		echo '<font color="red"><strong>Winner score updated! ';
-		if(write($Score_DIR . $Previous_Loser . '.txt', $points_lost_by_loser)){
-			echo 'Loser score updated!';
-		}
-		echo '</font color="red"></strong>';
-	}; */
+		echo '</font></strong>';
+	};
+	
+	if(write($Score_DIR . $Previous_Loser . '.txt', $points_lost_by_loser)){
+			echo ' <font color="red"><strong>Loser score updated!';
+			echo '</font></strong><br/>';
+	};
 	
 	//Debugging Info
 	if($DEBUG == 1){
 	echo '<strong>Last Game:</strong><br/>';
-	//echo 'isset SUbmit: ' . isset($_POST['Submit']);
 	echo '<br/>';
 	echo 'Points: ' . $points_won_by_winner;
 	echo '<br/>';
@@ -45,15 +49,15 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
 	echo '<br/>';
 	echo 'Loser: ' . $Previous_Loser . ' (' . read($TextName_DIR . $Previous_Loser . '.txt') . ')';
 	echo '<br/>';
-	echo 'Winner Score: ' . $Winner_Old_Score;
+	echo 'Winner Score: ' . read($Score_DIR . $Previous_Winner . '.txt');
 	echo '<br/>';
-	echo 'Loser Score: ' . $Loser_Old_Score;
+	echo 'Loser Score: ' . read($Score_DIR . $Previous_Loser . '.txt');
 	echo '<br/>-----------';
 	echo '<br/>';
 	};
 };
 
-//Choose Players
+//New Game - Choose Players
 $NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);
 $Player1 = RAND(1,$NUM_Files_in_DIR);
 $Player2 = RAND(1,$NUM_Files_in_DIR);
@@ -107,16 +111,16 @@ $Player1_ELO = ELO($Player1_currentScore, $Player2_currentScore);
 $Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
 
 $ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
-if($Player1_ELO = $Player2_ELO){
+if($Player1_ELO === $Player2_ELO){
 	$Prediction = '<font color="red"><strong>Both players have an equal chance to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . '</strong></font>, and <strong><font color="red">' . $Player2_ELO . '</font></strong>';
-}else{
-	if($Player1_ELO > $Player2_ELO){
-		$Prediction = '<font color="red"><strong>Player 1 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . '</font></strong>';
-	};
-	if($Player1_ELO < $Player2_ELO){
-		$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . $Player2_ELO . '</strong></font>';
-	};
 };
+if($Player1_ELO > $Player2_ELO){
+		$Prediction = '<font color="red"><strong>Player 1 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . '</font></strong>';
+};
+if($Player1_ELO < $Player2_ELO){
+		$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . $Player2_ELO . '</strong></font>';
+};
+
 
 //Display Scores
 echo 'Player 1 (Left): ' . $Player1_text . ' (Score: ' . $Player1_currentScore . ')';

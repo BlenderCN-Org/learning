@@ -8,21 +8,22 @@
 <body>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
-if(isset($_POST['Player1_Winner']) and $_SERVER['REQUEST_METHOD'] == "POST"){
-    print_r($_POST);
-	unset($_POST);
-	echo '<br/>';
-};
-if(isset($_POST['Player2_Winner']) and $_SERVER['REQUEST_METHOD'] == "POST"){
-    print_r($_POST);
-	unset($_POST);
-	echo '<br/>';
+$DEBUG = 1;
+if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] == "POST"){
+	foreach ($_POST as $key => $value){
+		echo '<pre>';
+		echo '-------';
+		var_dump($key);
+		echo '<br/>';
+		var_dump($value);
+		echo '</pre>';
+	}
 };
 
 require_once('functions.php');
 
 //Configurable Variables
-$DEBUG = 0;
+
 $Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
 $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -96,11 +97,8 @@ echo '<strong><br/><br/>';
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
 echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" />';
 echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-echo 'Who wins? <button name="Player1_Winner" type="submit" value="' . $array = [
-    "foo" => "bar",
-    "bar" => "foo",
-]; . '">' . $Player1_text . '</button> ';
-echo '<button name="Player2_Winner" type="submit" value="' . $Player2_filename . '">' . $Player2_text . '</button>';
+echo 'Who wins? <button name="Winners" type="submit" value="' . 'array(' . $Player1 . ', ' . $Player2 . ')' . '">' . $Player1_text . '</button> ';
+echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ', ' . $Player1 . ')' . '">' . $Player2_text . '</button>';
 echo '</form>';
 
 //Other Functions

@@ -20,6 +20,13 @@ $Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
 if(isset($_POST['Reset']) and $_POST['Reset'] = 1){
 	echo 'Reset Pressed!<br/>';
+	$number_of_scores_to_reset = count_files_in_DIR($Score_DIR);
+	for ($x = 0; $x <= $number_of_scores_to_reset; $x++){
+		$current_filename = $Score_DIR + $x + '.txt';
+		echo 'Overwriting ' . $current_filename . '...<br/>';
+		write($current_filename, 0);
+	};
+	echo 'Done.<br/>';
 };
 
 if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){

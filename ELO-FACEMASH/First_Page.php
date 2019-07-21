@@ -97,8 +97,8 @@ $Player2_filename = $Score_DIR . $Player2 . '.txt';
 $Player1_picture_filename = $Picture_DIR . $Player1 . '.jpg';
 $Player2_picture_filename = $Picture_DIR . $Player2 . '.jpg';
 
-$Player1_text_filename = $TextName_DIR . $Player1 . '.txt';
-$Player2_text_filename = $TextName_DIR . $Player2 . '.txt';
+$Player1_name_filename = $TextName_DIR . $Player1 . '.txt';
+$Player2_name_filename = $TextName_DIR . $Player2 . '.txt';
 
 //For debugging, or experimentation
 if ($DEBUG === 1){
@@ -106,7 +106,7 @@ if ($DEBUG === 1){
 	echo '<br/>';
 	echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
 	echo '<br/>';
-	echo 'Score DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . $NUM_Files_in_DIR . ')';
+	echo 'Score DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . count_files_in_DIR($Score_DIR) . ')';
 	echo '<br/>';
 	echo 'Text/Name DIR (Subdirectory) = ' . $TextName_DIR;
 	echo '<br/>';
@@ -118,18 +118,18 @@ if ($DEBUG === 1){
 	echo '<br/>';
 	echo 'Player 2 Picure Path: ' . $Player2_picture_filename;
 	echo '<br/>';
-	echo 'Player 1 Text/Name Path: ' . $Player1_text_filename;
+	echo 'Player 1 Text/Name Path: ' . $Player1_name_filename;
 	echo '<br/>';
-	echo 'Player 2 Text/Name Path: ' . $Player2_text_filename;
+	echo 'Player 2 Text/Name Path: ' . $Player2_name_filename;
 	echo '<br/>';
 };
 
 //Read current scores, and calculate ELO
 $Player1_currentScore = read($Player1_filename);
-$Player1_text = read($Player1_text_filename);
+$Player1_name = read($Player1_name_filename);
 
 $Player2_currentScore = read($Player2_filename);
-$Player2_text = read($Player2_text_filename);
+$Player2_name = read($Player2_name_filename);
 
 $Player1_ELO = ELO($Player1_currentScore, $Player2_currentScore);
 $Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
@@ -146,20 +146,20 @@ if($Player1_ELO < $Player2_ELO){
 		$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
 };
 
-echo 'Player 1 (Left): ' . $Player1_text . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' </strong>-<font color="red"> ' . (100 * $Player1_ELO) . '%</font>)';
+echo 'Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' </strong>-<font color="red"> ' . (100 * $Player1_ELO) . '%</font>)';
 echo '<br/>';
-echo 'Player 2 (Right): ' . $Player2_text . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' </strong>-<font color="red"> ' . (100 * $Player2_ELO) . '%</font>)';
+echo 'Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' </strong>-<font color="red"> ' . (100 * $Player2_ELO) . '%</font>)';
 echo '<br/><br/>';
 echo $Prediction;
 echo '<br/><br/>';
 
-//Display Players
+//Display User Choices
 echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
 echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" /><br/>';
 echo 'Choose below:';
 echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_text . '</button> ';
-echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">' . $Player2_text . '</button>';
+echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_name . '</button> ';
+echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">' . $Player2_name . '</button>';
 echo '<br/>';echo '<br/>';
 echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
 echo '</form>';

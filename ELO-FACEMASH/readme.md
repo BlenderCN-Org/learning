@@ -15,7 +15,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 Description of Files:<br/>
 • ELO.php - a standalone, browser-based, file which shows and explains the algorithm in detail.  It would be redundant to explain more here.<br/>
-• First_Page.php - The first page of my ELO example, which would later become the main page of the entire project.  This page recreates (or at least attempts to) Facemash, the precursor to Facebook, which is simply a program which presents the user with two images, which the user then rates, and the program scores using the ELO algorithm.
+• index.php - The first page of my ELO example, which would later become the main page of the entire project.  This page recreates (or at least attempts to) Facemash, the precursor to Facebook, which is simply a program which presents the user with two images, which the user then rates, and the program scores using the ELO algorithm.
 
 <hr>
 

@@ -24,7 +24,7 @@ What I've learned about the ELO formula:<br/>
 • The ELO formula from Wikipedia doesn't seem to play nicely with negative numbers, but maybe that's just the one I'm using.
 • ELO itself doesn't determine the number of points lost or gained (as far as I can tell), and just serves as a predictor of who will win.<br/>
 • I didn't realize this before this experiment, but ELO (or something like it) is probably how Netflix and other websites make content suggestions, although most likely a lot more complex.
-• Rating and Score are two completely different things, especially in ranking algorithms.
+• I know I'm not using this algorithm exactly how other things would, but I think it works well in the way I used it for this application.
 
 What I will be doing next:<br/>
 • Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more via NodeJS anyway.<br/>

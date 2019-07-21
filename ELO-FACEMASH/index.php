@@ -54,8 +54,8 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 		$Score_Difference = $Winner_Old_Score - $Loser_Old_Score;
 	};
 	
-	$points_won_by_winner = ($Score_Difference / 3) + 5;
-	$points_lost_by_loser = ($Score_Difference / 3) - 5;
+	$points_won_by_winner = ($Score_Difference / 3) + 6;
+	$points_lost_by_loser = ($Score_Difference / 3) - 6;
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
@@ -143,7 +143,7 @@ $Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
 //Display Scores
 $ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
 if($Player1_ELO === $Player2_ELO){
-	$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO) . ')' . '</strong></font>';
+	$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO) . '%)' . '</strong></font>';
 };
 if($Player1_ELO > $Player2_ELO){
 		$Prediction = '<font color="red"><strong>Player 1 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';

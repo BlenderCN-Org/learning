@@ -31,6 +31,6 @@
 		return iterator_count($fi);
 	};
 	function ELO($A, $B){ 
-		return (1/(1+pow(10,(($B-$A)/400)))); // https://en.wikipedia.org/wiki/Elo_rating_system#FIDE_ratings
+		return (1/(1+pow(10,(($B-$A)/400)))); // https://en.wikipedia.org/wiki/Elo_rating_system
 	};
 ?>

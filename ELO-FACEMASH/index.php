@@ -12,11 +12,17 @@ require_once("functions.php");
 ob_implicit_flush(true);
 
 //Configurable Variables
-$DEBUG = 0;
+$DEBUG = 1;
 $Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
 $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
 $Picture_DIR = $Root_DIR . '/Actress_Picture/';
+
+if(isset($_POST['Display']) and $_POST['Display'] = 1){
+	echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
+	
+	echo '</div>';
+};
 
 if(isset($_POST['Reset']) and $_POST['Reset'] = 1){
 	echo 'Reset Pressed!<br/>';
@@ -48,8 +54,8 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 		$Score_Difference = $Winner_Old_Score - $Loser_Old_Score;
 	};
 	
-	$points_won_by_winner = ($Score_Difference / 2) + 5; 
-	$points_lost_by_loser = ($Score_Difference / 2) - 5;
+	$points_won_by_winner = ($Score_Difference / 3) + 5;
+	$points_lost_by_loser = ($Score_Difference / 3) - 5;
 	
 	//Update scores for both players
 	$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
@@ -58,7 +64,7 @@ if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<br/>';
 	
 	$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
-	if($Loser_Old_Score > $points_lost_by_loser){
+	if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){ // To make sure score not negative, and a user doesn't go negative
 		write($LoserScoreFilename, $LoserTotalPoints);
 		echo '<font color="green"><strong>Loser score updated!</font></strong>';
 		echo '<br/>';
@@ -161,6 +167,8 @@ echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
 echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_name . '</button> ';
 echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">' . $Player2_name . '</button>';
 echo '<br/>';echo '<br/>';
+echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
+echo '<br/>';
 echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
 echo '</form>';
 ?>

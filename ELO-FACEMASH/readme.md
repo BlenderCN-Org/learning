@@ -1,5 +1,5 @@
 Questions People May Have:
-• Is this project done/working? Yes, but it's a little buggy and rough.  It does work, however.
+• Is this project done/working? Kind of (technically yes), but it's a little buggy and rough.  It does work, however.  All files must be created manually first since no checking is programmed in, etc.
 
 Why I made this:<br/>
 I did this just to see how algorithms and formulas are used.  I feel like I've learned a lot from this project.
@@ -9,7 +9,7 @@ While watching the movie <a href="https://www.imdb.com/title/tt1285016/">The Soc
 
 Here is a still image from the movie of the algorithm on the blackboard: https://i.pinimg.com/originals/fc/ff/a0/fcffa093c3ba1dd02ebda0e5a83388c1.png
 
-Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.
+Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.  Also, this isn't a production-ready scalable website, but that probably goes without saying.
 
 <hr>
 

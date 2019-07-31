@@ -20,11 +20,13 @@ Description of Files:<br/>
 <hr>
 
 What I've learned about the ELO formula:<br/>
-• There are actually many different implementations of the "ELO formula," such as FIDE.
-• The ELO formula from Wikipedia doesn't seem to play nicely with negative numbers, but maybe that's just the one I'm using.
-• ELO itself doesn't determine the number of points lost or gained (as far as I can tell), and just serves as a predictor of who will win.<br/>
-• I didn't realize this before this experiment, but ELO (or something like it) is probably how Netflix and other websites make content suggestions, although most likely a lot more complex.
-• I know I'm not using this algorithm exactly how other things would, but I think it works well in the way I used it for this application.
+
+• I didn't know as much about the forumula/algorithm as I thought, but think I pretty much got it now.
+• There are actually different implementations of the "ELO formula" (such as FIDE, an official implementation of the ELO algorithm/formula).
+• The ELO formula from Wikipedia doesn't seem to play nicely with negative numbers, and I didn't know why at first, but it's not because of the ELO algorithm, but the separate scoring formula used along with it (every game, the loser takes all of the winners points, plus 400, but if it goes negative, this obviously becomes a problem.  I really wonder how othergh software implementations deal with this).
+• ELO itself doesn't determine the number of points lost or gained (as far as I can tell), and just serves as a predictor of who will win.  As I just mentioned, there is a separate scoring formula used, which can be different depending on which implementation of ELO you're using (as I said on the line that mentioned FIDE).<br/>
+• I didn't realize this before this experiment, but I'm sure ELO (or something like it) is how some websites make content suggestions, although most likely astronomically more complex on bigger sites (I don't see why it can't be used on a large scale, however, aside from its other limitations, like being only able to be used in "zero-sum" games).
+• I know I'm not using this algorithm exactly how most implementations do, like FIDE (mostly just the scoring forumula I just mentioned twice above), but I think it works well in the way I used it for this application.  I actually think my implementation works better, but I'm sure it's nothing great.  I will attempt to make a "pure FIDE" version in the future when I have more time.
 
 What I will be doing next:<br/>
 • Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more via NodeJS anyway.<br/>

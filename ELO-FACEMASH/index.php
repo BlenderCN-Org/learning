@@ -130,6 +130,14 @@
 		echo '<br/>';
 	};
 
+	//Check and/or create score file - Player 1
+	if(read($Player1_filename == FALSE){
+		echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>';
+		if(!is_numeric(write($Player1_filename, 0)){
+			echo '<br/><font color="red">Player 1 Score File <b>Creation</b> also failed.</font><br/>';
+		};
+	};
+	
 	//Read current scores, and calculate ELO
 	$Player1_currentScore = read($Player1_filename);
 	$Player1_name = read($Player1_name_filename);

@@ -8,7 +8,7 @@
 <center>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
-	require_once("functions.php");
+	require_once('functions.php');
 	ob_implicit_flush(true);
 
 	//Configurable Variables

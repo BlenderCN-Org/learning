@@ -72,7 +72,8 @@
 			echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong>';
 			echo '<br/>';
 		};
-	}; //End $_POST
+	}; 
+// --------------------------------- End $_POST
 	
 		echo '<br/><strong>Last Round:</strong><br/>';
 		echo 'Points won by winner: ' . $points_won_by_winner;
@@ -131,8 +132,8 @@
 	};
 
 	//Check and/or create score file - Player 1
-	if(read($Player1_filename == FALSE){
-		echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>';
+	if(read($Player1_filename === FALSE){
+		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output: ' . read($Player1_filename) . '<br/>';
 		if(!is_numeric(write($Player1_filename, 0)){
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
 		};

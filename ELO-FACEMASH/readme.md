@@ -28,7 +28,10 @@ What I've learned about the ELO formula:<br/>
 • I didn't realize this before this experiment, but I'm sure ELO (or something like it) is how some websites make content suggestions, although most likely astronomically more complex on bigger sites (I don't see why it can't be used on a large scale, however, aside from its other limitations, like being only able to be used in "zero-sum" games).
 • I know I'm not using this algorithm exactly how most implementations do, like FIDE (mostly just the scoring forumula I just mentioned twice above), but I think it works well in the way I used it for this application.  I actually think my implementation works better, but I'm sure it's nothing great.  I will attempt to make a "pure FIDE" version in the future when I have more time.
 
-What I will be doing next:<br/>
-• Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more via NodeJS anyway.<br/>
+What I'm doing next:<br/>
+• Create dropdown box to select, and limit, number of players.
+• Finish separate scoreboard.
+• Add more players.
+• Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.<br/>
 • Possibly creating NodeJS version of this, to see how this would work asyncronously.
 <br/>

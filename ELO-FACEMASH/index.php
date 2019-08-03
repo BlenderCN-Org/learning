@@ -134,7 +134,7 @@
 	if(read($Player1_filename == FALSE){
 		echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>';
 		if(!is_numeric(write($Player1_filename, 0)){
-			echo '<br/><font color="red">Player 1 Score File <b>Creation</b> also failed.</font><br/>';
+			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
 		};
 	};
 	

@@ -33,7 +33,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Create dropdown box to select, and limit, number of players.<br />
 • Finish separate scoreboard.<br />
 • Add more players.<br />
-• Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.<br /><br />
+• Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.<br />
 
 <strong>Other Versions (of index.php):</strong><br />
 • Possible version that uses FIDE's implementation of ELO.<br />

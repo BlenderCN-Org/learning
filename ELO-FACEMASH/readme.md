@@ -9,7 +9,7 @@ While watching the movie <a href="https://www.imdb.com/title/tt1285016/">The Soc
 
 Here is a still image from the movie of the algorithm on the blackboard: https://i.pinimg.com/originals/fc/ff/a0/fcffa093c3ba1dd02ebda0e5a83388c1.png
 
-Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.  Also, this isn't a production-ready scalable website, but that probably goes without saying.
+Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just studying and applying it since it's been used in software numerous times.  Also, this isn't a production-ready scalable website, but this all probably goes without saying.
 
 <hr>
 
@@ -38,4 +38,5 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <strong>Other Versions (of index.php):</strong><br />
 • Possible version that uses FIDE's implementation of ELO.<br />
 • Possible NodeJS version, to see how this would work differently.<br />
+• Doppleganger version, and thinking about how to implement that in current version.<br/>
 <br />

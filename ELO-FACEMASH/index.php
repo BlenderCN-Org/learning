@@ -54,7 +54,7 @@
 			$Score_Difference = $Winner_Old_Score - $Loser_Old_Score;
 		};
 		
-		$points_won_by_winner = ($Score_Difference / 3) + 6; // This is where things may differ from Facemash's original formula.
+		$points_won_by_winner = ($Score_Difference / 3) + 6; // This is where things may differ from FaceMash's original formula.
 		$points_lost_by_loser = ($Score_Difference / 3) - 6;
 		
 		//Update scores for both players
@@ -64,15 +64,15 @@
 		echo '<br/>';
 		
 		$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
-		if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){ // To make sure score not negative, and a user doesn't go negative
-			write($LoserScoreFilename, $LoserTotalPoints);
-			echo '<font color="green"><strong>Loser score updated!</font></strong>';
-			echo '<br/>';
-		}else{
-			echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong>';
-			echo '<br/>';
-		};
-	}; 
+		if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){ // To make sure score not negative and user doesn't go negative
+				write($LoserScoreFilename, $LoserTotalPoints);
+				echo '<font color="green"><strong>Loser score updated!</font></strong>';
+				echo '<br/>';
+			}else{
+				echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong>';
+				echo '<br/>';
+			};
+		}; 
 // --------------------------------- End $_POST
 	
 		echo '<br/><strong>Last Round:</strong><br/>';
@@ -131,10 +131,10 @@
 		echo '<br/>';
 	};
 
-	//Check and/or create score file - Player 1
+	//Check and/or create score file for Player 1 (so only .jpg and .txt file containing name need to be created manually)
 	if(read($Player1_filename === FALSE){
 		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output: ' . read($Player1_filename) . '<br/>';
-		if(!is_numeric(write($Player1_filename, 0)){
+		if(write($Player1_filename, 0) != TRUE){
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
 		};
 	};

@@ -13,7 +13,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <hr>
 
-<strong>Description of Files:</strong><br />
+<strong>Description of Files:</strong><br /><br/>
 • <strong>ELO.php</strong> - a standalone, browser-based, file which explores the algorithm in detail.  It would be redundant to explain more here.<br />
 • <strong>index.php</strong> - The first page of my ELO example, which would later become the first main page of the project.  This page recreates (or at least attempts to) Facemash, the precursor to Facebook, which is simply a program which presents the user with two images, of whom the user selects the winner, and the program scores using the ELO algorithm, and repeats.  This implementation only uses about half of the ELO implementation FIDE uses to calculate rankings.<br/>
 • <strong>index_formal.php</strong> - This is the full version of the ELO formula (the one found on Wikipedia), and mimics the same version of ELO that FIDE uses for chess player rankings.<br/>
@@ -21,7 +21,6 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I've learned about the ELO formula:</strong><br />
-
 • The ELO formula from Wikipedia doesn't seem to play nicely with negative numbers, but I'm still figuring this out. My implementation didn't seem to work well with negatives, but the FIDE version might.<br />
 • ELO itself doesn't necessarily determine the number of points lost or gained (as far as I can tell), and just serves as a predictor of who will win.  However, the predicted ELO score may be part of the score distribution equation (and probably will be, to make sure the underdog gets more points than a player who is not, upon winning).<br />
 • Even simple algorithms can sometimes be confusing and hard to implement programmatically and practically.

@@ -37,12 +37,12 @@
 		echo 'Done.</strong><br/><br/>';
 	};
 
-	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner Chosen/Submitted
-		$Previous_Winner = $_POST['Winners'][6];
-		$Previous_Loser = $_POST['Winners'][8];
-		$WinnerScoreFilename = $Score_DIR . $Previous_Winner . '.txt';
+	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner chosen
+		$winner = $_POST['Winners'][6];
+		$Loser = $_POST['Winners'][8];
+		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
 		$Winner_Old_Score = read($WinnerScoreFilename);
-		$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
+		$LoserScoreFilename = $Score_DIR . $Loser . '.txt';
 		$Loser_Old_Score = read($LoserScoreFilename);
 		
 		// My Implementation of score distribution:
@@ -73,15 +73,14 @@
 		
 		//Update scores for both players
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
-			echo '<font color="green"><strong>Winner score updated!</font></strong>';
-			echo '<br/>';
+			echo '<font color="green"><strong>Winner score updated!' . ' (End Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
 			
 			// Make sure loser doesn't go negative:
 			if($LoserTotalPoints > 0 AND $Using_FIDE === 1){ // If using FIDE Implementation
 				write($LoserScoreFilename, $LoserTotalPoints);
-				echo '<font color="green"><strong>Loser score updated!</font></strong><br/>';
+				echo '<font color="green"><strong>Loser score updated!' . ' (End Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
 			}else{
-				echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong><br/>';
+				echo '<font color="red"><strong>Loser score would be negative and was NOT UPDATED!' . ' (End Score: ' . $LoserTotalPoints . ')'. '</font></strong><br/>';
 			};
 			
 			if($Using_FIDE != 1){ // If using my implementation
@@ -89,11 +88,9 @@
 					write($LoserScoreFilename, $LoserTotalPoints);
 					echo '<font color="green"><strong>Loser score updated!</font></strong><br/>';
 				}else{
-					echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong><br/>';
+					echo '<font color="red"><strong>Loser score would be negative and was NOT UPDATED!</font></strong><br/>';
 				};
 			};
-			
-			
 		}; 
 
 		echo '<br/><strong>Last Round:</strong><br/>';
@@ -109,13 +106,9 @@
 			echo 'Points lost by loser: USING FIDE';
 		};
 		echo '<br/>';
-		echo 'Winner: ' . $Previous_Winner . ' (' . read($TextName_DIR . $Previous_Winner . '.txt') . ')';
+		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $winner . '.txt') . ')';
 		echo '<br/>';
-		echo 'Loser: ' . $Previous_Loser . ' (' . read($TextName_DIR . $Previous_Loser . '.txt') . ')';
-		echo '<br/>';
-		echo 'Winner Score: ' . read($Score_DIR . $Previous_Winner . '.txt');
-		echo '<br/>';
-		echo 'Loser Score: ' . read($Score_DIR . $Previous_Loser . '.txt');
+		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
 		echo '<br/>-----------------------------------------<br/>';
 	}; // --------------------------------- End $_POST
 

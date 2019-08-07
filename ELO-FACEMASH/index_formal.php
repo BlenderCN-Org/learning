@@ -19,12 +19,12 @@
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 	$k = 32; // ELO K value
 
-	if(isset($_POST['Display']) and $_POST['Display'] = 1){ // Display Scores
+	if(isset($_POST['Display']) and $_POST['Display'] == 1){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
 		echo '</div>';
 	};
 
-	if(isset($_POST['Reset']) and $_POST['Reset'] = 1){ // Reset Scores
+	if(isset($_POST['Reset']) and $_POST['Reset'] == 1){ // Reset Scores
 		echo '<strong>Reset Pressed!<br/>';
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR);
 		for ($x = 0; $x <= $number_of_scores_to_reset; $x++){
@@ -46,6 +46,7 @@
 		$Loser_Old_Score = read($LoserScoreFilename);
 		
 		// My Implementation of score distribution:
+		//
 		// $Using_FIDE = 0;
 		// $Score_Difference = 0; // This is where things may differ from FaceMash's original formula
 		// if($Loser_Old_Score > $Winner_Old_Score){ // Should be no need to find score difference
@@ -62,8 +63,10 @@
 		
 		// $WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
 		// $LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
+		//
+		// End of my implementation of score distribution
 		
-		//FIDE's Implementation of score distribution:
+		//FIDE's Implementation of winner/loser score distribution:
 		$Using_FIDE = 1;
 		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
 		$Loser_Previous_ELO_Expected_Score = ELO($Loser_Old_Score, $Winner_Old_Score);
@@ -84,7 +87,7 @@
 			};
 			
 			if($Using_FIDE != 1){ // If using my implementation
-				if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){
+				if($Loser_Old_Score > $points_lost_by_loser AND $points_lost_by_loser > 0){
 					write($LoserScoreFilename, $LoserTotalPoints);
 					echo '<font color="green"><strong>Loser score updated!</font></strong><br/>';
 				}else{

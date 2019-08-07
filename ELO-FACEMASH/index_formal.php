@@ -25,7 +25,7 @@
 	};
 
 	if(isset($_POST['Reset']) and $_POST['Reset'] = 1){ // Reset Scores
-		echo 'Reset Pressed!<br/>';
+		echo '<strong>Reset Pressed!<br/>';
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR);
 		for ($x = 0; $x <= $number_of_scores_to_reset; $x++){
 			if($x > 0){
@@ -34,10 +34,10 @@
 				write($current_filename, 0);
 			};
 		};
-		echo 'Done.<br/><br/>';
+		echo 'Done.</strong><br/><br/>';
 	};
 
-	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){
+	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner Chosen/Submitted
 		$Previous_Winner = $_POST['Winners'][6];
 		$Previous_Loser = $_POST['Winners'][8];
 		$WinnerScoreFilename = $Score_DIR . $Previous_Winner . '.txt';
@@ -45,8 +45,10 @@
 		$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 		$Loser_Old_Score = read($LoserScoreFilename);
 		
-		// $Score_Difference = 0; // This is where things may differ from FaceMash's original formula (no need to find score difference)
-		// if($Loser_Old_Score > $Winner_Old_Score){
+		// My Implementation of score distribution:
+		// $Using_FIDE = 0;
+		// $Score_Difference = 0; // This is where things may differ from FaceMash's original formula
+		// if($Loser_Old_Score > $Winner_Old_Score){ // Should be no need to find score difference
 			// $Score_Difference = $Loser_Old_Score - $Winner_Old_Score;
 		// };
 		
@@ -61,27 +63,51 @@
 		// $WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
 		// $LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
 		
+		//FIDE's Implementation of score distribution:
+		$Using_FIDE = 1;
+		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
+		$Loser_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
+		
+		$WinnerTotalPoints = $Winner_Old_Score + $k * (1 - $Winner_Previous_ELO_Expected_Score); 
+		$LoserTotalPoints = $Loser_Old_Score + $k * (0 - $Loser_Previous_ELO_Expected_Score);
+		
 		//Update scores for both players
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
 			echo '<font color="green"><strong>Winner score updated!</font></strong>';
 			echo '<br/>';
 			
-			// Make sure score not negative and user doesn't go negative
-			if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){
+			// Make sure loser doesn't go negative:
+			if($LoserTotalPoints > 0 AND $Using_FIDE === 1){ // If using FIDE Implementation
 				write($LoserScoreFilename, $LoserTotalPoints);
-				echo '<font color="green"><strong>Loser score updated!</font></strong>';
-				echo '<br/>';
+				echo '<font color="green"><strong>Loser score updated!</font></strong><br/>';
 			}else{
-				echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong>';
-				echo '<br/>';
+				echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong><br/>';
 			};
+			
+			if($Using_FIDE != 1){ // If using my implementation
+				if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){
+					write($LoserScoreFilename, $LoserTotalPoints);
+					echo '<font color="green"><strong>Loser score updated!</font></strong><br/>';
+				}else{
+					echo '<font color="red"><strong>Loser score would be negative and cannot be updated!</font></strong><br/>';
+				};
+			};
+			
+			
 		}; 
 
-	
 		echo '<br/><strong>Last Round:</strong><br/>';
-		echo 'Points won by winner: ' . $points_won_by_winner;
+		if($Using_FIDE != 1){
+			echo 'Points won by winner: ' . $points_won_by_winner;
+		}else{
+			echo 'Points won by winner: USING FIDE';
+		};
 		echo '<br/>';
-		echo 'Points lost by loser: ' . $points_lost_by_loser;
+		if($Using_FIDE != 1){
+			echo 'Points lost by loser: ' . $points_lost_by_loser;
+		}else{
+			echo 'Points lost by loser: USING FIDE';
+		};
 		echo '<br/>';
 		echo 'Winner: ' . $Previous_Winner . ' (' . read($TextName_DIR . $Previous_Winner . '.txt') . ')';
 		echo '<br/>';
@@ -111,7 +137,7 @@
 	$Player1_name_filename = $TextName_DIR . $Player1 . '.txt';
 	$Player2_name_filename = $TextName_DIR . $Player2 . '.txt';
 
-	//For debugging, or experimentation
+	//For debugging output
 	if ($DEBUG === 1){
 		echo 'Main DIR = /' . $Root_DIR;
 		echo '<br/>';
@@ -136,7 +162,7 @@
 	};
 
 	//Check and/or create score file for Player 1 (so only .jpg and .txt file containing name need to be created manually)
-	if(read($Player1_filename === FALSE){
+	if(read($Player1_filename) === FALSE){
 		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output: ' . read($Player1_filename) . '<br/>';
 		if(write($Player1_filename, 0) != TRUE){
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';

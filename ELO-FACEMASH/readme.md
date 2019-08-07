@@ -28,7 +28,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <hr>
 
-<strong>What I'm doing next:</strong><br />
+<strong>What I'm doing next:</strong><br /><br/>
 <strong>In this version:</strong><br />
 • Create dropdown box to select, and limit, number of players.<br />
 • Finish separate scoreboard.<br />

@@ -38,6 +38,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <strong>Other Versions:</strong><br />
 • Mobile version, using front-end framework.<br/>
+• Scalable, database-backed version.<br/>
 • <strike>Possible version that uses FIDE's implementation of ELO</strike><strong> (DONE - 8/7/2019)</strong>.<br />
 • Possible NodeJS version, to see how this would work differently.<br />
 • Doppleganger version, and thinking about how to implement that in current version.<br/>

@@ -58,14 +58,16 @@
 		// $points_won_by_winner = ($Score_Difference / 3) + 6; 
 		// $points_lost_by_loser = ($Score_Difference / 3) - 6;
 		
+		// $WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
+		// $LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
+		
 		//Update scores for both players
-		$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
 			echo '<font color="green"><strong>Winner score updated!</font></strong>';
 			echo '<br/>';
-		
-			$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
-			if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){ // To make sure score not negative and user doesn't go negative
+			
+			// Make sure score not negative and user doesn't go negative
+			if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){
 				write($LoserScoreFilename, $LoserTotalPoints);
 				echo '<font color="green"><strong>Loser score updated!</font></strong>';
 				echo '<br/>';

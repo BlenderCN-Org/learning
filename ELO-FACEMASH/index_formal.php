@@ -102,18 +102,6 @@
 		}; 
 
 		echo '<br/><strong>Last Round:</strong><br/>';
-		if($Using_FIDE != 1){
-			echo 'Points won by winner: ' . $points_won_by_winner;
-		}else{
-			echo 'Points won by winner: USING FIDE';
-		};
-		echo '<br/>';
-		if($Using_FIDE != 1){
-			echo 'Points lost by loser: ' . $points_lost_by_loser;
-		}else{
-			echo 'Points lost by loser: USING FIDE';
-		};
-		echo '<br/>';
 		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $winner . '.txt') . ')';
 		echo ' (Old Score: ' . $Winner_Old_Score . ')';
 		echo '<br/>';

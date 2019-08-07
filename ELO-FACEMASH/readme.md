@@ -15,7 +15,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <strong>Description of Files:</strong><br />
 • ELO.php - a standalone, browser-based, file which explores the algorithm in detail.  It would be redundant to explain more here.<br />
-• index.php - The first page of my ELO example, which would later become the first main page of the project.  This page recreates (or at least attempts to) Facemash, the precursor to Facebook, which is simply a program which presents the user with two images, which the user then rates, and the program scores using the ELO algorithm, and repeats.  This implementation only used about half of the ELO implementation FIDE uses to calculate rankings.
+• index.php - The first page of my ELO example, which would later become the first main page of the project.  This page recreates (or at least attempts to) Facemash, the precursor to Facebook, which is simply a program which presents the user with two images, of whom the user selects the winner, and the program scores using the ELO algorithm, and repeats.  This implementation only uses about half of the ELO implementation FIDE uses to calculate rankings.
+• index_formal.php - This is the full version of the ELO formula (the one found on Wikipedia), and mimics the same version of ELO that FIDE uses for chess rankings.<br/>
 
 <hr>
 

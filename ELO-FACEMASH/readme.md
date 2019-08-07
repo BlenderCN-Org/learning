@@ -33,7 +33,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.<br />
 
 <strong>Other Versions (of index.php):</strong><br />
-• <strike>Possible version that uses FIDE's implementation of ELO</strike><strong>(DONE)</strong>.<br />
+• <strike>Possible version that uses FIDE's implementation of ELO</strike><strong> (DONE)</strong>.<br />
 • Possible NodeJS version, to see how this would work differently.<br />
 • Doppleganger version, and thinking about how to implement that in current version.<br/>
 <br />

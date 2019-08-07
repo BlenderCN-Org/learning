@@ -24,7 +24,9 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 • The ELO formula from Wikipedia doesn't seem to play nicely with negative numbers, and I didn't know why at first, but it's not because of the ELO algorithm, but the separate scoring formula used along with it (every game, the loser takes all of the winners points, plus 400, but if it goes negative, this obviously becomes a problem.  I really wonder how other software implementations deal with this).<br />
 • ELO itself doesn't necessarily determine the number of points lost or gained (as far as I can tell), and just serves as a predictor of who will win.  However, the predicted ELO score may be part of the score distribution equation (and probably will be, to make sure the underdog gets more points than a player who is not, upon winning).<br />
-• Even simple algorithms can sometimes be confusing and hard to implement programmatically and practically.<br/><br/>
+• Even simple algorithms can sometimes be confusing and hard to implement programmatically and practically.
+
+<hr>
 
 <strong>What I'm doing next:</strong><br />
 <strong>In this version:</strong><br />

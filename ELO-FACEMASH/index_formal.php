@@ -115,8 +115,10 @@
 		};
 		echo '<br/>';
 		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $winner . '.txt') . ')';
+		echo ' (Old Score: ' . $Winner_Old_Score . ')';
 		echo '<br/>';
 		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
+		echo ' (Old Score: ' . $Loser_Old_Score . ')';
 		echo '<br/>-----------------------------------------<br/>';
 	}; // --------------------------------- End $_POST
 
@@ -147,8 +149,10 @@
 		};
 		$Player2 = RAND(1,$NUM_Files_in_DIR);
 	};
-		
+	
 	if($DEBUG === 1){
+		echo '-----------------------------------------<br/>';
+		echo 'Players Chosen!<br/>';
 		echo 'Player 1: ' . $Player1 . '<br/>';
 		echo 'Player 2: ' . $Player2 . '<br/>';
 	};

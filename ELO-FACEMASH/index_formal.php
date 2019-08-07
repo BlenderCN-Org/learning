@@ -17,7 +17,7 @@
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
-	$k = 32; // ELO formula K value
+	$k = 32; // ELO K value
 
 	if(isset($_POST['Display']) and $_POST['Display'] = 1){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
@@ -66,7 +66,7 @@
 		//FIDE's Implementation of score distribution:
 		$Using_FIDE = 1;
 		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
-		$Loser_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
+		$Loser_Previous_ELO_Expected_Score = ELO($Loser_Old_Score, $Winner_Old_Score);
 		
 		$WinnerTotalPoints = $Winner_Old_Score + $k * (1 - $Winner_Previous_ELO_Expected_Score); 
 		$LoserTotalPoints = $Loser_Old_Score + $k * (0 - $Loser_Previous_ELO_Expected_Score);

@@ -1,5 +1,5 @@
 <strong>Questions People May Have:</strong><br />
-• <strong>Is this project done/working?</strong> Kind of (technically yes), but it's a little buggy and rough.  It does work, however.  All files must be created manually first since no checking is programmed in, etc.  If you want to run it, just clone ths whole folder/repo.<br/>
+• <strong>Is this project done/working?</strong> Kind of (technically yes), but it's a little buggy and rough.  It does work, however.  If you want to run it, just clone/download this whole folder/repo, since some files had to be created manually at first.<br/>
 
 <strong>Why I made this:</strong><br />
 I did this just to see how algorithms and formulas are used.  I feel like I've learned a lot from this project.

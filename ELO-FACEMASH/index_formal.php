@@ -17,10 +17,10 @@
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
+	$k = 32; // ELO formula K value
 
-	if(isset($_POST['Display']) and $_POST['Display'] = 1){
+	if(isset($_POST['Display']) and $_POST['Display'] = 1){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
-		
 		echo '</div>';
 	};
 
@@ -45,27 +45,27 @@
 		$LoserScoreFilename = $Score_DIR . $Previous_Loser . '.txt';
 		$Loser_Old_Score = read($LoserScoreFilename);
 		
-		$Score_Difference = 0; // This is where things may differ from FaceMash's original formula (no need to find score difference)
-		if($Loser_Old_Score > $Winner_Old_Score){
-			$Score_Difference = $Loser_Old_Score - $Winner_Old_Score;
-		};
+		// $Score_Difference = 0; // This is where things may differ from FaceMash's original formula (no need to find score difference)
+		// if($Loser_Old_Score > $Winner_Old_Score){
+			// $Score_Difference = $Loser_Old_Score - $Winner_Old_Score;
+		// };
 		
-		if($Winner_Old_Score > $Loser_Old_Score){
-			$Score_Difference = $Winner_Old_Score - $Loser_Old_Score;
-		};
+		// if($Winner_Old_Score > $Loser_Old_Score){
+			// $Score_Difference = $Winner_Old_Score - $Loser_Old_Score;
+		// };
 		
 		//Calculate New ELO ratings
-		$points_won_by_winner = ($Score_Difference / 3) + 6; 
-		$points_lost_by_loser = ($Score_Difference / 3) - 6;
+		// $points_won_by_winner = ($Score_Difference / 3) + 6; 
+		// $points_lost_by_loser = ($Score_Difference / 3) - 6;
 		
 		//Update scores for both players
 		$WinnerTotalPoints = $Winner_Old_Score + $points_won_by_winner;
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
-		echo '<font color="green"><strong>Winner score updated!</font></strong>';
-		echo '<br/>';
+			echo '<font color="green"><strong>Winner score updated!</font></strong>';
+			echo '<br/>';
 		
-		$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
-		if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){ // To make sure score not negative and user doesn't go negative
+			$LoserTotalPoints = $Loser_Old_Score - $points_lost_by_loser;
+			if($Loser_Old_Score > $points_lost_by_loser and $points_lost_by_loser > 0){ // To make sure score not negative and user doesn't go negative
 				write($LoserScoreFilename, $LoserTotalPoints);
 				echo '<font color="green"><strong>Loser score updated!</font></strong>';
 				echo '<br/>';
@@ -74,7 +74,7 @@
 				echo '<br/>';
 			};
 		}; 
-// --------------------------------- End $_POST
+
 	
 		echo '<br/><strong>Last Round:</strong><br/>';
 		echo 'Points won by winner: ' . $points_won_by_winner;
@@ -89,7 +89,8 @@
 		echo '<br/>';
 		echo 'Loser Score: ' . read($Score_DIR . $Previous_Loser . '.txt');
 		echo '<br/>-----------------------------------------<br/>';
-	};
+	}; // --------------------------------- End $_POST
+
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);

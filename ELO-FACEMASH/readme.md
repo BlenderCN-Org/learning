@@ -21,7 +21,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I've learned about the ELO formula:</strong><br />
-• The ELO formula from Wikipedia doesn't seem to play nicely with negative numbers, but I'm still figuring this out. My implementation didn't seem to work well with negatives, but the FIDE version might.<br />
+• The ELO formula from Wikipedia, when fully implemented, is way better than any variation of my own.  It's like magic.
+• The ELO formula doesn't seem to play nicely with negative numbers, but I'm still figuring this out. My implementation didn't seem to work well with negatives, but the FIDE version might.<br />
 • ELO itself doesn't necessarily determine the number of points lost or gained (as far as I can tell), and just serves as a predictor of who will win.  However, the predicted ELO score may be part of the score distribution equation (and probably will be, to make sure the underdog gets more points than a player who is not, upon winning).<br />
 • Even simple algorithms can sometimes be confusing and hard to implement programmatically and practically.
 

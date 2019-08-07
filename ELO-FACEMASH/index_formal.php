@@ -149,10 +149,8 @@
 	};
 		
 	if($DEBUG === 1){
-		echo 'Player 1: ' . $Player1;
-		echo '<br/>';
-		echo 'Player 2: ' . $Player2;
-		echo '<br/>';
+		echo 'Player 1: ' . $Player1 . '<br/>';
+		echo 'Player 2: ' . $Player2 . '<br/>';
 	};
 	
 	$Player1_filename = $Score_DIR . $Player1 . '.txt';

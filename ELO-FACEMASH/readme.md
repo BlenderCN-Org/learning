@@ -30,7 +30,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <strong>What I'm doing next:</strong><br /><br/>
 <strong>In this version:</strong><br />
-• See if negative numbers effects FIDE implementation of ELO.<br/>
+• See if negative numbers affects FIDE implementation of ELO.<br/>
 • Create dropdown box to select, and limit, number of players (?).<br />
 • Finish separate scoreboard.<br />
 • Add more players.<br />

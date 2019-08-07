@@ -22,17 +22,21 @@
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
 	if(isset($_POST['Display']) and $_POST['Display'] == 1){ // Display Scores
-		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
+		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		echo '</div>';
 	};
 
 	if(isset($_POST['Reset']) and $_POST['Reset'] == 1){ // Reset Scores
 		echo '<strong>Reset Pressed!<br/>';
-		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR);
+		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) - 1;
+		echo 'Number of scores to reset = ' . $number_of_scores_to_reset;
+		echo '<br/>';
 		for ($x = 1; $x <= $number_of_scores_to_reset; $x++){
+			if ($x != 0){
 				$current_filename = $Score_DIR . $x . '.txt';
-				echo 'Overwriting ' . $current_filename . '...<br/>';
+				echo 'Overwriting ' . $current_filename . ' ...<br/>';
 				write($current_filename, 0);
+			};
 		};
 		echo 'Done.</strong><br/><br/>';
 	};
@@ -118,13 +122,39 @@
 
 
 	//New Game - Choose Players
-	$NUM_Files_in_DIR = count_files_in_DIR($Score_DIR);
+	$NUM_Files_in_DIR = count_files_in_DIR($Picture_DIR);
 	$Player1 = RAND(1,$NUM_Files_in_DIR);
 	$Player2 = RAND(1,$NUM_Files_in_DIR);
+
+	while($Player1 === 0){
+		if($DEBUG === 1){
+			echo 'Reselect -- Player 1 is 0<br/>';
+		};
+		$Player1 = RAND(1,$NUM_Files_in_DIR);
+	}
+	while($Player2 === 0){
+		if($DEBUG === 1){
+			echo 'Reselect -- Player 2 is 0<br/>';
+		};
+		$Player2 = RAND(1,$NUM_Files_in_DIR);
+	}
+		
 	while ($Player1 === $Player2){
+		if($DEBUG === 1){
+			echo 'Same player chosen! Reselecting...<br/>';
+			echo 'Player 1: ' . $Player1 . '<br/>';
+			echo 'Player 2: ' . $Player2 . '<br/>';
+		};
 		$Player2 = RAND(1,$NUM_Files_in_DIR);
 	};
-
+		
+	if($DEBUG === 1){
+		echo 'Player 1: ' . $Player1;
+		echo '<br/>';
+		echo 'Player 2: ' . $Player2;
+		echo '<br/>';
+	};
+	
 	$Player1_filename = $Score_DIR . $Player1 . '.txt';
 	$Player2_filename = $Score_DIR . $Player2 . '.txt';
 
@@ -134,6 +164,34 @@
 	$Player1_name_filename = $TextName_DIR . $Player1 . '.txt';
 	$Player2_name_filename = $TextName_DIR . $Player2 . '.txt';
 
+	//Check and/or create score file for Player 1
+	if(file_exists($Player1_filename) != TRUE){
+		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ';
+		print_r(file_exists($Player1_filename));
+		echo '<br/>';
+		if(write($Player1_filename, 0)){
+			echo '<font color="green">Player 1 Score File Written!</font><br/>';
+		}else{
+			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
+		}
+	}else{
+		echo 'Player 1 Score File Exists!<br/>';
+	};
+	
+	//Check and/or create score file for Player 2
+	if(file_exists($Player2_filename) != TRUE){
+		echo '<br/><font color="red">Player 2 Score File Not Found.</font>' . ' Output from file_exists(): ';
+		print_r(file_exists($Player2_filename));
+		echo '<br/>';
+		if(write($Player2_filename, 0)){
+			echo '<font color="green">Player 2 Score File Written!</font><br/>';
+		}else{
+			echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>';
+		}
+	}else{
+		echo 'Player 2 Score File Exists!<br/>';
+	};
+	
 	//For debugging output
 	if ($DEBUG === 1){
 		echo 'Main DIR = /' . $Root_DIR;
@@ -158,30 +216,6 @@
 		echo '<br/>';
 	};
 
-	//Check and/or create score file for Player 1
-	if(file_exists($Player1_filename) != TRUE){
-		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ' . file_exists($Player1_filename) . '<br/>';
-		if(write($Player1_filename, 0)){
-			echo '<font color="green">Player 1 Score File Written!</font><br/>';
-		}else{
-			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
-		}
-	}else{
-		echo 'Player 1 Score File Exists!<br/>';
-	};
-	
-	//Check and/or create score file for Player 2
-	if(file_exists($Player2_filename) != TRUE){
-		echo '<br/><font color="red">Player 2 Score File Not Found.</font>' . ' Output from file_exists(): ' . file_exists($Player2_filename) . '<br/>';
-		if(write($Player2_filename, 0)){
-			echo '<font color="green">Player 2 Score File Written!</font><br/>';
-		}else{
-			echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>';
-		}
-	}else{
-		echo 'Player 2 Score File Exists!<br/>';
-	};
-	
 	//Read current scores, and calculate ELO
 	$Player1_currentScore = read($Player1_filename);
 	$Player1_name = read($Player1_name_filename);

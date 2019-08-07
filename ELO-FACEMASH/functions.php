@@ -9,7 +9,7 @@
 		$file = fopen($fn, 'w');
 		fwrite($file, $text);
 		fclose($file);
-		return true;
+		return TRUE;
 	};
 	function write_a($fn, $text){
 		$file = fopen($fn, 'a');

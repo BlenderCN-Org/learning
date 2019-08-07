@@ -8,6 +8,9 @@
 <center>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 	require_once('functions.php');
 	ob_implicit_flush(true);
 
@@ -17,7 +20,6 @@
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
-	$k = 32; // ELO K value
 
 	if(isset($_POST['Display']) and $_POST['Display'] == 1){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
@@ -27,12 +29,10 @@
 	if(isset($_POST['Reset']) and $_POST['Reset'] == 1){ // Reset Scores
 		echo '<strong>Reset Pressed!<br/>';
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR);
-		for ($x = 0; $x <= $number_of_scores_to_reset; $x++){
-			if($x > 0){
+		for ($x = 1; $x <= $number_of_scores_to_reset; $x++){
 				$current_filename = $Score_DIR . $x . '.txt';
 				echo 'Overwriting ' . $current_filename . '...<br/>';
 				write($current_filename, 0);
-			};
 		};
 		echo 'Done.</strong><br/><br/>';
 	};
@@ -68,6 +68,7 @@
 		
 		//FIDE's Implementation of winner/loser score distribution:
 		$Using_FIDE = 1;
+		$k = 32; // ELO K value
 		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
 		$Loser_Previous_ELO_Expected_Score = ELO($Loser_Old_Score, $Winner_Old_Score);
 		
@@ -157,12 +158,28 @@
 		echo '<br/>';
 	};
 
-	//Check and/or create score file for Player 1 (so only .jpg and .txt file containing name need to be created manually)
-	if(read($Player1_filename) === FALSE){
-		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output: ' . read($Player1_filename) . '<br/>';
-		if(write($Player1_filename, 0) != TRUE){
+	//Check and/or create score file for Player 1
+	if(file_exists($Player1_filename) != TRUE){
+		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ' . file_exists($Player1_filename) . '<br/>';
+		if(write($Player1_filename, 0)){
+			echo '<font color="green">Player 1 Score File Written!</font><br/>';
+		}else{
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
-		};
+		}
+	}else{
+		echo 'Player 1 Score File Exists!<br/>';
+	};
+	
+	//Check and/or create score file for Player 2
+	if(file_exists($Player2_filename) != TRUE){
+		echo '<br/><font color="red">Player 2 Score File Not Found.</font>' . ' Output from file_exists(): ' . file_exists($Player2_filename) . '<br/>';
+		if(write($Player2_filename, 0)){
+			echo '<font color="green">Player 2 Score File Written!</font><br/>';
+		}else{
+			echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>';
+		}
+	}else{
+		echo 'Player 2 Score File Exists!<br/>';
 	};
 	
 	//Read current scores, and calculate ELO

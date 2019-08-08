@@ -41,8 +41,17 @@ if(isset($_POST)){
 	};
 
 	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner chosen
-		$winner = $_POST['Winners'][6];
-		$Loser = $_POST['Winners'][8] . $_POST['Winners'][9]; // Bug is here
+		
+		if($_POST['Winners'][8] === ","){
+			echo 'First Player (Winner) is "D" Player<br/>';
+			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
+			$Loser = $_POST['Winners'][9];
+		}else{
+			echo 'Second Player (Winner) is "D" Player<br/>';
+			$winner = $_POST['Winners'][6];
+			$Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
+		};
+		
 		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
 		$Winner_Old_Score = read($WinnerScoreFilename);
 		$LoserScoreFilename = $Score_DIR . $Loser . '.txt';
@@ -81,36 +90,15 @@ if(isset($_POST)){
 			echo '</pre>';
 		};
 		echo '<br/>-----------------------------------------<br/>';
-	}; // --------------------------------- End $_POST
-};
+	};
+};// --------------------------------- End $_POST
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
-	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2;
+	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
 	$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 	$Player2 = $Player1 . 'D'; // P2/Doppleganger will be the first player's number with a 'D' attached (ex: 2D.txt)
 
-	// while($Player1 === 0){
-		// if($DEBUG === 1){
-			// echo 'Reselect -- Player 1 is 0<br/>';
-		// };
-		// $Player1 = RAND(1,$NUM_Files_in_DIR);
-	// }
-	// while($Player2 === 0){
-		// if($DEBUG === 1){
-			// echo 'Reselect -- Player 2 is 0<br/>';
-		// };
-		// $Player2 = RAND(1,$NUM_Files_in_DIR);
-	// }
-		
-	// while ($Player1 === $Player2){
-		// $Player2 = RAND(1,$NUM_Files_in_DIR);
-		// if($DEBUG === 1){
-			// echo 'Same player chosen! Reselecting...<br/>';
-			// echo 'Player 1: ' . $Player1 . '<br/>';
-			// echo 'Player 2: ' . $Player2 . '<br/>';
-		// };
-	// };
 	
 	if($DEBUG === 1){
 		echo '-----------------------------------------<br/>';

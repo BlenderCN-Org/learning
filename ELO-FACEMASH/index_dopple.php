@@ -8,19 +8,20 @@
 <center>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
+	ob_implicit_flush(true);
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 	require_once('functions.php');
-	ob_implicit_flush(true);
-
+	
 	//Configurable Variables
 	$DEBUG = 1;
-	$Root_DIR = 'Actresses';
+	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
+if(isset($_POST)){
 	if(isset($_POST['Display']) and $_POST['Display'] == 1){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		echo '</div>';
@@ -41,8 +42,7 @@
 
 	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner chosen
 		$winner = $_POST['Winners'][6];
-		// $Loser = $_POST['Winners'][8];
-		$Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
+		$Loser = $_POST['Winners'][8] . $_POST['Winners'][9]; // Bug is here
 		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
 		$Winner_Old_Score = read($WinnerScoreFilename);
 		$LoserScoreFilename = $Score_DIR . $Loser . '.txt';
@@ -71,22 +71,23 @@
 
 		echo '<br/><strong>Last Round:</strong><br/>';
 		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $winner . '.txt') . ')';
-		echo ' (Old Score: ' . $Winner_Old_Score . ')';
-		echo '<br/>';
+		echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
 		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
-		echo ' (Old Score: ' . $Loser_Old_Score . ')';
-		echo '<pre>';
-		echo '$_POST DATA: ';
-		print_r($_POST);
-		echo '</pre>';
-		echo '<br/>';
-		echo '-----------------------------------------<br/>';
+		echo ' (Old Score: ' . $Loser_Old_Score . ')<br/>';
+		if($DEBUG === 1){
+			echo '<pre>';
+			echo '$_POST DATA: ';
+			print_r($_POST);
+			echo '</pre>';
+		};
+		echo '<br/>-----------------------------------------<br/>';
 	}; // --------------------------------- End $_POST
-
+};
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
-	$Player1 = RAND(1,$NUM_Files_in_DIR);
+	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2;
+	$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 	$Player2 = $Player1 . 'D'; // P2/Doppleganger will be the first player's number with a 'D' attached (ex: 2D.txt)
 
 	// while($Player1 === 0){

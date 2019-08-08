@@ -127,7 +127,7 @@
 	//Check and/or create score file for Player 1
 	if(file_exists($Player1_filename) != TRUE){
 		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ';
-		print_r(file_exists($Player1_filename));
+		echo file_exists($Player1_filename);
 		echo '<br/>';
 		if(write($Player1_filename, 0)){
 			echo '<font color="green">Player 1 Score File Written!</font><br/>';
@@ -141,7 +141,7 @@
 	//Check and/or create score file for Player 2
 	if(file_exists($Player2_filename) != TRUE){
 		echo '<br/><font color="red">Player 2 Score File Not Found.</font>' . ' Output from file_exists(): ';
-		print_r(file_exists($Player2_filename));
+		echo file_exists($Player2_filename);
 		echo '<br/>';
 		if(write($Player2_filename, 0)){
 			echo '<font color="green">Player 2 Score File Written!</font><br/>';

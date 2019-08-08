@@ -202,8 +202,8 @@ if(isset($_POST)){
 	echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" /><br/>';
 	echo 'Choose below:';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">' . $Player1_name . '</button> ';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">' . $Player2_name . '</button>';
+	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">This is ' . $Player1_name . '</button> ';
+	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">This is ' . $Player1_name . '</button>';
 	echo '<br/>';echo '<br/>';
 	echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
 	echo '<br/>';

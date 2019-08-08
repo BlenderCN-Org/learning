@@ -42,7 +42,7 @@ if(isset($_POST)){
 
 	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner chosen
 		
-		if($_POST['Winners'][8] === ","){
+		if($_POST['Winners'][8] === ","){ // Temporary bug fix for second-player-array-error
 			echo 'First Player (Winner) is "D" Player<br/>';
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];

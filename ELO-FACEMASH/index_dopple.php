@@ -16,7 +16,7 @@
 
 	//Configurable Variables
 	$DEBUG = 1;
-	$Root_DIR = 'Actresses'; // Main/Root Directory (all other directories will go here)
+	$Root_DIR = 'Actresses';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
@@ -31,19 +31,18 @@
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) - 1;
 		echo 'Number of scores to reset = ' . $number_of_scores_to_reset;
 		echo '<br/>';
-		for ($x = 1; $x <= $number_of_scores_to_reset; $x++){
-			if ($x != 0){
-				$current_filename = $Score_DIR . $x . '.txt';
-				echo 'Overwriting ' . $current_filename . ' ...<br/>';
-				write($current_filename, 0);
-			};
+		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
+			$current_filename = $Score_DIR . $x . '.txt';
+			echo 'Overwriting ' . $current_filename . ' ...<br/>';
+			write($current_filename, 0);
 		};
 		echo 'Done.</strong><br/><br/>';
 	};
 
 	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner chosen
 		$winner = $_POST['Winners'][6];
-		$Loser = $_POST['Winners'][8];
+		// $Loser = $_POST['Winners'][8];
+		$Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
 		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
 		$Winner_Old_Score = read($WinnerScoreFilename);
 		$LoserScoreFilename = $Score_DIR . $Loser . '.txt';
@@ -62,8 +61,7 @@
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
 			echo '<font color="green"><strong>Winner score updated!' . ' (End Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
 			
-			
-			if($LoserTotalPoints > 0 AND $Using_FIDE === 1){ // Make loser not go negative, if using FIDE version
+			if($LoserTotalPoints > 0 AND $Using_FIDE === 1){ // Make loser not go negative, in FIDE version
 				write($LoserScoreFilename, $LoserTotalPoints);
 				echo '<font color="green"><strong>Loser score updated!' . ' (End Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
 			}else{
@@ -77,7 +75,12 @@
 		echo '<br/>';
 		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
 		echo ' (Old Score: ' . $Loser_Old_Score . ')';
-		echo '<br/>-----------------------------------------<br/>';
+		echo '<pre>';
+		echo '$_POST DATA: ';
+		print_r($_POST);
+		echo '</pre>';
+		echo '<br/>';
+		echo '-----------------------------------------<br/>';
 	}; // --------------------------------- End $_POST
 
 

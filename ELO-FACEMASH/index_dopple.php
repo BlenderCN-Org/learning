@@ -51,7 +51,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	if(isset($_POST['Winners'])){ // Winner chosen
 		
-		if($_POST['Winners'][8] === ","){ // Temporary bug fix for "D Player" array-error
+		if($_POST['Winners'][8] === ","){ // Temporary bug fix for "D Player" array-error (needs update again when player #s are in triple digits)
 			echo 'First Player (Winner) is "D" Player<br/>';
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];

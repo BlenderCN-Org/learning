@@ -21,7 +21,7 @@
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
-if(isset($_POST)){
+if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['Display']) and $_POST['Display'] == 1){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		echo '</div>';
@@ -34,15 +34,24 @@ if(isset($_POST)){
 		echo '<br/>';
 		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
 			$current_filename = $Score_DIR . $x . '.txt';
-			echo 'Overwriting ' . $current_filename . ' ...<br/>';
-			write($current_filename, 0);
+			$current_D_filename = $Score_DIR . $x . 'D.txt';
+			
+			if(file_exists($current_filename)){
+				echo 'Overwriting ' . $current_filename . ' ...<br/>';
+				write($current_filename, 1500);
+			};
+			if(file_exists($current_D_filename)){
+				echo 'Overwriting ' . $current_D_filename . ' ...<br/>';
+				write($current_D_filename, 1500);
+			};
+			
 		};
 		echo 'Done.</strong><br/><br/>';
 	};
 
-	if(isset($_POST['Winners']) and $_SERVER['REQUEST_METHOD'] === "POST"){ // Winner chosen
+	if(isset($_POST['Winners'])){ // Winner chosen
 		
-		if($_POST['Winners'][8] === ","){ // Temporary bug fix for second-player-array-error
+		if($_POST['Winners'][8] === ","){ // Temporary bug fix for D-player-array-error
 			echo 'First Player (Winner) is "D" Player<br/>';
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];
@@ -70,7 +79,7 @@ if(isset($_POST)){
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
 			echo '<font color="green"><strong>Winner score updated!' . ' (End Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
 			
-			if($LoserTotalPoints > 0 AND $Using_FIDE === 1){ // Make loser not go negative, in FIDE version
+			if($LoserTotalPoints > 0){ // Make loser not go negative - Not needed anymore
 				write($LoserScoreFilename, $LoserTotalPoints);
 				echo '<font color="green"><strong>Loser score updated!' . ' (End Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
 			}else{
@@ -96,9 +105,15 @@ if(isset($_POST)){
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
-	$Player1 = RAND(1,$NUM_Sets_of_Dopples);
-	$Player2 = $Player1 . 'D'; // P2/Doppleganger will be the first player's number with a 'D' attached (ex: 2D.txt)
 
+	//Randomize Set
+	if(RAND(1,2) === 2){
+		$Player1 = RAND(1,$NUM_Sets_of_Dopples);
+		$Player2 = $Player1 . 'D';
+	}else{
+		$Player2 = RAND(1,$NUM_Sets_of_Dopples);
+		$Player1 = $Player2 . 'D';
+	}
 	
 	if($DEBUG === 1){
 		echo '-----------------------------------------<br/>';
@@ -121,7 +136,7 @@ if(isset($_POST)){
 		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ';
 		echo file_exists($Player1_filename);
 		echo '<br/>';
-		if(write($Player1_filename, 0)){
+		if(write($Player1_filename, 1500)){
 			echo '<font color="green">Player 1 Score File Written!</font><br/>';
 		}else{
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
@@ -135,7 +150,7 @@ if(isset($_POST)){
 		echo '<br/><font color="red">Player 2 Score File Not Found.</font>' . ' Output from file_exists(): ';
 		echo file_exists($Player2_filename);
 		echo '<br/>';
-		if(write($Player2_filename, 0)){
+		if(write($Player2_filename, 1500)){
 			echo '<font color="green">Player 2 Score File Written!</font><br/>';
 		}else{
 			echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>';
@@ -203,7 +218,7 @@ if(isset($_POST)){
 	echo 'Choose below:';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
 	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">This is ' . $Player1_name . '</button> ';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">This is ' . $Player1_name . '</button>';
+	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">No, this is ' . $Player1_name . '</button>';
 	echo '<br/>';echo '<br/>';
 	echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
 	echo '<br/>';

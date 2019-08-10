@@ -35,7 +35,7 @@
 			if ($x != 0){
 				$current_filename = $Score_DIR . $x . '.txt';
 				echo 'Overwriting ' . $current_filename . ' ...<br/>';
-				write($current_filename, 0);
+				write($current_filename, 1500);
 			};
 		};
 		echo 'Done.</strong><br/><br/>';
@@ -159,7 +159,7 @@
 		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ';
 		print_r(file_exists($Player1_filename));
 		echo '<br/>';
-		if(write($Player1_filename, 0)){
+		if(write($Player1_filename, 1500)){
 			echo '<font color="green">Player 1 Score File Written!</font><br/>';
 		}else{
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';

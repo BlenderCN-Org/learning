@@ -106,7 +106,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
 	
 	//Randomize Player Pictures
-	$Designated = 1; // 1 for Non-D Player, 0 or 2 for D-Player
+	$Designated = 1; // 1 for Numbered Player, 0 or 2 for D-Player
 	if(RAND(1,2) === 1){
 		$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 		$Player2 = $Player1 . 'D';
@@ -243,8 +243,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo $Player1_name . '</button> ';
 	};
 	echo '<br/><br/>';
+	echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';
+	echo '<br/><br/>';
 	echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
-	echo '<br/>';
+	echo '<br/><br/>';
 	echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
 	echo '</form>';
 ?>

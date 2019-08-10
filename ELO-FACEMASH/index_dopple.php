@@ -51,12 +51,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	if(isset($_POST['Winners'])){ // Winner chosen
 		
-		if($_POST['Winners'][8] === ","){ // Temporary bug fix for "D Player" array-error (needs update again when player #s are in triple digits)
-			echo 'First Player (Winner) is "D" Player<br/>';
+		if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits
+			echo 'First element is "D" Player<br/>';
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];
 		}else{
-			echo 'Second Player (Winner) is "D" Player<br/>';
+			echo 'Second element is "D" Player<br/>';
 			$winner = $_POST['Winners'][6];
 			$Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
 		};
@@ -66,7 +66,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		$LoserScoreFilename = $Score_DIR . $Loser . '.txt';
 		$Loser_Old_Score = read($LoserScoreFilename);
 		
-		//FIDE's Implementation of winner/loser score distribution:
+		//FIDE's Implementation of score distribution:
 		$k = 32; // ELO K value
 		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
 		$Loser_Previous_ELO_Expected_Score = ELO($Loser_Old_Score, $Winner_Old_Score);
@@ -87,9 +87,9 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		}; 
 
 		echo '<br/><strong>Last Round:</strong><br/>';
-		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $winner . '.txt') . ')';
+		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $winner . '.txt') . ')';
 		echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
-		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . '(Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
+		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
 		echo ' (Old Score: ' . $Loser_Old_Score . ')<br/>';
 		if($DEBUG === 1){
 			echo '<pre>';
@@ -212,10 +212,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO) . '%)' . '</strong></font>';
 	};
 	if($Player1_ELO > $Player2_ELO){
-			$Prediction = 'Based on previous user input, <font color="red"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';
 	};
 	if($Player1_ELO < $Player2_ELO){
-			$Prediction = 'Based on previous user input, <font color="red"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
 	};
 
 	echo 'Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' </strong>-<font color="red"> ' . (100 * $Player1_ELO) . '%</font>)';
@@ -242,7 +242,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	}else{
 		echo $Player1_name . '</button> ';
 	};
-	echo '<br/>';echo '<br/>';
+	echo '<br/><br/>';
 	echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
 	echo '<br/>';
 	echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';

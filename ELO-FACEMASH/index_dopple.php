@@ -22,16 +22,16 @@
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
-	if(isset($_POST['Display']) and $_POST['Display'] == 1){ // Display Scores
+	if(isset($_POST['Display']) AND $_POST['Display'] === "1"){ // Display Scores
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		echo '</div>';
 	};
 
-	if(isset($_POST['Reset']) and $_POST['Reset'] == 1){ // Reset Scores
+	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset Scores
 		echo '<strong>Reset Pressed!<br/>';
-		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) - 1;
-		echo 'Number of scores to reset = ' . $number_of_scores_to_reset;
-		echo '<br/>';
+		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
+		echo 'Number of scores to reset = ' . $number_of_scores_to_reset . '<br/>';
+		
 		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
 			$current_filename = $Score_DIR . $x . '.txt';
 			$current_D_filename = $Score_DIR . $x . 'D.txt';
@@ -51,7 +51,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	if(isset($_POST['Winners'])){ // Winner chosen
 		
-		if($_POST['Winners'][8] === ","){ // Temporary bug fix for D-player-array-error
+		if($_POST['Winners'][8] === ","){ // Temporary bug fix for "D Player" array-error
 			echo 'First Player (Winner) is "D" Player<br/>';
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];
@@ -67,7 +67,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		$Loser_Old_Score = read($LoserScoreFilename);
 		
 		//FIDE's Implementation of winner/loser score distribution:
-		$Using_FIDE = 1;
 		$k = 32; // ELO K value
 		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
 		$Loser_Previous_ELO_Expected_Score = ELO($Loser_Old_Score, $Winner_Old_Score);
@@ -105,15 +104,28 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
-
-	//Randomize Set
-	if(RAND(1,2) === 2){
+	
+	//Randomize Player Pictures
+	$Designated = 1; // 1 for Non-D Player, 0 or 2 for D-Player
+	if(RAND(1,2) === 1){
 		$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 		$Player2 = $Player1 . 'D';
+		
+		if($Designated === 1){ // Must have designated player or people won't know who they're voting for
+			$Designated_Player = $Player1; // Non-D Player will be designated player every time
+		}else{
+			$Designated_Player = $Player2; // D Player will be designated every time
+		}
 	}else{
 		$Player2 = RAND(1,$NUM_Sets_of_Dopples);
 		$Player1 = $Player2 . 'D';
-	}
+		
+		if($Designated === 1){
+			$Designated_Player = $Player2; // Non-D Player will be designated player every time
+		}else{
+			$Designated_Player = $Player1; // D Player will be designated every time
+		}
+	};
 	
 	if($DEBUG === 1){
 		echo '-----------------------------------------<br/>';
@@ -130,6 +142,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	$Player1_name_filename = $TextName_DIR . $Player1 . '.txt';
 	$Player2_name_filename = $TextName_DIR . $Player2 . '.txt';
+	
+	if(isset($Designated_Player)){
+		$Designated_Player_Text = read($TextName_DIR . $Designated_Player . '.txt');
+	};
 
 	//Check and/or create score file for Player 1
 	if(file_exists($Player1_filename) != TRUE){
@@ -163,12 +179,9 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if ($DEBUG === 1){
 		echo 'Main DIR = /' . $Root_DIR;
 		echo '<br/>';
-		echo 'Picture DIR (Subdirectory) = ' . $Picture_DIR;
-		echo '<br/>';
-		echo 'Score DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . count_files_in_DIR($Score_DIR) . ')';
-		echo '<br/>';
-		echo 'Text/Name DIR (Subdirectory) = ' . $TextName_DIR;
-		echo '<br/>';
+		echo '$Score_DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . count_files_in_DIR($Score_DIR) . ')<br/>';
+		echo '$TextName_DIR (Subdirectory) = ' . $TextName_DIR . ' (Files in Dir: ' . count_files_in_DIR($TextName_DIR) . ')<br/>';
+		echo '$Picture_DIR (Subdirectory) = ' . $Picture_DIR . ' (Files in Dir: ' . count_files_in_DIR($Picture_DIR) . ')<br/>';
 		echo 'Player 1 Score File: ' . $Player1_filename;
 		echo '<br/>';
 		echo 'Player 2 Score File: ' . $Player2_filename;
@@ -217,8 +230,18 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" /><br/>';
 	echo 'Choose below:';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">This is ' . $Player1_name . '</button> ';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">No, this is ' . $Player1_name . '</button>';
+	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">This is ';
+	if(isset($Designated_Player_Text)){
+		echo $Designated_Player_Text . '</button> ';
+	}else{
+		echo $Player1_name . '</button> ';
+	};
+	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">No, this is ';
+	if(isset($Designated_Player_Text)){
+		echo $Designated_Player_Text . '</button> ';
+	}else{
+		echo $Player1_name . '</button> ';
+	};
 	echo '<br/>';echo '<br/>';
 	echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
 	echo '<br/>';

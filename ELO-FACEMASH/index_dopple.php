@@ -15,7 +15,7 @@
 	require_once('functions.php');
 	
 	//Configurable Variables
-	$DEBUG = 1;
+	$DEBUG = 0;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -52,11 +52,11 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['Winners'])){ // Winner chosen
 		
 		if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits
-			echo 'First element is "D" Player<br/>';
+			if ($DEBUG){ echo 'First element is "D" Player<br/>'; };
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];
 		}else{
-			echo 'Second element is "D" Player<br/>';
+			if ($DEBUG){ echo 'Second element is "D" Player<br/>'; };
 			$winner = $_POST['Winners'][6];
 			$Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
 		};
@@ -76,30 +76,30 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		
 		//Update scores for both players
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
-			echo '<font color="green"><strong>Winner score updated!' . ' (End Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
+			echo '<font color="green"><strong>Winner score updated! (Old Score: ' . $Winner_Old_Score . ') (New Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
 			
 			if($LoserTotalPoints > 0){ // Make loser not go negative - Not needed anymore
 				write($LoserScoreFilename, $LoserTotalPoints);
-				echo '<font color="green"><strong>Loser score updated!' . ' (End Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
+				echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
 			}else{
-				echo '<font color="red"><strong>Loser score would be negative and was NOT UPDATED!' . ' (End Score: ' . $LoserTotalPoints . ')'. '</font></strong><br/>';
+				echo '<font color="red"><strong>Loser score would be negative and was NOT UPDATED!' . ' (New Score: ' . $LoserTotalPoints . ')'. '</font></strong><br/>';
 			};
 		}; 
 
-		echo '<br/><strong>Last Round:</strong><br/>';
-		echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $winner . '.txt') . ')';
-		echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
-		echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
-		echo ' (Old Score: ' . $Loser_Old_Score . ')<br/>';
 		if($DEBUG === 1){
+			echo '<br/><strong>Last Round:</strong><br/>';
+			echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $winner . '.txt') . ')';
+			echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
+			echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
+			echo ' (Old Score: ' . $Loser_Old_Score . ')<br/>';
 			echo '<pre>';
 			echo '$_POST DATA: ';
 			print_r($_POST);
 			echo '</pre>';
+			echo '<br/>-----------------------------------------<br/>';
 		};
-		echo '<br/>-----------------------------------------<br/>';
 	};
-};// --------------------------------- End $_POST
+};// --------------------------------- End $_POSTs
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
@@ -128,7 +128,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	
 	if($DEBUG === 1){
-		echo '-----------------------------------------<br/>';
 		echo 'Players Chosen!<br/>';
 		echo 'Player 1: ' . $Player1 . '<br/>';
 		echo 'Player 2: ' . $Player2 . '<br/>';
@@ -158,7 +157,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
 		}
 	}else{
-		echo 'Player 1 Score File Exists!<br/>';
+		if ($DEBUG){ echo 'Player 1 Score File Exists!<br/>'; };
 	};
 	
 	//Check and/or create score file for Player 2
@@ -172,7 +171,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>';
 		}
 	}else{
-		echo 'Player 2 Score File Exists!<br/>';
+		if ($DEBUG){ echo 'Player 2 Score File Exists!<br/>'; };
 	};
 	
 	//For debugging output
@@ -218,9 +217,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
 	};
 
-	echo 'Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' </strong>-<font color="red"> ' . (100 * $Player1_ELO) . '%</font>)';
 	echo '<br/>';
-	echo 'Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' </strong>-<font color="red"> ' . (100 * $Player2_ELO) . '%</font>)';
+	echo 'Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' -<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
+	echo '<br/>';
+	echo 'Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' -<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)';
 	echo '<br/><br/>';
 	echo $Prediction;
 	echo '<br/><br/>';

@@ -193,7 +193,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'Player 1 Text/Name Path: ' . $Player1_name_filename;
 		echo '<br/>';
 		echo 'Player 2 Text/Name Path: ' . $Player2_name_filename;
-		echo '<br/>';
+		echo '<br/>-----------------------------------------<br/>';
 	};
 
 	//Read current scores, and calculate ELO
@@ -212,10 +212,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO) . '%)' . '</strong></font>';
 	};
 	if($Player1_ELO > $Player2_ELO){
-			$Prediction = '<font color="red"><strong>Player 1 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="red"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';
 	};
 	if($Player1_ELO < $Player2_ELO){
-			$Prediction = '<font color="red"><strong>Player 2 will most likely win</font></strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="red"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
 	};
 
 	echo 'Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' </strong>-<font color="red"> ' . (100 * $Player1_ELO) . '%</font>)';

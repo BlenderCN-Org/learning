@@ -33,4 +33,28 @@
 	function ELO($A, $B){ 
 		return (1/(1+pow(10,(($B-$A)/400)))); // https://en.wikipedia.org/wiki/Elo_rating_system
 	};
+	function filter_array($array){
+		$minlength = 0;
+		$maxlength = 100;
+		$fc = '<font color="red">';
+		$efc = '</font>';
+		foreach($array as $key => $value){
+			if(strlen($value) < $minlength){
+				// $a = $fc . 'Length of <b>' . $key . '</b> is <b>' . strlen($value) . '</b>' . $efc;
+				// echo $a;
+				return false;
+			}
+			if(strlen($value) > $maxlength){
+				// echo $a;
+				return false;
+			}
+			if(ctype_alnum($value)){
+				// echo '<font color="green">The field(<b>' . $key . '</b>) is completely letters and/or digits.<br/>' . $efc;
+			}else {
+				// echo $fc . 'The field(<b>' . $key . '</b>) is not completely letters and/or digits.<br/>' . $efc;
+				return false;
+			};
+		};
+	return true;
+	};
 ?>

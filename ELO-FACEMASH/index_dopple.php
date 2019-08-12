@@ -157,7 +157,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 
 	//Check and/or create score file for Player 1
-	if(file_exists($Player1_filename) != TRUE){
+	if(!file_exists($Player1_filename)){
 		if($DEBUG){ echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>'; };
 		
 		if(write($Player1_filename, 1500)){
@@ -170,7 +170,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	
 	//Check and/or create score file for Player 2
-	if(file_exists($Player2_filename) != TRUE){
+	if(!file_exists($Player2_filename)){
 		if($DEBUG){ echo '<br/><font color="red">Player 2 Score File Not Found.</font><br/>'; };
 		
 		if(write($Player2_filename, 1500)){

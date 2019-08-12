@@ -15,7 +15,7 @@
 	require_once('functions.php');
 	
 	//Configurable Variables
-	$DEBUG = 0;
+	$DEBUG = 1;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -48,12 +48,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			};
 			
 		};
-		if($DEBUG){ echo 'Done.<br/><br/>'; };
+		if($DEBUG){ echo 'Scores Reset.<br/>'; };
 	};
 
 	if(isset($_POST['Winners'])){ // Winner chosen
 		
-		if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits
+		if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits (To fully fix, send different values for each Winner's button instead of an array, and separate winners via if statements after/in the $_POST request).
 			if ($DEBUG){ echo 'First element is "D" Player<br/>'; };
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
 			$Loser = $_POST['Winners'][9];
@@ -94,13 +94,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
 			echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
 			echo ' (Old Score: ' . $Loser_Old_Score . ')<br/>';
+			echo '<br/>-----------------------------------------<br/>';
+		};
+	};
+		if($DEBUG){
 			echo '<pre>';
 			echo '$_POST DATA: ';
 			print_r($_POST);
 			echo '</pre>';
-			echo '<br/>-----------------------------------------<br/>';
 		};
-	};
+			
 };// --------------------------------- End $_POSTs
 
 	//New Game - Choose Players

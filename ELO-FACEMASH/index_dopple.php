@@ -19,7 +19,9 @@
 	// - Option/variable to hide 2nd prediction, to give user less information.
 	
 	//Configurable Variables
-	$DEBUG = 0;
+	$DEBUG = FALSE;
+	$Hide2ndPrediction = FALSE;
+	$HideUpdatedScore = FALSE;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -82,13 +84,14 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		
 		//Update scores for both players
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
-			echo '<font color="green"><strong>Winner score updated! (Old Score: ' . $Winner_Old_Score . ') (New Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
+			if(!$HideUpdatedScore){
+				echo '<font color="green"><strong>Winner score updated! (Old Score: ' . $Winner_Old_Score . ') (New Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
+			};
 			
-			if($LoserTotalPoints > 0){ // Make loser not go negative - Not needed anymore
-				write($LoserScoreFilename, $LoserTotalPoints);
-				echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
-			}else{
-				echo '<font color="red"><strong>Loser score would be negative and was NOT UPDATED!' . ' (New Score: ' . $LoserTotalPoints . ')'. '</font></strong><br/>';
+			if(write($LoserScoreFilename, $LoserTotalPoints)){
+				if(!$HideUpdatedScore){
+					echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
+				}
 			};
 		}; 
 
@@ -234,7 +237,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	
 	//Display Prediction
 	echo '<br/><br/>' . $Prediction;
-	if(isset($Prediction_2)){ 
+	if(isset($Prediction_2)  AND $Hide2ndPrediction != TRUE){ 
 		echo '<br/>' . $Prediction_2;
 	};
 	echo '<br/><br/>';

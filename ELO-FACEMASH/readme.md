@@ -29,8 +29,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I'm doing next:</strong><br /><br/>
-<strong>In this version:</strong><br />
-• See if negative numbers affects FIDE implementation of ELO.<br/>
+<strong>In these versions:</strong><br />
+• <strike>See if negative numbers affects FIDE implementation of ELO.</strike> (Solved, see "What I've Learned")<br/>
 • Create dropdown box to select, and limit, number of players (?).<br />
 • Finish separate scoreboard.<br />
 • Add more players.<br />
@@ -38,8 +38,9 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <strong>Other Versions:</strong><br />
 • Mobile version, using front-end framework.<br/>
-• Scalable, database-backed version.<br/>
+• Scalable version.<br/>
+• Database-backed version.<br/>
 • <strike>Possible version that uses FIDE's implementation of ELO</strike><strong> (DONE - 8/7/2019)</strong>.<br />
 • Possible NodeJS version, to see how this would work differently.<br />
-• Doppleganger version, and thinking about how to implement that in current version.<br/>
+• <strike>Doppleganger version, and thinking about how to implement that in current version.</strike> (DONE)<br/>
 <br />

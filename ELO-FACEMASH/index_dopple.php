@@ -3,6 +3,7 @@
 <head>
 	<title>Russell's ELO Experiment</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
 <center>
@@ -34,9 +35,33 @@
 	$BaseScore = 1500;
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
-	if(isset($_POST['Display']) AND $_POST['Display'] === "1"){ // Display Scores
-		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
-		echo '</div>';
+	if(isset($_POST['ToggleScoreBoard']) == "1"){ // Display Scores
+		echo '<div id="Player_Scores" style="border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
+		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
+		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
+			$current_score_filename = $Score_DIR . $x . '.txt';
+			$current_D_score_filename = $Score_DIR . $x . 'D.txt';
+			
+			$current_textname_filename = $TextName_DIR . $x . '.txt';
+			$current_D_textname_filename = $TextName_DIR . $x . 'D.txt';
+			
+			if(file_exists($current_score_filename)){
+				$current_score = read($current_score_filename);
+				if(file_exists($current_textname_filename)){
+					$current_playerName = read($current_textname_filename);
+					echo 'Name: ' . $current_playerName . ' Score = ' . $current_score . '<br/>';
+				};
+			};
+			if(file_exists($current_D_score_filename)){
+				$current_D_score = read($current_D_score_filename);
+				if(file_exists($current_D_textname_filename)){
+					$current_D_playerName = read($current_D_textname_filename);
+					echo 'Name: ' . $current_D_playerName . ' Score = ' . $current_D_score . '<br/>';
+				};
+			};
+		};
+		
+		echo '</div><br/>';
 	};
 
 	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset Scores
@@ -262,7 +287,13 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<br/><br/>';
 	echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';
 	echo '<br/><br/>';
-	echo '<button name="Display" type="submit" value="1">Display All Scores</button>';
+	// echo '<button name="ScoreBoard" type="submit" value="1">Display All Scores</button>';
+	echo '<br/>';
+	echo '<input type="checkbox" name="ToggleScoreBoard" value="1" ';
+	if(isset($_POST['ToggleScoreBoard'])){
+		echo 'checked = checked';
+	};
+	echo '> Toggle Scoreboard (will be shown next round, continuing until unchecked)';
 	echo '<br/><br/>';
 	echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
 	echo '</form>';

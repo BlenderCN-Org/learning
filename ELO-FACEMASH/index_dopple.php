@@ -18,6 +18,8 @@
 	// - Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.
 	// - After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).
 	// - Add thing so prediction isn't displayed until after user chooses, or so there's an option for the user to not see it.
+	// - Finish scoreboard.
+	// - Add more players.
 	
 	//Configurable Variables
 	$DEBUG = FALSE;
@@ -249,13 +251,13 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . '</button> ';
 	}else{
-		echo $Player1_name . '</button> '; // To display if not using randomized version
+		echo $Player1_name . '</button> '; // If not using randomized version
 	};
 	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . '</button> ';
 	}else{
-		echo $Player1_name . '</button> '; // To display if not using randomized version
+		echo $Player1_name . '</button> '; // If not using randomized version
 	};
 	echo '<br/><br/>';
 	echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';

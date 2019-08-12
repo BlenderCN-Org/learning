@@ -14,10 +14,6 @@
 	error_reporting(E_ALL);
 	require_once('functions.php');
 	
-	//To Do:
-	// - Randomize Predictions, because they actually give away who is the winner.
-	// - Option/variable to hide 2nd prediction, to give user less information.
-	
 	//Configurable Variables
 	$DEBUG = FALSE;
 	$Hide2ndPrediction = FALSE;
@@ -56,7 +52,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			};
 			
 		};
-		if($DEBUG){ echo 'Scores Reset.<br/>'; };
+		echo 'Scores Reset.<br/>';
 	};
 
 	if(isset($_POST['Winners'])){ // Winner chosen

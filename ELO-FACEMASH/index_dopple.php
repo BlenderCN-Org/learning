@@ -227,6 +227,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 				$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 1</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
 		};
 	};
+	
 	//Display Score/Info for both players for debug
 	if($DEBUG){
 		echo '<br/>Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
@@ -235,7 +236,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	
 	//Display Prediction
 	echo '<br/><br/>' . $Prediction;
-	if(isset($Prediction_2)  AND $Hide2ndPrediction != TRUE){ 
+	if(isset($Prediction_2)  AND !$Hide2ndPrediction){ 
 		echo '<br/>' . $Prediction_2;
 	};
 	echo '<br/><br/>';

@@ -84,12 +84,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		//Update scores for both players
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
 			if(!$HideUpdatedScore){
-				echo '<font color="green"><strong>Winner score updated! (Old Score: ' . $Winner_Old_Score . ') (New Score: ' . $WinnerTotalPoints . ')' . '</font></strong><br/>';
+				echo '<font color="green"><strong>Winner score updated! (Old Score: ' . $Winner_Old_Score . ') (New Score: ' . $WinnerTotalPoints . ') (Change: ' . ($WinnerTotalPoints - $Winner_Old_Score) . ')</font></strong><br/>';
 			};
 			
 			if(write($LoserScoreFilename, $LoserTotalPoints)){
 				if(!$HideUpdatedScore){
-					echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ')' . '</font></strong><br/>';
+					echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ') (Change: ' . ($LoserTotalPoints - $Loser_Old_Score) . ')</font></strong><br/>';
 				}
 			};
 		}; 

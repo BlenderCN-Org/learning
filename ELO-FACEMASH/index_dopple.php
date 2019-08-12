@@ -24,6 +24,7 @@
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 	$Picture_Width_Percentage = '20%';
 	$Picture_Height_Percentage = '20%';
+	$BaseScore = 1500;
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['Display']) AND $_POST['Display'] === "1"){ // Display Scores
@@ -44,11 +45,11 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			
 			if(file_exists($current_filename)){
 				if($DEBUG){ echo 'Overwriting ' . $current_filename . ' ...<br/>'; };
-				write($current_filename, 1500);
+				write($current_filename, $BaseScore);
 			};
 			if(file_exists($current_D_filename)){
 				if($DEBUG){ echo 'Overwriting ' . $current_D_filename . ' ...<br/>'; };
-				write($current_D_filename, 1500);
+				write($current_D_filename, $BaseScore);
 			};
 			
 		};
@@ -160,7 +161,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(!file_exists($Player1_filename)){
 		if($DEBUG){ echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>'; };
 		
-		if(write($Player1_filename, 1500)){
+		if(write($Player1_filename, $BaseScore)){
 			if($DEBUG){ echo '<font color="green">Player 1 Score File Written!</font><br/>'; };
 		}else{
 			if($DEBUG){ echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>'; };
@@ -173,7 +174,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(!file_exists($Player2_filename)){
 		if($DEBUG){ echo '<br/><font color="red">Player 2 Score File Not Found.</font><br/>'; };
 		
-		if(write($Player2_filename, 1500)){
+		if(write($Player2_filename, $BaseScore)){
 			if($DEBUG){ echo '<font color="green">Player 2 Score File Written!</font><br/>'; };
 		}else{
 			if($DEBUG){ echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>'; };

@@ -14,6 +14,9 @@
 	error_reporting(E_ALL);
 	require_once('functions.php');
 	
+	// To Do:
+	// - Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.
+	
 	//Configurable Variables
 	$DEBUG = FALSE;
 	$Hide2ndPrediction = FALSE;

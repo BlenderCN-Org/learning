@@ -15,7 +15,8 @@
 	require_once('functions.php');
 	
 	//To Do:
-	// - Randomize Predictions, because they actually give away who is the winner
+	// - Randomize Predictions, because they actually give away who is the winner.
+	// - Option/variable to hide 2nd prediction, to give user less information.
 	
 	//Configurable Variables
 	$DEBUG = 0;

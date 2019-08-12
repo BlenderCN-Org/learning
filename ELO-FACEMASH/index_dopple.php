@@ -17,6 +17,7 @@
 	// To Do:
 	// - Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.
 	// - After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).
+	// - Add thing so prediction isn't displayed until after user chooses.
 	
 	//Configurable Variables
 	$DEBUG = FALSE;
@@ -121,25 +122,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
 	
 	//Randomize Player Pictures
-	$Designated = 1; // Choose which of the two players (D or Numbered/Non-D) is designated player: 1 for Non-D/Numbered Player, 0 or 2 for D-Player
 	if(RAND(1,2) === 1){
 		$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 		$Player2 = $Player1 . 'D';
 		
-		if($Designated === 1){ // Must have designated player or people won't know who they're voting for
-			$Designated_Player = $Player1; // Non-D Player will be designated player
-		}else{
-			$Designated_Player = $Player2; // D Player will be designated
-		}
+		$Designated_Player = $Player1; // Numbered Player will be designated player (Must have, or scores are meaningless if not tied to certain players)
 	}else{
 		$Player2 = RAND(1,$NUM_Sets_of_Dopples);
 		$Player1 = $Player2 . 'D'; // Switch players
 		
-		if($Designated === 1){
-			$Designated_Player = $Player2; // Non-D Player will be designated player
-		}else{
-			$Designated_Player = $Player1; // D Player will be designated player
-		}
+		$Designated_Player = $Player2; // Numbered Player will be designated player
 	};
 	
 	if($DEBUG){
@@ -220,16 +212,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	//Make Prediction
 	$ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
-	if($Player1_ELO === $Player2_ELO){
-		$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO, 3) . '%)' . '</strong></font>';
+	if($Player1_ELO > $Player2_ELO){
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 2</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
 	}else{
-		if($Player1_ELO > $Player2_ELO){
-				$Prediction = 'Based on previous user input, <font color="green"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
-				$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 2</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
-		};
+		if($Player1_ELO === $Player2_ELO){
+			$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO, 3) . '%)' . '</strong></font>';
+		};	
 		if($Player1_ELO < $Player2_ELO){
-				$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
-				$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 1</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 1</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
 		};
 	};
 	

@@ -14,6 +14,9 @@
 	error_reporting(E_ALL);
 	require_once('functions.php');
 	
+	//To Do:
+	// - Randomize Predictions, because they actually give away who is the winner
+	
 	//Configurable Variables
 	$DEBUG = 0;
 	$Root_DIR = 'Dopples';
@@ -224,12 +227,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	//Display Score/Info for both players for debug
 	if($DEBUG){
-	echo '<br/>Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
-	echo '<br/>Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)';
+		echo '<br/>Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
+		echo '<br/>Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)';
 	};
 	
 	//Display Prediction
-	echo '<br/><br/>' . $Prediction . '<br/>' . $Prediction_2 . '<br/><br/>';
+	echo '<br/><br/>' . $Prediction;
+	if(isset($Prediction_2)){ 
+		echo '<br/>' . $Prediction_2;
+	};
+	echo '<br/><br/>';
 
 	//Display Player Pictures
 	$Picture_Width_Percentage = '20%';

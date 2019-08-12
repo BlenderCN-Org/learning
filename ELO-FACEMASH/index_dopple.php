@@ -15,7 +15,7 @@
 	require_once('functions.php');
 	
 	//Configurable Variables
-	$DEBUG = 1;
+	$DEBUG = 0;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';

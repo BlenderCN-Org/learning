@@ -26,6 +26,8 @@
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
+	$Picture_Width_Percentage = '20%';
+	$Picture_Height_Percentage = '20%';
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['Display']) AND $_POST['Display'] === "1"){ // Display Scores
@@ -243,8 +245,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<br/><br/>';
 
 	//Display Player Pictures
-	$Picture_Width_Percentage = '20%';
-	$Picture_Height_Percentage = '20%';
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	

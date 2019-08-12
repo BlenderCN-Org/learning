@@ -17,7 +17,7 @@
 	// To Do:
 	// - Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.
 	// - After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).
-	// - Add thing so prediction isn't displayed until after user chooses.
+	// - Add thing so prediction isn't displayed until after user chooses, or so there's an option for the user to not see it.
 	
 	//Configurable Variables
 	$DEBUG = FALSE;

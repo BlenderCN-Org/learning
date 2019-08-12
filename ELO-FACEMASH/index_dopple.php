@@ -285,10 +285,9 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
 	echo '<br/><br/>';
-	echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';
-	echo '<br/><br/>';
+	// echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';
+	// echo '<br/><br/>';
 	// echo '<button name="ScoreBoard" type="submit" value="1">Display All Scores</button>';
-	echo '<br/>';
 	echo '<input type="checkbox" name="ToggleScoreBoard" value="1" ';
 	if(isset($_POST['ToggleScoreBoard'])){
 		echo 'checked = checked';

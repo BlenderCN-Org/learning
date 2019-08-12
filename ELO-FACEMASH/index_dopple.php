@@ -28,25 +28,27 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 
 	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset Scores
-		echo '<strong>Reset Pressed!<br/>';
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
-		echo 'Number of scores to reset = ' . $number_of_scores_to_reset . '<br/>';
+		if($DEBUG){ 
+			echo 'Reset Pressed!<br/>';
+			echo 'Number of scores to reset = ' . $number_of_scores_to_reset . '<br/>';
+		};
 		
 		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
 			$current_filename = $Score_DIR . $x . '.txt';
 			$current_D_filename = $Score_DIR . $x . 'D.txt';
 			
 			if(file_exists($current_filename)){
-				echo 'Overwriting ' . $current_filename . ' ...<br/>';
+				if($DEBUG){ echo 'Overwriting ' . $current_filename . ' ...<br/>'; };
 				write($current_filename, 1500);
 			};
 			if(file_exists($current_D_filename)){
-				echo 'Overwriting ' . $current_D_filename . ' ...<br/>';
+				if($DEBUG){ echo 'Overwriting ' . $current_D_filename . ' ...<br/>'; };
 				write($current_D_filename, 1500);
 			};
 			
 		};
-		echo 'Done.</strong><br/><br/>';
+		if($DEBUG){ echo 'Done.<br/><br/>'; };
 	};
 
 	if(isset($_POST['Winners'])){ // Winner chosen
@@ -86,7 +88,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			};
 		}; 
 
-		if($DEBUG === 1){
+		if($DEBUG){
 			echo '<br/><strong>Last Round:</strong><br/>';
 			echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $winner . '.txt') . ')';
 			echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
@@ -106,28 +108,28 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
 	
 	//Randomize Player Pictures
-	$Designated = 1; // 1 for Numbered Player, 0 or 2 for D-Player
+	$Designated = 1; // Choose which of the two players (D or Numbered/Non-D) is designated player: 1 for Non-D/Numbered Player, 0 or 2 for D-Player
 	if(RAND(1,2) === 1){
 		$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 		$Player2 = $Player1 . 'D';
 		
 		if($Designated === 1){ // Must have designated player or people won't know who they're voting for
-			$Designated_Player = $Player1; // Non-D Player will be designated player every time
+			$Designated_Player = $Player1; // Non-D Player will be designated player
 		}else{
-			$Designated_Player = $Player2; // D Player will be designated every time
+			$Designated_Player = $Player2; // D Player will be designated
 		}
 	}else{
 		$Player2 = RAND(1,$NUM_Sets_of_Dopples);
-		$Player1 = $Player2 . 'D';
+		$Player1 = $Player2 . 'D'; // Switch players
 		
 		if($Designated === 1){
-			$Designated_Player = $Player2; // Non-D Player will be designated player every time
+			$Designated_Player = $Player2; // Non-D Player will be designated player
 		}else{
-			$Designated_Player = $Player1; // D Player will be designated every time
+			$Designated_Player = $Player1; // D Player will be designated player
 		}
 	};
 	
-	if($DEBUG === 1){
+	if($DEBUG){
 		echo 'Players Chosen!<br/>';
 		echo 'Player 1: ' . $Player1 . '<br/>';
 		echo 'Player 2: ' . $Player2 . '<br/>';
@@ -148,33 +150,31 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	//Check and/or create score file for Player 1
 	if(file_exists($Player1_filename) != TRUE){
-		echo '<br/><font color="red">Player 1 Score File Not Found.</font>' . ' Output from file_exists(): ';
-		echo file_exists($Player1_filename);
-		echo '<br/>';
+		if($DEBUG){ echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>'; };
+		
 		if(write($Player1_filename, 1500)){
-			echo '<font color="green">Player 1 Score File Written!</font><br/>';
+			if($DEBUG){ echo '<font color="green">Player 1 Score File Written!</font><br/>'; };
 		}else{
-			echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>';
+			if($DEBUG){ echo '<br/><font color="red">Player 1 Score File <strong>creation</b> also failed.</strong><br/>'; };
 		}
 	}else{
-		if ($DEBUG){ echo 'Player 1 Score File Exists!<br/>'; };
+		if($DEBUG){ echo 'Player 1 Score File Exists!<br/>'; };
 	};
 	
 	//Check and/or create score file for Player 2
 	if(file_exists($Player2_filename) != TRUE){
-		echo '<br/><font color="red">Player 2 Score File Not Found.</font>' . ' Output from file_exists(): ';
-		echo file_exists($Player2_filename);
-		echo '<br/>';
+		if($DEBUG){ echo '<br/><font color="red">Player 2 Score File Not Found.</font><br/>'; };
+		
 		if(write($Player2_filename, 1500)){
-			echo '<font color="green">Player 2 Score File Written!</font><br/>';
+			if($DEBUG){ echo '<font color="green">Player 2 Score File Written!</font><br/>'; };
 		}else{
-			echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>';
+			if($DEBUG){ echo '<br/><font color="red">Player 2 Score File <strong>creation</b> also failed.</strong><br/>'; };
 		}
 	}else{
-		if ($DEBUG){ echo 'Player 2 Score File Exists!<br/>'; };
+		if($DEBUG){ echo 'Player 2 Score File Exists!<br/>'; };
 	};
 	
-	//For debugging output
+	//Debugging output
 	if ($DEBUG === 1){
 		echo 'Main DIR = /' . $Root_DIR;
 		echo '<br/>';
@@ -205,40 +205,47 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Player1_ELO = ELO($Player1_currentScore, $Player2_currentScore);
 	$Player2_ELO = ELO($Player2_currentScore, $Player1_currentScore);
 
-	//Display Scores
+	//Make Prediction
 	$ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
 	if($Player1_ELO === $Player2_ELO){
-		$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO) . '%)' . '</strong></font>';
+		$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO, 3) . '%)' . '</strong></font>';
 	};
 	if($Player1_ELO > $Player2_ELO){
-			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
 	};
 	if($Player1_ELO < $Player2_ELO){
-			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
 	};
 
+	//Display Score/Info for both players for debug
+	if($DEBUG){
 	echo '<br/>Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
 	echo '<br/>Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)';
-	echo '<br/><br/>';
-	echo $Prediction;
-	echo '<br/><br/>';
+	};
+	
+	//Display Prediction
+	echo '<br/><br/>' . $Prediction . '<br/><br/>';
 
 	//Display Player Pictures
-	echo '<img src="' . $Player1_picture_filename . '" width="15%" height="15%" />';
-	echo '<img src="' . $Player2_picture_filename . '" width="15%" height="15%" /><br/>';
+	$Picture_Width_Percentage = '20%';
+	$Picture_Height_Percentage = '20%';
+	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
+	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
+	
+	//Display Buttons/Form
 	echo 'Choose below:';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
 	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . '</button> ';
 	}else{
-		echo $Player1_name . '</button> ';
+		echo $Player1_name . '</button> '; // To display if not using randomized version
 	};
 	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . '</button> ';
 	}else{
-		echo $Player1_name . '</button> ';
+		echo $Player1_name . '</button> '; // To display if not using randomized version
 	};
 	echo '<br/><br/>';
 	echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';
@@ -248,6 +255,5 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
 	echo '</form>';
 ?>
-</center>
-<br/>
+</center><br/>
 </body></html>

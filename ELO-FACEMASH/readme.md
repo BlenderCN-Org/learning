@@ -29,7 +29,6 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I'm doing next:</strong><br /><br/>
-<strong>In these versions:</strong><br />
 • <strike>See if negative numbers affects FIDE implementation of ELO.</strike> (Solved, see "What I've Learned")<br/>
 • Create dropdown box to select, and limit, number of players (?).<br />
 • <strike>Finish separate scoreboard.</strike> (DONE - 8/12/2019)<br />
@@ -40,8 +39,6 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>
 • Add hints for players, in case they don't know their names (what movie they're from, etc.)<br/>
 • Make "true" player indicators cosmetically better.<br/>
-
-<strong>Other Versions:</strong><br />
 • Mobile version, using front-end framework.<br/>
 • Scalable version.<br/>
 • Database-backed version.<br/>

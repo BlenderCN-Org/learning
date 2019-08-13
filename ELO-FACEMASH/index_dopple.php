@@ -298,6 +298,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
 	echo '</strong><br/><br/>';
+	echo '<strong>Options:</strong><br/>';
 	echo '<input type="checkbox" name="RevealPlayers" value="1"';
 	if(isset($_POST['RevealPlayers'])){
 		echo 'checked = checked';
@@ -318,7 +319,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'checked = checked';
 	};
 	echo '> Hide ELO Prediction* (not recommended, no reason)';
-	echo '<br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form>';
+	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>';
 	echo '* = after choosing winner, until unchecked.';
 ?>
 </center><br/>

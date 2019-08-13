@@ -39,6 +39,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.<br/>
 • After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>
 • Add hints for players, in case they don't know their names (what movie they're from, etc.)<br/>
+• Make "true" player indicators cosmetically better.<br/>
 
 <strong>Other Versions:</strong><br />
 • Mobile version, using front-end framework.<br/>

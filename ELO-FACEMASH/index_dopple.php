@@ -29,7 +29,7 @@
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['ToggleScoreBoard']) == "1"){ // Display Scores
-		echo '<div id="Player_Scores" style="border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
+		echo '<div id="Player_Scores" style="border: 0;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		$number_of_scores_to_display = count_files_in_DIR($Score_DIR) / 2;
 		
 		echo '<table border="1" width="100%"><tr><td colspan="2" align="center"><strong>Current Player Scores</strong></td></tr>';
@@ -45,14 +45,14 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 				$current_score = read($current_score_filename);
 				if(file_exists($current_textname_filename)){
 					$current_playerName = read($current_textname_filename);
-					echo '<tr><td align="center">' . $current_playerName . '</td><td align="center">' . Round($current_score, 2) . '</td></tr>';
+					echo '<tr><td align="center">' . $current_playerName . ' (Pair: ' . $x . ')</td><td align="center">' . Round($current_score, 2) . '</td></tr>';
 				};
 			};
 			if(file_exists($current_D_score_filename)){
 				$current_D_score = read($current_D_score_filename);
 				if(file_exists($current_D_textname_filename)){
 					$current_D_playerName = read($current_D_textname_filename);
-					echo '<tr><td align="center">' . $current_D_playerName . '</td><td align="center">' . Round($current_D_score, 2) . '</td></tr>';
+					echo '<tr><td align="center">' . $current_D_playerName . ' (Pair: ' . $x . ')</td><td align="center">' . Round($current_D_score, 2) . '</td></tr>';
 				};
 			};
 		};
@@ -307,9 +307,9 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	echo '</strong><button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
-		echo $Designated_Player_Text . '</button> ';
+		echo $Designated_Player_Text . '</button>';
 	}else{
-		echo $Player1_name . '</button> '; // If not using randomized version
+		echo $Player1_name . '</button>'; // If not using randomized version
 	};
 	echo '</strong><br/><br/>';
 	echo '<strong>Options:</strong><br/>';

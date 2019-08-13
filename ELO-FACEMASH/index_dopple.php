@@ -300,18 +300,18 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
 	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
-		echo $Designated_Player_Text . '</button> ';
+		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
 	echo '</strong><button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
-		echo $Designated_Player_Text . '</button>';
+		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{
 		echo $Player1_name . '</button>'; // If not using randomized version
 	};
 	echo '</strong><br/><br/>';
-	echo '<strong>Options:</strong><br/>';
+	echo '<div id="options" style="border: .5px; border-style: solid;width:30%;padding: 4px;"><strong>Options:</strong><br/>';
 	echo '<input type="checkbox" name="RevealPlayers" value="1"';
 	if(isset($_POST['RevealPlayers'])){
 		echo 'checked = checked';
@@ -332,7 +332,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'checked = checked';
 	};
 	echo '> Hide ELO Prediction* (not recommended)';
-	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.';
+	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.</div>';
 ?>
 </center><br/>
 </body></html>

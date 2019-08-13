@@ -29,6 +29,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I'm doing next:</strong><br /><br/>
+• Use Ajax for reset and/or scoreboard.<br/>
+• Add times chosen to scoreboard.<br/>
 • <strike>See if negative numbers affects FIDE implementation of ELO.</strike> (Solved, see "What I've Learned")<br/>
 • Create dropdown box to select, and limit, number of players (?).<br />
 • <strike>Finish separate scoreboard.</strike> (DONE - 8/12/2019)<br />

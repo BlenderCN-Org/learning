@@ -311,8 +311,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'checked = checked';
 	};
 	echo '> Hide ELO Prediction* (not recommended, no reason)';
-	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>';
-	echo '* = after choosing winner, until unchecked.';
+	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.';
 ?>
 </center><br/>
 </body></html>

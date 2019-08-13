@@ -21,11 +21,11 @@
 	// - Add thing so prediction isn't displayed until after user chooses, or so there's an option for the user to not see it.
 	// - Finish scoreboard.
 	// - Add more players.
+	// - Add hints for players, in case they don't know their names (what movie they're from, etc.)
 	
 	//Configurable Variables
 	$DEBUG = FALSE;
 	$Hide2ndPrediction = FALSE;
-	$HideUpdatedScore = FALSE;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -37,8 +37,11 @@
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['ToggleScoreBoard']) == "1"){ // Display Scores
 		echo '<div id="Player_Scores" style="border: 1;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
-		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
-		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
+		$number_of_scores_to_display = count_files_in_DIR($Score_DIR) / 2;
+		
+		echo '<table border="1" width="100%"><tr><td colspan="2" align="center"><strong>Current Player Scores</strong></td></tr>';
+		echo '<tr><td align="center"><strong>Player:</strong></td><td align="center"><strong>Score:</strong></td></tr>';
+		for($x = 1; $x <= $number_of_scores_to_display; $x++){
 			$current_score_filename = $Score_DIR . $x . '.txt';
 			$current_D_score_filename = $Score_DIR . $x . 'D.txt';
 			
@@ -49,18 +52,18 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 				$current_score = read($current_score_filename);
 				if(file_exists($current_textname_filename)){
 					$current_playerName = read($current_textname_filename);
-					echo 'Name: ' . $current_playerName . ' Score = ' . $current_score . '<br/>';
+					echo '<tr><td align="center">' . $current_playerName . '</td><td align="center">' . Round($current_score, 2) . '</td></tr>';
 				};
 			};
 			if(file_exists($current_D_score_filename)){
 				$current_D_score = read($current_D_score_filename);
 				if(file_exists($current_D_textname_filename)){
 					$current_D_playerName = read($current_D_textname_filename);
-					echo 'Name: ' . $current_D_playerName . ' Score = ' . $current_D_score . '<br/>';
+					echo '<tr><td align="center">' . $current_D_playerName . '</td><td align="center">' . Round($current_D_score, 2) . '</td></tr>';
 				};
 			};
 		};
-		
+		echo '</table>';
 		echo '</div><br/>';
 	};
 
@@ -115,12 +118,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		
 		//Update scores for both players
 		if(write($WinnerScoreFilename, $WinnerTotalPoints)){
-			if(!$HideUpdatedScore){
+			if(!isset($_POST['ToggleScoreUpdates'])){
 				echo '<font color="green"><strong>Winner score updated! (Old Score: ' . $Winner_Old_Score . ') (New Score: ' . $WinnerTotalPoints . ') (Change: ' . ($WinnerTotalPoints - $Winner_Old_Score) . ')</font></strong><br/>';
 			};
 			
 			if(write($LoserScoreFilename, $LoserTotalPoints)){
-				if(!$HideUpdatedScore){
+				if(!isset($_POST['ToggleScoreUpdates'])){
 					echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ') (Change: ' . ($LoserTotalPoints - $Loser_Old_Score) . ')</font></strong><br/>';
 				}
 			};
@@ -259,43 +262,64 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	
 	//Display Prediction
-	echo '<br/><br/>' . $Prediction;
-	if(isset($Prediction_2)  AND !$Hide2ndPrediction){ 
-		echo '<br/>' . $Prediction_2;
+	if(!isset($_POST['HidePrediction'])){
+		echo '<br/><br/>' . $Prediction;
+		if(isset($Prediction_2)){ 
+			echo '<br/>' . $Prediction_2;
+		};
 	};
 	echo '<br/><br/>';
+	
+	//Reveal Players (if toggled)
+	if(isset($_POST['RevealPlayers'])){
+		echo '<div style="border: 0;border-style: solid;left: 17.5%;top: 50%;position: fixed;"><strong>This is actually ' . $Player1_name . '! ----></strong></div>';
+	};
+	if(isset($_POST['RevealPlayers'])){
+		echo '<div style="border: 0;border-style: solid;right: 17.5%;top: 50%;position: fixed;"><strong><---- This is actually ' . $Player2_name . '!</strong></div>';
+	};
 
 	//Display Player Pictures
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
 	//Display Buttons/Form
-	echo 'Choose below:';
+	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '">This is ';
+	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . '</button> ';
 	}else{
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '">No, this is ';
+	echo '</strong><button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . '</button> ';
 	}else{
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
-	echo '<br/><br/>';
-	// echo '<button name="Reveal" type="button" value="1">Reveal the True ' . $Designated_Player_Text . '</button>';
-	// echo '<br/><br/>';
-	// echo '<button name="ScoreBoard" type="submit" value="1">Display All Scores</button>';
+	echo '</strong><br/><br/>';
+	echo '<input type="checkbox" name="RevealPlayers" value="1"';
+	if(isset($_POST['RevealPlayers'])){
+		echo 'checked = checked';
+	};
+	echo '> Show true player names*<br/>';
 	echo '<input type="checkbox" name="ToggleScoreBoard" value="1" ';
 	if(isset($_POST['ToggleScoreBoard'])){
 		echo 'checked = checked';
 	};
-	echo '> Toggle Scoreboard (will be shown next round, continuing until unchecked)';
-	echo '<br/><br/>';
-	echo '<button name="Reset" type="submit" value="1">Reset All Scores</button>';
-	echo '</form>';
+	echo '> Show/Toggle Scoreboard*<br/>';
+	echo '<input type="checkbox" name="ToggleScoreUpdates" value="1" ';
+	if(isset($_POST['ToggleScoreUpdates'])){
+		echo 'checked = checked';
+	};
+	echo '> Hide Score Updates*<br/>';
+	echo '<input type="checkbox" name="HidePrediction" value="1" ';
+	if(isset($_POST['HidePrediction'])){
+		echo 'checked = checked';
+	};
+	echo '> Hide ELO Prediction* (not recommended, no reason)';
+	echo '<br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form>';
+	echo '* = after choosing winner, until unchecked.';
 ?>
 </center><br/>
 </body></html>

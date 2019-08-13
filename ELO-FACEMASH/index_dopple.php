@@ -22,6 +22,7 @@
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
+	$Counter_DIR = $Root_DIR . '/Counters/';
 	$Picture_Width_Percentage = '20%';
 	$Picture_Height_Percentage = '20%';
 	$BaseScore = 1500;
@@ -55,8 +56,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 				};
 			};
 		};
-		echo '</table>';
-		echo '</div><br/>';
+		echo '</table></div><br/>';
 	};
 
 	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset Scores
@@ -99,6 +99,14 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		$Winner_Old_Score = read($WinnerScoreFilename);
 		$LoserScoreFilename = $Score_DIR . $Loser . '.txt';
 		$Loser_Old_Score = read($LoserScoreFilename);
+		
+		$WinnerCounterFilename = $Counter_DIR . $winner . '.txt';
+		if(file_exists($WinnerCounterFilename)){
+			$counter = read($WinnerCounterFilename);
+			$counter = $counter + 1;
+			write($WinnerCounterFilename, $counter);
+			if ($DEBUG){ echo 'Winner Counter Updated!<br/>'; };
+		};
 		
 		//FIDE's Implementation of score distribution:
 		$k = 32; // ELO K value
@@ -171,11 +179,26 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Player1_name_filename = $TextName_DIR . $Player1 . '.txt';
 	$Player2_name_filename = $TextName_DIR . $Player2 . '.txt';
 	
+	$Player1_counter_filename = $Counter_DIR . $Player1 . '.txt';
+	$Player2_counter_filename = $Counter_DIR . $Player1 . '.txt';
+	
 	if(isset($Designated_Player)){
 		$Designated_Player_Text = read($TextName_DIR . $Designated_Player . '.txt');
 	};
 
-	//Check and/or create score file for Player 1
+	// Check and/or create counter file for Player 1/2
+	if(!file_exists($Player1_counter_filename)){
+		if(write($Player1_counter_filename, 0)){
+			if($DEBUG){ echo '<font color="green">Player 1 Counter File Written!</font><br/>'; };
+		};
+	};
+	if(!file_exists($Player1_counter_filename)){
+		if(write($Player2_counter_filename, 0)){
+			if($DEBUG){ echo '<font color="green">Player 2 Counter File Written!</font><br/>'; };
+		};
+	};
+	
+	//Check and/or create score file for Player 1/2
 	if(!file_exists($Player1_filename)){
 		if($DEBUG){ echo '<br/><font color="red">Player 1 Score File Not Found.</font><br/>'; };
 		
@@ -188,7 +211,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		if($DEBUG){ echo 'Player 1 Score File Exists!<br/>'; };
 	};
 	
-	//Check and/or create score file for Player 2
 	if(!file_exists($Player2_filename)){
 		if($DEBUG){ echo '<br/><font color="red">Player 2 Score File Not Found.</font><br/>'; };
 		
@@ -264,10 +286,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	
 	//Reveal Players (if toggled)
 	if(isset($_POST['RevealPlayers'])){
-		echo '<div style="border: 0;border-style: solid;left: 17.5%;top: 50%;position: fixed;"><strong>This is actually ' . $Player1_name . '! ----></strong></div>';
+		echo '<div style="border: 0;border-style: solid;left: 13.5%;top: 50%;position: fixed;"><strong>This is actually ' . $Player1_name . '! ----></strong></div>';
 	};
 	if(isset($_POST['RevealPlayers'])){
-		echo '<div style="border: 0;border-style: solid;right: 17.5%;top: 50%;position: fixed;"><strong><---- This is actually ' . $Player2_name . '!</strong></div>';
+		echo '<div style="border: 0;border-style: solid;right: 13.5%;top: 50%;position: fixed;"><strong><---- This is actually ' . $Player2_name . '!</strong></div>';
 	};
 
 	//Display Player Pictures

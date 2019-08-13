@@ -17,7 +17,6 @@
 	
 	//Configurable Variables
 	$DEBUG = FALSE;
-	$Hide2ndPrediction = FALSE;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';

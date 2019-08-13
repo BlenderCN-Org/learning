@@ -32,9 +32,13 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <strong>In these versions:</strong><br />
 • <strike>See if negative numbers affects FIDE implementation of ELO.</strike> (Solved, see "What I've Learned")<br/>
 • Create dropdown box to select, and limit, number of players (?).<br />
-• Finish separate scoreboard.<br />
+• <strike>Finish separate scoreboard.</strike> (DONE - 8/12/2019)<br />
 • Add more players.<br />
+• <strike>Add thing so prediction isn't displayed until after user chooses, or so there's an option for the user to not see it.</strike> (DONE - 8/12/2019)<br/>
 • Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.<br />
+• Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.<br/>
+• After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>
+• Add hints for players, in case they don't know their names (what movie they're from, etc.)<br/>
 
 <strong>Other Versions:</strong><br />
 • Mobile version, using front-end framework.<br/>

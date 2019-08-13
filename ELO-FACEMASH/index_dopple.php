@@ -317,7 +317,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['RevealPlayers'])){
 		echo 'checked = checked';
 	};
-	echo '> Show true player names*<br/>';
+	echo '> Show true player names* (cheating)<br/>';
 	echo '<input type="checkbox" name="ToggleScoreBoard" value="1" ';
 	if(isset($_POST['ToggleScoreBoard'])){
 		echo 'checked = checked';
@@ -332,7 +332,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['HidePrediction'])){
 		echo 'checked = checked';
 	};
-	echo '> Hide ELO Prediction* (not recommended, no reason)';
+	echo '> Hide ELO Prediction* (not recommended)';
 	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.';
 ?>
 </center><br/>

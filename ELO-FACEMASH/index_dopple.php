@@ -29,9 +29,8 @@
 	$BaseScore = 1500;
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
-	if(isset($_POST['LockToPlayer'])){
-		$LockToPlayer_Number = $_POST['LockToPlayer'];
-		if(is_numeric($LockToPlayer_Number)){
+	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){
+		if(is_numeric($_POST['LockToPlayer'])){
 			$Player_LOCKED = TRUE;
 		};
 	};

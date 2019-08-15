@@ -182,29 +182,23 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Player1_counter_filename = $Counter_DIR . $Player1 . '.txt';
 	$Player2_counter_filename = $Counter_DIR . $Player1 . '.txt';
 	
-	$Player1_sentence_hint_filename = $Sentence_Hint_DIR . $Player1 . '.txt';
-	$Player2_sentence_hint_filename = $Sentence_Hint_DIR . $Player2 . '.txt';
+	
 	
 	if(isset($Designated_Player)){
 		$Designated_Player_Text = read($TextName_DIR . $Designated_Player . '.txt');
+		$Player_sentence_hint_filename = $Sentence_Hint_DIR . $Designated_Player . '.txt'; // Must be for designated player
+	
+		// Check and/or create "Sentence Hint" file for Designated Player -- optional, but useful
+		if(!file_exists($Player_sentence_hint_filename)){
+			if(write($Player_sentence_hint_filename, "Sentence Hint File Placeholder Text (is blank)")){
+				if($DEBUG){ echo '<font color="green">Player 1 Sentence Hint File Written!</font><br/>'; };
+			}else{
+				if($DEBUG){ echo '<font color="red">Player 1 Sentence Hint File NOT Written!</font><br/>'; };	
+			};
+		};
 	};
 
-	// Check and/or create "Sentence Hint" file for Players 1/2 -- optional, but useful
-	if(!file_exists($Player1_sentence_hint_filename)){
-		if(write($Player1_sentence_hint_filename, "Sentence Hint File Placeholder Text (is blank)")){
-			if($DEBUG){ echo '<font color="green">Player 1 Sentence Hint File Written!</font><br/>'; };
-		}else{
-			if($DEBUG){ echo '<font color="red">Player 1 Sentence Hint File NOT Written!</font><br/>'; };	
-		};
-	};
 	
-	if(!file_exists($Player2_sentence_hint_filename)){
-		if(write($Player2_sentence_hint_filename, "Sentence Hint File Placeholder Text (is blank)")){
-			if($DEBUG){ echo '<font color="green">Player 2 Sentence Hint File Written!</font><br/>'; };
-		}else{
-			if($DEBUG){ echo '<font color="red">Player 2 Sentence Hint File NOT Written!</font><br/>'; };	
-		};
-	};
 	
 	// Check and/or create counter file for Player 1/2
 	if(!file_exists($Player1_counter_filename)){
@@ -261,7 +255,9 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'Player 1 Text/Name Path: ' . $Player1_name_filename;
 		echo '<br/>';
 		echo 'Player 2 Text/Name Path: ' . $Player2_name_filename;
-		echo '<br/>-----------------------------------------<br/>';
+		echo '<br/>';
+		if(isset($Designated_Player)){ echo 'Designated Player: ' . $Designated_Player; };
+		echo '-----------------------------------------<br/>';
 	};
 
 	//Read current scores, and calculate ELO

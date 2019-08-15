@@ -182,8 +182,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Player1_counter_filename = $Counter_DIR . $Player1 . '.txt';
 	$Player2_counter_filename = $Counter_DIR . $Player1 . '.txt';
 	
-	
-	
 	if(isset($Designated_Player)){
 		$Designated_Player_Text = read($TextName_DIR . $Designated_Player . '.txt');
 		$Player_sentence_hint_filename = $Sentence_Hint_DIR . $Designated_Player . '.txt'; // Must be for designated player
@@ -195,11 +193,11 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			}else{
 				if($DEBUG){ echo '<font color="red">Player 1 Sentence Hint File NOT Written!</font><br/>'; };	
 			};
+		}else{
+			$Designated_Player_Sentence_Hint_Text = read($Player_sentence_hint_filename);
 		};
 	};
 
-	
-	
 	// Check and/or create counter file for Player 1/2
 	if(!file_exists($Player1_counter_filename)){
 		if(write($Player1_counter_filename, 0)){
@@ -260,7 +258,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo '-----------------------------------------<br/>';
 	};
 
-	//Read current scores, and calculate ELO
+	//Read current scores, calculate ELO, etc.
 	$Player1_currentScore = read($Player1_filename);
 	$Player1_name = read($Player1_name_filename);
 

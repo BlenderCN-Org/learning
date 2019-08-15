@@ -298,6 +298,11 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	echo '<br/><br/>';
 	
+	//Display Sentence Hint
+	if(isset($Designated_Player_Sentence_Hint_Text AND $Designated_Player_Sentence_Hint_Text != 'Sentence Hint File Placeholder Text (is blank)')){
+		echo '<div id="sentence_hint_text_box">' . $Designated_Player_Sentence_Hint_Text . '</div>';
+	};
+	
 	//Reveal Players (if toggled)
 	if(isset($_POST['RevealPlayers'])){
 		echo '<div style="border: 0;border-style: solid;left: 13.5%;top: 50%;position: fixed;"><strong>This is actually ' . $Player1_name . '! ----></strong></div>';

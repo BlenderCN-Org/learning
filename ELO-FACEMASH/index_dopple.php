@@ -188,7 +188,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	
 		// Check and/or create "Sentence Hint" file for Designated Player -- optional, but useful
 		if(!file_exists($Player_sentence_hint_filename)){
-			if(write($Player_sentence_hint_filename, "Sentence Hint File Placeholder Text (is blank)")){
+			if(write($Player_sentence_hint_filename, 'DEFAULT')){
 				if($DEBUG){ echo '<font color="green">Player 1 Sentence Hint File Written!</font><br/>'; };
 			}else{
 				if($DEBUG){ echo '<font color="red">Player 1 Sentence Hint File NOT Written!</font><br/>'; };	
@@ -299,7 +299,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<br/><br/>';
 	
 	//Display Sentence Hint
-	if(isset($Designated_Player_Sentence_Hint_Text AND $Designated_Player_Sentence_Hint_Text != 'Sentence Hint File Placeholder Text (is blank)')){
+	if(isset($Designated_Player_Sentence_Hint_Text AND $Designated_Player_Sentence_Hint_Text != 'DEFAULT')){
 		echo '<div id="sentence_hint_text_box">' . $Designated_Player_Sentence_Hint_Text . '</div>';
 	};
 	

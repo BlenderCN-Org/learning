@@ -22,6 +22,7 @@
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 	$Counter_DIR = $Root_DIR . '/Counters/';
+	$Sentence_Hint_DIR = $Root_DIR . '/Sentence_Hints/';
 	$Picture_Width_Percentage = '20%';
 	$Picture_Height_Percentage = '20%';
 	$BaseScore = 1500;
@@ -181,10 +182,30 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$Player1_counter_filename = $Counter_DIR . $Player1 . '.txt';
 	$Player2_counter_filename = $Counter_DIR . $Player1 . '.txt';
 	
+	$Player1_sentence_hint_filename = $Sentence_Hint_DIR . $Player1 . '.txt';
+	$Player2_sentence_hint_filename = $Sentence_Hint_DIR . $Player2 . '.txt';
+	
 	if(isset($Designated_Player)){
 		$Designated_Player_Text = read($TextName_DIR . $Designated_Player . '.txt');
 	};
 
+	// Check and/or create "Sentence Hint" file for Players 1/2 -- optional, but useful
+	if(!file_exists($Player1_sentence_hint_filename)){
+		if(write($Player1_sentence_hint_filename, "Sentence Hint File Placeholder Text (is blank)")){
+			if($DEBUG){ echo '<font color="green">Player 1 Sentence Hint File Written!</font><br/>'; };
+		}else{
+			if($DEBUG){ echo '<font color="red">Player 1 Sentence Hint File NOT Written!</font><br/>'; };	
+		};
+	};
+	
+	if(!file_exists($Player2_sentence_hint_filename)){
+		if(write($Player2_sentence_hint_filename, "Sentence Hint File Placeholder Text (is blank)")){
+			if($DEBUG){ echo '<font color="green">Player 2 Sentence Hint File Written!</font><br/>'; };
+		}else{
+			if($DEBUG){ echo '<font color="red">Player 2 Sentence Hint File NOT Written!</font><br/>'; };	
+		};
+	};
+	
 	// Check and/or create counter file for Player 1/2
 	if(!file_exists($Player1_counter_filename)){
 		if(write($Player1_counter_filename, 0)){

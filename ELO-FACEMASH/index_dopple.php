@@ -29,6 +29,13 @@
 	$BaseScore = 1500;
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
+	if(isset($_POST['LockToPlayer'])){
+		$LockToPlayer_Number = $_POST['LockToPlayer'];
+		if(is_numeric($LockToPlayer_Number)){
+			$Player_LOCKED = TRUE;
+		};
+	};
+	
 	if(isset($_POST['ToggleScoreBoard']) == "1"){ // Display Scores
 		echo '<div id="Player_Scores" style="border: 0;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		$number_of_scores_to_display = count_files_in_DIR($Score_DIR) / 2;
@@ -158,15 +165,19 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 			$Player2 = $Player1 . 'D';
 			
-			$Designated_Player = $Player1; // Numbered Player will be designated player (Must have, or scores are meaningless if not tied to certain players)
+			$Designated_Player = $Player1; // Numbered Player will always be designated player (Must have, or scores are meaningless if not tied to certain players)
 		}else{
 			$Player2 = RAND(1,$NUM_Sets_of_Dopples);
 			$Player1 = $Player2 . 'D'; // Switch players
 			
-			$Designated_Player = $Player2; // Numbered Player will be designated player
+			$Designated_Player = $Player2; // Numbered Player will always be designated player
 		};
 	}else{
-		
+		if(isset($_POST['LockToPlayer'])){
+			$Player1 = $_POST['LockToPlayer'];
+			$Player2 = $Player1 . 'D';
+			$Designated_Player = $Player1; // Numbered Player must always be designated platyer
+		};
 	};
 	
 	if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
@@ -353,12 +364,24 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'checked = checked';
 	};
 	echo '> Hide ELO Prediction* (not recommended)<br/>';
-	echo '<select>';
+	echo '<select name="LockToPlayer">';
 	for($x = 1; $x <= $NUM_Sets_of_Dopples; $x++){
-		echo '<option value="' . $x . '">' . $x . '</option>';
+		if(isset($_POST['LockPlayerCheckBox'])){ // If checked
+			if($_POST['LockToPlayer'] == $x){
+				echo '<option value="' . $x . '" selected>' . $x . '</option>'; // To preserve upon page load
+			}else{
+				echo '<option value="' . $x . '">' . $x . '</option>';
+			};
+		}else{
+			echo '<option value="' . $x . '">' . $x . '</option>';
+		}
 	};
 	echo '</select> Lock to Player/Set #*';
-	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.</div>';
+	echo '<input type="checkbox" name="LockPlayerCheckBox" value="1" ';
+	if(isset($_POST['LockPlayerCheckBox'])){
+		echo 'checked = checked';
+	};
+	echo '><br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.</div>';
 ?>
 </center><br/>
 </body></html>

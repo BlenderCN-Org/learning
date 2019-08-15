@@ -380,7 +380,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['LockPlayerCheckBox'])){
 		echo 'checked = checked';
 	};
-	echo '><br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.</div>';
+	echo '><br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = Will take effect after choosing winner, until unchecked.</div>';
 ?>
 </center><br/>
 </body></html>

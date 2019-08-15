@@ -173,9 +173,15 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 	}else{
 		if(isset($_POST['LockToPlayer'])){
-			$Player1 = $_POST['LockToPlayer'];
-			$Player2 = $Player1 . 'D';
-			$Designated_Player = $Player1; // Numbered Player must always be designated platyer
+			if(RAND(1,2) === 1){
+				$Player1 = $_POST['LockToPlayer'];
+				$Player2 = $Player1 . 'D';
+				$Designated_Player = $Player1; // Numbered Player must always be designated platyer
+			}else{
+				$Player2 = $_POST['LockToPlayer'];
+				$Player1 = $Player2 . 'D';
+				$Designated_Player = $Player2; // Numbered Player must always be designated platyer
+			};
 		};
 	};
 	

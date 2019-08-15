@@ -16,6 +16,7 @@
 	require_once('functions.php');
 	
 	//Configurable Variables
+	$Player_LOCKED = FALSE;
 	$DEBUG = FALSE;
 	$Root_DIR = 'Dopples';
 	$Score_DIR = $Root_DIR . '/Actress_Score/';
@@ -152,23 +153,23 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
 	
 	//Randomize Player Pictures
-	if(RAND(1,2) === 1){
-		$Player1 = RAND(1,$NUM_Sets_of_Dopples);
-		$Player2 = $Player1 . 'D';
-		
-		$Designated_Player = $Player1; // Numbered Player will be designated player (Must have, or scores are meaningless if not tied to certain players)
+	if($Player_LOCKED != TRUE){
+		if(RAND(1,2) === 1){
+			$Player1 = RAND(1,$NUM_Sets_of_Dopples);
+			$Player2 = $Player1 . 'D';
+			
+			$Designated_Player = $Player1; // Numbered Player will be designated player (Must have, or scores are meaningless if not tied to certain players)
+		}else{
+			$Player2 = RAND(1,$NUM_Sets_of_Dopples);
+			$Player1 = $Player2 . 'D'; // Switch players
+			
+			$Designated_Player = $Player2; // Numbered Player will be designated player
+		};
 	}else{
-		$Player2 = RAND(1,$NUM_Sets_of_Dopples);
-		$Player1 = $Player2 . 'D'; // Switch players
 		
-		$Designated_Player = $Player2; // Numbered Player will be designated player
 	};
 	
-	if($DEBUG){
-		echo 'Players Chosen!<br/>';
-		echo 'Player 1: ' . $Player1 . '<br/>';
-		echo 'Player 2: ' . $Player2 . '<br/>';
-	};
+	if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
 	
 	$Player1_filename = $Score_DIR . $Player1 . '.txt';
 	$Player2_filename = $Score_DIR . $Player2 . '.txt';
@@ -299,7 +300,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<br/><br/>';
 	
 	//Display Sentence Hint
-	if(isset($Designated_Player_Sentence_Hint_Text AND $Designated_Player_Sentence_Hint_Text != 'DEFAULT')){
+	if(isset($Designated_Player_Sentence_Hint_Text) AND $Designated_Player_Sentence_Hint_Text != 'DEFAULT'){
 		echo '<div id="sentence_hint_text_box">' . $Designated_Player_Sentence_Hint_Text . '</div>';
 	};
 	
@@ -351,7 +352,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['HidePrediction'])){
 		echo 'checked = checked';
 	};
-	echo '> Hide ELO Prediction* (not recommended)';
+	echo '> Hide ELO Prediction* (not recommended)<br/>';
+	echo '<select>';
+	for($x = 1; $x <= $NUM_Sets_of_Dopples; $x++){
+		echo '<option value="' . $x . '">' . $x . '</option>';
+	};
+	echo '</select> Lock to Player/Set #*';
 	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = after choosing winner, until unchecked.</div>';
 ?>
 </center><br/>

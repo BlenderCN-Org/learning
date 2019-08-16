@@ -9,33 +9,30 @@
 <center>
 <h2>Russell's ELO Matching Example/Experiment</h2><br/>
 <?php
-	ob_implicit_flush(true);
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
-	require_once('functions.php');
+ob_implicit_flush(true);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once('functions.php');
 	
-	//Configurable Variables
-	$Player_LOCKED = FALSE;
-	$DEBUG = FALSE;
-	$Root_DIR = 'Dopples';
-	$Score_DIR = $Root_DIR . '/Actress_Score/';
-	$TextName_DIR = $Root_DIR . '/Actress_Name/';
-	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
-	$Counter_DIR = $Root_DIR . '/Counters/';
-	$Sentence_Hint_DIR = $Root_DIR . '/Sentence_Hints/';
-	$Picture_Width_Percentage = '20%';
-	$Picture_Height_Percentage = '20%';
-	$BaseScore = 1500;
+//Configurable Variables
+$Player_LOCKED = FALSE;
+$DEBUG = FALSE;
+$Root_DIR = 'Dopples';
+$Score_DIR = $Root_DIR . '/Actress_Score/';
+$TextName_DIR = $Root_DIR . '/Actress_Name/';
+$Picture_DIR = $Root_DIR . '/Actress_Picture/';
+$Counter_DIR = $Root_DIR . '/Counters/';
+$Sentence_Hint_DIR = $Root_DIR . '/Sentence_Hints/';
+$Picture_Width_Percentage = '20%';
+$Picture_Height_Percentage = '20%';
+$BaseScore = 1500;
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){
-		if(is_numeric($_POST['LockToPlayer'])){
-			$Player_LOCKED = TRUE;
-		};
+		$Player_LOCKED = TRUE;
 	};
-	
-	if(isset($_POST['ToggleScoreBoard']) == "1"){ // Display Scores
+	if(isset($_POST['ToggleScoreBoard'])){ // Display Scores
 		echo '<div id="Player_Scores" style="border: 0;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
 		$number_of_scores_to_display = count_files_in_DIR($Score_DIR) / 2;
 		
@@ -65,7 +62,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo '</table></div><br/>';
 	};
-
 	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset Scores
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
 		if($DEBUG){ 
@@ -89,9 +85,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo 'Scores Reset.<br/>';
 	};
-
 	if(isset($_POST['Winners'])){ // Winner chosen
-		
 		if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits (To fully fix, send different values for each Winner's button instead of an array, and separate winners via if statements after/in the $_POST request).
 			if ($DEBUG){ echo 'First element is "D" Player<br/>'; };
 			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
@@ -134,24 +128,20 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 					echo '<font color="green"><strong>Loser score updated! (Old Score: ' . $Loser_Old_Score . ') (New Score: ' . $LoserTotalPoints . ') (Change: ' . ($LoserTotalPoints - $Loser_Old_Score) . ')</font></strong><br/>';
 				}
 			};
-		}; 
-
+		};
 		if($DEBUG){
 			echo '<br/><strong>Last Round:</strong><br/>';
 			echo 'Winner: ' . $winner . ' (' . read($TextName_DIR . $winner . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $winner . '.txt') . ')';
 			echo ' (Old Score: ' . $Winner_Old_Score . ')<br/>';
 			echo 'Loser: ' . $Loser . ' (' . read($TextName_DIR . $Loser . '.txt') . ') ' . ' (Score: ' . read($Score_DIR . $Loser . '.txt') . ')';
 			echo ' (Old Score: ' . $Loser_Old_Score . ')<br/>';
-			echo '<br/>-----------------------------------------<br/>';
 		};
 	};
-		if($DEBUG){
-			echo '<pre>';
-			echo '$_POST DATA: ';
-			print_r($_POST);
-			echo '</pre>';
-		};
-			
+	if($DEBUG){
+		echo '<pre>$_POST DATA: ';
+		print_r($_POST);
+		echo '</pre>';
+	};
 };// --------------------------------- End $_POSTs
 
 	//New Game - Choose Players
@@ -164,10 +154,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 			$Player2 = $Player1 . 'D';
 			
-			$Designated_Player = $Player1; // Numbered Player will always be designated player (Must have, or scores are meaningless if not tied to certain players)
+			$Designated_Player = $Player1; // Numbered Player will be designated player (Must have -- scores are meaningless if not tied to certain player)
 		}else{
 			$Player2 = RAND(1,$NUM_Sets_of_Dopples);
-			$Player1 = $Player2 . 'D'; // Switch players
+			$Player1 = $Player2 . 'D'; // Switch
 			
 			$Designated_Player = $Player2; // Numbered Player will always be designated player
 		};
@@ -175,12 +165,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		if(isset($_POST['LockToPlayer'])){
 			if(RAND(1,2) === 1){
 				$Player1 = $_POST['LockToPlayer'];
+				$Designated_Player = $Player1; // Numbered Player must always be designated player
 				$Player2 = $Player1 . 'D';
-				$Designated_Player = $Player1; // Numbered Player must always be designated platyer
 			}else{
 				$Player2 = $_POST['LockToPlayer'];
+				$Designated_Player = $Player2; // Numbered Player must always be designated player
 				$Player1 = $Player2 . 'D';
-				$Designated_Player = $Player2; // Numbered Player must always be designated platyer
 			};
 		};
 	};
@@ -221,7 +211,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			if($DEBUG){ echo '<font color="green">Player 1 Counter File Written!</font><br/>'; };
 		};
 	};
-	if(!file_exists($Player1_counter_filename)){
+	if(!file_exists($Player2_counter_filename)){
 		if(write($Player2_counter_filename, 0)){
 			if($DEBUG){ echo '<font color="green">Player 2 Counter File Written!</font><br/>'; };
 		};
@@ -253,25 +243,19 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	
 	//Debugging output
-	if ($DEBUG){
-		echo 'Main DIR = /' . $Root_DIR;
-		echo '<br/>';
+	if($DEBUG){
+		echo '-----------------------------------------<br/>';
+		echo 'Main DIR = /' . $Root_DIR . '<br/>';
 		echo '$Score_DIR (Subdirectory) = ' . $Score_DIR . ' (Files in Dir: ' . count_files_in_DIR($Score_DIR) . ')<br/>';
 		echo '$TextName_DIR (Subdirectory) = ' . $TextName_DIR . ' (Files in Dir: ' . count_files_in_DIR($TextName_DIR) . ')<br/>';
 		echo '$Picture_DIR (Subdirectory) = ' . $Picture_DIR . ' (Files in Dir: ' . count_files_in_DIR($Picture_DIR) . ')<br/>';
-		echo 'Player 1 Score File: ' . $Player1_filename;
-		echo '<br/>';
-		echo 'Player 2 Score File: ' . $Player2_filename;
-		echo '<br/>';
-		echo 'Player 1 Picure Path: ' . $Player1_picture_filename;
-		echo '<br/>';
-		echo 'Player 2 Picure Path: ' . $Player2_picture_filename;
-		echo '<br/>';
-		echo 'Player 1 Text/Name Path: ' . $Player1_name_filename;
-		echo '<br/>';
-		echo 'Player 2 Text/Name Path: ' . $Player2_name_filename;
-		echo '<br/>';
-		if(isset($Designated_Player)){ echo 'Designated Player: ' . $Designated_Player; };
+		echo 'Player 1 Score File: ' . $Player1_filename . '<br/>';
+		echo 'Player 2 Score File: ' . $Player2_filename . '<br/>';
+		echo 'Player 1 Picure Path: ' . $Player1_picture_filename . '<br/>';
+		echo 'Player 2 Picure Path: ' . $Player2_picture_filename . '<br/>';
+		echo 'Player 1 Text/Name Path: ' . $Player1_name_filename . '<br/>';
+		echo 'Player 2 Text/Name Path: ' . $Player2_name_filename . '<br/>';
+		if(isset($Designated_Player)){ echo 'Designated Player: ' . $Designated_Player . '<br/>'; };
 		echo '-----------------------------------------<br/>';
 	};
 
@@ -307,24 +291,22 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	};
 	
 	//Display Prediction
-	if(!isset($_POST['HidePrediction'])){
-		echo '<br/><br/>' . $Prediction;
+	if(!isset($_POST['HidePrediction']) AND isset($Prediction)){
+		echo '<br/><div id="prediction_box">' . $Prediction;
 		if(isset($Prediction_2)){ 
 			echo '<br/>' . $Prediction_2;
 		};
+		echo '</div><br/>';
 	};
-	echo '<br/><br/>';
 	
 	//Display Sentence Hint
 	if(isset($Designated_Player_Sentence_Hint_Text) AND $Designated_Player_Sentence_Hint_Text != 'DEFAULT'){
-		echo '<div id="sentence_hint_text_box">' . $Designated_Player_Sentence_Hint_Text . '</div>';
+		echo '<div id="sentence_hint_text_box">' . $Designated_Player_Sentence_Hint_Text . '</div><br/>';
 	};
 	
 	//Reveal Players (if toggled)
 	if(isset($_POST['RevealPlayers'])){
 		echo '<div style="border: 0;border-style: solid;left: 13.5%;top: 50%;position: fixed;"><strong>This is actually ' . $Player1_name . '! ----></strong></div>';
-	};
-	if(isset($_POST['RevealPlayers'])){
 		echo '<div style="border: 0;border-style: solid;right: 13.5%;top: 50%;position: fixed;"><strong><---- This is actually ' . $Player2_name . '!</strong></div>';
 	};
 
@@ -332,7 +314,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
-	//Display Buttons/Form
+	//Display Buttons
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
 	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '"><strong>This is ';
@@ -348,6 +330,8 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo $Player1_name . '</button>'; // If not using randomized version
 	};
 	echo '</strong><br/><br/>';
+	
+	//Display Options
 	echo '<div id="options" style="border: .5px; border-style: solid;width:30%;padding: 4px;"><strong>Options:</strong><br/>';
 	echo '<input type="checkbox" name="RevealPlayers" value="1"';
 	if(isset($_POST['RevealPlayers'])){
@@ -371,15 +355,31 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '> Hide ELO Prediction* (not recommended)<br/>';
 	echo '<select name="LockToPlayer">';
 	for($x = 1; $x <= $NUM_Sets_of_Dopples; $x++){
-		if(isset($_POST['LockPlayerCheckBox'])){ // If checked
+		$current = $TextName_DIR . $x . '.txt';
+		if(file_exists($current)){ 
+			$current_textname = read($current);
+		}
+		if(isset($_POST['LockPlayerCheckBox'])){
 			if($_POST['LockToPlayer'] == $x){
-				echo '<option value="' . $x . '" selected>' . $x . '</option>'; // To preserve upon page load
+				echo '<option value="' . $x . '" selected>' . $x;
+				if(isset($current_textname)){
+					echo ' - ' . $current_textname;
+				};
+				echo '</option>';
 			}else{
-				echo '<option value="' . $x . '">' . $x . '</option>';
+				echo '<option value="' . $x . '">' . $x;
+				if(isset($current_textname)){
+					echo ' - ' . $current_textname;
+				};
+				echo '</option>';
 			};
 		}else{
-			echo '<option value="' . $x . '">' . $x . '</option>';
-		}
+			echo '<option value="' . $x . '">' . $x;
+			if(isset($current_textname)){
+				echo ' - ' . $current_textname;
+			};
+			echo '</option>';
+		};
 	};
 	echo '</select> Lock to Player/Set #*';
 	echo '<input type="checkbox" name="LockPlayerCheckBox" value="1" ';

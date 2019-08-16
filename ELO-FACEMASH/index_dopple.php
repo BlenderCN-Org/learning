@@ -14,7 +14,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once('functions.php');
-	
+
+// To Do:
+// - Move all styling to separate file.
+
 //Configurable Variables
 $Player_LOCKED = FALSE;
 $DEBUG = FALSE;

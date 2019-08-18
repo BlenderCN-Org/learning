@@ -29,6 +29,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I'm doing next:</strong><br /><br/>
+<strong>Small Changes:</strong><br/>
 • Move all styling to separate file.<br/>
 • Use JS to make checkbox automatically check after selecting something from the dropdown next to it.<br/>
 • Use Ajax for reset and/or scoreboard.<br/>
@@ -42,11 +43,14 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.<br/>
 • After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>
 • Add hints for players, in case they don't know their names (what movie they're from, etc.)<br/>
-• Make "true" player indicators cosmetically better.<br/>
-• Mobile version, using front-end framework.<br/>
-• Scalable version.<br/>
-• Database-backed version.<br/>
+• Make "true" player indicators cosmetically better.<br/><br/>
+
+<strong>Major Revisions:</strong><br/>
+• <strong>Mobile version, using front-end framework.</strong><br/>
+• <strong>Scalable version.</strong><br/>
+• <strong>Database-backed version.</strong><br/>
 • <strike>Possible version that uses FIDE's implementation of ELO</strike><strong> (DONE - 8/7/2019)</strong>.<br />
-• Possible NodeJS version, to see how this would work differently.<br />
+• <strong>Possible NodeJS version, to see how this would work differently.</strong><br />
 • <strike>Doppleganger version, and thinking about how to implement that in current version.</strike> (DONE)<br/>
+* Bold indicates a priority.
 <br />

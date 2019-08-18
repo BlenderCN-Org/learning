@@ -15,6 +15,7 @@
 		$file = fopen($fn, 'a');
 		fwrite($file, $text . "\r\n");
 		fclose($file);
+		return TRUE;
 	};
 	function read($fn){
 		$f = fopen($fn,"r");

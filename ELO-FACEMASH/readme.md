@@ -22,7 +22,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <strong>What I've learned about the ELO formula:</strong><br/>
 • The ELO formula, when fully implemented, is way better than anything I could personally create.  No wonder it was used for this purpose.  It's like magic.<br/>
-• The ELO formula doesn't seem to play nicely with negative numbers, and this is pretty much confirmed by the fact that FIDE doesn't allow ratings below 1000 to be used (in mind).  It's not negative numbers themselves, but the fact that the formula just doesn't work well when the starting score isn't in the 1000-2000 range.  Nothing says ELO can't be used with negative numbers, but just that it doesn't give the best results when you do this.  I'm still seeing if there are any problems with negative numbers specifically, however, but this isn't priority right now since I've pretty much got down how this formula works.<br />
+• The ELO formula doesn't seem to play nicely with negative numbers, and this is pretty much confirmed by the fact that FIDE doesn't allow ratings below 1000 to be used (in mind).  It's not negative numbers themselves, but the fact that the formula just doesn't work well when the starting score isn't in the 1000-2000 range.  Nothing says ELO can't be used with negative numbers, but just that it doesn't give the best results when you do this.<br />
 • The ELO formula is actually two parts.<br />
 • Even simple algorithms can sometimes be confusing and hard to implement programmatically.
 

@@ -32,7 +32,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <strong>Small Changes:</strong><br/>
 • Make "true" player indicators cosmetically better.
 • Move all styling to separate file.<br/>
-• Use JS to make checkbox automatically check after selecting something from the dropdown next to it.<br/>
+• <strike>Use JS to make checkbox automatically check after selecting something from the dropdown next to it.</strike> <strong>(DONE - 8/19/2019)</strong><br/>
 • Use Ajax for reset and/or display scoreboard.<br/>
 • Add times chosen to scoreboard.<br/>
 • Add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>

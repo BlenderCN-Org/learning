@@ -15,10 +15,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once('functions.php');
 
-// To Do:
-// - Move all styling to separate file.
-// - Use JS to make checkbox automatically check after selecting something from the dropdown next to it
-
 //Configurable Variables
 $Player_LOCKED = FALSE;
 $DEBUG = FALSE;

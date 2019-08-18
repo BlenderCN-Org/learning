@@ -401,13 +401,12 @@ function CheckTheBox(){
 	document.getElementById("lockedLabel").style.visibility = "visible";
 }
 function UncheckTheBox(){
-	if(!document.getElementById("LockPlayerCheckBox").checked === true){
-		if(document.getElementById("lockedLabel").style.visibility = "visible"){
-			document.getElementById("lockedLabel").style.visibility = "hidden";
-		}
-	}
 	if(document.getElementById("LockPlayerCheckBox").checked === true){
 		document.getElementById("lockedLabel").style.visibility = "visible";
+	}else{
+		if(document.getElementById("lockedLabel").style.visibility === "visible"){
+			document.getElementById("lockedLabel").style.visibility = "hidden";
+		}
 	}
 }
 </script>

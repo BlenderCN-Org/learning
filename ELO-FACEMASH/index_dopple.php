@@ -29,7 +29,7 @@ $Picture_Height_Percentage = '20%';
 $BaseScore = 1500;
 
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
-	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){
+	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){ // Lock Players
 		$Player_LOCKED = TRUE;
 	};
 	if(isset($_POST['ToggleScoreBoard'])){ // Display Scores
@@ -62,7 +62,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo '</table></div><br/>';
 	};
-	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset Scores
+	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
 		if($DEBUG){ 
 			echo 'Reset Pressed!<br/>';
@@ -157,7 +157,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			$Designated_Player = $Player1; // Numbered Player will be designated player (Must have -- scores are meaningless if not tied to certain player)
 		}else{
 			$Player2 = RAND(1,$NUM_Sets_of_Dopples);
-			$Player1 = $Player2 . 'D'; // Switch
+			$Player1 = $Player2 . 'D'; // Numbered files with "D" attached denote Doppleganger files
 			
 			$Designated_Player = $Player2; // Numbered Player will always be designated player
 		};

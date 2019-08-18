@@ -35,6 +35,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Use JS to make checkbox automatically check after selecting something from the dropdown next to it.<br/>
 • Use Ajax for reset and/or display scoreboard.<br/>
 • Add times chosen to scoreboard.<br/>
+• Add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>
 • <strike>See if negative numbers affects FIDE implementation of ELO.</strike> <strong>(Solved, see "What I've Learned")</strong><br/>
 • <strike>Create dropdown box to select, and limit, number of players.</strike> <strong>(DONE - ~8/18/2019)</strong><br />
 • <strike>Finish separate scoreboard.</strike> <strong>(DONE - 8/12/2019)</strong><br />
@@ -42,7 +43,6 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • <strike>Add thing so prediction isn't displayed until after user chooses, or so there's an option for the user to not see it.</strike> <strong>(DONE - 8/12/2019)</strong><br/>
 • <strike>Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.</strike> <strong>(DONE ~8/18/2019)</strong><br />
 • <strike>Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.</strike> <strong>(DONE ~8-18-2019)</strong><br/>
-• After counter is added, will be able to add % and # of players who choose Player 1 versus 2 (another metric to compare the ELO function to).<br/>
 • <strike>Add hints for players, in case they don't know their names (what movie they're from, etc.)</strike> <strong>(DONE ~8/18/2019)</strong><br/>
 <br/>
 

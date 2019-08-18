@@ -30,6 +30,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <strong>What I'm doing next:</strong><br /><br/>
 <strong>Small Changes:</strong><br/>
+• Modulize this as much as possible, in preparation for further versions.<br/>
 • Make "true" player indicators cosmetically better.<br/>
 • Move all styling to separate file.<br/>
 • <strike>Use JS to make checkbox automatically check after selecting something from the dropdown next to it.</strike> <strong>(DONE - 8/19/2019)</strong><br/>

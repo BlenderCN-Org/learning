@@ -353,7 +353,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'checked = checked';
 	};
 	echo '> Hide ELO Prediction* (not recommended)<br/>';
-	echo '<select name="LockToPlayer">';
+	echo '<select name="LockToPlayer" onchange="CheckTheBox()">';
 	for($x = 1; $x <= $NUM_Sets_of_Dopples; $x++){
 		$current = $TextName_DIR . $x . '.txt';
 		if(file_exists($current)){ 
@@ -382,11 +382,35 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 	};
 	echo '</select> Lock to Player/Set #*';
-	echo '<input type="checkbox" name="LockPlayerCheckBox" value="1" ';
+	echo '<input type="checkbox" name="LockPlayerCheckBox" value="1" id="LockPlayerCheckBox" onclick="UncheckTheBox()" ';
 	if(isset($_POST['LockPlayerCheckBox'])){
 		echo 'checked = checked';
 	};
-	echo '><br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = Will take effect after choosing winner, until unchecked.</div>';
+	echo '>';
+	if($Player_LOCKED){
+		echo '<div id="lockedLabel" style="visibility: visible;"><font color="red">Players Locked!</font></div>';
+	}else{
+		echo '<div id="lockedLabel" style="visibility: hidden;"><font color="red">Players Locked!</font></div>';
+	};
+	
+	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = Will take effect after choosing winner, until unchecked.</div>';
 ?>
+<script>
+function CheckTheBox(){
+	document.getElementById("LockPlayerCheckBox").checked = true;
+	document.getElementById("lockedLabel").style.visibility = "visible";
+}
+function UncheckTheBox(){
+	if(!document.getElementById("LockPlayerCheckBox").checked === true){
+		if(document.getElementById("lockedLabel").style.visibility = "visible"){
+			document.getElementById("lockedLabel").style.visibility = "hidden";
+		}
+	}
+	
+	if(document.getElementById("LockPlayerCheckBox").checked === true){
+		document.getElementById("lockedLabel").style.visibility = "visible";
+	}
+}
+</script>
 </center><br/>
 </body></html>

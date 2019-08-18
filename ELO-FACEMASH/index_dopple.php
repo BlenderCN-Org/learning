@@ -406,7 +406,6 @@ function UncheckTheBox(){
 			document.getElementById("lockedLabel").style.visibility = "hidden";
 		}
 	}
-	
 	if(document.getElementById("LockPlayerCheckBox").checked === true){
 		document.getElementById("lockedLabel").style.visibility = "visible";
 	}

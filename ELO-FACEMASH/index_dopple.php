@@ -190,7 +190,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			};
 		};
 		if($Player1 == 'D' OR $Player2 == 'D'){
-			if($DEBUG){ echo 'A Player is just D'; };
+			if($DEBUG){ echo 'A Player is just D!'; };
 			$Players_Chosen = FALSE;
 		};
 	};

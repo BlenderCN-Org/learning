@@ -32,7 +32,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <br/><strong>Known Bugs to Fix:</strong><br/>
 • Find out why/when D.txt is being created by error.<br/>
-• Find out why array is coming through as string and not array.<br/>
+• Find out why array is coming through as many arrays instead of just one (with each letter per numbered array).<br/>
 
 <br/><strong>Small Changes:</strong><br/>
 • Make this version handle non-doppleganger players, or make that version a separate file.<br/>

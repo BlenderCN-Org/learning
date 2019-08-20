@@ -8,3 +8,4 @@
 * If you have: document.getElementById("myP").style.visibility   How do you know to add style? (Versus just doing document.getElementById("myP").visibility, like with document.getElementById("LockPlayerCheckBox").checked = true;) (https://www.w3schools.com/jsref/prop_style_visibility.asp)<br/>
 * https://medium.com/tech-tajawal/use-memory-gently-with-yield-in-php-7e62e2480b8d<br/>
 * https://stackoverflow.com/questions/3833561/why-doesnt-git-ignore-my-specified-file/3833675<br/>
+* PHP - Break, Yeild, Continue, Exit, Die, etc.

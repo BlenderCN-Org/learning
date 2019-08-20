@@ -149,7 +149,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
 	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
 	
-	//Randomize Player Pictures
+	//Randomize Players
 	if($Player_LOCKED != TRUE){
 		if(RAND(1,2) === 1){
 			$Player1 = RAND(1,$NUM_Sets_of_Dopples);
@@ -189,10 +189,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 				};
 			};
 		};
+		if($Player1 == 'D' OR $Player2 == 'D'){
+			if($DEBUG){ echo 'A Player is just D'; };
+			$Players_Chosen = FALSE;
+		};
 	};
 	
-	if(!$Players_Chosen){
-		die('Problem Choosing Players');
+	if($Players_Chosen == FALSE){
+		if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
+		echo 'Problem Choosing Players<br/>';
+		die('Problem Choosing Players! Die()');
 	};
 	
 	if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };

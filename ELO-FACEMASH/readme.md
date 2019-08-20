@@ -28,10 +28,16 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 
 <hr>
 
-<strong>What I'm doing next:</strong><br /><br/>
-<strong>Small Changes:</strong><br/>
+<strong>What I'm doing next:</strong><br />
+
+<br/><strong>Known Bugs to Fix:</strong><br/>
+• Find out why/when D.txt is being created by error.<br/>
+• Find out why array is coming through as string and not array.<br/>
+
+<br/><strong>Small Changes:</strong><br/>
 • Modulize this as much as possible, in preparation for further versions.<br/>
 • Make "true" player indicators cosmetically better.<br/>
+• Make "true" player indicators use JS instead of PHP.<br/>
 • Move all styling to separate file.<br/>
 • <strike>Use JS to make checkbox automatically check after selecting something from the dropdown next to it.</strike> <strong>(DONE - 8/19/2019)</strong><br/>
 • Use Ajax for reset and/or display scoreboard.<br/>
@@ -45,9 +51,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • <strike>Creating a little CSS for cosmetic purposes, but not much since I want to modernize it more anyway.</strike> <strong>(DONE ~8/18/2019)</strong><br />
 • <strike>Add Simple Counter to see how many times each was chosen before reset, and add corresponding code to reset function.</strike> <strong>(DONE ~8-18-2019)</strong><br/>
 • <strike>Add hints for players, in case they don't know their names (what movie they're from, etc.)</strike> <strong>(DONE ~8/18/2019)</strong><br/>
-<br/>
 
-<strong>Major Revisions:</strong><br/>
+<br/><strong>Major Revisions:</strong><br/>
 • Mobile version, using front-end framework.<br/>
 • Scalable version.<br/>
 • Database-backed version.<br/>

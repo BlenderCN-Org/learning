@@ -35,6 +35,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Find out why array is coming through as string and not array.<br/>
 
 <br/><strong>Small Changes:</strong><br/>
+• Make this version handle non-doppleganger players, or make that version a separate file.<br/>
 • Modulize this as much as possible, in preparation for further versions.<br/>
 • Make "true" player indicators cosmetically better.<br/>
 • Make "true" player indicators use JS instead of PHP.<br/>

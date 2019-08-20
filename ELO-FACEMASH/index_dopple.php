@@ -16,8 +16,9 @@ error_reporting(E_ALL);
 require_once('functions.php');
 
 //Configurable Variables
+$DEBUG = TRUE;
 $Player_LOCKED = FALSE;
-$DEBUG = FALSE;
+$Players_Chosen = FALSE;
 $Root_DIR = 'Dopples';
 $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
@@ -175,6 +176,25 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 	};
 	
+	//Check if players chosen correctly (needs update when reverted back to normal version)
+	if(isset($Player1) AND isset($Player2)){
+		if(is_numeric($Player1)){ // Player 1 is numbered player
+			if($Player2 == $Player1 . 'D'){
+				$Players_Chosen = TRUE;
+			};
+		}else{
+			if(is_numeric($Player2)){ // Player 2 is numbered player
+				if($Player1 == $Player2 . 'D'){
+					$Players_Chosen = TRUE;
+				};
+			};
+		};
+	};
+	
+	if(!$Players_Chosen){
+		die('Problem Choosing Players');
+	};
+	
 	if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
 	
 	$Player1_filename = $Score_DIR . $Player1 . '.txt';
@@ -287,7 +307,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	//Display Score/Info for both players for debug
 	if($DEBUG){
 		echo '<br/>Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
-		echo '<br/>Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)';
+		echo '<br/>Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)<br/>';
 	};
 	
 	//Display Prediction

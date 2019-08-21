@@ -19,6 +19,8 @@ require_once('functions.php');
 // Quotation marks are automatically being put in the value of the value field on HTML buttons.
 // Serialize/unserialize messes up because of it, and so does json_encode/decode
 // https://stackoverflow.com/questions/10152904/how-to-repair-a-serialized-string-which-has-been-corrupted-by-an-incorrect-byte
+// https://stackoverflow.com/questions/51817913/unserialize-error-at-offset-0-of-40-bytes-error
+// https://stackoverflow.com/questions/44481907/unserialize-error-at-offset-9-of-13-bytes
 
 //Configurable Variables
 $DEBUG = TRUE;

@@ -23,7 +23,7 @@ require_once('functions.php');
 // https://stackoverflow.com/questions/44481907/unserialize-error-at-offset-9-of-13-bytes
 // Have to find alternative way, because this is bullshit
 // Any alternative way will be the same as the old way -- Sending both values and then parsing it out later, since both players need to be sent through to calculate winner/loser scores.  No idea.  No solution found after 2 nights.
-// https://stackoverflow.com/questions/14071587/php-pass-array-through-post - I guess hidden fields are the only way, but that's not possible when the user hasn't determined the winner/loser yet.
+// https://stackoverflow.com/questions/14071587/php-pass-array-through-post - I guess hidden fields are the only way.  Use hidden field to contain both players and then sort upon POST request.  Thsi is retarded.
 
 //Configurable Variables
 $DEBUG = TRUE;

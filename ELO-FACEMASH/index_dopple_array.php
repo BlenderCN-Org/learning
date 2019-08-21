@@ -22,6 +22,7 @@ require_once('functions.php');
 // https://stackoverflow.com/questions/51817913/unserialize-error-at-offset-0-of-40-bytes-error
 // https://stackoverflow.com/questions/44481907/unserialize-error-at-offset-9-of-13-bytes
 // Have to find alternative way, because this is bullshit
+// Any alternative way will be the same as the old way -- Sending both values and then parsing it out later, since both players need to be sent through to calculate winner/loser scores.  No idea.  No solution found after 2 nights.
 
 //Configurable Variables
 $DEBUG = TRUE;
@@ -94,18 +95,17 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo 'Scores Reset.<br/>';
 	};
-	if(isset($_POST['Winners'])){ // Winner chosen
+	if(isset($_POST['LeftPlayer_Won']) OR isset($_POST['RightPlayer_Won'])){ // Winner chosen
 		
-		// $win_array = array();
-		$win_array = $_POST['Winners'];
-		$winners_array = unserialize($win_array);
+		if(isset($_POST['LeftPlayer_Won'])){
+			$winner = $_POST['LeftPlayer_Won'];
+			$Loser = 
+		};
+		
+		
 		echo '<pre>Output:';
 		echo '<br/>';
 		print_r($_POST);
-		echo '<br/>';
-		echo unserialize($win_array);
-		echo '<br/>';
-		print_r($winners_array);
 		echo '</pre><br/>';
 		
 		// if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits (To fully fix, send different values for each Winner's button instead of an array, and separate winners via if statements after/in the $_POST request).
@@ -365,25 +365,17 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
-	// Make Arrays - (Remember: First element in array is the winner)
-	$First_Player_is_Winner_Array = [$Player1, $Player2]; // To fix array error
-	$Second_Player_is_Winner_Array = [$Player2, $Player1];
-	
-	$First_Player_is_Winner = serialize($First_Player_is_Winner_Array);
-	$Second_Player_is_Winner = serialize($Second_Player_is_Winner_Array);
-	
 	//Display Buttons
+	$BothPlayers = $Player1 . ',' . $Player2;
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	// echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '"><strong>This is ';
-	echo '<button name="Winners" type="submit" value="' . $First_Player_is_Winner . '"><strong>This is ';
+	echo '<button name="LeftPlayer_Won" type="submit" value="' . $BothPlayers . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
-		echo $Player1_name . '</button> '; // If not using randomized version
+		echo $Player1_name . '</button> ';
 	};
-	// echo '</strong><button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '"><strong>No, this is ';
-	echo '</strong><button name="Winners" type="submit" value="' . $Second_Player_is_Winner . '"><strong>No, this is ';
+	echo '</strong><button name="RightPlayer_Won" type="submit" value="' . $BothPlayers . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{

@@ -21,6 +21,7 @@ require_once('functions.php');
 // https://stackoverflow.com/questions/10152904/how-to-repair-a-serialized-string-which-has-been-corrupted-by-an-incorrect-byte
 // https://stackoverflow.com/questions/51817913/unserialize-error-at-offset-0-of-40-bytes-error
 // https://stackoverflow.com/questions/44481907/unserialize-error-at-offset-9-of-13-bytes
+// Have to find alternative way, because this is bullshit
 
 //Configurable Variables
 $DEBUG = TRUE;
@@ -97,12 +98,12 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		
 		// $win_array = array();
 		$win_array = $_POST['Winners'];
-		$winners_array = json_decode($win_array);
+		$winners_array = unserialize($win_array);
 		echo '<pre>Output:';
 		echo '<br/>';
 		print_r($_POST);
 		echo '<br/>';
-		print_r($win_array);
+		echo unserialize($win_array);
 		echo '<br/>';
 		print_r($winners_array);
 		echo '</pre><br/>';
@@ -368,8 +369,8 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$First_Player_is_Winner_Array = [$Player1, $Player2]; // To fix array error
 	$Second_Player_is_Winner_Array = [$Player2, $Player1];
 	
-	$First_Player_is_Winner = json_encode($First_Player_is_Winner_Array);
-	$Second_Player_is_Winner = json_encode($Second_Player_is_Winner_Array);
+	$First_Player_is_Winner = serialize($First_Player_is_Winner_Array);
+	$Second_Player_is_Winner = serialize($Second_Player_is_Winner_Array);
 	
 	//Display Buttons
 	echo '<strong>Choose below:</strong>';

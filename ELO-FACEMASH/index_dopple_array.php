@@ -15,6 +15,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once('functions.php');
 
+// Bugs:
+// Quotation marks are automatically being put in the value of the value field on HTML buttons.
+// https://stackoverflow.com/questions/10152904/how-to-repair-a-serialized-string-which-has-been-corrupted-by-an-incorrect-byte
+
 //Configurable Variables
 $DEBUG = TRUE;
 $Player_LOCKED = FALSE;
@@ -90,11 +94,14 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		
 		// $win_array = array();
 		$win_array = $_POST['Winners'];
-		$winners_array = unserialize($win_array);
-		echo '<pre>';
-		echo print_r(unserialize($win_array));
+		$winners_array = json_decode($win_array);
+		echo '<pre>Output:';
 		echo '<br/>';
-		echo print_r($winners_array);
+		print_r($_POST);
+		echo '<br/>';
+		print_r($win_array);
+		echo '<br/>';
+		print_r($winners_array);
 		echo '</pre><br/>';
 		
 		// if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits (To fully fix, send different values for each Winner's button instead of an array, and separate winners via if statements after/in the $_POST request).
@@ -358,8 +365,8 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	$First_Player_is_Winner_Array = [$Player1, $Player2]; // To fix array error
 	$Second_Player_is_Winner_Array = [$Player2, $Player1];
 	
-	$First_Player_is_Winner = serialize($First_Player_is_Winner_Array);
-	$Second_Player_is_Winner = serialize($Second_Player_is_Winner_Array);
+	$First_Player_is_Winner = json_encode($First_Player_is_Winner_Array);
+	$Second_Player_is_Winner = json_encode($Second_Player_is_Winner_Array);
 	
 	//Display Buttons
 	echo '<strong>Choose below:</strong>';

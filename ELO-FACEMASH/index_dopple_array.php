@@ -15,16 +15,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once('functions.php');
 
-// Bugs:
-// Quotation marks are automatically being put in the value of the value field on HTML buttons.
-// Serialize/unserialize messes up because of it, and so does json_encode/decode.  PHP IS officially fucking DUMB.
-// https://stackoverflow.com/questions/10152904/how-to-repair-a-serialized-string-which-has-been-corrupted-by-an-incorrect-byte
-// https://stackoverflow.com/questions/51817913/unserialize-error-at-offset-0-of-40-bytes-error
-// https://stackoverflow.com/questions/44481907/unserialize-error-at-offset-9-of-13-bytes
-// Have to find alternative way, because this is bullshit
-// Any alternative way will be the same as the old way -- Sending both values and then parsing it out later, since both players need to be sent through to calculate winner/loser scores.  No idea.  No solution found after 2 nights.
-// https://stackoverflow.com/questions/14071587/php-pass-array-through-post - I guess hidden fields are the only way.  Use hidden field to contain both players and then sort upon POST request.  Thsi is retarded.
-
 //Configurable Variables
 $DEBUG = TRUE;
 $Player_LOCKED = FALSE;
@@ -122,7 +112,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'Winner: ' . $winner;
 		echo '<br/>';
 		echo 'Loser: ' . $Loser;
-		
 		echo '<br/>';
 		print_r($_POST);
 		echo '</pre><br/>';

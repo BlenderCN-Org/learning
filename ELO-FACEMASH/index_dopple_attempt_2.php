@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 require_once('functions.php');
 
 //Configurable Variables
-$DEBUG = TRUE;
+$DEBUG = FALSE;
 $Player_LOCKED = FALSE;
 $Players_Chosen = FALSE;
 $Root_DIR = 'Dopples';
@@ -102,13 +102,15 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			$Loser = $new[0];
 		};
 		
-		echo '<pre>';
-		echo '<br/>POST:<br/>';
-		print_r($winners_array);
-		echo '<br/>';
-		echo '<br/>';
-		print_r($new);
-		echo '</pre>';
+		if($DEBUG){
+			echo '<pre>';
+			echo '<br/>POST:<br/>';
+			print_r($winners_array);
+			echo '<br/>';
+			echo '<br/>';
+			print_r($new);
+			echo '</pre>';
+		};
 		
 		if(!isset($winner)){
 			die('No Winner! Exiting...');

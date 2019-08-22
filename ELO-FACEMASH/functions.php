@@ -40,16 +40,16 @@
 		$maxlength = 100;
 		foreach($array as $key => $value){
 			if(ctype_alnum($value)){
-				echo 'Key: ' . $key . ' Value: ' . $value . ' is alphanumeric.<br/>';
+				// echo 'Key: ' . $key . ' Value: ' . $value . ' is alphanumeric.<br/>';
 			}else{
-				echo 'Key: ' . $key . ' Value: ' . $value . ' is NOT alphanumeric.<br/>';
+				// echo 'Key: ' . $key . ' Value: ' . $value . ' is NOT alphanumeric.<br/>';
 				if($value == ',' OR $value == '(' OR $value == ')'){ // Make exception for these
-					echo 'Key: ' . $key . ' Value: ' . $value . ' is exception<br/>';
+					// echo 'Key: ' . $key . ' Value: ' . $value . ' is exception<br/>';
 				}else{	
 					if(is_numeric($value)){
-						echo 'Value(' . $value . ') is numeric!<br/>';
+						// echo 'Value(' . $value . ') is numeric!<br/>';
 					}else{
-						echo 'Value(' . $value . ') NOT exception.<br/>';
+						// echo 'Value(' . $value . ') NOT exception.<br/>';
 						$no_problems = FALSE;
 					};
 				};

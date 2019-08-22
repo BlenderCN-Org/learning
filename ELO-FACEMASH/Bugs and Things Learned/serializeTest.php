@@ -15,7 +15,7 @@
 	$new_array = serialize($some_array);
 	echo '<b>Serialized:</b><br/>';
 	print_r($new_array);
-	echo '<br/><b>Original Array</b><br/>';
+	echo '<br/><b>Original Array (unserialized):</b><br/>';
 	print_r(unserialize($new_array));
 	
 	echo '<br/><br/>';

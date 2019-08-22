@@ -87,14 +87,14 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		echo 'Scores Reset.<br/>';
 	};
 	if(isset($_POST['Winners'])){ // Winner chosen
-		if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits (To fully fix, send different values for each Winner's button instead of an array, and separate winners via if statements after/in the $_POST request).
+		if($_POST['Winners'][3] === ","){ // Since you can't send an array through POST, and serialize and encode_json suck in PHP
 			if ($DEBUG){ echo 'First element is "D" Player<br/>'; };
-			$winner = $_POST['Winners'][6] . $_POST['Winners'][7];
-			$Loser = $_POST['Winners'][9];
+			$winner = $_POST['Winners'][1] . $_POST['Winners'][2];
+			$Loser = $_POST['Winners'][4];
 		}else{
 			if ($DEBUG){ echo 'Second element is "D" Player<br/>'; };
-			$winner = $_POST['Winners'][6];
-			$Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
+			$winner = $_POST['Winners'][1];
+			$Loser = $_POST['Winners'][3] . $_POST['Winners'][4];
 		};
 		
 		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
@@ -350,14 +350,14 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	//Display Buttons
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="Winners" type="submit" value="' . 'array(' . $Player1 . ',' . $Player2 . ')' . '"><strong>This is ';
+	echo '<button name="Winners" type="submit" value="(' . $Player1 . ',' . $Player2 . ')"><strong>This is ';
 	// echo '<button name="Winners" type="submit" value="' . $First_Player_is_Winner . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
-	echo '</strong><button name="Winners" type="submit" value="' . 'array(' . $Player2 . ',' . $Player1 . ')' . '"><strong>No, this is ';
+	echo '</strong><button name="Winners" type="submit" value="(' . $Player2 . ',' . $Player1 . ')"><strong>No, this is ';
 	// echo '</strong><button name="Winners" type="submit" value="' . $Second_Player_is_Winner . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';

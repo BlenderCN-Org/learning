@@ -104,9 +104,6 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			};
 		};
 		
-		// Array/POST Error (above):
-		// This is a little cleaner, but ultimately the same thing as before, and needs to be changed once players reach double digits (ex: 10, 10D).
-		
 		echo '<pre>Output:';
 		echo '<br/>';
 		echo 'Winner: ' . $winner;
@@ -376,7 +373,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{
-		echo $Player1_name . '</button>'; // In case you're not using randomized version.
+		echo $Player1_name . '</button>';
 	};
 	echo '</strong><br/><br/>';
 	

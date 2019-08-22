@@ -35,6 +35,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • <strike>Find out why array is coming through as 10 elements instead of just two (with each letter per numbered array).</strike><strong>(DONE - 8/21/2019)<br/>
 
 <br/><strong>Small Changes:</strong><br/>
+• Add simple form validation, just in case.<br/>
 • Make this version handle non-doppleganger players, or make that version a separate file.<br/>
 • Modulize this as much as possible, in preparation for further versions.<br/>
 • Make "true" player indicators cosmetically better.<br/>

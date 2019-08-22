@@ -18,13 +18,13 @@
 	$TextName_DIR = $Root_DIR . '/Actress_Name/';
 	$Picture_DIR = $Root_DIR . '/Actress_Picture/';
 
-	if(isset($_POST['Display']) and $_POST['Display'] = 1){
+	if(isset($_POST['Display'])){
 		echo '<div id="Player_Scores" style="position: fixed;border: 1;border-style: dashed;width: 20%;min-height: 1%;left: 7.5%;">';
 		
 		echo '</div>';
 	};
 
-	if(isset($_POST['Reset']) and $_POST['Reset'] = 1){ // Reset Scores
+	if(isset($_POST['Reset'])){ // Reset Scores
 		echo 'Reset Pressed!<br/>';
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR);
 		for ($x = 0; $x <= $number_of_scores_to_reset; $x++){

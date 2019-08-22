@@ -96,28 +96,36 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo 'Scores Reset.<br/>';
 	};
-	if(isset($_POST['LeftPlayer_Won']) OR isset($_POST['RightPlayer_Won'])){ // Winner chosen
-		
+	if(isset($_POST['LeftPlayer_Won']) OR isset($_POST['RightPlayer_Won'])){
 		if(isset($_POST['LeftPlayer_Won'])){
 			$winner = $_POST['LeftPlayer_Won'];
-			$Loser = 
+			if(is_numeric($winner)){
+				$Loser = $winner . 'D';
+			}else{ // Winner is D Player
+				$Loser = substr($winner, 0);
+			};
+		};
+		if(isset($_POST['RightPlayer_Won'])){
+			$winner = $_POST['RightPlayer_Won'];
+			if(is_numeric($winner)){
+				$Loser = $winner . 'D';
+			}else{ // Winner is D Player
+				$Loser = substr($winner, 0);
+			};
 		};
 		
+		// Array/POST Error (above):
+		// This is a little cleaner, but ultimately the same thing as before, and needs to be changed once players reach double digits (ex: 10, 10D).
 		
 		echo '<pre>Output:';
 		echo '<br/>';
+		echo 'Winner: ' . $winner;
+		echo '<br/>';
+		echo 'Loser: ' . $Loser;
+		
+		echo '<br/>';
 		print_r($_POST);
 		echo '</pre><br/>';
-		
-		// if($_POST['Winners'][8] === ","){ // Bug fix for "D Player" array-error. Will need update whenever player #s are in triple digits (To fully fix, send different values for each Winner's button instead of an array, and separate winners via if statements after/in the $_POST request).
-			// if ($DEBUG){ echo 'First element is "D" Player<br/>'; };
-			// $winner = $_POST['Winners'][6] . $_POST['Winners'][7];
-			// $Loser = $_POST['Winners'][9];
-		// }else{
-			// if ($DEBUG){ echo 'Second element is "D" Player<br/>'; };
-			// $winner = $_POST['Winners'][6];
-			// $Loser = $_POST['Winners'][8] . $_POST['Winners'][9];
-		// };
 		
 		if(!isset($winner)){
 			die('No Winner! Exiting....');
@@ -367,16 +375,15 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
 	//Display Buttons
-	$BothPlayers = $Player1 . ',' . $Player2;
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="LeftPlayer_Won" type="submit" value="' . $BothPlayers . '"><strong>This is ';
+	echo '<button name="LeftPlayer_Won" type="submit" value="' . $Player1 . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
 		echo $Player1_name . '</button> ';
 	};
-	echo '</strong><button name="RightPlayer_Won" type="submit" value="' . $BothPlayers . '"><strong>No, this is ';
+	echo '</strong><button name="RightPlayer_Won" type="submit" value="' . $Player2 . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{

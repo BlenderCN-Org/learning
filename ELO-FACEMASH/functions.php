@@ -1,7 +1,7 @@
 <?php
 	//Created On: 7-19-2019 By: Russell Rounds (https://github.com/netsider)
 	
-	function array_push_assoc($a, $k, $v){
+	function array_push_a($a, $k, $v){
 		$a[$k] = $v;
 		return $a;
 	};
@@ -37,25 +37,21 @@
 	function filter_array($array){
 		$minlength = 0;
 		$maxlength = 100;
-		$fc = '<font color="red">';
-		$efc = '</font>';
 		foreach($array as $key => $value){
-			if(strlen($value) < $minlength){
-				// $a = $fc . 'Length of <b>' . $key . '</b> is <b>' . strlen($value) . '</b>' . $efc;
-				// echo $a;
-				return false;
-			}
-			if(strlen($value) > $maxlength){
-				// echo $a;
-				return false;
-			}
+			$info = 'Key: ' . $key . ' Value: ' . $value . '<br/>';
 			if(ctype_alnum($value)){
-				// echo '<font color="green">The field(<b>' . $key . '</b>) is completely letters and/or digits.<br/>' . $efc;
-			}else {
-				// echo $fc . 'The field(<b>' . $key . '</b>) is not completely letters and/or digits.<br/>' . $efc;
-				return false;
+				echo 'Completely letters and/or digits.<br/>';
+			}else{
+				echo 'NOT Completely letters and/or digits.<br/>';
+				echo $info;
+				if($value == ',' OR $value == '(' OR $value = ')'){ // Make exception for these
+					echo 'Value is exception! <br/>';
+					return TRUE;
+				}else{
+					echo 'Returning False...<br/>';
+					return FALSE;
+				};
 			};
 		};
-	return true;
 	};
 ?>

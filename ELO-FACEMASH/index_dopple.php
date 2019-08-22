@@ -63,7 +63,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo '</table></div><br/>';
 	};
-	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){ // Reset
+	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){
 		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
 		if($DEBUG){ 
 			echo 'Reset Pressed!<br/>';
@@ -86,15 +86,19 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo 'Scores Reset.<br/>';
 	};
-	if(isset($_POST['Winners'])){ // Winner chosen
+	if(isset($_POST['Winners'])){
 		if($_POST['Winners'][3] === ","){ // Since you can't send an array through POST, and serialize and encode_json suck in PHP
-			if ($DEBUG){ echo 'First element is "D" Player<br/>'; };
+			if($DEBUG){ echo 'First element is "D" Player<br/>'; };
 			$winner = $_POST['Winners'][1] . $_POST['Winners'][2];
 			$Loser = $_POST['Winners'][4];
 		}else{
-			if ($DEBUG){ echo 'Second element is "D" Player<br/>'; };
+			if($DEBUG){ echo 'Second element is "D" Player<br/>'; };
 			$winner = $_POST['Winners'][1];
 			$Loser = $_POST['Winners'][3] . $_POST['Winners'][4];
+		};
+		
+		if(!isset($winner)){
+			die('No Winner! Exiting....');
 		};
 		
 		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
@@ -147,7 +151,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
-	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing "sets" of numbers now
+	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing specific sets of players
 	
 	//Randomize Players
 	if($Player_LOCKED != TRUE){
@@ -155,22 +159,22 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 			$Player1 = RAND(1,$NUM_Sets_of_Dopples);
 			$Player2 = $Player1 . 'D';
 			
-			$Designated_Player = $Player1; // Numbered Player will be designated player (Must have -- scores are meaningless if not tied to certain player)
+			$Designated_Player = $Player1; // Numbered Player will be designated player, since scores are meaningless if not tied to certain player
 		}else{
 			$Player2 = RAND(1,$NUM_Sets_of_Dopples);
-			$Player1 = $Player2 . 'D'; // Numbered files with "D" attached denote Doppleganger files
+			$Player1 = $Player2 . 'D'; // Numbered files with "D" attached denote the doppleganger (non designated player)
 			
-			$Designated_Player = $Player2; // Numbered Player will always be designated player
+			$Designated_Player = $Player2; // So numbered player is designated player
 		};
 	}else{
 		if(isset($_POST['LockToPlayer'])){
 			if(RAND(1,2) === 1){
 				$Player1 = $_POST['LockToPlayer'];
-				$Designated_Player = $Player1; // Numbered Player must always be designated player
+				$Designated_Player = $Player1; // So numbered player is designated player
 				$Player2 = $Player1 . 'D';
 			}else{
 				$Player2 = $_POST['LockToPlayer'];
-				$Designated_Player = $Player2; // Numbered Player must always be designated player
+				$Designated_Player = $Player2; // So numbered player is designated player
 				$Player1 = $Player2 . 'D';
 			};
 		};
@@ -340,25 +344,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
-	// Make Arrays
-	$First_Player_is_Winner_Array = [$Player1, $Player2]; // To fix array error
-	$Second_Player_is_Winner_Array = [$Player2, $Player1];
-	
-	$First_Player_is_Winner = serialize($First_Player_is_Winner_Array);
-	$Second_Player_is_Winner = serialize($Second_Player_is_Winner_Array);
-	
 	//Display Buttons
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
 	echo '<button name="Winners" type="submit" value="(' . $Player1 . ',' . $Player2 . ')"><strong>This is ';
-	// echo '<button name="Winners" type="submit" value="' . $First_Player_is_Winner . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
 		echo $Player1_name . '</button> '; // If not using randomized version
 	};
 	echo '</strong><button name="Winners" type="submit" value="(' . $Player2 . ',' . $Player1 . ')"><strong>No, this is ';
-	// echo '</strong><button name="Winners" type="submit" value="' . $Second_Player_is_Winner . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{

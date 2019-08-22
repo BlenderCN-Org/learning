@@ -35,23 +35,32 @@
 		return (1/(1+pow(10,(($B-$A)/400)))); // https://en.wikipedia.org/wiki/Elo_rating_system
 	};
 	function filter_array($array){
+		$no_problems = TRUE;
 		$minlength = 0;
 		$maxlength = 100;
 		foreach($array as $key => $value){
-			$info = 'Key: ' . $key . ' Value: ' . $value . '<br/>';
 			if(ctype_alnum($value)){
-				echo 'Completely letters and/or digits.<br/>';
+				echo 'Key: ' . $key . ' Value: ' . $value . ' is alphanumeric.<br/>';
 			}else{
-				echo 'NOT Completely letters and/or digits.<br/>';
-				echo $info;
-				if($value == ',' OR $value == '(' OR $value = ')'){ // Make exception for these
-					echo 'Value is exception! <br/>';
-					return TRUE;
-				}else{
-					echo 'Returning False...<br/>';
-					return FALSE;
+				echo 'Key: ' . $key . ' Value: ' . $value . ' is NOT alphanumeric.<br/>';
+				if($value == ',' OR $value == '(' OR $value == ')'){ // Make exception for these
+					echo 'Key: ' . $key . ' Value: ' . $value . ' is exception<br/>';
+				}else{	
+					if(is_numeric($value)){
+						echo 'Value(' . $value . ') is numeric!<br/>';
+					}else{
+						echo 'Value(' . $value . ') NOT exception.<br/>';
+						$no_problems = FALSE;
+					};
 				};
 			};
+		};
+		
+		if($no_problems === TRUE){
+			return TRUE;
+		};
+		if($no_problems === FALSE){
+			return FALSE;
 		};
 	};
 ?>

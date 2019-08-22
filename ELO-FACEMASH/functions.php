@@ -56,11 +56,10 @@
 			};
 		};
 		
-		if($no_problems === TRUE){
-			return TRUE;
-		};
 		if($no_problems === FALSE){
 			return FALSE;
+		}elseif($no_problems === TRUE){
+			return TRUE;
 		};
 	};
 ?>

@@ -98,7 +98,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		
 		if(!isset($winner)){
-			die('No Winner! Exiting....');
+			die('No Winner! Exiting...');
 		};
 		
 		$WinnerScoreFilename = $Score_DIR . $winner . '.txt';
@@ -147,7 +147,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		print_r($_POST);
 		echo '</pre>';
 	};
-};// --------------------------------- End $_POSTs
+};// --------------------------------- End $_POST
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);

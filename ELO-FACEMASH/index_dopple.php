@@ -357,7 +357,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{
-		echo $Player1_name . '</button>'; // In case you're not using randomized version.
+		echo $Player1_name . '</button>';
 	};
 	echo '</strong><br/><br/>';
 	

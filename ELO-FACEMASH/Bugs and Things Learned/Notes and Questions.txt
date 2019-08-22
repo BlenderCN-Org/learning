@@ -2,7 +2,8 @@ ES5 introduced the bind() method to set the value of a function's this regardles
 
 // Bugs:
 // Quotation marks are automatically being put in the value of the value field on HTML buttons.
-// Serialize/unserialize messes up because of that, and so does json_encode/decode.  ALL THESE SCRIPTING LANGUAGES SUCK BECAUSE THEY DON'T EVEM MAKE ANYTHING EASIER ON THE FUCKING DEVELOPER IN THE LONG RUN.
+// Serialize/unserialize messes up because of that, and so does json_encode/decode.  ALL THESE SCRIPTING LANGUAGES SUCK BECAUSE THEY DON'T EVEM MAKE ANYTHING EASIER ON THE FUCKING DEVELOPER IN THE LONG RUN.  It's like someone said "HEY, LETS MAKE ALL THESE SCRIPTING LANGUAGES SO HARD TO DEVELOP IN, PEOPLE WILL SPEND ALL DAY LEARNING IT INSTEAD OF ACTUALLY MAKING SHIT IN IT!  DERP!"
+
 // https://stackoverflow.com/questions/10152904/how-to-repair-a-serialized-string-which-has-been-corrupted-by-an-incorrect-byte
 // https://stackoverflow.com/questions/51817913/unserialize-error-at-offset-0-of-40-bytes-error
 // https://stackoverflow.com/questions/44481907/unserialize-error-at-offset-9-of-13-bytes

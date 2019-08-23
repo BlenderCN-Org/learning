@@ -17,7 +17,7 @@ require_once('functions.php');
 	$ar = array_push_a($ar, 'I', '=');
 	$ar = array_push_a($ar, 'J', '==');
 	$ar = array_push_a($ar, 'K', 'WyIxIiwiMUQiXQ==');
-	
+	$ar = array_push_a($ar, 'L', '<>|');
 	
 	
 	echo '<pre><br/>Print_r:<br/>';

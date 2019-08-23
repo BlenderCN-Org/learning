@@ -33,10 +33,10 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <br/><strong>Known Bugs to Fix:</strong><br/>
 • <strike>Find out why/when D.txt is being created by error, or prevent it from being created as a temp. fix.</strike> <strong>(DONE - 8/20/2019)</strong><br/>
 • <strike>Find out why array is coming through as 10 elements instead of just two (with each letter per numbered array).</strike><strong>(DONE - 8/21/2019)<br/>
-• Although understood/solved, keep looking for better solution to POST/Array error (found in Bugs folder), so any format/form of players will work, and not just single/double digit players.<br/>
+• <strike>Although understood/solved, keep looking for better solution to POST/Array error (found in Bugs folder), so any format/form of players will work, and not just single/double digit players.</strike> (DONE - 8/22/2019)<br/>
 
 <br/><strong>Small Changes:</strong><br/>
-• Add simple form validation to prevent injection attacks, just in case.<br/>
+• <strike>Add simple form validation to prevent injection attacks, just in case.</strike> (DONE - 8/23/2019)<br/>
 • Make this version handle non-doppleganger players, or make that version a separate file.<br/>
 • Modulize this as much as possible, in preparation for further versions.<br/>
 • Make "true" player indicators cosmetically better.<br/>

@@ -36,28 +36,25 @@
 	};
 	function filter_array($array){
 		$no_problems = TRUE;
-		$exception_array = ['=', ')', '(', ','];
+		$exception_array = ['='];
 		foreach($array as $key => $value){
 			if(ctype_alnum($value)){
-				// echo 'Key: ' . $key . ' Value: ' . $value . ' is alphanumeric.<br/>';
+				// echo 'Key: <b>' . $key . '</b> Value: <b>' . $value . '</b> is alphanumeric.<br/>';
 			}else{
-				if(in_array($value, $exception_array)){ // Exceptions
-					// echo 'Key: ' . $key . ' Value: ' . $value . ' is exception!<br/>';
+				if(is_numeric($value)){
+					// echo 'Key: <b>' . $key . '</b> Value: <b>' . $value . '</b> is NUMERIC!<br/>';
 				}else{
-					if(is_numeric($value)){
-						// echo 'Key: ' . $key . ' Value: ' . $value . ' is NUMERIC!<br/>';
-					}else{
-						$string_array = str_split($value);
-						foreach($string_array as $char) {
-							if(in_array($char, $exception_array) OR ctype_alnum($char)){
-								// echo 'Value(' . $value . ') not alphanumeric, but Character(' . $char . ') is, or is in exception array!<br/>';
-							}else{
-								echo '<b>Key(' . $key . ')</b> <b>Value(' . $value . ')</b> is NOT alphanumeric, NOT exception. <b>Odd character(' . $char . ')</b>.<br/>';
-								$no_problems = FALSE;
-							};
+					$string_array = str_split($value);
+					foreach($string_array as $char) {
+						if(in_array($char, $exception_array) OR ctype_alnum($char)){
+							// echo 'Key<b>(' . $key . ')</b> Value(<b>' . $value . '</b>) NOT alphanumeric, but Character(<b>' . $char . '</b>) is exception!<br/>';
+						}else{
+							echo 'Key<b>(' . $key . ')</b> Value(<b>' . $value . '</b>) NOT alphanumeric, NOT exception. Character(<b>' . $char . '</b>).<br/>';
+							$no_problems = FALSE;
 						};
 					};
 				};
+				
 			};
 		};
 		

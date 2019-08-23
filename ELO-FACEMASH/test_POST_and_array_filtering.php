@@ -14,7 +14,12 @@ require_once('functions.php');
 	$ar = array_push_a($ar, 'F', ',');
 	$ar = array_push_a($ar, 'G', '?');
 	$ar = array_push_a($ar, 'H', (string) 4); // Is alphanumeric, since converted to string.
-
+	$ar = array_push_a($ar, 'I', '=');
+	$ar = array_push_a($ar, 'J', '==');
+	$ar = array_push_a($ar, 'K', 'WyIxIiwiMUQiXQ==');
+	
+	
+	
 	echo '<pre><br/>Print_r:<br/>';
 	print_r($ar);
 	echo '<br/>';

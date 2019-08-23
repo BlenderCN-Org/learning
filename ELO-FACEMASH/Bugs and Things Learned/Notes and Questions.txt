@@ -19,8 +19,9 @@ Sanitizing User Input:
 https://stackoverflow.com/questions/129677/how-can-i-sanitize-user-input-with-php
 https://stackoverflow.com/questions/2610524/why-is-turning-magic-quotes-gpc-on-considered-a-bad-practice
 
-Performance:
+Performance/Resources:
 https://phpludhiana.com/why-would-you-use-instead-of/
+https://nikic.github.io/2011/12/12/How-big-are-PHP-arrays-really-Hint-BIG.html
 
 [Questions]
 

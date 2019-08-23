@@ -61,5 +61,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Database-backed version.<br/>
 • <strike>Possible version that uses FIDE's implementation of ELO</strike><strong> (DONE - 8/7/2019)</strong>.<br />
 • NodeJS version, to see how this would work differently.<br />
+• Python version, to see how this would work differently.<br />
+• Explore additional versions (serverless?). <br />
 • <strike>Doppleganger version, and thinking about how to implement that in current version.</strike> <strong>(DONE)</strong><br/>
 <br />

@@ -13,15 +13,16 @@ ES5 introduced the bind() method to set the value of a function's this regardles
 // Any alternative way will be the same as the old way -- Sending both values and then parsing it out later, since both players need to be sent through to calculate winner/loser scores.  No idea.  No solution found after 2 nights.
 // https://stackoverflow.com/questions/14071587/php-pass-array-through-post - I guess hidden fields are the only way.  Use hidden field to contain both players and then sort upon POST request.  This is retarded, since hidden fields can be altered.
 
-Notes:
+[Specific Topics]
 
 Sanitizing User Input:
 https://stackoverflow.com/questions/129677/how-can-i-sanitize-user-input-with-php
-
 https://stackoverflow.com/questions/2610524/why-is-turning-magic-quotes-gpc-on-considered-a-bad-practice
 
+Performance:
+https://phpludhiana.com/why-would-you-use-instead-of/
 
-Questions:
+[Questions]
 
 https://security.stackexchange.com/questions/175630/passing-php-code-directly-into-javascript-in-html5
 

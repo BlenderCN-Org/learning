@@ -359,24 +359,23 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_PO
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
-	// Make Arrays (again)
+	// Make Array
 	$Players_Array = [(string)$Player1,(string)$Player2];
-	$Players_Array = json_encode($Players_Array);
 	
 	//Display Buttons
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="Left_button" type="submit" value="' . base64_encode($Players_Array) . '"><strong>This is ';
+	echo '<button name="Left_button" type="submit" value="' . base64_encode(json_encode($Players_Array)) . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
-		echo $Player1_name . '</button> '; // If not using randomized version
+		echo 'Player 1</button> '; // If not using randomized version
 	};
-	echo '</strong><button name="Right_button" type="submit" value="' . base64_encode($Players_Array) . '"><strong>No, this is ';
+	echo '</strong><button name="Right_button" type="submit" value="' . base64_encode(json_encode($Players_Array)) . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{
-		echo $Player1_name . '</button>';
+		echo 'Player 2</button>';
 	};
 	echo '</strong><br/><br/>';
 	

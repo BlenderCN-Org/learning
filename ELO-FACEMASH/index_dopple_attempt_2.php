@@ -29,7 +29,7 @@ $Picture_Width_Percentage = '20%';
 $Picture_Height_Percentage = '20%';
 $BaseScore = 1500;
 
-if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
+if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_POST)){
 	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){ // Lock Players
 		$Player_LOCKED = TRUE;
 	};

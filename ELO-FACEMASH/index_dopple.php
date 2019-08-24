@@ -29,6 +29,9 @@ $Picture_Width_Percentage = '20%';
 $Picture_Height_Percentage = '20%';
 $BaseScore = 1500;
 
+// Notes:
+// If anything wierd happens, change back strict assignment checking to loose.
+
 if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_POST)){
 	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){ // Lock Players
 		$Player_LOCKED = TRUE;
@@ -63,28 +66,30 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_PO
 		};
 		echo '</table></div><br/>';
 	};
-	if(isset($_POST['Reset']) AND $_POST['Reset'] === "1"){
-		$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
-		if($DEBUG){ 
-			echo 'Reset Pressed!<br/>';
-			echo 'Number of scores to reset = ' . $number_of_scores_to_reset . '<br/>';
-		};
-		
-		for($x = 1; $x <= $number_of_scores_to_reset; $x++){
-			$current_filename = $Score_DIR . $x . '.txt';
-			$current_D_filename = $Score_DIR . $x . 'D.txt';
-			
-			if(file_exists($current_filename)){
-				if($DEBUG){ echo 'Overwriting ' . $current_filename . ' ...<br/>'; };
-				write($current_filename, $BaseScore);
-			};
-			if(file_exists($current_D_filename)){
-				if($DEBUG){ echo 'Overwriting ' . $current_D_filename . ' ...<br/>'; };
-				write($current_D_filename, $BaseScore);
+	if(isset($_POST['Reset'])){
+		if($_POST['Reset'] === "1"){
+			$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
+			if($DEBUG){ 
+				echo 'Reset Pressed!<br/>';
+				echo 'Number of scores to reset = ' . $number_of_scores_to_reset . '<br/>';
 			};
 			
+			for($x = 1; $x <= $number_of_scores_to_reset; $x++){
+				$current_filename = $Score_DIR . $x . '.txt';
+				$current_D_filename = $Score_DIR . $x . 'D.txt';
+				
+				if(file_exists($current_filename)){
+					if($DEBUG){ echo 'Overwriting ' . $current_filename . ' ...<br/>'; };
+					write($current_filename, $BaseScore);
+				};
+				if(file_exists($current_D_filename)){
+					if($DEBUG){ echo 'Overwriting ' . $current_D_filename . ' ...<br/>'; };
+					write($current_D_filename, $BaseScore);
+				};
+				
+			};
+			echo 'Scores Reset.<br/>';
 		};
-		echo 'Scores Reset.<br/>';
 	};
 	if(isset($_POST['Left_button']) OR isset($_POST['Right_button'])){
 		if(isset($_POST['Left_button'])){
@@ -198,23 +203,23 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_PO
 	//Check if players chosen correctly (needs update when reverted back to normal version)
 	if(isset($Player1) AND isset($Player2)){
 		if(is_numeric($Player1)){ // Player 1 is numbered player
-			if($Player2 == $Player1 . 'D'){
+			if($Player2 === $Player1 . 'D'){
 				$Players_Chosen = TRUE;
 			};
 		}else{
 			if(is_numeric($Player2)){ // Player 2 is numbered player
-				if($Player1 == $Player2 . 'D'){
+				if($Player1 === $Player2 . 'D'){
 					$Players_Chosen = TRUE;
 				};
 			};
 		};
-		if($Player1 == 'D' OR $Player2 == 'D'){
+		if($Player1 === 'D' OR $Player2 === 'D'){
 			if($DEBUG){ echo 'A Player is just D!'; };
 			$Players_Chosen = FALSE;
 		};
 	};
 	
-	if($Players_Chosen == FALSE){
+	if($Players_Chosen === FALSE){
 		if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
 		echo 'Problem Choosing Players<br/>';
 		die('Problem Choosing Players! Die()');

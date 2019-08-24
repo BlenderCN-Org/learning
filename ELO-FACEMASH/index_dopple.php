@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 require_once('functions.php');
 
 //Configurable Variables
-$DEBUG = TRUE;
+$DEBUG = FALSE;
 $Player_LOCKED = FALSE;
 $Players_Chosen = FALSE;
 $Root_DIR = 'Dopples';
@@ -29,7 +29,7 @@ $Picture_Width_Percentage = '20%';
 $Picture_Height_Percentage = '20%';
 $BaseScore = 1500;
 
-if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
+if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_POST)){
 	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){ // Lock Players
 		$Player_LOCKED = TRUE;
 	};
@@ -86,15 +86,30 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 		};
 		echo 'Scores Reset.<br/>';
 	};
-	if(isset($_POST['Winners'])){
-		if($_POST['Winners'][3] === ","){ // Since you can't send an array through POST, and serialize and encode_json suck in PHP
-			if($DEBUG){ echo 'First element is "D" Player<br/>'; };
-			$winner = $_POST['Winners'][1] . $_POST['Winners'][2];
-			$Loser = $_POST['Winners'][4];
-		}else{
-			if($DEBUG){ echo 'Second element is "D" Player<br/>'; };
-			$winner = $_POST['Winners'][1];
-			$Loser = $_POST['Winners'][3] . $_POST['Winners'][4];
+	if(isset($_POST['Left_button']) OR isset($_POST['Right_button'])){
+		if(isset($_POST['Left_button'])){
+			$winners_array = base64_decode($_POST['Left_button']);
+			$new = array();
+			$new = json_decode($winners_array);
+			$winner = $new[0];
+			$Loser = $new[1];
+		};
+		if(isset($_POST['Right_button'])){
+			$winners_array = base64_decode($_POST['Right_button']);
+			$new = array();
+			$new = json_decode($winners_array);
+			$winner = $new[1];
+			$Loser = $new[0];
+		};
+		
+		if($DEBUG){
+			echo '<pre>';
+			echo '<br/>POST:<br/>';
+			print_r($winners_array);
+			echo '<br/>';
+			echo '<br/>';
+			print_r($new);
+			echo '</pre>';
 		};
 		
 		if(!isset($winner)){
@@ -344,20 +359,23 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	echo '<img src="' . $Player1_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" />';
 	echo '<img src="' . $Player2_picture_filename . '" width="' . $Picture_Width_Percentage . '" height="' . $Picture_Height_Percentage . '" /><br/>';
 	
+	// Make Array
+	$Players_Array = [(string)$Player1,(string)$Player2];
+	
 	//Display Buttons
 	echo '<strong>Choose below:</strong>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
-	echo '<button name="Winners" type="submit" value="(' . $Player1 . ',' . $Player2 . ')"><strong>This is ';
+	echo '<button name="Left_button" type="submit" value="' . base64_encode(json_encode($Players_Array)) . '"><strong>This is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
-		echo $Player1_name . '</button> '; // If not using randomized version
+		echo 'Player 1</button> '; // If not using randomized version
 	};
-	echo '</strong><button name="Winners" type="submit" value="(' . $Player2 . ',' . $Player1 . ')"><strong>No, this is ';
+	echo '</strong><button name="Right_button" type="submit" value="' . base64_encode(json_encode($Players_Array)) . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{
-		echo $Player1_name . '</button>';
+		echo 'Player 2</button>';
 	};
 	echo '</strong><br/><br/>';
 	
@@ -422,8 +440,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST"){
 	}else{
 		echo '<div id="lockedLabel" style="visibility: hidden;"><font color="red">Players Locked!</font></div>';
 	};
-	
-	echo '<br/><br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = Will take effect after choosing winner, until unchecked.</div>';
+	echo '<br/><button name="Reset" type="submit" value="1">Reset All Scores</button></form><br/>* = Will take effect after choosing winner, until unchecked.</div>';
 ?>
 <script>
 function CheckTheBox(){

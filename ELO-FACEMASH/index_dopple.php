@@ -32,7 +32,7 @@ $BaseScore = 1500;
 // Notes:
 // If anything wierd happens, change back strict assignment checking to loose.
 
-if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_POST)){
+if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_POST)){
 	if(isset($_POST['LockToPlayer']) AND isset($_POST['LockPlayerCheckBox'])){ // Lock Players
 		$Player_LOCKED = TRUE;
 	};
@@ -134,7 +134,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_PO
 			if ($DEBUG){ echo 'Winner Counter Updated!<br/>'; };
 		};
 		
-		//FIDE's Implementation of score distribution:
+		//FIDE's Implementation of ELO score distribution:
 		$k = 32; // ELO K value
 		$Winner_Previous_ELO_Expected_Score = ELO($Winner_Old_Score, $Loser_Old_Score);
 		$Loser_Previous_ELO_Expected_Score = ELO($Loser_Old_Score, $Winner_Old_Score);
@@ -167,11 +167,11 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_PO
 		print_r($_POST);
 		echo '</pre>';
 	};
-};// --------------------------------- End $_POST
+};// ------------ End $_POST
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
-	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // Divide by 2 since we're doing specific sets of players
+	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // ÷ by 2, Since we're doing sets
 	
 	//Randomize Players
 	if($Player_LOCKED != TRUE){
@@ -241,7 +241,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === "POST" AND filter_array($_PO
 	
 	if(isset($Designated_Player)){
 		$Designated_Player_Text = read($TextName_DIR . $Designated_Player . '.txt');
-		$Player_sentence_hint_filename = $Sentence_Hint_DIR . $Designated_Player . '.txt'; // Must be for designated player
+		$Player_sentence_hint_filename = $Sentence_Hint_DIR . $Designated_Player . '.txt'; // For designated player only
 	
 		// Check and/or create "Sentence Hint" file for Designated Player -- optional, but useful
 		if(!file_exists($Player_sentence_hint_filename)){

@@ -1,0 +1,5 @@
+[Questions]
+
+https://security.stackexchange.com/questions/175630/passing-php-code-directly-into-javascript-in-html5
+
+https://stackoverflow.com/questions/5323375/how-can-select-from-drop-down-menu-and-call-javascript-function/5323626

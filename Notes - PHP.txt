@@ -1,0 +1,28 @@
+
+[History]
+PHP 5.1 Introduced streams: https://www.sitepoint.com/%EF%BB%BFunderstanding-streams-in-php/
+
+[Specific, in Depth]
+
+In-Depth Manuals:
+https://www.php.net/manual/en/internals2.php
+
+Best Practices / Logic:
+https://stackoverflow.com/questions/4601032/php-iterate-on-string-characters
+
+Sanitizing User Input:
+https://stackoverflow.com/questions/129677/how-can-i-sanitize-user-input-with-php
+https://stackoverflow.com/questions/2610524/why-is-turning-magic-quotes-gpc-on-considered-a-bad-practice
+
+Performance/Resources:
+https://phpludhiana.com/why-would-you-use-instead-of/
+https://nikic.github.io/2011/12/12/How-big-are-PHP-arrays-really-Hint-BIG.html
+
+[PHP - Native Functions]
+https://www.php.net/manual/en/funcref.php
+
+fopen()
+fread()
+fwrite()
+fclose()
+

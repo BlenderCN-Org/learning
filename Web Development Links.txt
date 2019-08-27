@@ -19,12 +19,20 @@ https://schema.org/
 Online Utilities:
 https://developers.google.com/speed/pagespeed/insights/
 
-Other:
-https://www.lynda.com/discovery/Developer/50?btn=lm_welcome
-
 Personal Blogs:
 https://geekthis.net/categories/web-development/
 
 Sites to Dissect or Learn From:
 https://www.brianchristner.io/
 https://www.alloutdoor.com/2019/07/12/homeowner-shot-home-invasion-used-ar15-kill-half-crooks/?utm_source=quora&utm_medium=referral
+
+Tools:
+http://livereload.com/
+https://xrefresh.binaryage.com/
+https://browsersync.io/
+
+Unsorted/Other:
+https://www.lynda.com/discovery/Developer/50?btn=lm_welcome
+
+Web Development Communities:
+https://www.slant.co/

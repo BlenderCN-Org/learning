@@ -36,8 +36,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • <strike>Although understood/solved, keep looking for better solution to POST/Array error (found in Bugs folder), so any format/form of players will work, and not just single/double digit players.</strike> (DONE - 8/22/2019)<br/>
 
 <br/><strong>Small Changes:</strong><br/>
-• Make function from score distribution part, like with first part.<br/>
-• Add score distribution part (2nd half of formula) to ELO.php.<br/>
+• <strike>Make function from score distribution part, like with first part.</strike> (DONE - 8/27/2019)<br/>
+• <strike>Add score distribution part (2nd half of formula) to ELO.php.</strike> (DONE - 8/27/2019)<br/>
 • <strike>Add simple form validation to prevent injection attacks, just in case.</strike> (DONE - 8/23/2019)<br/>
 • Make this version handle non-doppleganger players, or make that version a separate file.<br/>
 • Modulize this as much as possible, in preparation for further versions.<br/>

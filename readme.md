@@ -1,5 +1,7 @@
-<strong>Notes:</strong><br/>
+<strong>To Do:</strong><br/>
+• Find old functions.php files.
 
+<strong>Notes:</strong><br/>
 <br/><br/>
 <strong>Unsorted Questions and/or Research:</strong><br/>
 * Span vs Style tags<br/>

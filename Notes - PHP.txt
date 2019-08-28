@@ -1,3 +1,12 @@
+[Putting it All Together - "The Big Picture"]
+
+Ways for data to persist from one page to another, using just PHP:
+• HTML hidden fields.
+• POST, GET*.
+• Sessions/Cookies.
+• Local files*.
+
+*Not preferred.
 
 [History]
 PHP 5.1 Introduced streams: https://www.sitepoint.com/%EF%BB%BFunderstanding-streams-in-php/

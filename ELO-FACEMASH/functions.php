@@ -48,6 +48,7 @@
 						}else{
 							echo 'Key<b>(' . $key . ')</b> Value(<b>' . $value . '</b>) NOT alphanumeric, NOT exception. Character(<b>' . $char . '</b>).<br/>';
 							$no_problems = FALSE;
+							return FALSE;
 						};
 					};
 				};
@@ -62,17 +63,17 @@
 		};
 	};
 	function ELO_score_distribution_update($winner_score, $loser_score){
-	$k = 32;
-	$P1_ELO = ELO($winner_score, $loser_score);
-	$P2_ELO = ELO($loser_score, $winner_score);
+		$k = 32;
+		$P1_ELO = ELO($winner_score, $loser_score);
+		$P2_ELO = ELO($loser_score, $winner_score);
+			
+		$winner_new_score = $winner_score + $k * (1 - $P1_ELO); 
+		$loser_new_score = $loser_score + $k * (0 - $P2_ELO);
 		
-	$winner_new_score = $winner_score + $k * (1 - $P1_ELO); 
-	$loser_new_score = $loser_score + $k * (0 - $P2_ELO);
-	
-	$scores_array = [];
-	$scores_array[0] = $winner_new_score;
-	$scores_array[1] = $loser_new_score;
-	return $scores_array;
+		$scores_array = [];
+		$scores_array[0] = $winner_new_score;
+		$scores_array[1] = $loser_new_score;
+		return $scores_array;
 	};
 	function ELO($A, $B){ 
 		return (1/(1+pow(10,(($B-$A)/400)))); // https://en.wikipedia.org/wiki/Elo_rating_system

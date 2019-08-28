@@ -1,0 +1,5 @@
+Only difference between my implementation of ELO and the formal FIDE implementation is the part where score is updated.  Instead of my own point distribution system, the formal is:
+
+CurrentScore + K-Value * (ActualScore - Expected_ELO_Score) = Updated ELO Rating
+
+ActualScore is usually either 1 or 0 (1 for winner, 0 for loser).

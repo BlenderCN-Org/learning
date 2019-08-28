@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="keywords" content="Sam Dutton, HTML5, JavaScript" />
+<meta name="description" content="Simplest possible examples of HTML, CSS and JavaScript." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<base target="_blank">
+<title>Object.observe()</title>
+<link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+<div id="container">
+
+  <h1><a href="../index.html" title="simpl.info home page">simpl.info</a> Object.observe()</h1>
+
+  <p>(Currently you'll need <a href="https://tools.google.com/dlpage/chromesxs" title="Download Google Chrome Canary">Google Chrome Canary</a> for this to work. Make sure to set the Enable Experimental JavaScript flag from chrome://flags and restart the browser.)</p>
+
+	<p>An object <code>o</code> is created and <code>Object.observe()</code> is called on it.</p>
+
+  <p>Three changes are made to <code>o</code> and <code>Object.observe()</code> records these changes as shown below.</p>
+
+  <p>Use the console to find out what happens if you make further changes to <code>o</code>: it's defined in global scope.</p>
+
+  <p>Call <code>Object.unobserve(o, observer)</code> to stop observing changes.</p>
+
+  <p id="data" style="font-size: 14px;"></p>
+
+  <script src="js/main.js"></script>
+
+<a href="https://github.com/samdutton/simpl/blob/master/observe/index.html" title="View source for this page on GitHub" id="viewSource">View source on github</a>
+</div>
+<script src="../js/lib/ga.js"></script>
+</body>
+</html>

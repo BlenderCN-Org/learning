@@ -66,4 +66,8 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • Python version, to see how this would work differently.<br />
 • Explore additional versions (serverless?). <br />
 • <strike>Doppleganger version, and thinking about how to implement that in current version.</strike> <strong>(DONE)</strong><br/>
-<br />
+
+<br/><strong>References/See also:</strong><br/>
+• <a href="https://stackoverflow.com/questions/3848004/facemash-algorithm">https://stackoverflow.com/questions/3848004/facemash-algorithm</a><br/>
+• <a href="http://en.wikipedia.org/wiki/Elo_rating_system">http://en.wikipedia.org/wiki/Elo_rating_system</a><br/>
+• <a href="https://en.wikipedia.org/wiki/Elo_hell">https://en.wikipedia.org/wiki/Elo_hell</a><br/>

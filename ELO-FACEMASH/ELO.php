@@ -55,6 +55,7 @@ echo '• ELO(50,100) = ' . '<font color=red>' . ELO(50,100) . '</font><br/>';
 echo '• ELO(75,100) = ' . '<font color=red>' . ELO(75,100) . '</font><br/>';
 echo '• ELO(90,100) = ' . '<font color=red>' . ELO(90,100) . '</font><br/>';
 echo '• ELO(99,100) = ' . '<font color=red>' . ELO(99,100) . '</font><br/>';
+echo '<br/>';
 
 //FIDE's Implementation of winner/loser score distribution:
 $k = 32;
@@ -68,8 +69,30 @@ $P1_Points = $P1_Original_Score + $k * (1 - $P1_ELO);
 $P2_Points = $P2_Original_Score + $k * (0 - $P2_ELO);
 
 echo '<strong><br/>Example:<br/></strong>';
-echo 'Player 1 (winner) Original Score: ' . $P1_Original_Score . ' ELO: ' . $P1_ELO . ' New Score: ' . $P1_Points . '<br/>';
-echo 'Player 2 (loser ) Original Score: ' . $P2_Original_Score . ' ELO: ' . $P2_ELO . ' New Score: ' . $P2_Points . '<br/>';
+echo 'Player 1 Original Score: ' . $P1_Original_Score . ' ELO: ' . $P1_ELO . ' New Score: ' . $P1_Points . ' (winner)<br/>';
+echo 'Player 2 Original Score: ' . $P2_Original_Score . ' ELO: ' . $P2_ELO . ' New Score: ' . $P2_Points . '<br/>';
+echo '<br/>';
+
+function ELO_score_distribution_update($PA_score, $PB_score){
+	$k = 32;
+	$P1_ELO = ELO($PA_score, $PB_score);
+	$P2_ELO = ELO($PB_score, $PA_score);
+		
+	$P1_new_score = $PA_score + $k * (1 - $P1_ELO); 
+	$P2_new_score = $PB_score + $k * (0 - $P2_ELO);
+	
+	$scores_array = [];
+	$scores_array[0] = $P1_new_score;
+	$scores_array[1] = $P2_new_score;
+	return $scores_array;
+};
+
+$Player_scores = ELO_score_distribution_update($P1_Original_Score, $P2_Original_Score);
+
+echo '<strong><br/>Example 2:<br/></strong>';
+echo 'Player 1 Original Score: ' . $P1_Original_Score . ' ELO: ' . $P1_ELO . ' New Score: ' . $Player_scores[0] . ' (winner)<br/>';
+echo 'Player 2 Original Score: ' . $P2_Original_Score . ' ELO: ' . $P2_ELO . ' New Score: ' . $Player_scores[1] . '<br/>';
+
 ?>
 </strong><br/><br/>
 From these inputs and outputs, you should be able to see how it is predicting the score for one player (or both if part of the algorithm is reversed) based on the current ranking (how many games each player has previously won) for both players.  Each decimal number is actually a percentage which just hasn't been converted (.4985XXXX is just 49%, etc.).  From the raw data, it's hard to see that, but if you clean it up and break down the numbers being inputted and outputted for each player, it is easier to see.<br/><br/>
@@ -90,6 +113,7 @@ Why is this important?  For the average web developer, it's not, but it is good 
 
 I guess I'll need to make the example application a separate page from this one.  I'll provide the link right here once I have created it.
 
+<br/><br/>
 <strong>References/See also:</strong><br/>
 <a href="https://stackoverflow.com/questions/3848004/facemash-algorithm">https://stackoverflow.com/questions/3848004/facemash-algorithm</a><br/>
 <a href="http://en.wikipedia.org/wiki/Elo_rating_system">http://en.wikipedia.org/wiki/Elo_rating_system</a><br/>

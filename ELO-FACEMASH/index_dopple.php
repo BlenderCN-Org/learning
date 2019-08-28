@@ -461,6 +461,4 @@ function UncheckTheBox(){
 		}
 	}
 }
-</script>
-</center><br/>
-</body></html>
+</script></center><br/></body></html>

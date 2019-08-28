@@ -73,17 +73,17 @@ echo 'Player 1 Original Score: ' . $P1_Original_Score . ' ELO: ' . $P1_ELO . ' N
 echo 'Player 2 Original Score: ' . $P2_Original_Score . ' ELO: ' . $P2_ELO . ' New Score: ' . $P2_Points . '<br/>';
 echo '<br/>';
 
-function ELO_score_distribution_update($PA_score, $PB_score){
+function ELO_score_distribution_update($winner_score, $loser_score){
 	$k = 32;
-	$P1_ELO = ELO($PA_score, $PB_score);
-	$P2_ELO = ELO($PB_score, $PA_score);
+	$P1_ELO = ELO($winner_score, $loser_score);
+	$P2_ELO = ELO($loser_score, $winner_score);
 		
-	$P1_new_score = $PA_score + $k * (1 - $P1_ELO); 
-	$P2_new_score = $PB_score + $k * (0 - $P2_ELO);
+	$winner_new_score = $winner_score + $k * (1 - $P1_ELO); 
+	$loser_new_score = $loser_score + $k * (0 - $P2_ELO);
 	
 	$scores_array = [];
-	$scores_array[0] = $P1_new_score;
-	$scores_array[1] = $P2_new_score;
+	$scores_array[0] = $winner_new_score;
+	$scores_array[1] = $loser_new_score;
 	return $scores_array;
 };
 

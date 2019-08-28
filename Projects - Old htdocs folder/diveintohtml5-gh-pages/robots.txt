@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /fonts-original/
+Disallow: /Makefile
+Disallow: /mockups/
+Disallow: /sounds-original/
+Disallow: /util/

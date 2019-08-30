@@ -15,6 +15,10 @@ https://joel.franusic.com/krazy_kat/about/
 
 CSS:
 https://css-tricks.com/creating-a-3d-cube-image-gallery/
+https://www.tjvantoll.com/2012/02/27/making-a-3d-picture-cube-with-css3/
+https://observablehq.com/@oscardr/css-3d-cube/
+https://zachstronaut.github.io/quintessential-css-cube/
+view-source:https://html-online.com/demo/css3-cube/
 
 ThreeJS/Canvas/Games (General):
 https://playcanvas.com/#!

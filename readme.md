@@ -1,6 +1,7 @@
 <strong>To Do:</strong><br/>
 • Find old functions.php files.<br/>
-• Move vehicle ThreeJS example to examples folder, and others - canvas game, .<br/>
+• <strike>Move vehicle ThreeJS example to examples folder, and others - canvas game, NodeJS zip/DIR thing</strike><br/>
+• Look over CSS 3D transforms, in Links.txt.<br/>
 
 <br/><strong>In Progress:</strong><br/>
 • ELO-FACEMASH <br/>

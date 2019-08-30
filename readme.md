@@ -2,6 +2,7 @@
 • Find old functions.php files.<br/>
 • <strike>Move vehicle ThreeJS example to examples folder, and others - canvas game, NodeJS zip/DIR thing</strike><br/>
 • Look over CSS 3D transforms, in Links.txt.<br/>
+• See if I can add vehicles to ThreeJS game.<br/>
 
 <br/><strong>In Progress:</strong><br/>
 • ELO-FACEMASH <br/>

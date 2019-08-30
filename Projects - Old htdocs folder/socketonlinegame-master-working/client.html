@@ -72,7 +72,7 @@
 
 	// Passing input from browser to socket.io server
     function socketResponse(type, data) {
-   		var socket = io.connect('http://20.20.20.100:8080/');
+   		var socket = io.connect('http://127.0.0.1:8080/');
  	 	socket.emit(type, data);
     }
 	     
@@ -118,14 +118,14 @@
 
 	    var l = playerX.length;
 	    for (var i = 0; i <= l; i++) {
-		      //  var img = new Image();
-	  		   // img.src = 'http://askapril.com/images/aprilqueen.jpg';
-		      //  var pattern = ctx.createPattern(img, 'no-repeat'); 
-	  		   // ctx.fillStyle = pattern;
-	  		   ctx.fillStyle = "blue";
-			   ctx.font = "bold 16px Arial"; 
-			   // ctx.fillText(users[i][3], playerX[i]-5, playerY[i]-7);  
-		 	   ctx.fillRect(playerX[i]-offsetX, playerY[i]-offsetY, 20, 20);
+			var img = new Image();
+			img.src = 'http://askapril.com/images/aprilqueen.jpg';
+			var pattern = ctx.createPattern(img, 'no-repeat'); 
+			ctx.fillStyle = pattern;
+			ctx.fillStyle = "blue";
+			ctx.font = "bold 16px Arial"; 
+			ctx.fillText(users[i][3], playerX[i]-5, playerY[i]-7);  
+			ctx.fillRect(playerX[i]-offsetX, playerY[i]-offsetY, 20, 20);
 	 	}        
 	    ctx.restore();
 	} 

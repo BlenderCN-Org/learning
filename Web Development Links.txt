@@ -13,6 +13,28 @@ https://www.caniuse.com/
 In Depth Tutorials/Guides:
 https://joel.franusic.com/krazy_kat/about/
 
+ThreeJS/Canvas/Games (General):
+https://playcanvas.com/#!
+https://phaser.io/
+https://colyseus.io/
+
+ThreeJS/Canvas/Games (Tutorials):
+https://www.codemahal.com/javascript-and-html5-canvas-game-tutorial-code/
+http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
+https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
+https://victorzhou.com/blog/build-an-io-game-part-1/
+https://blog.logrocket.com/how-to-create-a-2d-multiplayer-game-with-vue-js-and-socket-io-174ef2818e65/
+https://engineering.paiza.io/entry/paizacloud_online_multiplayer_game
+https://medium.com/@projectyang/simple-multiplayer-game-with-socket-io-tutorial-part-one-setup-and-movement-ee202024f0ef/
+https://developer.mozilla.org/en-US/docs/Games/Introduction/
+https://www.w3schools.com/graphics/game_intro.asp
+https://www.w3schools.com/graphics/game_canvas.asp
+https://hackernoon.com/how-to-build-a-multiplayer-browser-game-4a793818c29b
+https://codeburst.io/how-to-make-a-simple-multiplayer-online-car-game-with-javascript-89d47908f995/
+https://code.tutsplus.com/tutorials/create-a-multiplayer-pirate-shooter-game-in-your-browser--cms-23311
+https://glitch.com/edit/#!/tutsplus-pirate-shooter-starterkit?path=README.md:1:0
+https://itnext.io/how-to-build-a-realtime-multiplayer-game-in-javascript-using-pubnub-5f410fd62f33
+
 No Idea (?):
 https://schema.org/
 
@@ -31,8 +53,12 @@ http://livereload.com/
 https://xrefresh.binaryage.com/
 https://browsersync.io/
 
-Unsorted/Other:
-https://www.lynda.com/discovery/Developer/50?btn=lm_welcome
-
 Web Development Communities:
 https://www.slant.co/
+
+Unsorted/Other:
+https://www.lynda.com/discovery/Developer/50?btn=lm_welcome
+https://glitch.com/
+https://www.pubnub.com/
+https://nodeschool.io/
+https://divjoy.com

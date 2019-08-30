@@ -1,9 +1,16 @@
 <strong>To Do:</strong><br/>
-• Find old functions.php files.
+• Find old functions.php files.<br/>
+• Move vehicle ThreeJS example to examples folder, and others - canvas game, .<br/>
 
-<strong>Notes:</strong><br/>
-<br/><br/>
-<strong>Unsorted Questions and/or Research:</strong><br/>
+<br/><strong>In Progress:</strong><br/>
+• ELO-FACEMASH <br/>
+• Simple PHP Crawler (or whatever).<br/>
+• ThreeJS Multiplayer game.<br/>
+• IP-CRAWLER (abandon?).<br/>
+
+<br/><strong>Notes:</strong><br/>
+
+<br/><strong>Unsorted Questions and/or Research:</strong><br/>
 * Span vs Style tags<br/>
 * CSS visibility vs hidden property<br/>
 * Why do things take up more space when I wrap them in a <div>?<br/>

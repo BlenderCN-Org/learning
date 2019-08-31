@@ -1,17 +1,12 @@
-[Putting it All Together - "The Big Picture"]
+[PHP]
 
-Ways for data to persist from one page to another, using just PHP:
-• HTML hidden fields.
-• POST, GET*.
-• Sessions/Cookies.
-• Local files*.
+[PROBLEMS ENCOUNTERED]
 
-*Not preferred.
+• Don't change the HTTP headers (via the header() function, or otherwise), or .php files may download instead of load/parse properly, or HTML and other languages in the file won't parse/compute/etc.. https://stackoverflow.com/questions/14917228/chrome-downloads-my-php-files
+• PHP POST Array Error. See File/Folder (in ELO-FACEMASH): Array_Error_Notes.txt.
 
-[History]
+[HISTORY]
 PHP 5.1 Introduced streams: https://www.sitepoint.com/%EF%BB%BFunderstanding-streams-in-php/
-
-[Specific, in Depth]
 
 In-Depth Manuals:
 https://www.php.net/manual/en/internals2.php
@@ -27,9 +22,19 @@ Performance/Resources:
 https://phpludhiana.com/why-would-you-use-instead-of/
 https://nikic.github.io/2011/12/12/How-big-are-PHP-arrays-really-Hint-BIG.html
 
-[PHP - Native Functions]
+[Ways for data to persist from one page to another, using just PHP:]
+• HTML hidden fields.
+• POST, GET*.
+• Sessions/Cookies.
+• Local files*.
+
+*Not preferred.
+
+[PHP - NATIVE FUNCTIONS]
 https://www.php.net/manual/en/funcref.php
 
+https://www.php.net/manual/en/function.soundex.php
+https://www.php.net/manual/en/function.metaphone.php
 fopen()
 fread()
 fwrite()

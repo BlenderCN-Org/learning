@@ -1,6 +1,0 @@
-Problems Encountered
-
-PHP:
-• Don't change the HTTP headers (via the header() function, or otherwise), or .php files may download instead of load/parse properly, or HTML and other languages in the file won't parse/compute/etc.. https://stackoverflow.com/questions/14917228/chrome-downloads-my-php-files
-• PHP POST Array Error. See File/Folder (in ELO-FACEMASH): Array_Error_Notes.txt.
-

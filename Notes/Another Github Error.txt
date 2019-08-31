@@ -1,5 +1,0 @@
-https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf
-
-https://www.rtuin.nl/2013/02/how-to-make-git-ignore-different-line-endings/
-
-https://help.github.com/en/articles/configuring-git-to-handle-line-endings

@@ -1,0 +1,10 @@
+Bug: GitHub producing error saying line endings have been changed (one certain files/folders), but doesn't upload/commit the files.
+
+Solution: It wasn't actually a bug with GitHub and line endings, but with the file names being too long.  If you scroll down into the error far enough, it says this.
+
+See More:
+https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf
+
+https://www.rtuin.nl/2013/02/how-to-make-git-ignore-different-line-endings/
+
+https://help.github.com/en/articles/configuring-git-to-handle-line-endings

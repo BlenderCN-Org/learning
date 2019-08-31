@@ -1,0 +1,9 @@
+[General Notes]
+
+[Best Practices]
+• <style> tags are "expected to appear between the <head></head> tags, but will still render if placed elsewhere [1].
+• "According to w3 guidelines, a space should be included before the trailing / and > of empty elements, for example, <br />" [2].
+
+[References]
+1. https://html.com/tags/style/
+2. https://www.tutorialspoint.com/What-is-the-correct-way-of-using-br-br-or-br-in-HTML

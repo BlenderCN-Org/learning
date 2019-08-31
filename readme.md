@@ -3,10 +3,11 @@
 • <strike>Move vehicle ThreeJS example to examples folder, and others - canvas game, NodeJS zip/DIR thing</strike><br/>
 • Look over CSS 3D transforms, in Links.txt.<br/>
 • See if I can add vehicles to ThreeJS game.<br/>
+• Base IP scanner on nslookup instead of BGP records, if going to do it.<br/>
 
 <br/><strong>In Progress:</strong><br/>
-• ELO-FACEMASH <br/>
-• Simple PHP Crawler (or whatever).<br/>
+• ELO-FACEMASH.<br/>
+• PHP Crawler (or whatever).<br/>
 • ThreeJS Multiplayer game.<br/>
 • IP-CRAWLER (abandon?).<br/>
 

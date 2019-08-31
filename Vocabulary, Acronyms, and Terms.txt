@@ -1,0 +1,3 @@
+[Vocabulary, Acronyms, and Terms]
+
+DTD - Document Type Definition (https://developer.mozilla.org/en-US/docs/Glossary/DTD)

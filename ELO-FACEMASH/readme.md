@@ -21,9 +21,12 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 <hr>
 
 <strong>What I've learned about the ELO formula:</strong><br/>
+• ELO is a linear algorithm, since it can be plotted on a line graph (such as the line graph Wikipedia shows).<br/>
+• It may seem like the ELO formula has two inputs and/or two outputs, but it's actually only one of both (the difference between scores, and the decimal/percentage chance).  Both are just reversed for the second player, which is probably why two variables are even presented in the formula.<br/>
+• The ELO formula is only good for ranking two players at a time, since the score difference can only be between two players (since you can only subtract two things). ELO is also only good for zero-sum games (as stated by Wikipedia).  For example, ELO is great for rating two people by a simple numberic score (such as in chess, or whatever), but not a list of links each with the same numeric score as used in chess. You couldn't make a list of links and then use the ELO algorithm to rate them accordingly.  You could technically just sort those links by the ELO score, but updating the score for each link after one is selected would only work for two links at most because the score distribution algorithm (the 2nd part) also uses the first part of the algorithm (which requires the difference between two player's scores as input), so you can't rate or update the score of more than two things at a time.  You can sort by score, but then using the algorithm wouldn't be necessary anyway, and you'd need another method of updating the score and calculating how many points each winner/loser should get.<br/> 
 • The ELO formula, when fully implemented, is way better than anything I could personally create.  No wonder it was used for this purpose.  It's like magic.<br/>
+• The ELO formula is actually two parts.  The first part calculates the % chance a player will win, given the difference in scores between two players.  The second part updates the original score(s) used to calculate the score difference in the first part, by using the decimal/percentage also obtained in the first part (this sounds confusing, but is correct), along with other values like the k value.<br />
 • The ELO formula doesn't seem to play nicely with negative numbers, and this is pretty much confirmed by the fact that FIDE doesn't allow ratings below 1000 to be used (in mind).  It's not negative numbers themselves, but the fact that the formula just doesn't work well when the starting score isn't in the 1000-2000 range.  Nothing says ELO can't be used with negative numbers, but just that it doesn't give the best results when you do this.<br />
-• The ELO formula is actually two parts.<br />
 • Even simple algorithms can sometimes be confusing and hard to implement programmatically.
 
 <hr>
@@ -36,6 +39,7 @@ Note:  I did NOT write/invent the ELO rating formula/algorithm.  I am just study
 • <strike>Although understood/solved, keep looking for better solution to POST/Array error (found in Bugs folder), so any format/form of players will work, and not just single/double digit players.</strike> (DONE - 8/22/2019)<br/>
 
 <br/><strong>Small Changes:</strong><br/>
+• See what happens when you take the /1 part out (see if it becomes a non-decimal).<br/>
 • <strike>Make function from score distribution part, like with first part.</strike> (DONE - 8/27/2019)<br/>
 • <strike>Add score distribution part (2nd half of formula) to ELO.php.</strike> (DONE - 8/27/2019)<br/>
 • <strike>Add simple form validation to prevent injection attacks, just in case.</strike> (DONE - 8/23/2019)<br/>

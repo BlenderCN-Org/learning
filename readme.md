@@ -4,6 +4,7 @@
 • Look over CSS 3D transforms, in Links.txt.<br/>
 • See if I can add vehicles to ThreeJS game.<br/>
 • Base IP scanner on nslookup instead of BGP records, if going to do it.<br/>
+• Look into Python and see if I'd like it more than Node as a backend language, or to just use Node.<br/>
 
 <br/><strong>In Progress:</strong><br/>
 • ELO-FACEMASH.<br/>
@@ -12,8 +13,11 @@
 • IP-CRAWLER (abandon?).<br/>
 
 <br/><strong>Notes:</strong><br/>
+• See .txt files in this folder.<br/>
 
-<br/><strong>Unsorted Questions and/or Research:</strong><br/>
+<br/><strong>Questions and/or Research:</strong><br/>
+• https://security.stackexchange.com/questions/175630/passing-php-code-directly-into-javascript-in-html5
+• https://stackoverflow.com/questions/5323375/how-can-select-from-drop-down-menu-and-call-javascript-function/5323626
 * Span vs Style tags<br/>
 * CSS visibility vs hidden property<br/>
 * Why do things take up more space when I wrap them in a <div>?<br/>

@@ -19,7 +19,7 @@ require_once('functions.php');
 $DEBUG = FALSE;
 $Player_LOCKED = FALSE;
 $Players_Chosen = FALSE;
-$Root_DIR = 'Dopples';
+$Root_DIR = 'Actresses';
 $Score_DIR = $Root_DIR . '/Actress_Score/';
 $TextName_DIR = $Root_DIR . '/Actress_Name/';
 $Picture_DIR = $Root_DIR . '/Actress_Picture/';
@@ -171,23 +171,19 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 
 	//New Game - Choose Players
 	$NUM_Files_in_DIR = count_files_in_DIR($TextName_DIR);
-	$NUM_Sets_of_Dopples = $NUM_Files_in_DIR / 2; // ÷ by 2, Since we're doing sets
 	
-	//Randomize Players
+	//Randomize Players, when locked or not
 	if($Player_LOCKED != TRUE){
-		if(RAND(1,2) === 1){
-			$Player1 = RAND(1,$NUM_Sets_of_Dopples);
-			$Player2 = $Player1 . 'D';
+			$Player1 = RAND(1,$NUM_Files_in_DIR);
+			$Player2 = RAND(1,$NUM_Files_in_DIR);
+			$Designated_Player = $Player1;
 			
-			$Designated_Player = $Player1; // Numbered Player will be designated player, since scores are meaningless if not tied to certain player
-		}else{
-			$Player2 = RAND(1,$NUM_Sets_of_Dopples);
-			$Player1 = $Player2 . 'D'; // Numbered files with "D" attached denote the doppleganger (non designated player)
+			while($Player2 === $Player1){
+				$Player2 = RAND(1,$NUM_Files_in_DIR);
+			};
 			
-			$Designated_Player = $Player2; // So numbered player is designated player
-		};
-	}else{
-		if(isset($_POST['LockToPlayer'])){
+	}else{ // TODO: Change this so it locks both players instead of just designated player
+		if(isset($_POST['LockToPlayer'])){ 
 			if(RAND(1,2) === 1){
 				$Player1 = $_POST['LockToPlayer'];
 				$Designated_Player = $Player1; // So numbered player is designated player
@@ -201,29 +197,29 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	};
 	
 	//Check if players chosen correctly (needs update when reverted back to normal version)
-	if(isset($Player1) AND isset($Player2)){
-		if(is_numeric($Player1)){ // Player 1 is numbered player
-			if($Player2 === $Player1 . 'D'){
-				$Players_Chosen = TRUE;
-			};
-		}else{
-			if(is_numeric($Player2)){ // Player 2 is numbered player
-				if($Player1 === $Player2 . 'D'){
-					$Players_Chosen = TRUE;
-				};
-			};
-		};
-		if($Player1 === 'D' OR $Player2 === 'D'){
-			if($DEBUG){ echo 'A Player is just D!'; };
-			$Players_Chosen = FALSE;
-		};
-	};
+	// if(isset($Player1) AND isset($Player2)){
+		// if(is_numeric($Player1)){ // Player 1 is numbered player
+			// if($Player2 === $Player1 . 'D'){
+				// $Players_Chosen = TRUE;
+			// };
+		// }else{
+			// if(is_numeric($Player2)){ // Player 2 is numbered player
+				// if($Player1 === $Player2 . 'D'){
+					// $Players_Chosen = TRUE;
+				// };
+			// };
+		// };
+		// if($Player1 === 'D' OR $Player2 === 'D'){
+			// if($DEBUG){ echo 'A Player is just D!'; };
+			// $Players_Chosen = FALSE;
+		// };
+	// };
 	
-	if($Players_Chosen === FALSE){
-		if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
-		echo 'Problem Choosing Players<br/>';
-		die('Problem Choosing Players! Die()');
-	};
+	// if($Players_Chosen === FALSE){
+		// if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
+		// echo 'Problem Choosing Players<br/>';
+		// die('Problem Choosing Players! Die()');
+	// };
 	
 	if($DEBUG){ echo 'Players Chosen!<br/>Player 1: ' . $Player1 . '<br/>Player 2: ' . $Player2 . '<br/>'; };
 	
@@ -407,7 +403,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	};
 	echo '> Hide ELO Prediction* (not recommended)<br/>';
 	echo '<select name="LockToPlayer" onchange="CheckTheBox()">';
-	for($x = 1; $x <= $NUM_Sets_of_Dopples; $x++){
+	for($x = 1; $x <= $NUM_Files_in_DIR; $x++){
 		$current = $TextName_DIR . $x . '.txt';
 		if(file_exists($current)){ 
 			$current_textname = read($current);

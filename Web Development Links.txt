@@ -10,13 +10,8 @@ https://developer.mozilla.org/en-US/docs/Glossary
 Browser-Specific Development:
 https://www.caniuse.com/
 
-In Depth Tutorials/Guides:
-https://joel.franusic.com/krazy_kat/about/
-
-ThreeJS/Canvas/Games (General):
-https://playcanvas.com/#!
-https://phaser.io/
-https://colyseus.io/
+MVC Architecture:
+https://hackernoon.com/mvc-vs-mvvm-how-a-website-communicates-with-its-data-models-18553877bf7d
 
 Personal Blogs:
 https://geekthis.net/categories/web-development/
@@ -30,6 +25,11 @@ http://onvideo.org/digital-release-dates/
 https://www.brianchristner.io/
 https://www.alloutdoor.com/2019/07/12/homeowner-shot-home-invasion-used-ar15-kill-half-crooks/?utm_source=quora&utm_medium=referral
 
+ThreeJS/Canvas/Games (General):
+https://playcanvas.com/#!
+https://phaser.io/
+https://colyseus.io/
+
 Tools - Offline:
 http://livereload.com/
 https://xrefresh.binaryage.com/
@@ -41,7 +41,9 @@ https://developers.google.com/speed/pagespeed/insights/
 Web Development Communities:
 https://www.slant.co/
 
+------------------------------------
 Unsorted/Other:
+------------------------------------
 https://www.lynda.com/discovery/Developer/50?btn=lm_welcome
 https://glitch.com/
 https://www.pubnub.com/
@@ -49,10 +51,14 @@ https://nodeschool.io/
 https://divjoy.com
 https://schema.org/
 
+From Bookmarks:
+
 
 ------------------------------------
 TUTORIALS/GUIDES:
 ------------------------------------
+https://joel.franusic.com/krazy_kat/about/
+
 CSS - 3D:
 https://css-tricks.com/creating-a-3d-cube-image-gallery/
 https://www.tjvantoll.com/2012/02/27/making-a-3d-picture-cube-with-css3/
@@ -60,8 +66,7 @@ https://observablehq.com/@oscardr/css-3d-cube/
 https://zachstronaut.github.io/quintessential-css-cube/
 view-source:https://html-online.com/demo/css3-cube/
 
-MVC Architecture:
-https://hackernoon.com/mvc-vs-mvvm-how-a-website-communicates-with-its-data-models-18553877bf7d
+
 
 THREEJS/CANVAS/GAMES:
 https://www.codemahal.com/javascript-and-html5-canvas-game-tutorial-code/

@@ -44,10 +44,10 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 		echo '<tr><td align="center"><strong>Player:</strong></td><td align="center"><strong>Score:</strong></td></tr>';
 		for($x = 1; $x <= $number_of_scores_to_display; $x++){
 			$current_score_filename = $Score_DIR . $x . '.txt';
-			$current_D_score_filename = $Score_DIR . $x . 'D.txt';
+			$current_D_score_filename = $Score_DIR . $x . 'D.txt'; //TODO: Remove/change this
 			
 			$current_textname_filename = $TextName_DIR . $x . '.txt';
-			$current_D_textname_filename = $TextName_DIR . $x . 'D.txt';
+			$current_D_textname_filename = $TextName_DIR . $x . 'D.txt'; //TODO: Remove/change this
 			
 			if(file_exists($current_score_filename)){
 				$current_score = read($current_score_filename);
@@ -68,7 +68,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	};
 	if(isset($_POST['Reset'])){
 		if($_POST['Reset'] === "1"){
-			$number_of_scores_to_reset = count_files_in_DIR($Score_DIR) / 2;
+			$number_of_scores_to_reset = count_files_in_DIR($Score_DIR); //TODO: Remove doppleganger stuff from here
 			if($DEBUG){ 
 				echo 'Reset Pressed!<br/>';
 				echo 'Number of scores to reset = ' . $number_of_scores_to_reset . '<br/>';

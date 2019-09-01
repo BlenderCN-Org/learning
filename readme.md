@@ -16,11 +16,13 @@
 • See .txt files in this folder.<br/>
 
 <br/><strong>Questions and/or Research:</strong><br/>
-• https://security.stackexchange.com/questions/175630/passing-php-code-directly-into-javascript-in-html5
-• https://stackoverflow.com/questions/5323375/how-can-select-from-drop-down-menu-and-call-javascript-function/5323626
+• https://divjoy.com<br/>
+• https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445<br/>
+• https://security.stackexchange.com/questions/175630/passing-php-code-directly-into-javascript-in-html5<br/>
+• https://stackoverflow.com/questions/5323375/how-can-select-from-drop-down-menu-and-call-javascript-function/5323626<br/>
 * Span vs Style tags<br/>
 * CSS visibility vs hidden property<br/>
-* Why do things take up more space when I wrap them in a <div>?<br/>
+* Why do things take up more space when I wrap them in a <code><div></code>?<br/>
 * If you have: document.getElementById("myP").style.visibility   How do you know to add style? (Versus just doing document.getElementById("myP").visibility, like with document.getElementById("LockPlayerCheckBox").checked = true;) (https://www.w3schools.com/jsref/prop_style_visibility.asp)<br/>
 * https://medium.com/tech-tajawal/use-memory-gently-with-yield-in-php-7e62e2480b8d<br/>
 * https://stackoverflow.com/questions/3833561/why-doesnt-git-ignore-my-specified-file/3833675<br/>

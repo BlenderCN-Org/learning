@@ -1,3 +1,22 @@
 [Vocabulary, Acronyms, and Terms]
 
 DTD - Document Type Definition (https://developer.mozilla.org/en-US/docs/Glossary/DTD)
+
+Shadow DOM: Hidden DOM connected to regular DOM, where CSS elements and properties can be added using JavaScript.   
+Source: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+
+State - Ambiguous.  See:
+https://www.reddit.com/r/javascript/comments/625abn/help_with_understanding_state_in_javascript/
+https://teamtreehouse.com/community/what-is-state-in-javascript-specially-when-working-with-objects
+
+Virtual DOM:  Second DOM separate from the real DOM, used to make changes to before updating the actual DOM. Used in React and Vue, etc.
+Source: https://reactkungfu.com/2015/10/the-difference-between-virtual-dom-and-dom/
+
+-----------------------
+Differentiations:
+-----------------------
+"Framework" versus "Library", from Wikipedia article "Javascript framework" -- "It differs from a JavaScript library in its control flow:[1] a library offers functions to be called by its parent code, whereas a framework defines the entire application design.[2] A developer does not call a framework; instead it is the framework that will call and use the code in some particular way." Source: https://en.m.wikipedia.org/wiki/JavaScript_framework.
+
+"Virtual DOM" versus "Shadow DOM": See above.
+
+

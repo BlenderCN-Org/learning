@@ -38,16 +38,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	};
 	if(isset($_POST['ToggleScoreBoard'])){ // Display Scores
 		echo '<div id="Player_Scores" style="border: 0;border-style: dashed;width: 20%;min-height: 10%;left: 7.5%;">';
-		$number_of_scores_to_display = count_files_in_DIR($Score_DIR) / 2;
+		$number_of_scores_to_display = count_files_in_DIR($Score_DIR);
 		
 		echo '<table border="1" width="100%"><tr><td colspan="2" align="center"><strong>Current Player Scores</strong></td></tr>';
 		echo '<tr><td align="center"><strong>Player:</strong></td><td align="center"><strong>Score:</strong></td></tr>';
 		for($x = 1; $x <= $number_of_scores_to_display; $x++){
 			$current_score_filename = $Score_DIR . $x . '.txt';
-			$current_D_score_filename = $Score_DIR . $x . 'D.txt'; //TODO: Remove/change this
+			// $current_D_score_filename = $Score_DIR . $x . 'D.txt'; //TODO: Remove/change this
 			
 			$current_textname_filename = $TextName_DIR . $x . '.txt';
-			$current_D_textname_filename = $TextName_DIR . $x . 'D.txt'; //TODO: Remove/change this
+			// $current_D_textname_filename = $TextName_DIR . $x . 'D.txt'; //TODO: Remove/change this
 			
 			if(file_exists($current_score_filename)){
 				$current_score = read($current_score_filename);
@@ -56,13 +56,13 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 					echo '<tr><td align="center">' . $current_playerName . ' (Pair: ' . $x . ')</td><td align="center">' . Round($current_score, 2) . '</td></tr>';
 				};
 			};
-			if(file_exists($current_D_score_filename)){
-				$current_D_score = read($current_D_score_filename);
-				if(file_exists($current_D_textname_filename)){
-					$current_D_playerName = read($current_D_textname_filename);
-					echo '<tr><td align="center">' . $current_D_playerName . ' (Pair: ' . $x . ')</td><td align="center">' . Round($current_D_score, 2) . '</td></tr>';
-				};
-			};
+			// if(file_exists($current_D_score_filename)){
+				// $current_D_score = read($current_D_score_filename);
+				// if(file_exists($current_D_textname_filename)){
+					// $current_D_playerName = read($current_D_textname_filename);
+					// echo '<tr><td align="center">' . $current_D_playerName . ' (Pair: ' . $x . ')</td><td align="center">' . Round($current_D_score, 2) . '</td></tr>';
+				// };
+			// };
 		};
 		echo '</table></div><br/>';
 	};
@@ -76,16 +76,16 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 			
 			for($x = 1; $x <= $number_of_scores_to_reset; $x++){
 				$current_filename = $Score_DIR . $x . '.txt';
-				$current_D_filename = $Score_DIR . $x . 'D.txt';
+				// $current_D_filename = $Score_DIR . $x . 'D.txt';
 				
 				if(file_exists($current_filename)){
 					if($DEBUG){ echo 'Overwriting ' . $current_filename . ' ...<br/>'; };
 					write($current_filename, $BaseScore);
 				};
-				if(file_exists($current_D_filename)){
-					if($DEBUG){ echo 'Overwriting ' . $current_D_filename . ' ...<br/>'; };
-					write($current_D_filename, $BaseScore);
-				};
+				// if(file_exists($current_D_filename)){
+					// if($DEBUG){ echo 'Overwriting ' . $current_D_filename . ' ...<br/>'; };
+					// write($current_D_filename, $BaseScore);
+				// };
 				
 			};
 			echo 'Scores Reset.<br/>';
@@ -318,22 +318,22 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	//Make Prediction
 	$ELO_Link = '<a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO Rating</a>';
 	if($Player1_ELO > $Player2_ELO){
-			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
-			$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 2</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Person 1</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Person 2</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
 	}else{
 		if($Player1_ELO === $Player2_ELO){
-			$Prediction = '<font color="red"><strong>Both players have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO, 3) . '%)' . '</strong></font>';
+			$Prediction = '<font color="red"><strong>Both people have an <strong>equal chance</strong> to win</strong></font>, with both having an ' . $ELO_Link . ' of <strong><font color="red">' . $Player1_ELO . ' (' . Round(100 * $Player2_ELO, 3) . '%)' . '</strong></font>';
 		};	
 		if($Player1_ELO < $Player2_ELO){
-			$Prediction = 'Based on previous user input, <font color="green"><strong>Player 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
-			$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Player 1</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction = 'Based on previous user input, <font color="green"><strong>Person 2</font></strong> is most likely <strong>' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="green"><strong>' . Round(100 * $Player2_ELO, 3) . '%.' . '</strong></font>';
+			$Prediction_2 = 'Based on previous user input, <font color="red"><strong>Person 1</font></strong> is most likely <strong>NOT ' . $Designated_Player_Text . '</strong>, with an ' . $ELO_Link . ' of <font color="red"><strong>' . Round(100 * $Player1_ELO, 3) . '%.' . '</strong></font>';
 		};
 	};
 	
 	//Display Score/Info for both players for debug
 	if($DEBUG){
-		echo '<br/>Player 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
-		echo '<br/>Player 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)<br/>';
+		echo '<br/>Person 1 (Left): ' . $Player1_name . ' (<strong>Score: ' . $Player1_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player1_ELO . ' ---<font color="red"> ' . (100 * $Player1_ELO) . '%</font></strong>)';
+		echo '<br/>Person 2 (Right): ' . $Player2_name . ' (<strong>Score: ' . $Player2_currentScore . '</strong>) ' . '(<strong>ELO: ' . $Player2_ELO . ' ---<font color="red"> ' . (100 * $Player2_ELO) . '%</font></strong>)<br/>';
 	};
 	
 	//Display Prediction
@@ -370,13 +370,13 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Left)</button> ';
 	}else{
-		echo 'Player 1</button> '; // If not using randomized version
+		echo 'Person 1</button> '; // If not using randomized version
 	};
 	echo '</strong><button name="Right_button" type="submit" value="' . base64_encode(json_encode($Players_Array)) . '"><strong>No, this is ';
 	if(isset($Designated_Player_Text)){
 		echo $Designated_Player_Text . ' (Right)</button>';
 	}else{
-		echo 'Player 2</button>';
+		echo 'Person 2</button>';
 	};
 	echo '</strong><br/><br/>';
 	
@@ -386,7 +386,7 @@ if(isset($_POST) AND $_SERVER['REQUEST_METHOD'] === 'POST' AND filter_array($_PO
 	if(isset($_POST['RevealPlayers'])){
 		echo 'checked = checked';
 	};
-	echo '> Show true player names* (cheating)<br/>';
+	echo '> Show true names* (cheating)<br/>';
 	echo '<input type="checkbox" name="ToggleScoreBoard" value="1" ';
 	if(isset($_POST['ToggleScoreBoard'])){
 		echo 'checked = checked';

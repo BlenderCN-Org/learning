@@ -58,7 +58,6 @@ From Bookmarks:
 ------------------------------------
 TUTORIALS/GUIDES:
 ------------------------------------
-https://joel.franusic.com/krazy_kat/about/
 
 CSS - 3D:
 https://css-tricks.com/creating-a-3d-cube-image-gallery/
@@ -66,8 +65,6 @@ https://www.tjvantoll.com/2012/02/27/making-a-3d-picture-cube-with-css3/
 https://observablehq.com/@oscardr/css-3d-cube/
 https://zachstronaut.github.io/quintessential-css-cube/
 view-source:https://html-online.com/demo/css3-cube/
-
-
 
 THREEJS/CANVAS/GAMES:
 https://www.codemahal.com/javascript-and-html5-canvas-game-tutorial-code/
@@ -85,3 +82,6 @@ https://codeburst.io/how-to-make-a-simple-multiplayer-online-car-game-with-javas
 https://code.tutsplus.com/tutorials/create-a-multiplayer-pirate-shooter-game-in-your-browser--cms-23311
 https://glitch.com/edit/#!/tutsplus-pirate-shooter-starterkit?path=README.md:1:0
 https://itnext.io/how-to-build-a-realtime-multiplayer-game-in-javascript-using-pubnub-5f410fd62f33
+
+Will Probably Never Get to But May Want to Look at:
+https://joel.franusic.com/krazy_kat/about/

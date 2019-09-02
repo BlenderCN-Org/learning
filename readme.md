@@ -1,4 +1,5 @@
 <strong>To Do:</strong><br/>
+• Condense notes together (in notes folder and this one).<br/>
 • Find old functions.php files.<br/>
 • <strike>Move vehicle ThreeJS example to examples folder, and others - canvas game, NodeJS zip/DIR thing</strike><br/>
 • Look over CSS 3D transforms, in Links.txt.<br/>
